@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Softworks Trading Company</title>
+    <meta name="description" content="AI Strategy, Governance, and Integration Advisory" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              stone: {
+                850: '#1f1c1a',
+                950: '#0c0a09',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
+      
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: 'Inter', sans-serif;
+        background-color: #F5F5F4; /* Stone 100 - Warmer paper tone */
+        color: #1C1917; /* Stone 900 */
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* Typewriter Headings */
+      h1, h2, h3, h4, h5, h6 {
+        font-family: 'Courier Prime', monospace;
+        letter-spacing: -0.02em; /* Tighter tracking for headings */
+      }
+      
+      .font-mono {
+        font-family: 'JetBrains Mono', monospace;
+      }
+
+      /* Paper-craft Grid Background */
+      .bg-grid-pattern {
+        background-size: 40px 40px;
+        background-image: 
+          linear-gradient(to right, #E7E5E4 1px, transparent 1px),
+          linear-gradient(to bottom, #E7E5E4 1px, transparent 1px);
+        background-position: center top;
+      }
+      
+      /* Dark Mode Grid Override */
+      .dark .bg-grid-pattern {
+        background-image: 
+          linear-gradient(to right, #292524 1px, transparent 1px),
+          linear-gradient(to bottom, #292524 1px, transparent 1px); /* Stone 800 lines */
+        opacity: 0.3;
+      }
+
+      .paper-card {
+        background-color: #FFFFFF;
+        border: 1px solid #D6D3D1; /* Stone 300 */
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.05); /* Hard shadow for distinct paper feel */
+      }
+      
+      .dark .paper-card {
+        background-color: #1c1917; /* Stone 900 */
+        border-color: #44403c; /* Stone 700 */
+        box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5);
+      }
+
+      .animate-fade-in-up {
+        animation: fade-in-up 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @keyframes fade-in-up {
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      /* Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #F5F5F4;
+      }
+      .dark ::-webkit-scrollbar-track {
+        background: #0c0a09;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #A8A29E;
+        border-radius: 0px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #78716C;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
