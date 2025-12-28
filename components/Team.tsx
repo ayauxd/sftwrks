@@ -5,37 +5,12 @@
 
 import React from 'react';
 
-const TEAM_MEMBERS = [
-  {
-    initials: 'FA',
-    name: 'Frederick A.',
-    role: 'Strategy & Integration',
-    bio: 'Two decades in communications and user experience across banking, maritime, and tech—spanning West Africa, Europe, and North America. Based in the Pacific Northwest, leading AI integration projects.'
-  },
-  {
-    initials: 'PO',
-    name: 'Peter O.',
-    role: 'Media & Motion',
-    bio: 'Cinematographer and motion designer with an MFA in visual storytelling. Produces brand films and explainer content that makes technical concepts feel human.'
-  },
-  {
-    initials: 'AK',
-    name: 'Amara K.',
-    role: 'Operations & Process',
-    bio: 'Former operations lead at a Series B fintech. Specializes in mapping business processes and identifying where automation makes sense—and where it doesn\'t.'
-  },
-  {
-    initials: 'DM',
-    name: 'David M.',
-    role: 'Technical Architecture',
-    bio: 'Backend engineer turned AI systems consultant. Translates business requirements into technical specs that developers can actually execute.'
-  },
-  {
-    initials: 'NR',
-    name: 'Nina R.',
-    role: 'Research & Analysis',
-    bio: 'Economist by training, strategist by practice. Turns ambiguous business problems into clear, testable hypotheses.'
-  }
+const EXPERTISE_AREAS = [
+  { label: 'AI Strategy & Integration', icon: '◈' },
+  { label: 'Process Automation', icon: '◇' },
+  { label: 'Media & Communications', icon: '◆' },
+  { label: 'Technical Architecture', icon: '◈' },
+  { label: 'Research & Analysis', icon: '◇' }
 ];
 
 const Team: React.FC = () => {
@@ -43,51 +18,104 @@ const Team: React.FC = () => {
     <section id="team" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] border-t border-slate-200 dark:border-slate-800">
       <div className="max-w-5xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-12">
           <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">
             The Team
           </span>
           <h2 className="text-3xl md:text-4xl text-slate-900 dark:text-white mt-4 font-bold">
-            A small team that gets things done
+            Human expertise, amplified by AI
           </h2>
-          <p className="mt-6 text-lg text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">
-            We're a distributed collective of specialists who've spent careers making complex ideas work in the real world.
-            When you work with us, you work with senior people who've actually built things.
-          </p>
         </div>
 
-        {/* Team Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {TEAM_MEMBERS.map((member) => (
-            <div
-              key={member.initials}
-              className="bg-white dark:bg-[#1E3A5F] p-6 border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF]/50 transition-colors"
-            >
-              {/* Avatar placeholder with initials */}
-              <div className="w-12 h-12 bg-slate-100 dark:bg-[#0A1628] border border-slate-200 dark:border-slate-600 flex items-center justify-center mb-4">
-                <span className="font-mono text-sm text-slate-500 dark:text-slate-400">
-                  {member.initials}
-                </span>
-              </div>
+        {/* Team Photo Placeholder */}
+        <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
+          <div className="aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628] flex items-center justify-center">
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
+              alt="Softworks team collaborating"
+              className="w-full h-full object-cover opacity-90"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent"></div>
+          </div>
+          {/* Overlay text */}
+          <div className="absolute bottom-6 left-6 right-6">
+            <p className="text-white/90 text-sm font-mono">
+              Frederick A. • Peter O. • Amara K. • David M. • Nina R.
+            </p>
+          </div>
+        </div>
 
-              <h3 className="text-lg font-bold text-slate-900 dark:text-white">
-                {member.name}
-              </h3>
-              <p className="text-sm font-mono text-[#00D4FF] uppercase tracking-wider mb-3">
-                {member.role}
+        {/* Collective Write-up */}
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Left: Our Approach */}
+          <div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+              A collective, not a factory
+            </h3>
+            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p>
+                We're five specialists who've spent careers making complex ideas work in the real world—across banking, maritime logistics, healthcare, media production, and enterprise tech. When you work with us, you work directly with senior people who've actually built things.
               </p>
-              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
-                {member.bio}
+              <p>
+                Our backgrounds span three continents: West Africa, Europe, and North America. We've led communications at multinational corporations, designed AI systems for startups, produced content for global brands, and mapped operations for high-growth companies.
               </p>
             </div>
-          ))}
+          </div>
+
+          {/* Right: Human-in-the-Loop Philosophy */}
+          <div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+              AI-assisted, human-verified
+            </h3>
+            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
+              <p>
+                Yes, we use specialized AI agents throughout our work. They help us research faster, prototype solutions, analyze data, and automate repetitive tasks. That's how a small team delivers enterprise-quality results.
+              </p>
+              <p>
+                But here's our code of conduct: <span className="text-slate-900 dark:text-white font-medium">human review happens at every critical touchpoint</span>. Before any deliverable reaches you, a real person—someone accountable for the outcome—has verified the work. AI extends our capabilities; it doesn't replace our judgment.
+              </p>
+            </div>
+          </div>
         </div>
 
-        {/* Philosophy note */}
-        <div className="mt-16 text-center">
-          <p className="text-slate-500 dark:text-slate-500 text-sm max-w-xl mx-auto">
-            Our backgrounds span communications, user experience, AI systems, media production, and operations—across industries from financial services to healthcare.
-            What we have in common: we'd rather build something that works than talk about building something that works.
+        {/* Expertise Areas */}
+        <div className="bg-white dark:bg-[#1E3A5F] border border-slate-200 dark:border-slate-700 p-8 rounded-lg">
+          <h4 className="text-sm font-mono text-[#00D4FF] uppercase tracking-widest mb-6 text-center">
+            Combined Expertise
+          </h4>
+          <div className="flex flex-wrap justify-center gap-4">
+            {EXPERTISE_AREAS.map((area) => (
+              <div
+                key={area.label}
+                className="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-[#0A1628] border border-slate-200 dark:border-slate-600 rounded-full"
+              >
+                <span className="text-[#00D4FF] text-sm">{area.icon}</span>
+                <span className="text-sm text-slate-700 dark:text-slate-300">{area.label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats */}
+          <div className="grid grid-cols-3 gap-8 mt-8 pt-8 border-t border-slate-200 dark:border-slate-600">
+            <div className="text-center">
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">60+</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Combined Years</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">3</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Continents</div>
+            </div>
+            <div className="text-center">
+              <div className="text-2xl font-bold text-slate-900 dark:text-white">∞</div>
+              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Human Touchpoints</div>
+            </div>
+          </div>
+        </div>
+
+        {/* Closing note */}
+        <div className="mt-12 text-center">
+          <p className="text-slate-500 dark:text-slate-500 text-sm max-w-2xl mx-auto italic">
+            "We'd rather build something that works than talk about building something that works."
           </p>
         </div>
       </div>

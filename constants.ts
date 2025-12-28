@@ -164,6 +164,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     id: 'j1',
     title: 'The Latency Tax Nobody Talks About',
     date: 'MAR 2025',
+    author: 'David M.',
     excerpt: 'Your AI agent is probably too slow. Here\'s why that matters more than its intelligence.',
     image: '/assets/sections/integration-hub.png',
     content: `
@@ -208,6 +209,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     id: 'j2',
     title: 'Your Context Window Is Not a Database',
     date: 'FEB 2025',
+    author: 'Nina R.',
     excerpt: 'The biggest mistake companies make with RAG: treating AI memory like a filing cabinet.',
     image: '/assets/sections/strategy-map.png',
     content: `
@@ -254,6 +256,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     id: 'j3',
     title: 'The Chief AI Officer Won\'t Exist in Three Years',
     date: 'JAN 2025',
+    author: 'Frederick A.',
     excerpt: 'Why the hottest role in tech is already obsolete—and what\'s actually coming next.',
     image: '/assets/hero/bridge-metaphor.png',
     content: `

@@ -33,9 +33,12 @@ const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack }) => {
                  </span>
                  <span className="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest">{article.date}</span>
              </div>
-             <h1 className="text-3xl md:text-5xl font-bold font-['Courier_Prime'] text-slate-900 dark:text-white leading-tight">
+             <h1 className="text-3xl md:text-5xl font-bold font-['Courier_Prime'] text-slate-900 dark:text-white leading-tight mb-4">
                {article.title}
              </h1>
+             <p className="text-sm text-slate-500 dark:text-slate-400">
+               By <span className="font-medium text-slate-700 dark:text-slate-300">{article.author}</span>
+             </p>
           </div>
 
           <div className="w-full aspect-video bg-slate-200 dark:bg-[#1E3A5F] mb-12 overflow-hidden border border-slate-300 dark:border-slate-700">

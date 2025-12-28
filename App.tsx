@@ -243,9 +243,10 @@ function App() {
                                     {article.date}
                                 </div>
                             </div>
-                            <h3 className="text-xl font-bold text-white mb-3 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
+                            <h3 className="text-xl font-bold text-white mb-2 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
                                 {article.title}
                             </h3>
+                            <p className="text-xs text-slate-500 mb-3">By {article.author}</p>
                             <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
                                 {article.excerpt}
                             </p>

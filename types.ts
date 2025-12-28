@@ -33,6 +33,7 @@ export interface JournalArticle {
   id: string;
   title: string;
   date: string;
+  author: string;
   excerpt: string;
   image: string;
   content: string;
