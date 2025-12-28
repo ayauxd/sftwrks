@@ -34,33 +34,30 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
 
-      {/* Background - Theme responsive */}
-      <div className="absolute inset-0 transition-colors duration-500">
-        {/* Dark mode: Bridge/Earth image */}
+      {/* Background - Same image for both modes with different overlays */}
+      <div className="absolute inset-0">
+        {/* Hero image - visible in both modes */}
         <img
           src="/assets/hero/bridge-metaphor.png"
           alt=""
-          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
-            isDark ? 'opacity-100' : 'opacity-0'
-          }`}
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
 
-        {/* Light mode: Clean gradient background */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-slate-50 via-white to-cyan-50 transition-opacity duration-500 ${
-          isDark ? 'opacity-0' : 'opacity-100'
+        {/* Dark mode overlay */}
+        <div className={`absolute inset-0 transition-opacity duration-500 ${
+          isDark ? 'opacity-100' : 'opacity-0'
         }`}>
-          {/* Subtle decorative elements for light mode */}
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-100 rounded-full blur-3xl opacity-30"></div>
-          <div className="absolute bottom-1/3 right-1/3 w-64 h-64 bg-blue-100 rounded-full blur-3xl opacity-20"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/60" />
         </div>
 
-        {/* Dark mode overlays */}
-        <div className={`absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40 transition-opacity duration-500 ${
-          isDark ? 'opacity-100' : 'opacity-0'
-        }`} />
-        <div className={`absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/60 transition-opacity duration-500 ${
-          isDark ? 'opacity-100' : 'opacity-0'
-        }`} />
+        {/* Light mode overlay - lighter, more transparent */}
+        <div className={`absolute inset-0 transition-opacity duration-500 ${
+          isDark ? 'opacity-0' : 'opacity-100'
+        }`}>
+          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-white/60" />
+        </div>
       </div>
 
       {/* Circuit Grid Pattern Overlay - Very subtle, theme responsive */}
