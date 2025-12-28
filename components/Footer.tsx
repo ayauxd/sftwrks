@@ -4,7 +4,6 @@
 */
 
 import React from 'react';
-import SoftworksLogo from './SoftworksLogo';
 
 interface FooterProps {
   onLinkClick: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
@@ -18,9 +17,10 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
         {/* Brand Column */}
         <div className="md:col-span-4">
           <div className="flex items-center gap-3 mb-4">
-            <SoftworksLogo
-              size={40}
-              className="text-[#00D4FF]"
+            <img
+              src="/assets/logos/softworks-icon-64.png"
+              alt="Softworks"
+              className="w-10 h-10 object-contain"
             />
             <div className="flex flex-col gap-0.5">
               <span className="font-sans text-white font-bold text-base tracking-wide">SOFTWORKS</span>

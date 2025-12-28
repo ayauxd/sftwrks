@@ -6,7 +6,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
 import { sendMessageToGemini } from '../services/geminiService';
-import SoftworksLogo from './SoftworksLogo';
 
 const Assistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -74,8 +73,8 @@ const Assistant: React.FC = () => {
           {/* Header - Claude style */}
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628]">
             <div className="flex items-center gap-3">
-              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center">
-                <SoftworksLogo size={20} className="text-[#0A1628] dark:text-[#00D4FF]" />
+              <div className="w-8 h-8 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center overflow-hidden">
+                <img src="/assets/logos/softworks-icon-64.png" alt="Softworks" className="w-5 h-5 object-contain" />
               </div>
               <div>
                 <h3 className="font-semibold text-slate-900 dark:text-white text-sm">Softworks Assistant</h3>
@@ -107,8 +106,8 @@ const Assistant: React.FC = () => {
           <div className="flex-1 overflow-y-auto px-5 py-6 space-y-6 bg-white dark:bg-[#0F172A]" ref={scrollRef}>
             {messages.length === 0 && (
               <div className="h-full flex flex-col items-center justify-center text-center px-6">
-                <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mb-4">
-                  <SoftworksLogo size={28} className="text-[#0A1628] dark:text-[#00D4FF]" />
+                <div className="w-12 h-12 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mb-4 overflow-hidden">
+                  <img src="/assets/logos/softworks-icon-64.png" alt="Softworks" className="w-7 h-7 object-contain" />
                 </div>
                 <h4 className="text-slate-900 dark:text-white font-medium mb-2">How can I help you?</h4>
                 <p className="text-sm text-slate-500 dark:text-slate-400 max-w-[280px]">
@@ -120,8 +119,8 @@ const Assistant: React.FC = () => {
             {messages.map((msg, idx) => (
               <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                 {msg.role === 'model' && (
-                  <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mr-3 flex-shrink-0 mt-1">
-                    <SoftworksLogo size={16} className="text-[#0A1628] dark:text-[#00D4FF]" />
+                  <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mr-3 flex-shrink-0 mt-1 overflow-hidden">
+                    <img src="/assets/logos/softworks-icon-64.png" alt="" className="w-4 h-4 object-contain" />
                   </div>
                 )}
                 <div
@@ -138,8 +137,8 @@ const Assistant: React.FC = () => {
 
             {isThinking && (
               <div className="flex justify-start">
-                <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mr-3 flex-shrink-0">
-                  <SoftworksLogo size={16} className="text-[#0A1628] dark:text-[#00D4FF]" />
+                <div className="w-7 h-7 rounded-full bg-slate-100 dark:bg-[#1E3A5F] flex items-center justify-center mr-3 flex-shrink-0 overflow-hidden">
+                  <img src="/assets/logos/softworks-icon-64.png" alt="" className="w-4 h-4 object-contain" />
                 </div>
                 <div className="bg-slate-100 dark:bg-[#1E3A5F] px-4 py-3 rounded-2xl rounded-bl-md">
                   <div className="flex gap-1.5 items-center">

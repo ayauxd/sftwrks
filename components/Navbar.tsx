@@ -5,7 +5,6 @@
 
 
 import React, { useState, useEffect } from 'react';
-import SoftworksLogo from './SoftworksLogo';
 
 interface NavbarProps {
   onNavClick: (targetId: string) => void;
@@ -45,13 +44,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             onClick={() => handleLink('top')}
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <SoftworksLogo
-              size={40}
-              className={`transition-colors ${
-                scrolled
-                  ? 'text-[#0A1628] dark:text-[#00D4FF]'
-                  : 'text-[#00D4FF]'
-              }`}
+            <img
+              src="/assets/logos/softworks-icon-64.png"
+              alt="Softworks"
+              className="w-10 h-10 object-contain"
             />
             <div className="flex flex-col items-start gap-0.5">
               {/* SOFTWORKS - Bold, visible on both light and dark */}
@@ -139,9 +135,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
         <div className="fixed inset-0 top-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 p-6 flex flex-col justify-center items-center gap-8 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
             {/* Mobile Logo */}
             <div className="flex flex-col items-center mb-4">
-              <SoftworksLogo
-                size={64}
-                className="text-[#0A1628] dark:text-[#00D4FF] mb-3"
+              <img
+                src="/assets/logos/softworks-icon-128.png"
+                alt="Softworks"
+                className="w-16 h-16 object-contain mb-3"
               />
               <span className="font-sans text-slate-900 dark:text-white font-bold text-lg tracking-wide">SOFTWORKS</span>
               <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-xs tracking-[0.15em] uppercase">Trading Company</span>
