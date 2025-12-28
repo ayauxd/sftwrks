@@ -5,7 +5,7 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { BRAND_NAME } from '../constants';
+import SoftworksLogo from './SoftworksLogo';
 
 interface NavbarProps {
   onNavClick: (targetId: string) => void;
@@ -32,34 +32,64 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
 
   return (
     <>
-      <nav 
+      <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b ${
-          scrolled 
-            ? 'bg-[#F5F5F4]/95 dark:bg-[#0c0a09]/95 backdrop-blur-sm border-stone-300 dark:border-stone-800 py-3 shadow-sm' 
+          scrolled
+            ? 'bg-[#F1F5F9]/95 dark:bg-[#0A1628]/95 backdrop-blur-sm border-slate-300 dark:border-slate-800 py-3 shadow-sm'
             : 'bg-transparent border-transparent py-6'
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Brand */}
-          <button 
+          {/* Brand Logo */}
+          <button
             onClick={() => handleLink('top')}
-            className="text-base md:text-lg font-bold tracking-tight text-stone-900 dark:text-stone-100 uppercase font-['Courier_Prime'] hover:text-orange-600 dark:hover:text-orange-500 transition-colors"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            {BRAND_NAME}
+            <SoftworksLogo
+              size={40}
+              className={`transition-colors ${
+                scrolled
+                  ? 'text-[#0A1628] dark:text-[#00D4FF]'
+                  : 'text-[#00D4FF]'
+              }`}
+            />
+            <div className="flex flex-col items-start gap-0.5">
+              {/* SOFTWORKS - Bold, visible on both light and dark */}
+              <span className={`font-sans font-bold text-sm md:text-base tracking-wide transition-colors ${
+                scrolled
+                  ? 'text-slate-900 dark:text-white'
+                  : 'text-white'
+              }`}>
+                SOFTWORKS
+              </span>
+              {/* Trading Company - Lighter weight, letter-spaced */}
+              <span className={`font-sans font-medium text-[10px] md:text-xs tracking-[0.15em] uppercase transition-colors ${
+                scrolled
+                  ? 'text-slate-500 dark:text-slate-400'
+                  : 'text-slate-300'
+              }`}>
+                Trading Company
+              </span>
+            </div>
           </button>
-          
+
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs md:text-sm font-medium text-stone-600 dark:text-stone-400 font-sans tracking-wide">
-            <button onClick={() => handleLink('about')} className="hover:text-orange-600 dark:hover:text-orange-500 transition-colors uppercase">What We Do</button>
-            <button onClick={() => handleLink('process')} className="hover:text-orange-600 dark:hover:text-orange-500 transition-colors uppercase">Approach</button>
-            <button onClick={() => handleLink('work')} className="hover:text-orange-600 dark:hover:text-orange-500 transition-colors uppercase">Case Studies</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-orange-600 dark:hover:text-orange-500 transition-colors uppercase">Insights</button>
-            <button onClick={() => handleLink('contact')} className="hover:text-orange-600 dark:hover:text-orange-500 transition-colors uppercase">Contact</button>
-            
+          <div className="hidden md:flex items-center gap-8 text-xs md:text-sm font-medium text-slate-600 dark:text-slate-400 font-sans tracking-wide">
+            <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">What We Do</button>
+            <button onClick={() => handleLink('process')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Approach</button>
+            <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Case Studies</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Insights</button>
+            <button
+              onClick={() => handleLink('contact')}
+              className="ml-2 px-4 py-2 border border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-200 uppercase text-xs tracking-wider"
+            >
+              Contact
+            </button>
+
             {/* Theme Toggle */}
-            <button 
-              onClick={toggleTheme} 
-              className="ml-4 p-2 rounded-full hover:bg-stone-200 dark:hover:bg-stone-800 transition-colors text-stone-900 dark:text-stone-100"
+            <button
+              onClick={toggleTheme}
+              className="ml-2 p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-300"
               aria-label="Toggle Dark Mode"
             >
               {isDark ? (
@@ -76,9 +106,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
 
           {/* Mobile Toggle */}
           <div className="flex items-center gap-4 md:hidden">
-            <button 
-                onClick={toggleTheme} 
-                className="p-1 text-stone-900 dark:text-stone-100"
+            <button
+                onClick={toggleTheme}
+                className="p-1 text-slate-700 dark:text-slate-300"
             >
                 {isDark ? (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -90,8 +120,8 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
                   </svg>
                 )}
             </button>
-            <button 
-              className="text-stone-900 dark:text-stone-100"
+            <button
+              className="text-slate-700 dark:text-slate-300"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
                {mobileMenuOpen ? (
@@ -106,13 +136,22 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-0 bg-[#F5F5F4] dark:bg-[#0c0a09] z-40 p-6 flex flex-col justify-center items-center gap-8 font-['Courier_Prime'] text-xl text-stone-900 dark:text-stone-100 animate-fade-in-up">
-            <button onClick={() => handleLink('about')} className="hover:text-orange-600 dark:hover:text-orange-500">WHAT WE DO</button>
-            <button onClick={() => handleLink('process')} className="hover:text-orange-600 dark:hover:text-orange-500">APPROACH</button>
-            <button onClick={() => handleLink('work')} className="hover:text-orange-600 dark:hover:text-orange-500">CASE STUDIES</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-orange-600 dark:hover:text-orange-500">INSIGHTS</button>
-            <button onClick={() => handleLink('contact')} className="hover:text-orange-600 dark:hover:text-orange-500">CONTACT</button>
-            <button onClick={() => setMobileMenuOpen(false)} className="mt-8 text-sm font-sans text-stone-500 dark:text-stone-500 uppercase tracking-widest hover:text-orange-600">Close</button>
+        <div className="fixed inset-0 top-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 p-6 flex flex-col justify-center items-center gap-8 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
+            {/* Mobile Logo */}
+            <div className="flex flex-col items-center mb-4">
+              <SoftworksLogo
+                size={64}
+                className="text-[#0A1628] dark:text-[#00D4FF] mb-3"
+              />
+              <span className="font-sans text-slate-900 dark:text-white font-bold text-lg tracking-wide">SOFTWORKS</span>
+              <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-xs tracking-[0.15em] uppercase">Trading Company</span>
+            </div>
+            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">WHAT WE DO</button>
+            <button onClick={() => handleLink('process')} className="hover:text-[#00D4FF] transition-colors">APPROACH</button>
+            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors">CASE STUDIES</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors">INSIGHTS</button>
+            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors">CONTACT</button>
+            <button onClick={() => setMobileMenuOpen(false)} className="mt-8 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
         </div>
       )}
     </>

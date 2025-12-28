@@ -1,0 +1,11 @@
+# robots.txt for Softworks Trading Company
+# https://softworkstrading.com
+
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://softworkstrading.com/sitemap.xml
+
+# Crawl-delay for politeness (optional)
+Crawl-delay: 1

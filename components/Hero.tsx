@@ -3,15 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-
 import React from 'react';
 
-const Hero: React.FC = () => {
+interface HeroProps {
+  isDark: boolean;
+}
+
+const Hero: React.FC<HeroProps> = ({ isDark }) => {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
-      // Manual scroll calculation to account for fixed header
       const headerOffset = 85;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -20,8 +22,7 @@ const Hero: React.FC = () => {
         top: offsetPosition,
         behavior: "smooth"
       });
-      
-      // Update URL hash without jumping, safely ignoring errors in sandboxed environments
+
       try {
         window.history.pushState(null, '', `#${targetId}`);
       } catch (err) {
@@ -31,50 +32,140 @@ const Hero: React.FC = () => {
   };
 
   return (
-    <section className="relative w-full h-screen min-h-[800px] overflow-hidden bg-[#D6D1C7]">
-      
-      {/* Background Image - Serene Nature */}
-      <div className="absolute inset-0 w-full h-full">
-        <img 
-            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=2000" 
-            alt="Serene misty landscape" 
-            className="w-full h-full object-cover grayscale contrast-[0.7] brightness-[0.95] animate-[pulse_15s_ease-in-out_infinite_alternate]"
+    <section className="relative w-full min-h-screen overflow-hidden">
+
+      {/* Background - Theme responsive */}
+      <div className="absolute inset-0 transition-colors duration-500">
+        {/* Dark mode: Earth from space image */}
+        <img
+          src="/assets/hero/bridge-metaphor.png"
+          alt=""
+          className={`absolute inset-0 w-full h-full object-cover object-center transition-opacity duration-500 ${
+            isDark ? 'opacity-100' : 'opacity-0'
+          }`}
         />
-        {/* Warmer Brown Overlay for Richness */}
-        <div className="absolute inset-0 bg-[#433E38]/40 mix-blend-multiply"></div>
-        {/* Deep Sepia Tone for Shadow Depth */}
-        <div className="absolute inset-0 bg-[#313030]/20"></div>
+
+        {/* Light mode: Gradient background */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-cyan-50 transition-opacity duration-500 ${
+          isDark ? 'opacity-0' : 'opacity-100'
+        }`} />
+
+        {/* Dark mode overlays */}
+        <div className={`absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40 transition-opacity duration-500 ${
+          isDark ? 'opacity-100' : 'opacity-0'
+        }`} />
+        <div className={`absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/60 transition-opacity duration-500 ${
+          isDark ? 'opacity-100' : 'opacity-0'
+        }`} />
       </div>
 
+      {/* Circuit Grid Pattern Overlay - Very subtle, theme responsive */}
+      <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${isDark ? 'opacity-5' : 'opacity-[0.03]'}`}>
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: isDark
+              ? `linear-gradient(to right, rgba(0, 212, 255, 0.3) 1px, transparent 1px),
+                 linear-gradient(to bottom, rgba(0, 212, 255, 0.3) 1px, transparent 1px)`
+              : `linear-gradient(to right, rgba(15, 23, 42, 0.2) 1px, transparent 1px),
+                 linear-gradient(to bottom, rgba(15, 23, 42, 0.2) 1px, transparent 1px)`,
+            backgroundSize: '80px 80px'
+          }}
+        />
+      </div>
+
+      {/* Subtle Glow Accents */}
+      <div className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-[200px] transition-all duration-500 ${
+        isDark ? 'bg-[#00D4FF] opacity-10' : 'bg-cyan-400 opacity-20'
+      }`} />
+
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-start text-left md:items-center md:text-center px-6">
-        <div className="animate-fade-in-up w-full md:w-auto">
-          <span className="block text-xs md:text-sm font-medium uppercase tracking-[0.2em] text-white/90 mb-6 backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full mx-0 md:mx-auto w-fit">
-            Spring Collection 2025
-          </span>
-          <h1 className="text-6xl md:text-8xl lg:text-9xl font-serif font-normal text-white tracking-tight mb-8 drop-shadow-sm">
-            Quiet <span className="italic text-[#F5F2EB]">living.</span>
-          </h1>
-          <p className="max-w-lg mx-0 md:mx-auto text-lg md:text-xl text-white/90 font-light leading-relaxed mb-12 text-shadow-sm">
-            Technology designed to disappear into your life. <br/>
-            Warm materials, silent operation, natural forms.
-          </p>
-          
-          <a 
-            href="#products" 
-            onClick={(e) => handleNavClick(e, 'products')}
-            className="group relative px-10 py-4 bg-[#F5F2EB] text-[#2C2A26] rounded-full text-sm font-semibold uppercase tracking-widest hover:bg-white transition-all duration-500 overflow-hidden shadow-lg hover:shadow-xl inline-block"
-          >
-            <span className="relative z-10 group-hover:text-[#2C2A26]">View Collection</span>
-          </a>
+      <div className="relative z-10 h-full min-h-screen flex items-center px-6 py-24">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="max-w-2xl">
+
+            {/* Mono Label */}
+            <span className={`animate-fade-in-up inline-block text-xs font-mono uppercase tracking-[0.3em] mb-8 border px-4 py-2 transition-colors duration-300 ${
+              isDark
+                ? 'text-[#00D4FF] border-[#00D4FF]/30'
+                : 'text-cyan-600 border-cyan-600/30'
+            }`}>
+              AI Strategy & Integration Advisory
+            </span>
+
+            {/* Main Headline */}
+            <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 leading-[1.1] transition-colors duration-300" style={{ animationDelay: '100ms' }}>
+              <span className={isDark ? 'text-white' : 'text-slate-900'}>Making </span>
+              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>AI Work</span>
+              <br />
+              <span className={`font-light ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>for Your Business</span>
+            </h1>
+
+            {/* Subheadline */}
+            <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
+              isDark ? 'text-slate-400' : 'text-slate-600'
+            }`} style={{ animationDelay: '200ms' }}>
+              We help you go from AI confusion to real results.
+              <br className="hidden md:block" />
+              <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Plan it. Protect it. Put it to work.</span>
+            </p>
+
+            {/* CTA Buttons */}
+            <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4" style={{ animationDelay: '300ms' }}>
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className={`group px-8 py-4 font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-center ${
+                  isDark
+                    ? 'bg-[#00D4FF] text-[#0A1628] hover:bg-[#22D3EE] hover:shadow-[0_0_30px_rgba(0,212,255,0.4)]'
+                    : 'bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg'
+                }`}
+              >
+                Start a Conversation
+              </a>
+              <a
+                href="#work"
+                onClick={(e) => handleNavClick(e, 'work')}
+                className={`group px-8 py-4 border font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center ${
+                  isDark
+                    ? 'border-slate-500 text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF]'
+                    : 'border-slate-400 text-slate-600 hover:border-cyan-600 hover:text-cyan-600'
+                }`}
+              >
+                View Case Studies
+              </a>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className={`animate-fade-in-up mt-16 pt-8 border-t transition-colors duration-300 ${
+              isDark ? 'border-slate-700/50' : 'border-slate-300/50'
+            }`} style={{ animationDelay: '400ms' }}>
+              <p className={`text-xs font-mono uppercase tracking-[0.2em] mb-4 ${
+                isDark ? 'text-slate-500' : 'text-slate-500'
+              }`}>
+                Trusted by forward-thinking organizations
+              </p>
+              <div className={`flex flex-wrap items-center gap-6 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
+                <span className="text-sm font-light">Mid-Market Enterprises</span>
+                <span className={`hidden sm:block ${isDark ? 'text-slate-700' : 'text-slate-300'}`}>|</span>
+                <span className="text-sm font-light">Growth-Stage Startups</span>
+                <span className={`hidden sm:block ${isDark ? 'text-slate-700' : 'text-slate-300'}`}>|</span>
+                <span className="text-sm font-light">Professional Services</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce text-white/50">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-        </svg>
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
+        <div className="flex flex-col items-center gap-2">
+          <span className={`text-xs font-mono uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Explore</span>
+          <svg className={`w-5 h-5 ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
+        </div>
       </div>
     </section>
   );
