@@ -100,8 +100,23 @@ interface AssessmentAnswer {
   customText?: string;
 }
 
-const Assistant: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+interface AssistantProps {
+  isOpen?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenChange }) => {
+  const [internalIsOpen, setInternalIsOpen] = useState(false);
+
+  // Use controlled or uncontrolled state
+  const isOpen = controlledIsOpen !== undefined ? controlledIsOpen : internalIsOpen;
+  const setIsOpen = (open: boolean) => {
+    if (onOpenChange) {
+      onOpenChange(open);
+    } else {
+      setInternalIsOpen(open);
+    }
+  };
   const [currentStep, setCurrentStep] = useState(0); // 0 = intro, 1-5 = questions, 6 = results
   const [answers, setAnswers] = useState<AssessmentAnswer[]>([]);
   const [email, setEmail] = useState('');

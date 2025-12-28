@@ -7,15 +7,16 @@ import React, { useState } from 'react';
 
 interface HeroProps {
   isDark: boolean;
+  onOpenAssessment?: () => void;
 }
 
 // Featured video URL - set to your YouTube or Vimeo embed URL
 const FEATURED_VIDEO_URL = ''; // e.g., 'https://www.youtube.com/embed/VIDEO_ID'
 
-const Hero: React.FC<HeroProps> = ({ isDark }) => {
+const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
   const [showVideo, setShowVideo] = useState(false);
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
@@ -33,6 +34,13 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
       } catch (err) {
         // Ignore SecurityError in restricted environments
       }
+    }
+  };
+
+  const scrollToNextSection = () => {
+    const aboutSection = document.getElementById('about');
+    if (aboutSection) {
+      aboutSection.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
@@ -117,22 +125,21 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
             </p>
 
             {/* CTA Buttons */}
-            <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4" style={{ animationDelay: '300ms' }}>
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, 'contact')}
-                className={`group px-8 py-4 font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-center ${
+            <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4 items-center sm:items-start" style={{ animationDelay: '300ms' }}>
+              <button
+                onClick={onOpenAssessment}
+                className={`group px-8 py-4 font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-center w-full sm:w-auto ${
                   isDark
                     ? 'bg-[#00D4FF] text-[#0A1628] hover:bg-[#22D3EE] hover:shadow-[0_0_30px_rgba(0,212,255,0.4)]'
                     : 'bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg'
                 }`}
               >
-                Start a Conversation
-              </a>
+                Check Your AI Readiness
+              </button>
               <a
                 href="#work"
                 onClick={(e) => handleNavClick(e, 'work')}
-                className={`group px-8 py-4 border font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center ${
+                className={`group px-8 py-4 border font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center w-full sm:w-auto ${
                   isDark
                     ? 'border-slate-500 text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF]'
                     : 'border-slate-400 text-slate-600 hover:border-cyan-600 hover:text-cyan-600'
@@ -157,6 +164,18 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
               )}
             </div>
 
+            {/* Direct contact link */}
+            <p className={`animate-fade-in-up mt-4 text-sm ${isDark ? 'text-slate-500' : 'text-slate-500'}`} style={{ animationDelay: '350ms' }}>
+              Or{' '}
+              <a
+                href="#contact"
+                onClick={(e) => handleNavClick(e, 'contact')}
+                className={`underline underline-offset-4 hover:no-underline ${isDark ? 'text-slate-400 hover:text-[#00D4FF]' : 'text-slate-600 hover:text-cyan-600'} transition-colors`}
+              >
+                talk to us directly
+              </a>
+            </p>
+
             {/* Trust Indicators */}
             <div className={`animate-fade-in-up mt-16 pt-8 border-t transition-colors duration-300 ${
               isDark ? 'border-slate-700/50' : 'border-slate-300/50'
@@ -179,15 +198,21 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-        <div className="flex flex-col items-center gap-2">
-          <span className={`text-xs font-mono uppercase tracking-widest ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>Explore</span>
-          <svg className={`w-5 h-5 ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      {/* Scroll Indicator - Clickable */}
+      <button
+        onClick={scrollToNextSection}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 group cursor-pointer focus:outline-none"
+        aria-label="Scroll to next section"
+      >
+        <div className="flex flex-col items-center gap-2 animate-bounce group-hover:animate-none">
+          <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${isDark ? 'text-slate-500 group-hover:text-[#00D4FF]' : 'text-slate-500 group-hover:text-cyan-600'}`}>
+            Explore
+          </span>
+          <svg className={`w-6 h-6 transition-transform group-hover:translate-y-1 ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
           </svg>
         </div>
-      </div>
+      </button>
 
       {/* Video Modal */}
       {showVideo && FEATURED_VIDEO_URL && (

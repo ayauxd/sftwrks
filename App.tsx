@@ -21,6 +21,7 @@ function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [showMedia, setShowMedia] = useState(false);
+  const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   useEffect(() => {
     // Check initial preference - default to dark for brand aesthetic
@@ -117,7 +118,7 @@ function App() {
                setSelectedArticle(null);
                setTimeout(() => scrollToSection('journal'), 100);
            }} />
-           <Assistant />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -130,7 +131,7 @@ function App() {
                setSelectedCaseStudy(null);
                setTimeout(() => scrollToSection('work'), 100);
            }} />
-           <Assistant />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -144,7 +145,7 @@ function App() {
                setTimeout(() => scrollToSection('top'), 100);
            }} />
            <Footer onLinkClick={handleLinkClick} />
-           <Assistant />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -158,7 +159,7 @@ function App() {
         <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none z-0"></div>
 
         {/* HERO */}
-        <Hero isDark={isDark} />
+        <Hero isDark={isDark} onOpenAssessment={() => setIsAssessmentOpen(true)} />
 
         {/* ABOUT - Problem & Solution */}
         <About />
@@ -280,7 +281,7 @@ function App() {
 
       </main>
 
-      <Assistant />
+      <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
     </div>
   );
 }
