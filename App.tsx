@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Team from './components/Team';
 import Footer from './components/Footer';
 import Assistant from './components/Assistant';
 import CaseStudyDetail from './components/CaseStudyDetail';
@@ -163,6 +164,9 @@ function App() {
 
         {/* ABOUT - Problem & Solution */}
         <About />
+
+        {/* TEAM */}
+        <Team />
 
         {/* CASE STUDIES */}
         <section id="work" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">
