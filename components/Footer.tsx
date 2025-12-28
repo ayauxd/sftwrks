@@ -18,7 +18,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
         <div className="md:col-span-4">
           <div className="flex items-center gap-3 mb-4">
             <img
-              src="/assets/logos/softworks-icon-64.png"
+              src="/assets/logos/softworks-icon-128.png"
               alt="Softworks"
               className="w-10 h-10 object-contain"
             />

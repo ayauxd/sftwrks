@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <img
-              src="/assets/logos/softworks-icon-64.png"
+              src="/assets/logos/softworks-icon-128.png"
               alt="Softworks"
               className="w-10 h-10 object-contain"
             />

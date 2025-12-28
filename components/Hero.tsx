@@ -36,7 +36,7 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
 
       {/* Background - Theme responsive */}
       <div className="absolute inset-0 transition-colors duration-500">
-        {/* Dark mode: Earth from space image */}
+        {/* Dark mode: Bridge/Earth image */}
         <img
           src="/assets/hero/bridge-metaphor.png"
           alt=""
@@ -45,10 +45,18 @@ const Hero: React.FC<HeroProps> = ({ isDark }) => {
           }`}
         />
 
-        {/* Light mode: Gradient background */}
-        <div className={`absolute inset-0 bg-gradient-to-br from-slate-100 via-slate-50 to-cyan-50 transition-opacity duration-500 ${
+        {/* Light mode: Globe image with light background */}
+        <div className={`absolute inset-0 bg-gradient-to-br from-sky-50 via-slate-50 to-cyan-50 transition-opacity duration-500 ${
           isDark ? 'opacity-0' : 'opacity-100'
-        }`} />
+        }`}>
+          <div className="absolute inset-0 flex items-center justify-end pr-12 lg:pr-24">
+            <img
+              src="/assets/logos/softworks-globe-light.png"
+              alt=""
+              className="w-[500px] h-[500px] lg:w-[600px] lg:h-[600px] object-contain opacity-40"
+            />
+          </div>
+        </div>
 
         {/* Dark mode overlays */}
         <div className={`absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40 transition-opacity duration-500 ${
