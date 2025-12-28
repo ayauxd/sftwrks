@@ -117,8 +117,8 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
           Softworks Trading Company
         </p>
         <div className="flex items-center gap-6 text-xs text-slate-500">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
+          <a href="mailto:agents@softworkstrading.com?subject=Privacy%20Policy%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
+          <a href="mailto:agents@softworkstrading.com?subject=Terms%20of%20Service%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
         </div>
       </div>
     </footer>

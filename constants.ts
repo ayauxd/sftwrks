@@ -16,7 +16,7 @@ export const INITIATIVES: Initiative[] = [
     role: 'Media Production',
     description: 'Video and visual content that explains complex ideas clearly.',
     status: 'Active',
-    link: '#'
+    link: 'mailto:agents@softworkstrading.com?subject=Pitch%20Film%20Studio%20Inquiry'
   },
   {
     id: 'pre-purchase',
@@ -24,7 +24,7 @@ export const INITIATIVES: Initiative[] = [
     role: 'Asset Verification',
     description: 'Inspects vehicles before purchase with professional reports for better purchase descriptions.',
     status: 'Independent',
-    link: '#'
+    link: 'mailto:agents@softworkstrading.com?subject=Pre%20Purchase%20Pro%20Inquiry'
   },
   {
     id: 'tiwa',
@@ -32,7 +32,7 @@ export const INITIATIVES: Initiative[] = [
     role: 'R&D Lab',
     description: 'A personal AI assistant for busy professionals who want to get more done.',
     status: 'Experimental',
-    link: '#'
+    link: 'mailto:agents@softworkstrading.com?subject=tiwa.ai%20Inquiry'
   },
   {
     id: 'cbah',
@@ -40,7 +40,7 @@ export const INITIATIVES: Initiative[] = [
     role: 'Social Chain',
     description: 'A network of friends supporting friends to make a difference in their communities.',
     status: 'Affiliated',
-    link: '#'
+    link: 'mailto:agents@softworkstrading.com?subject=CBAH%20Organization%20Inquiry'
   }
 ];
 
