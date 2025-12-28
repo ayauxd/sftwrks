@@ -5,9 +5,11 @@ import react from '@vitejs/plugin-react';
 export default defineConfig(({ mode }) => {
     const env = loadEnv(mode, '.', '');
 
-    // Get env vars from both .env files (local) and process.env (Vercel)
-    const geminiKey = env.GEMINI_API_KEY || process.env.GEMINI_API_KEY;
-    const anthropicKey = env.ANTHROPIC_API_KEY || process.env.ANTHROPIC_API_KEY;
+    // Get env vars - prioritize process.env (Vercel) over .env files
+    const geminiKey = process.env.GEMINI_API_KEY || env.GEMINI_API_KEY || '';
+    const anthropicKey = process.env.ANTHROPIC_API_KEY || env.ANTHROPIC_API_KEY || '';
+
+    console.log('Build config - Anthropic key present:', !!anthropicKey);
 
     return {
       server: {
