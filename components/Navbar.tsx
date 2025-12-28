@@ -45,7 +45,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
             <img
-              src="/assets/logos/softworks-icon-128.png"
+              src="/assets/logos/softworks-logo-128.png"
               alt="Softworks"
               className="w-10 h-10 object-contain"
             />
@@ -150,7 +150,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             {/* Mobile Logo */}
             <div className="flex flex-col items-center mb-4">
               <img
-                src="/assets/logos/softworks-icon-128.png"
+                src="/assets/logos/softworks-logo-128.png"
                 alt="Softworks"
                 className="w-16 h-16 object-contain mb-3"
               />
