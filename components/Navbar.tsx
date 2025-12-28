@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
               <span className={`font-sans font-bold text-sm md:text-base tracking-wide transition-colors ${
                 scrolled
                   ? 'text-slate-900 dark:text-white'
-                  : 'text-white'
+                  : isDark ? 'text-white' : 'text-slate-900'
               }`}>
                 SOFTWORKS
               </span>
@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
               <span className={`font-sans font-medium text-[10px] md:text-xs tracking-[0.15em] uppercase transition-colors ${
                 scrolled
                   ? 'text-slate-500 dark:text-slate-400'
-                  : 'text-slate-300'
+                  : isDark ? 'text-slate-300' : 'text-slate-500'
               }`}>
                 Trading Company
               </span>
@@ -70,7 +70,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           </button>
 
           {/* Desktop Links */}
-          <div className="hidden md:flex items-center gap-8 text-xs md:text-sm font-medium text-slate-600 dark:text-slate-400 font-sans tracking-wide">
+          <div className={`hidden md:flex items-center gap-8 text-xs md:text-sm font-medium font-sans tracking-wide transition-colors ${
+            scrolled
+              ? 'text-slate-600 dark:text-slate-400'
+              : isDark ? 'text-slate-300' : 'text-slate-600'
+          }`}>
             <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">What We Do</button>
             <button onClick={() => handleLink('process')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Approach</button>
             <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Case Studies</button>
@@ -85,7 +89,13 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="ml-2 p-2 rounded-full hover:bg-slate-200 dark:hover:bg-slate-800 transition-colors text-slate-700 dark:text-slate-300"
+              className={`ml-2 p-2 rounded-full transition-colors ${
+                scrolled
+                  ? 'hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-300'
+                  : isDark
+                    ? 'hover:bg-slate-800 text-slate-300'
+                    : 'hover:bg-slate-200 text-slate-700'
+              }`}
               aria-label="Toggle Dark Mode"
             >
               {isDark ? (
@@ -101,10 +111,14 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           </div>
 
           {/* Mobile Toggle */}
-          <div className="flex items-center gap-4 md:hidden">
+          <div className={`flex items-center gap-4 md:hidden ${
+            scrolled
+              ? 'text-slate-700 dark:text-slate-300'
+              : isDark ? 'text-slate-300' : 'text-slate-700'
+          }`}>
             <button
                 onClick={toggleTheme}
-                className="p-1 text-slate-700 dark:text-slate-300"
+                className="p-1"
             >
                 {isDark ? (
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
@@ -117,7 +131,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
                 )}
             </button>
             <button
-              className="text-slate-700 dark:text-slate-300"
+              className=""
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
                {mobileMenuOpen ? (
