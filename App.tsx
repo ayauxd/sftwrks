@@ -7,20 +7,18 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Features from './components/Features';
 import Footer from './components/Footer';
 import Assistant from './components/Assistant';
-import Journal from './components/Journal';
-import JournalDetail from './components/JournalDetail';
 import CaseStudyDetail from './components/CaseStudyDetail';
-import { INITIATIVES, CASE_STUDIES } from './constants';
-import { JournalArticle, CaseStudy } from './types';
+import Media from './components/Media';
+import { CASE_STUDIES } from './constants';
+import { CaseStudy } from './types';
 
 function App() {
   // Theme Management
   const [isDark, setIsDark] = useState(true); // Default to dark for navy theme
-  const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
+  const [showMedia, setShowMedia] = useState(false);
 
   useEffect(() => {
     // Check initial preference - default to dark for brand aesthetic
@@ -46,6 +44,15 @@ function App() {
   };
 
   const scrollToSection = (targetId: string) => {
+    // Handle Media page navigation
+    if (targetId === 'media') {
+      setShowMedia(true);
+      setSelectedArticle(null);
+      setSelectedCaseStudy(null);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+
     const closeAndScroll = () => {
       setTimeout(() => {
         const element = document.getElementById(targetId);
@@ -60,14 +67,14 @@ function App() {
       }, 100);
     };
 
-    if (selectedArticle) {
-        setSelectedArticle(null);
+    if (selectedCaseStudy) {
+        setSelectedCaseStudy(null);
         closeAndScroll();
         return;
     }
 
-    if (selectedCaseStudy) {
-        setSelectedCaseStudy(null);
+    if (showMedia) {
+        setShowMedia(false);
         closeAndScroll();
         return;
     }
@@ -94,19 +101,6 @@ function App() {
     scrollToSection(targetId);
   };
 
-  if (selectedArticle) {
-    return (
-        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
-           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <JournalDetail article={selectedArticle} onBack={() => {
-               setSelectedArticle(null);
-               setTimeout(() => scrollToSection('journal'), 100);
-           }} />
-           <Assistant />
-        </div>
-    );
-  }
-
   if (selectedCaseStudy) {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
@@ -115,6 +109,20 @@ function App() {
                setSelectedCaseStudy(null);
                setTimeout(() => scrollToSection('work'), 100);
            }} />
+           <Assistant />
+        </div>
+    );
+  }
+
+  if (showMedia) {
+    return (
+        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
+           <Media onBack={() => {
+               setShowMedia(false);
+               setTimeout(() => scrollToSection('top'), 100);
+           }} />
+           <Footer onLinkClick={handleLinkClick} />
            <Assistant />
         </div>
     );
@@ -181,62 +189,6 @@ function App() {
                 </div>
             </div>
         </section>
-
-        {/* PROCESS / SERVICES */}
-        <Features />
-
-        {/* THE ECOLOGY */}
-        <section id="ecology" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">
-           <div className="max-w-6xl mx-auto">
-               <div className="flex flex-col md:flex-row md:items-end gap-6 mb-16">
-                   <div className="flex-1">
-                       <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest border border-[#00D4FF]/30 px-3 py-1 inline-block mb-4">Our Network</span>
-                       <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white font-['Courier_Prime']">The Softworks Family</h2>
-                   </div>
-                   <p className="text-slate-500 dark:text-slate-400 text-sm max-w-md font-sans leading-relaxed md:text-right">
-                     We work with a group of specialized companies, each focused on solving specific problems.
-                   </p>
-               </div>
-
-               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                   {INITIATIVES.map((init) => (
-                       <a
-                         href={init.link}
-                         key={init.id}
-                         className="p-8 flex flex-col min-h-[280px] transition-all group bg-white dark:bg-[#1E3A5F] border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF] dark:hover:border-[#00D4FF] relative overflow-hidden hover:shadow-[0_0_24px_rgba(0,212,255,0.1)]"
-                       >
-                           {/* Background Watermark */}
-                           <div className="absolute top-0 right-0 p-4 opacity-5 font-mono text-6xl font-bold text-slate-900 dark:text-white select-none pointer-events-none">
-                               {init.id.substring(0,2).toUpperCase()}
-                           </div>
-
-                           <div className="flex justify-between items-start mb-6 relative z-10">
-                               <div className="flex items-center gap-3">
-                                   <div className={`w-3 h-3 ${
-                                       init.status === 'Active' ? 'bg-[#00D4FF]' :
-                                       init.status === 'Experimental' ? 'bg-cyan-600' : 'bg-slate-400'
-                                   }`}></div>
-                                   <h3 className="text-xl font-bold text-slate-900 dark:text-white font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">{init.name}</h3>
-                               </div>
-                               <span className="font-mono text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-widest border border-slate-200 dark:border-slate-600 px-2 py-1 bg-slate-50 dark:bg-[#0A1628]">{init.role}</span>
-                           </div>
-
-                           <p className="text-slate-700 dark:text-slate-300 leading-relaxed font-sans mb-8 max-w-md flex-grow">
-                               {init.description}
-                           </p>
-
-                           <div className="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-between items-center relative z-10">
-                               <span className="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest">{init.status} Status</span>
-                               <span className="text-xs font-mono text-slate-900 dark:text-white group-hover:translate-x-1 transition-transform group-hover:text-[#00D4FF]">Learn More &rarr;</span>
-                           </div>
-                       </a>
-                   ))}
-               </div>
-           </div>
-        </section>
-
-        {/* JOURNAL / INSIGHTS */}
-        <Journal onArticleClick={setSelectedArticle} />
 
         {/* CONTACT */}
         <section id="contact" className="py-32 px-6 lg:px-12 bg-[#0F172A] dark:bg-[#0A1628] relative z-10">

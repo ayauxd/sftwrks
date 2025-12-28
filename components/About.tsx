@@ -29,37 +29,47 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Visual: Chaos to Order */}
+          {/* Visual: Softworks Brand Logo */}
           <div className="relative">
-            <div className="aspect-square bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] rounded-lg overflow-hidden shadow-elevated">
-              {/* Circuit pattern representing complexity */}
-              <div className="absolute inset-0 opacity-30">
+            <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-slate-700/50">
+              {/* Dark background base */}
+              <div className="absolute inset-0 bg-[#0A1628]" />
+
+              {/* Subtle circuit grid pattern */}
+              <div className="absolute inset-0 opacity-10">
                 <div
                   className="absolute inset-0"
                   style={{
                     backgroundImage: `
-                      linear-gradient(to right, rgba(0, 212, 255, 0.2) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(0, 212, 255, 0.2) 1px, transparent 1px)
+                      linear-gradient(to right, rgba(0, 212, 255, 0.4) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgba(0, 212, 255, 0.4) 1px, transparent 1px)
                     `,
                     backgroundSize: '30px 30px'
                   }}
                 />
               </div>
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-24 h-24 mx-auto mb-6 border-2 border-[#00D4FF] rounded-lg flex items-center justify-center">
-                    <svg className="w-12 h-12 text-[#00D4FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-mono text-sm uppercase tracking-wider">
-                    From Complexity
-                  </p>
-                  <p className="text-[#00D4FF] font-mono text-sm uppercase tracking-wider mt-2">
-                    To Clarity
-                  </p>
-                </div>
+
+              {/* Logo Image - centered */}
+              <div className="absolute inset-0 flex items-center justify-center p-8">
+                <img
+                  src="/assets/sections/softworks-brand-logo.png"
+                  alt="Softworks Trading Company"
+                  className="w-full h-full object-contain drop-shadow-2xl"
+                  onError={(e) => {
+                    // Fallback to existing logo if new one not found
+                    e.currentTarget.src = '/assets/logos/softworks-avatar-transparent.png';
+                  }}
+                />
               </div>
+
+              {/* Subtle vignette overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-[#0A1628]/30 pointer-events-none" />
+
+              {/* Corner accent frame */}
+              <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#00D4FF]/40" />
+              <div className="absolute top-4 right-4 w-8 h-8 border-t-2 border-r-2 border-[#00D4FF]/40" />
+              <div className="absolute bottom-4 left-4 w-8 h-8 border-b-2 border-l-2 border-[#00D4FF]/40" />
+              <div className="absolute bottom-4 right-4 w-8 h-8 border-b-2 border-r-2 border-[#00D4FF]/40" />
             </div>
           </div>
         </div>
