@@ -10,14 +10,16 @@ import About from './components/About';
 import Footer from './components/Footer';
 import Assistant from './components/Assistant';
 import CaseStudyDetail from './components/CaseStudyDetail';
+import JournalDetail from './components/JournalDetail';
 import Media from './components/Media';
-import { CASE_STUDIES } from './constants';
-import { CaseStudy } from './types';
+import { CASE_STUDIES, JOURNAL_ARTICLES } from './constants';
+import { CaseStudy, JournalArticle } from './types';
 
 function App() {
   // Theme Management
   const [isDark, setIsDark] = useState(true); // Default to dark for navy theme
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
+  const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [showMedia, setShowMedia] = useState(false);
 
   useEffect(() => {
@@ -67,6 +69,12 @@ function App() {
       }, 100);
     };
 
+    if (selectedArticle) {
+        setSelectedArticle(null);
+        closeAndScroll();
+        return;
+    }
+
     if (selectedCaseStudy) {
         setSelectedCaseStudy(null);
         closeAndScroll();
@@ -100,6 +108,19 @@ function App() {
     e.preventDefault();
     scrollToSection(targetId);
   };
+
+  if (selectedArticle) {
+    return (
+        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
+           <JournalDetail article={selectedArticle} onBack={() => {
+               setSelectedArticle(null);
+               setTimeout(() => scrollToSection('journal'), 100);
+           }} />
+           <Assistant />
+        </div>
+    );
+  }
 
   if (selectedCaseStudy) {
     return (
@@ -185,6 +206,48 @@ function App() {
                                 </div>
                             </div>
                         </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        {/* JOURNAL / INSIGHTS */}
+        <section id="journal" className="py-24 px-6 lg:px-12 bg-[#0F172A] dark:bg-[#0A1628] relative z-10 border-b border-slate-800">
+            <div className="max-w-6xl mx-auto">
+                <div className="flex justify-between items-end mb-16 border-b border-slate-700 pb-6">
+                    <div>
+                        <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Insights</span>
+                        <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">From the Journal</h2>
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {JOURNAL_ARTICLES.map((article) => (
+                        <article
+                            key={article.id}
+                            className="group cursor-pointer"
+                            onClick={() => setSelectedArticle(article)}
+                        >
+                            <div className="aspect-[16/10] bg-[#1E3A5F] mb-6 overflow-hidden border border-slate-700 relative">
+                                <img
+                                    src={article.image}
+                                    alt={article.title}
+                                    className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                                />
+                                <div className="absolute top-3 left-3 bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-700 text-[#00D4FF] uppercase">
+                                    {article.date}
+                                </div>
+                            </div>
+                            <h3 className="text-xl font-bold text-white mb-3 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
+                                {article.title}
+                            </h3>
+                            <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
+                                {article.excerpt}
+                            </p>
+                            <span className="inline-block mt-4 text-xs font-mono text-[#00D4FF] group-hover:translate-x-1 transition-transform">
+                                Read more &rarr;
+                            </span>
+                        </article>
                     ))}
                 </div>
             </div>

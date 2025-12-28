@@ -87,6 +87,24 @@ const Assistant: React.FC = () => {
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showPrompt, setShowPrompt] = useState(false);
+  const [promptDismissed, setPromptDismissed] = useState(false);
+
+  // Show prompt after 3 seconds if not opened
+  React.useEffect(() => {
+    if (!isOpen && !promptDismissed) {
+      const timer = setTimeout(() => setShowPrompt(true), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isOpen, promptDismissed]);
+
+  // Hide prompt when opened
+  React.useEffect(() => {
+    if (isOpen) {
+      setShowPrompt(false);
+      setPromptDismissed(true);
+    }
+  }, [isOpen]);
 
   const totalSteps = ASSESSMENT_STEPS.length;
   const totalScore = answers.reduce((sum, a) => sum + a.score, 0);
@@ -359,21 +377,45 @@ Ready for personalized AI recommendation.
         </div>
       )}
 
+      {/* Prompt Bubble */}
+      {showPrompt && !isOpen && (
+        <div className="animate-fade-in-up mb-3 flex items-center gap-2">
+          <div className="bg-white dark:bg-[#1E3A5F] shadow-lg rounded-xl px-4 py-3 border border-slate-200 dark:border-slate-700 relative">
+            <button
+              onClick={() => setPromptDismissed(true)}
+              className="absolute -top-2 -right-2 w-5 h-5 bg-slate-200 dark:bg-slate-600 rounded-full flex items-center justify-center text-slate-500 dark:text-slate-300 hover:bg-slate-300 dark:hover:bg-slate-500 transition-colors"
+            >
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">AI Readiness Check</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">2 min assessment</p>
+            {/* Arrow pointing to button */}
+            <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white dark:bg-[#1E3A5F] border-r border-b border-slate-200 dark:border-slate-700 transform rotate-45"></div>
+          </div>
+        </div>
+      )}
+
       {/* Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className={`w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
+        className={`relative w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
           isOpen
             ? 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
             : 'bg-gradient-to-br from-[#00D4FF] to-[#0891B2] text-white hover:scale-105'
         }`}
       >
+        {/* Pulse animation when not open */}
+        {!isOpen && (
+          <span className="absolute inset-0 rounded-full bg-[#00D4FF] animate-ping opacity-30"></span>
+        )}
         {isOpen ? (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
         ) : (
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg className="w-6 h-6 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
         )}

@@ -29,41 +29,23 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Visual: Softworks Brand Logo */}
+          {/* Visual: Softworks Brand Video */}
           <div className="relative">
             <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-slate-700/50">
-              {/* Dark background base */}
-              <div className="absolute inset-0 bg-[#0A1628]" />
-
-              {/* Subtle circuit grid pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: `
-                      linear-gradient(to right, rgba(0, 212, 255, 0.4) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(0, 212, 255, 0.4) 1px, transparent 1px)
-                    `,
-                    backgroundSize: '30px 30px'
-                  }}
-                />
-              </div>
-
-              {/* Logo Image - centered */}
-              <div className="absolute inset-0 flex items-center justify-center p-8">
-                <img
-                  src="/assets/sections/softworks-brand-logo.png"
-                  alt="Softworks Trading Company"
-                  className="w-full h-full object-contain drop-shadow-2xl"
-                  onError={(e) => {
-                    // Fallback to existing logo if new one not found
-                    e.currentTarget.src = '/assets/logos/softworks-avatar-transparent.png';
-                  }}
-                />
-              </div>
+              {/* Video Loop */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="w-full h-full object-cover"
+                poster="/assets/sections/softworks-brand-logo.png"
+              >
+                <source src="/assets/sections/softworks-logo-loop.mp4" type="video/mp4" />
+              </video>
 
               {/* Subtle vignette overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-[#0A1628]/30 pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/40 via-transparent to-[#0A1628]/20 pointer-events-none" />
 
               {/* Corner accent frame */}
               <div className="absolute top-4 left-4 w-8 h-8 border-t-2 border-l-2 border-[#00D4FF]/40" />

@@ -68,6 +68,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           }`}>
             <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">What We Do</button>
             <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Work</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Insights</button>
             <button onClick={() => handleLink('media')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Media</button>
             <button
               onClick={() => handleLink('contact')}
@@ -144,6 +145,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             </div>
             <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">WHAT WE DO</button>
             <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors">WORK</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors">INSIGHTS</button>
             <button onClick={() => handleLink('media')} className="hover:text-[#00D4FF] transition-colors">MEDIA</button>
             <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors">CONTACT</button>
             <button onClick={() => setMobileMenuOpen(false)} className="mt-8 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
