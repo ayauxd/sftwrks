@@ -139,6 +139,8 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   const [aiInsight, setAiInsight] = useState<string | null>(null);
   const [loadingInsight, setLoadingInsight] = useState(false);
   const [showDetailedResults, setShowDetailedResults] = useState(false);
+  const [validatingInput, setValidatingInput] = useState(false);
+  const [validationError, setValidationError] = useState<string | null>(null);
 
   // Show prompt after 3 seconds if not opened
   React.useEffect(() => {
@@ -160,7 +162,75 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   React.useEffect(() => {
     setShowOtherInput(false);
     setOtherText('');
+    setValidationError(null);
   }, [currentStep]);
+
+  // Validate custom input with Haiku
+  const validateCustomInput = async (input: string, question: string): Promise<{ valid: boolean; message?: string }> => {
+    const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY || '';
+
+    if (!apiKey) {
+      // If no API key, allow the input but log warning
+      console.warn('No API key for validation - allowing input');
+      return { valid: true };
+    }
+
+    try {
+      const response = await fetch('https://api.anthropic.com/v1/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': apiKey,
+          'anthropic-version': '2023-06-01',
+          'anthropic-dangerous-direct-browser-access': 'true'
+        },
+        body: JSON.stringify({
+          model: 'claude-3-haiku-20240307',
+          max_tokens: 100,
+          messages: [{
+            role: 'user',
+            content: `You are validating user input for a business AI readiness assessment.
+
+Question: "${question}"
+User's answer: "${input}"
+
+Is this a sensible, relevant answer to the question? Consider:
+- Does it actually answer the question asked?
+- Is it a real business type, pain point, goal, or team size?
+- Is it gibberish, random characters, or clearly nonsensical?
+
+Respond with ONLY one of these formats:
+- If valid: VALID
+- If invalid: INVALID: [brief friendly suggestion for what they should enter]
+
+Examples:
+- "Tech startup" for "What describes your business?" → VALID
+- "Ggg" for any question → INVALID: Please describe your actual situation
+- "asdfgh" → INVALID: Please enter a meaningful response
+- "customer support takes too long" for pain point → VALID`
+          }]
+        })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        const result = data.content[0].text.trim();
+
+        if (result.startsWith('VALID')) {
+          return { valid: true };
+        } else if (result.startsWith('INVALID:')) {
+          return { valid: false, message: result.replace('INVALID:', '').trim() };
+        }
+        // Default to valid if response is unclear
+        return { valid: true };
+      }
+    } catch (error) {
+      console.error('Validation error:', error);
+    }
+
+    // On error, allow the input
+    return { valid: true };
+  };
 
   const totalSteps = ASSESSMENT_STEPS.length;
   const totalScore = answers.reduce((sum, a) => sum + a.score, 0);
@@ -192,10 +262,24 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     }, 300);
   };
 
-  const handleOtherSubmit = () => {
+  const handleOtherSubmit = async () => {
     if (!otherText.trim()) return;
 
     const step = ASSESSMENT_STEPS[currentStep - 1];
+
+    // Validate the custom input with Haiku
+    setValidatingInput(true);
+    setValidationError(null);
+
+    const validation = await validateCustomInput(otherText.trim(), step.question);
+
+    setValidatingInput(false);
+
+    if (!validation.valid) {
+      setValidationError(validation.message || "Please enter a relevant response to the question.");
+      return;
+    }
+
     const newAnswer: AssessmentAnswer = {
       stepId: step.id,
       value: 'other',
@@ -212,6 +296,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
 
     setOtherText('');
     setShowOtherInput(false);
+    setValidationError(null);
 
     setTimeout(() => {
       if (currentStep < totalSteps) {
@@ -223,7 +308,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   };
 
   const generateAIInsight = async () => {
-    const apiKey = (typeof process !== 'undefined' && process.env?.ANTHROPIC_API_KEY) || '';
+    const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY || '';
 
     if (!apiKey) {
       setAiInsight("Connect with us to get your personalized AI strategy based on your specific situation.");
@@ -614,34 +699,56 @@ Ready for follow-up consultation.
               <span className="text-sm">Something else...</span>
             </button>
           ) : (
-            <div className="border border-[#00D4FF] rounded-lg p-3 bg-[#00D4FF]/5">
+            <div className={`border rounded-lg p-3 ${validationError ? 'border-red-400 bg-red-50 dark:bg-red-900/20' : 'border-[#00D4FF] bg-[#00D4FF]/5'}`}>
               <input
                 type="text"
                 value={otherText}
-                onChange={(e) => setOtherText(e.target.value)}
+                onChange={(e) => {
+                  setOtherText(e.target.value);
+                  setValidationError(null); // Clear error when typing
+                }}
                 placeholder={step.placeholder}
                 className="w-full bg-transparent text-sm text-slate-900 dark:text-white placeholder-slate-400 outline-none mb-2"
                 autoFocus
+                disabled={validatingInput}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' && otherText.trim()) {
+                  if (e.key === 'Enter' && otherText.trim() && !validatingInput) {
                     handleOtherSubmit();
                   }
                 }}
               />
+              {/* Validation Error */}
+              {validationError && (
+                <p className="text-xs text-red-500 dark:text-red-400 mb-2 flex items-start gap-1">
+                  <svg className="w-3 h-3 mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"/>
+                  </svg>
+                  {validationError}
+                </p>
+              )}
               <div className="flex gap-2">
                 <button
                   onClick={handleOtherSubmit}
-                  disabled={!otherText.trim()}
-                  className="flex-1 bg-[#00D4FF] text-[#0A1628] py-2 rounded text-xs font-semibold disabled:opacity-50 transition-colors"
+                  disabled={!otherText.trim() || validatingInput}
+                  className="flex-1 bg-[#00D4FF] text-[#0A1628] py-2 rounded text-xs font-semibold disabled:opacity-50 transition-colors flex items-center justify-center gap-2"
                 >
-                  Continue
+                  {validatingInput ? (
+                    <>
+                      <div className="w-3 h-3 border-2 border-[#0A1628] border-t-transparent rounded-full animate-spin"></div>
+                      Checking...
+                    </>
+                  ) : (
+                    'Continue'
+                  )}
                 </button>
                 <button
                   onClick={() => {
                     setShowOtherInput(false);
                     setOtherText('');
+                    setValidationError(null);
                   }}
-                  className="px-3 py-2 text-slate-400 hover:text-slate-600 text-xs"
+                  disabled={validatingInput}
+                  className="px-3 py-2 text-slate-400 hover:text-slate-600 text-xs disabled:opacity-50"
                 >
                   Cancel
                 </button>

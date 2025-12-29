@@ -4,7 +4,7 @@
  * Usage: node scripts/generate-article-image.mjs "Article title" "output-filename"
  */
 
-import { GoogleGenerativeAI } from '@google/genai';
+import { GoogleGenerativeAI } from '@google/generative-ai';
 import fs from 'fs';
 import path from 'path';
 

@@ -160,76 +160,244 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
+  // Monthly AI Updates - November 2024 to April 2024 (newest first)
   {
-    id: 'j0',
-    title: '2024: The Year AI Stopped Being Optional',
-    date: 'DEC 2024',
+    id: 'ai-nov-2024',
+    title: 'November 2024: Voice AI Goes Enterprise',
+    date: 'NOV 2024',
     author: 'Frederick A.',
-    excerpt: 'Eight months of AI releases that changed everything—and what it means for businesses still on the sidelines.',
-    image: '/assets/sections/strategy-map.png',
+    excerpt: 'ElevenLabs hits $90M ARR, GenFM challenges NotebookLM, and Suno V4 transforms music creation.',
+    image: '/assets/journal/nov-2024.jpg',
     content: `
-      <p>I've spent the last eight months tracking AI Daily Brief, one of the best sources for understanding what's actually happening in AI beyond the hype. What I found tells a clear story: 2024 was the year AI became infrastructure, not innovation theater.</p>
+      <p>November marked a turning point for voice AI. ElevenLabs released GenFM—a direct competitor to Google's viral NotebookLM podcast feature, but in 32 languages. The democratization of audio content creation is happening faster than anyone predicted.</p>
 
-      <p>If you're still treating AI as "something to explore eventually," you're already behind. Here's the timeline that should concern you.</p>
+      <h3>The ElevenLabs Story</h3>
 
-      <h3>April-May: The Accessibility Explosion</h3>
+      <p>ElevenLabs is now approaching $90 million in annual recurring revenue. More than 60% of Fortune 500 companies use their technology. Their new Conversational AI platform lets businesses launch interactive voice agents without writing code.</p>
 
-      <p>Meta released Llama 3 in April—open-source models that matched proprietary alternatives. Then OpenAI dropped GPT-4o in May and made it free for everyone. Not "free trial." Actually free.</p>
+      <p>For small businesses, this means voice interfaces are no longer enterprise-only. You can build a phone agent, a voice assistant, or automated customer service for a fraction of what it cost a year ago.</p>
 
-      <p>This matters because the excuse of "AI is too expensive for small businesses" died in Spring 2024. The tools that Fortune 500 companies use are now available to anyone with an internet connection.</p>
+      <h3>Suno V4 Changes Music</h3>
 
-      <p>Meanwhile, Suno and Udio launched AI music generation. ElevenLabs voice cloning hit mainstream adoption. The creative tools that used to require studios and expensive talent? They're now accessible to solo operators.</p>
+      <p>Suno released V4 with dramatically improved vocal quality, 4-minute first generation capability, and new Cover and Persona features. If you're creating content, you now have a music production studio in your browser.</p>
 
-      <h3>June-July: Quality Crossed the Threshold</h3>
+      <h3>Amazon Doubles Down on Anthropic</h3>
 
-      <p>June 20th changed everything. Anthropic released Claude 3.5 Sonnet, which outperformed their own flagship model while being faster and cheaper. The "Artifacts" feature meant you could build functional prototypes through conversation.</p>
-
-      <p>Then Meta released Llama 3.1 405B in July—an open-source model rivaling GPT-4. GitHub Copilot started offering Claude as an alternative to GPT, admitting "no one model rules every scenario."</p>
-
-      <p>The quality gap between AI and human work narrowed dramatically. Not for everything—but for the 80% of routine work that consumes most people's days.</p>
-
-      <h3>September: The NotebookLM Moment</h3>
-
-      <p>Google's NotebookLM went viral in September with a feature nobody expected: it turns your documents into podcasts. Two AI voices having an engaging conversation about your content.</p>
-
-      <p>This seems trivial until you think about what it represents. You can now upload a 50-page report and get a 15-minute audio summary while you commute. Research that used to take hours to synthesize happens automatically.</p>
-
-      <p>ElevenLabs responded by November with GenFM—the same capability in 32 languages. The "information synthesis" problem that plagues every knowledge worker is being solved in real-time.</p>
-
-      <h3>October: AI Got Hands</h3>
-
-      <p>October 22nd, Anthropic released "computer use"—AI that can look at your screen, move your cursor, click buttons, and type. Not theoretical. Working.</p>
-
-      <p>Read that again. AI can now operate computers like a human. It can navigate websites, fill out forms, transfer data between systems, run software. The manual computer tasks you hire people to do? Those are now automatable.</p>
-
-      <p>This is the moment AI went from "answers questions" to "does work." Huge difference.</p>
-
-      <h3>The SMB Numbers That Should Wake You Up</h3>
-
-      <p>Here's what the research shows about small business AI adoption:</p>
-
-      <p>• US SMB AI usage doubled from 14% (2023) to 39% (2024)</p>
-      <p>• 84% of AI-adopting SMBs report positive productivity impact</p>
-      <p>• Average productivity increase: 40%</p>
-      <p>• 78% of SMBs using AI say it will be "a game-changer"</p>
-
-      <p>The gap between AI adopters and laggards is widening. Smaller businesses that adopted AI are outperforming larger competitors who didn't. The playing field isn't just leveling—it's inverting.</p>
+      <p>Amazon invested another $4 billion in Anthropic, doubling their stake. Combined with Anthropic's Palantir partnership for government applications, Claude is positioning itself as the enterprise-safe AI choice.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>If you're a small business owner or entrepreneur, 2024 delivered a clear message: AI adoption is no longer a strategic choice. It's table stakes.</p>
-
-      <p>The businesses that integrated AI for marketing, content, customer service, and operations are seeing 40%+ productivity gains. That's not a competitive advantage. That's a survival advantage.</p>
-
-      <p>The tools are free or cheap. The quality is professional-grade. The only remaining barrier is the decision to start.</p>
-
-      <p>We're not telling you to replace your team with robots. We're telling you to give your team superpowers. The competitors who figured this out eight months ago are already operating at a different level.</p>
-
-      <hr />
-
-      <p><em>This is what we help businesses figure out—not the hype, but the practical applications that actually move numbers. The AI landscape shifted fundamentally in 2024. The question isn't whether to adapt. It's how fast.</em></p>
+      <p>Voice AI crossed from "interesting demo" to "business tool" this month. The barriers to creating professional audio content are gone. The question is whether you'll use these tools before your competitors do.</p>
     `
   },
+  {
+    id: 'ai-oct-2024',
+    title: 'October 2024: AI Got Hands',
+    date: 'OCT 2024',
+    author: 'Frederick A.',
+    excerpt: 'Anthropic releases computer use, GitHub Copilot goes multi-model, and Claude 3.5 Haiku arrives.',
+    image: '/assets/journal/oct-2024.jpg',
+    content: `
+      <p>October 22nd changed everything. Anthropic released "computer use" in public beta—AI that can look at your screen, move your cursor, click buttons, and type. Not theoretical. Working.</p>
+
+      <h3>What Computer Use Actually Means</h3>
+
+      <p>Read this carefully: AI can now operate computers like a human. It can navigate websites, fill out forms, transfer data between systems, run software. The manual computer tasks you hire people to do? Those are now automatable.</p>
+
+      <p>This isn't about chat interfaces anymore. This is about AI doing work. Huge difference.</p>
+
+      <h3>Claude 3.5 Gets Stronger</h3>
+
+      <p>Alongside computer use, Anthropic released an upgraded Claude 3.5 Sonnet and Claude 3.5 Haiku. Haiku now surpasses the original Claude 3 Opus in capabilities while being significantly faster and cheaper.</p>
+
+      <h3>GitHub Copilot Goes Multi-Model</h3>
+
+      <p>GitHub announced developers can now power Copilot with Claude 3.5 Sonnet or Gemini 1.5 Pro as alternatives to GPT-4o. Their admission: "no one model rules every scenario." The AI monoculture is over.</p>
+
+      <h3>NotebookLM Gets Customization</h3>
+
+      <p>Google responded to NotebookLM's viral success by adding the ability to customize AI-generated podcast outputs. Users can now guide the AI hosts' focus and style.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>The gap between "AI assistant" and "AI employee" just narrowed dramatically. Computer use is in beta, but the trajectory is clear. Start identifying which computer-based tasks in your business are candidates for automation.</p>
+    `
+  },
+  {
+    id: 'ai-sep-2024',
+    title: 'September 2024: The NotebookLM Moment',
+    date: 'SEP 2024',
+    author: 'Frederick A.',
+    excerpt: 'Google\'s podcast feature goes viral, OpenAI releases reasoning models, and AI regulation heats up.',
+    image: '/assets/journal/sep-2024.jpg',
+    content: `
+      <p>Google's NotebookLM went viral in September with a feature nobody expected: AI-generated podcasts. Upload any document, and two AI voices have an engaging conversation about your content. It sounds like a gimmick until you use it.</p>
+
+      <h3>Why NotebookLM Matters</h3>
+
+      <p>Upload a 50-page report. Get a 15-minute audio summary while you commute. Research that used to take hours to synthesize happens automatically. This isn't about entertainment—it's about information processing at scale.</p>
+
+      <p>For businesses drowning in documentation, reports, and research, NotebookLM represents a new paradigm: AI as a learning tool, not just a writing tool.</p>
+
+      <h3>OpenAI's Reasoning Models</h3>
+
+      <p>OpenAI introduced o1-preview and o1-mini—"reasoning" models that take time to think before answering. This pioneered a new approach called test-time compute, where models use more processing during inference for better answers.</p>
+
+      <p>The practical impact: for complex problems, these models significantly outperform standard models. For simple tasks, they're overkill. Knowing when to use which is now a competitive advantage.</p>
+
+      <h3>SB-1047 Debate</h3>
+
+      <p>California's AI safety bill sparked heated debate. Advocates saw necessary guardrails. Critics worried about innovation being pushed overseas. The bill's journey highlighted the challenge of regulating a technology that moves faster than legislation.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>AI is getting better at synthesis and reasoning—the knowledge work that used to require expensive human expertise. NotebookLM and o1 represent two sides of this: making existing knowledge more accessible, and making complex analysis more reliable.</p>
+    `
+  },
+  {
+    id: 'ai-aug-2024',
+    title: 'August 2024: The Fair Use Fight',
+    date: 'AUG 2024',
+    author: 'Frederick A.',
+    excerpt: 'Music AI companies respond to lawsuits, voice AI adoption accelerates, and video generation matures.',
+    image: '/assets/journal/aug-2024.jpg',
+    content: `
+      <p>August saw the AI industry's first major legal reckoning. Suno and Udio responded to the RIAA's June lawsuits, arguing their use of copyrighted materials fell under fair use protections. The outcome will shape AI development for years.</p>
+
+      <h3>The Legal Stakes</h3>
+
+      <p>The RIAA is seeking up to $150,000 per song in damages. If the music AI companies lose, the precedent could affect all generative AI trained on copyrighted content. If they win, it validates a training approach that most AI companies use.</p>
+
+      <p>For businesses using AI tools, this is worth watching. The legal landscape is still being written.</p>
+
+      <h3>Voice AI Goes Mainstream</h3>
+
+      <p>ElevenLabs continued its rapid expansion. Voice cloning, once a novelty, became a standard business tool for everything from training videos to customer service to content creation.</p>
+
+      <h3>Video Generation Competition</h3>
+
+      <p>Runway Gen-3 Alpha, Luma Dream Machine, and Kling established themselves as the top tier of AI video generation. The quality gap between AI-generated and professionally shot video is narrowing month by month.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>Creative AI tools are mature enough for production use, but the legal framework is still evolving. Use them strategically, understand the licensing, and watch the courts. The companies that figure out compliant AI workflows now will have an advantage.</p>
+    `
+  },
+  {
+    id: 'ai-jul-2024',
+    title: 'July 2024: Open Source Goes Big',
+    date: 'JUL 2024',
+    author: 'Frederick A.',
+    excerpt: 'Llama 3.1 405B rivals GPT-4, GPT-4o Mini drops prices, and the small model revolution begins.',
+    image: '/assets/journal/jul-2024.jpg',
+    content: `
+      <p>July 23rd: Meta released Llama 3.1 with a 405 billion parameter model. This is an open-source model rivaling GPT-4 capabilities. Free. Downloadable. No API costs if you can run it yourself.</p>
+
+      <h3>Why Open Source Matters</h3>
+
+      <p>Llama 3.1 405B changes the economics of AI. Enterprise companies can run frontier-class AI without per-token costs. Startups can build products without dependence on OpenAI or Anthropic. The AI moat just got much harder to defend.</p>
+
+      <h3>Small Models Get Smarter</h3>
+
+      <p>OpenAI released GPT-4o Mini—60% cheaper than GPT-3.5 Turbo while being more capable. The industry is moving in two directions simultaneously: toward larger frontier models and toward smaller, cheaper models that handle most tasks.</p>
+
+      <p>As one analyst put it: "Model competition is moving towards small at the same time it's proceeding towards state of the art."</p>
+
+      <h3>Suno Mobile App</h3>
+
+      <p>Suno released its mobile app on July 1st. AI music generation is now as accessible as Instagram. For content creators, this removes another barrier between idea and execution.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>The cost of AI dropped dramatically this month. Small models can handle 80% of tasks at a fraction of frontier model costs. Open-source options give you control over your AI infrastructure. The question isn't "can we afford AI?" anymore.</p>
+    `
+  },
+  {
+    id: 'ai-jun-2024',
+    title: 'June 2024: Claude Gets Artifacts',
+    date: 'JUN 2024',
+    author: 'Frederick A.',
+    excerpt: 'Claude 3.5 Sonnet outperforms Opus, Artifacts enables real-time building, and music AI faces legal challenges.',
+    image: '/assets/journal/jun-2024.jpg',
+    content: `
+      <p>June 20th changed the AI landscape. Anthropic released Claude 3.5 Sonnet—a model that outperformed their own flagship Claude 3 Opus while being faster and cheaper. But the real story was Artifacts.</p>
+
+      <h3>What Artifacts Changes</h3>
+
+      <p>Artifacts lets Claude generate live, interactive content—code that runs, visualizations you can manipulate, prototypes you can test. You're not just getting answers; you're getting working outputs.</p>
+
+      <p>For entrepreneurs and small teams, this means you can prototype ideas through conversation. Describe what you want, iterate in real-time, and export working code. The gap between idea and implementation just shrank.</p>
+
+      <h3>Music AI Lawsuit</h3>
+
+      <p>June 24th: The RIAA filed landmark copyright lawsuits against Suno and Udio, seeking up to $150,000 per song. This is the first major legal test of whether AI training on copyrighted content constitutes fair use.</p>
+
+      <h3>Nvidia Passes Apple</h3>
+
+      <p>On June 5th-6th, Nvidia officially became larger than Apple by market capitalization. The AI infrastructure thesis won. Every major company now needs GPU compute, and Nvidia dominates supply.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>Claude 3.5 Sonnet with Artifacts is genuinely useful for building things. If you're not using it, you're working harder than you need to. The music AI lawsuits are worth monitoring—the outcome affects all generative AI.</p>
+    `
+  },
+  {
+    id: 'ai-may-2024',
+    title: 'May 2024: GPT-4o Goes Free',
+    date: 'MAY 2024',
+    author: 'Frederick A.',
+    excerpt: 'OpenAI makes multimodal AI free for everyone, funding floods into AI startups, and voice becomes mainstream.',
+    image: '/assets/journal/may-2024.jpg',
+    content: `
+      <p>May 13th: OpenAI announced GPT-4o—a multimodal model that processes text, audio, photos, and video. Faster than GPT-4 Turbo. Cheaper. And available free to everyone.</p>
+
+      <h3>Why Free GPT-4o Matters</h3>
+
+      <p>This isn't "free trial." This is free access to frontier AI capabilities. The excuse of "AI is too expensive" died in May 2024. Anyone with an internet connection now has access to the same AI tools as Fortune 500 companies.</p>
+
+      <p>For small businesses, this levels the playing field in ways that weren't possible six months ago.</p>
+
+      <h3>Money Pours Into AI</h3>
+
+      <p>Suno raised $125 million. Perplexity was raising at a $3 billion valuation. Pika secured $80 million. Venture capital is betting heavily that AI applications will transform every industry.</p>
+
+      <h3>Nvidia Approaches Apple</h3>
+
+      <p>Nvidia approached and briefly surpassed Apple in market capitalization, driven entirely by AI chip demand. The hardware layer of AI became the most valuable company on earth.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>Free GPT-4o access means you can start using AI today with zero budget. Multimodal capabilities mean you can work with images, audio, and text in the same conversation. The barrier to entry just disappeared.</p>
+    `
+  },
+  {
+    id: 'ai-apr-2024',
+    title: 'April 2024: The Open Source Explosion',
+    date: 'APR 2024',
+    author: 'Frederick A.',
+    excerpt: 'Meta releases Llama 3, music AI goes mainstream, and the accessibility revolution begins.',
+    image: '/assets/journal/apr-2024.jpg',
+    content: `
+      <p>April 18th: Meta released Llama 3 with 8B and 70B parameter models. Open-source. Free to use. Outperforming Gemini Pro 1.5 and Claude 3 Sonnet on most benchmarks.</p>
+
+      <h3>Open Source Changes Everything</h3>
+
+      <p>Llama 3 marked a turning point: open-source AI caught up to proprietary models. You can download, modify, and deploy these models without API fees. For businesses building AI products, this changes the economics entirely.</p>
+
+      <h3>Music AI Arrives</h3>
+
+      <p>Udio AI launched in public beta, joining Suno (which released V3 in March) as a major player in AI music generation. Generate broadcast-quality music from text descriptions. For content creators, this removes the most expensive part of audio production.</p>
+
+      <h3>Creative Tools Proliferate</h3>
+
+      <p>Stability AI released Stable Audio 2.0. Google's Gemini 1.5 Pro entered public preview with a million-token context window. The tools that were research projects a year ago became production-ready.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>April 2024 was when AI tools became accessible to everyone. Open-source models mean you're not locked into any vendor. Music and audio AI mean creative content doesn't require expensive production anymore. The democratization is real.</p>
+    `
+  },
+  // Existing thought leadership articles
   {
     id: 'j1',
     title: 'The Latency Tax Nobody Talks About',
