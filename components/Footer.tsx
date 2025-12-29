@@ -17,16 +17,9 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
 
         {/* Brand Column */}
         <div className="md:col-span-4">
-          <div className="flex items-center gap-3 mb-4">
-            <img
-              src="/assets/logos/logo-icon.png"
-              alt="Softworks"
-              className="w-10 h-10 object-contain"
-            />
-            <div className="flex flex-col items-end">
-              <span className="font-sans text-white font-bold text-base tracking-wide">SOFTWORKS</span>
-              <span className="font-sans text-slate-400 font-medium text-[7px] tracking-[0.52em] uppercase">Trading Company</span>
-            </div>
+          <div className="flex flex-col mb-4">
+            <span className="font-sans text-white font-bold text-lg tracking-wide">SOFTWORKS</span>
+            <span className="font-sans text-slate-400 font-medium text-[10px] tracking-[0.15em] uppercase">Trading Company</span>
           </div>
           <p className="max-w-xs text-slate-400 font-light leading-relaxed mb-6">
             We help businesses make AI work. Strategy, setup, and support to get real results.
