@@ -23,7 +23,7 @@ const Team: React.FC = () => {
         <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
           <div className="aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628]">
             <img
-              src="/assets/team/team-collective.jpg"
+              src="/assets/team/team-light.jpg"
               alt="Softworks collective reviewing agentic workflow"
               className="w-full h-full object-cover"
             />
