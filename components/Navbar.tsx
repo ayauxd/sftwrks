@@ -51,7 +51,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             }`}>
               SOFTWORKS
             </span>
-            <span className={`font-sans font-medium text-[10px] md:text-xs tracking-[0.33em] uppercase transition-colors ${
+            <span className={`font-sans font-medium text-[9px] md:text-[11px] tracking-[0.47em] uppercase transition-colors ${
               scrolled
                 ? 'text-slate-500 dark:text-slate-400'
                 : isDark ? 'text-slate-300' : 'text-slate-500'
@@ -141,7 +141,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             {/* Mobile Brand */}
             <div className="flex flex-col items-center mb-4">
               <span className="font-sans text-slate-900 dark:text-white font-bold text-3xl tracking-wide">SOFTWORKS</span>
-              <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-xs tracking-[0.33em] uppercase">Trading Company</span>
+              <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-sm tracking-[0.47em] uppercase">Trading Company</span>
             </div>
             <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">HOW WE HELP</button>
             <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors">TEAM</button>

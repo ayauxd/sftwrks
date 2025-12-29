@@ -19,7 +19,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
         <div className="md:col-span-4">
           <div className="flex flex-col mb-4">
             <span className="font-sans text-white font-bold text-lg tracking-wide">SOFTWORKS</span>
-            <span className="font-sans text-slate-400 font-medium text-[9px] tracking-[0.35em] uppercase">Trading Company</span>
+            <span className="font-sans text-slate-400 font-medium text-[8px] tracking-[0.52em] uppercase">Trading Company</span>
           </div>
           <p className="max-w-xs text-slate-400 font-light leading-relaxed mb-6">
             We help businesses make AI work. Strategy, setup, and support to get real results.
