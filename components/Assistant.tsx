@@ -361,7 +361,7 @@ Ready for follow-up consultation.
         <div className="flex-1 flex flex-col px-5 py-6 overflow-y-auto">
           {!showDetailedResults ? (
             <>
-              {/* Score Display with Visual Breakdown */}
+              {/* Score Display with Context */}
               <div className="text-center mb-4">
                 <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 mb-3 relative" style={{ borderColor: tier.color }}>
                   <span className="text-2xl font-bold text-slate-900 dark:text-white">{totalScore}</span>
@@ -369,25 +369,37 @@ Ready for follow-up consultation.
                 </div>
                 <h3 className="text-xl font-bold mb-1" style={{ color: tier.color }}>{tier.name}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm">{tier.description}</p>
+                {/* Score context tooltip */}
+                <p className="text-[10px] text-slate-400 mt-1">
+                  {totalScore >= 18 ? '18-23 = Pioneer' : totalScore >= 13 ? '13-17 = Ready' : totalScore >= 8 ? '8-12 = Curious' : '0-7 = Explorer'}
+                </p>
               </div>
 
-              {/* Visual Score Breakdown */}
+              {/* Visual Score Breakdown with Labels */}
               <div className="bg-slate-50 dark:bg-[#0A1628] rounded-lg p-3 mb-4">
                 <h4 className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Your Profile</h4>
-                <div className="space-y-1.5">
+                <div className="space-y-2">
                   {answers.map(a => {
                     const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
                     const maxStepScore = step ? Math.max(...step.options.map(o => o.score)) : 5;
                     const percentage = (a.score / maxStepScore) * 100;
+                    const categoryLabels: Record<number, string> = {
+                      1: 'Industry',
+                      2: 'Pain Point',
+                      3: 'Experience',
+                      4: 'Team Size',
+                      5: 'Goal'
+                    };
                     return (
                       <div key={a.stepId} className="flex items-center gap-2">
-                        <div className="flex-1 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <span className="text-[9px] text-slate-400 w-14 shrink-0">{categoryLabels[a.stepId]}</span>
+                        <div className="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
                             style={{ width: `${percentage}%`, backgroundColor: tier.color }}
                           />
                         </div>
-                        <span className="text-[10px] text-slate-500 w-16 truncate">{a.label.split(' ')[0]}</span>
+                        <span className="text-[10px] text-slate-500 dark:text-slate-400 w-20 truncate text-right">{a.label}</span>
                       </div>
                     );
                   })}
@@ -652,9 +664,9 @@ Ready for follow-up consultation.
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end font-sans">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-[95vw] sm:w-[380px] h-[580px] mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-xl">
+        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-[calc(100vw-2rem)] sm:w-[380px] max-h-[calc(100vh-6rem)] h-[580px] mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-xl fixed sm:relative bottom-20 sm:bottom-auto left-4 sm:left-auto right-4 sm:right-auto">
           {/* Header */}
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628]">
             <div className="flex items-center gap-3">
