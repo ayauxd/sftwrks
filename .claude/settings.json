@@ -1,0 +1,11 @@
+{
+  "skills": ["softworks-site-manager"],
+  "permissions": {
+    "allow": [
+      "Bash(npm run build)",
+      "Bash(npm run dev)",
+      "Bash(vercel --prod)",
+      "Bash(bash ~/.claude/skills/softworks-site-manager/scripts/*)"
+    ]
+  }
+}
