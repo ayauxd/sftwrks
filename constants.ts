@@ -217,7 +217,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'NOV 2025',
     author: 'Frederick A.',
     excerpt: 'Gemini 3, Claude Opus 4.5, and GPT-5.1 released within days. Here\'s what it means for your business.',
-    image: '/assets/journal/nov-2025.jpg',
+    image: '/assets/journal/nov-2025.png',
     content: `
       <p>The week of November 18th was the most competitive seven days in commercial AI history. Google dropped Gemini 3 Pro. Anthropic responded with Claude Opus 4.5. OpenAI released GPT-5.1. Three frontier models in one week.</p>
 
@@ -252,7 +252,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'OCT 2025',
     author: 'Frederick A.',
     excerpt: '35% of new US startups are now founded by one person. AI coding tools are the reason.',
-    image: '/assets/journal/oct-2025.jpg',
+    image: '/assets/journal/oct-2025.png',
     content: `
       <p>Cursor's parent company just closed a $2.3 billion funding round at a $29.3 billion valuation. That's not a typo. A coding assistant is now worth more than most publicly traded tech companies.</p>
 
@@ -285,7 +285,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'SEP 2025',
     author: 'Frederick A.',
     excerpt: 'Claude Sonnet 4.5 claims best coding model. Stargate expands to 7 gigawatts. What the buildout signals.',
-    image: '/assets/journal/sep-2025.jpg',
+    image: '/assets/journal/sep-2025.png',
     content: `
       <p>OpenAI announced five new Stargate data center sites this month, bringing total capacity to 7 gigawatts and over $400 billion in committed investment over three years. To put that in context: that's roughly the power consumption of a small country dedicated entirely to AI compute.</p>
 
@@ -318,7 +318,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'AUG 2025',
     author: 'Frederick A.',
     excerpt: 'OpenAI\'s flagship model arrives with 256K context, built-in routing, and expert-level performance.',
-    image: '/assets/journal/aug-2025.jpg',
+    image: '/assets/journal/aug-2025.png',
     content: `
       <p>GPT-5 launched on August 7th. After months of speculation, OpenAI delivered a model that unifies capabilities most businesses were cobbling together from multiple tools.</p>
 
@@ -353,7 +353,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JUL 2025',
     author: 'David M.',
     excerpt: 'MIT study claims 95% of businesses found zero AI value. Here\'s what they got wrong—and right.',
-    image: '/assets/journal/jul-2025.jpg',
+    image: '/assets/journal/jul-2025.png',
     content: `
       <p>An MIT study dropped in July claiming 95% of businesses that tried AI found zero value. The headlines were brutal. "AI Hype Bubble Bursts." "Enterprise AI: All Sizzle, No Steak."</p>
 
@@ -388,7 +388,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JUN 2025',
     author: 'Frederick A.',
     excerpt: 'Meta paid $14.3B for Scale AI. Top AI talent commands sports-star compensation. What this means for your hiring strategy.',
-    image: '/assets/journal/jun-2025.jpg',
+    image: '/assets/journal/jun-2025.png',
     content: `
       <p>Meta's $14.3 billion Scale AI investment was widely interpreted as an acqui-hire of CEO Alexandr Wang. One person, valued at billions. Welcome to the AI talent market.</p>
 
@@ -421,7 +421,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'MAY 2025',
     author: 'David M.',
     excerpt: 'Anthropic releases Claude 4. Y Combinator reports 25% of startups generate 95% of code with AI. The vibe coding era is official.',
-    image: '/assets/journal/may-2025.jpg',
+    image: '/assets/journal/may-2025.png',
     content: `
       <p>May 22nd: Anthropic released Claude Sonnet 4 and Claude Opus 4, setting new standards for coding, reasoning, and AI agents. Opus 4 positioned itself as the world's best coding model.</p>
 
@@ -454,7 +454,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'APR 2025',
     author: 'Nina R.',
     excerpt: 'Departmental AI spend hits $7.3B—up 4.1x year over year. Coding accounts for 55%. What the data reveals.',
-    image: '/assets/journal/apr-2025.jpg',
+    image: '/assets/journal/apr-2025.png',
     content: `
       <p>The numbers from Q1 2025 are in. Departmental AI spending reached $7.3 billion—up 4.1x year over year. Coding tools alone account for 55% of that spend, roughly $4 billion.</p>
 
@@ -487,7 +487,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'MAR 2025',
     author: 'Frederick A.',
     excerpt: 'AI task capability doubles every 7 months. Agents won\'t replace jobs—they\'ll transform them.',
-    image: '/assets/journal/mar-2025.jpg',
+    image: '/assets/journal/mar-2025.png',
     content: `
       <p>METR published research in March showing AI task duration capability doubles approximately every 7 months. Read that again. Every seven months, AI can handle tasks that take twice as long.</p>
 
@@ -520,7 +520,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'FEB 2025',
     author: 'Nina R.',
     excerpt: 'EU AI Act prohibitions take effect. Meanwhile, SMB AI adoption climbs quietly. The two stories are connected.',
-    image: '/assets/journal/feb-2025.jpg',
+    image: '/assets/journal/feb-2025.png',
     content: `
       <p>February 2nd marked the beginning of EU AI Act enforcement. Prohibited AI practices and AI literacy obligations came into force across Europe. For businesses operating internationally, this is now a compliance requirement.</p>
 
@@ -551,7 +551,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JAN 2025',
     author: 'Frederick A.',
     excerpt: 'A Chinese AI lab built a GPT-4 competitor for $5.6 million. Then Stargate announced $500 billion. The AI economics just shifted.',
-    image: '/assets/journal/jan-2025.jpg',
+    image: '/assets/journal/jan-2025.png',
     content: `
       <p>January 2025 delivered two stories that seem contradictory but actually tell the same tale: AI economics are being rewritten.</p>
 
