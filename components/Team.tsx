@@ -5,6 +5,10 @@
 
 import React from 'react';
 
+interface TeamProps {
+  isDark?: boolean;
+}
+
 const EXPERTISE_AREAS = [
   { label: 'AI Strategy & Integration', icon: '◈' },
   { label: 'Process Automation', icon: '◇' },
@@ -13,7 +17,7 @@ const EXPERTISE_AREAS = [
   { label: 'Research & Analysis', icon: '◇' }
 ];
 
-const Team: React.FC = () => {
+const Team: React.FC<TeamProps> = ({ isDark = true }) => {
   return (
     <section id="team" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] border-t border-slate-200 dark:border-slate-800">
       <div className="max-w-5xl mx-auto">
@@ -27,21 +31,14 @@ const Team: React.FC = () => {
           </h2>
         </div>
 
-        {/* Team Photo Placeholder */}
+        {/* Team Photo */}
         <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
-          <div className="aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628] flex items-center justify-center">
+          <div className="aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628]">
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1600&q=80"
-              alt="Softworks team collaborating"
-              className="w-full h-full object-cover opacity-90"
+              src={isDark ? "/assets/team/team-dark.jpg" : "/assets/team/team-light.jpg"}
+              alt="Softworks team collaborating around a display"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/60 via-transparent to-transparent"></div>
-          </div>
-          {/* Overlay text */}
-          <div className="absolute bottom-6 left-6 right-6">
-            <p className="text-white/90 text-sm font-mono">
-              Frederick A. • Peter O. • Amara K. • David M. • Nina R.
-            </p>
           </div>
         </div>
 

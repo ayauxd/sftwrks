@@ -166,7 +166,7 @@ function App() {
         <About />
 
         {/* TEAM */}
-        <Team />
+        <Team isDark={isDark} />
 
         {/* CASE STUDIES */}
         <section id="work" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">

@@ -120,8 +120,6 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`} style={{ animationDelay: '200ms' }}>
               We help you go from AI confusion to real results.
-              <br className="hidden md:block" />
-              <span className={isDark ? 'text-slate-300' : 'text-slate-700'}>Plan it. Protect it. Put it to work.</span>
             </p>
 
             {/* CTA Buttons */}
