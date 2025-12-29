@@ -160,241 +160,374 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
-  // Monthly AI Updates - November 2024 to April 2024 (newest first)
+  // Monthly AI Updates - 2025 (November to January, newest first)
   {
-    id: 'ai-nov-2024',
-    title: 'November 2024: Voice AI Goes Enterprise',
-    date: 'NOV 2024',
+    id: 'ai-nov-2025',
+    title: 'November 2025: Three Frontier Models in One Week',
+    date: 'NOV 2025',
     author: 'Frederick A.',
-    excerpt: 'ElevenLabs hits $90M ARR, GenFM challenges NotebookLM, and Suno V4 transforms music creation.',
-    image: '/assets/journal/nov-2024.jpg',
+    excerpt: 'Gemini 3, Claude Opus 4.5, and GPT-5.1 released within days. Here\'s what it means for your business.',
+    image: '/assets/journal/nov-2025.jpg',
     content: `
-      <p>November marked a turning point for voice AI. ElevenLabs released GenFM—a direct competitor to Google's viral NotebookLM podcast feature, but in 32 languages. The democratization of audio content creation is happening faster than anyone predicted.</p>
+      <p>The week of November 18th was the most competitive seven days in commercial AI history. Google dropped Gemini 3 Pro. Anthropic responded with Claude Opus 4.5. OpenAI released GPT-5.1. Three frontier models in one week.</p>
 
-      <h3>The ElevenLabs Story</h3>
+      <p>If you're a business leader trying to make sense of this, here's what actually matters.</p>
 
-      <p>ElevenLabs is now approaching $90 million in annual recurring revenue. More than 60% of Fortune 500 companies use their technology. Their new Conversational AI platform lets businesses launch interactive voice agents without writing code.</p>
+      <h3>What Each Model Brings</h3>
 
-      <p>For small businesses, this means voice interfaces are no longer enterprise-only. You can build a phone agent, a voice assistant, or automated customer service for a fraction of what it cost a year ago.</p>
+      <p><strong>Gemini 3 Pro (Nov 18)</strong> topped the LMArena leaderboard with breakthrough multimodal reasoning. Google's first clear win in the foundation model race.</p>
 
-      <h3>Suno V4 Changes Music</h3>
+      <p><strong>Claude Opus 4.5 (Nov 24)</strong> reclaimed the coding crown with 80.9% on the SWE-bench benchmark. Anthropic priced it at $5/$25 per million tokens—aggressive for a frontier model.</p>
 
-      <p>Suno released V4 with dramatically improved vocal quality, 4-minute first generation capability, and new Cover and Persona features. If you're creating content, you now have a music production studio in your browser.</p>
+      <p><strong>GPT-5.1 (Nov 19)</strong> delivered improved agentic and coding capabilities as an interim release between GPT-5 and whatever comes next.</p>
 
-      <h3>Amazon Doubles Down on Anthropic</h3>
+      <h3>The Real Story</h3>
 
-      <p>Amazon invested another $4 billion in Anthropic, doubling their stake. Combined with Anthropic's Palantir partnership for government applications, Claude is positioning itself as the enterprise-safe AI choice.</p>
+      <p>Competition is driving two things that matter to you: prices are dropping and capabilities are rising. What cost $100 in API calls a year ago now costs $10. What required custom engineering now works out of the box.</p>
+
+      <p>NotebookLM added infographic and slide deck generation this month. That's frontier AI becoming practical office software.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>Voice AI crossed from "interesting demo" to "business tool" this month. The barriers to creating professional audio content are gone. The question is whether you'll use these tools before your competitors do.</p>
+      <p>Stop waiting for the "right" model to adopt. The landscape will keep shifting. Focus on identifying specific workflows where AI creates value, then implement with whatever model fits best today. You can always upgrade later.</p>
+
+      <hr />
+
+      <p><em>The companies winning with AI aren't the ones using the newest model. They're the ones who started implementing six months ago and are now iterating.</em></p>
     `
   },
   {
-    id: 'ai-oct-2024',
-    title: 'October 2024: AI Got Hands',
-    date: 'OCT 2024',
-    author: 'Frederick A.',
-    excerpt: 'Anthropic releases computer use, GitHub Copilot goes multi-model, and Claude 3.5 Haiku arrives.',
-    image: '/assets/journal/oct-2024.jpg',
+    id: 'ai-oct-2025',
+    title: 'October 2025: The Solo Founder Revolution',
+    date: 'OCT 2025',
+    author: 'Marcus T.',
+    excerpt: '35% of new US startups are now founded by one person. AI coding tools are the reason.',
+    image: '/assets/journal/oct-2025.jpg',
     content: `
-      <p>October 22nd changed everything. Anthropic released "computer use" in public beta—AI that can look at your screen, move your cursor, click buttons, and type. Not theoretical. Working.</p>
+      <p>Cursor's parent company just closed a $2.3 billion funding round at a $29.3 billion valuation. That's not a typo. A coding assistant is now worth more than most publicly traded tech companies.</p>
 
-      <h3>What Computer Use Actually Means</h3>
+      <p>But the real story isn't Cursor's valuation. It's what's happening on the ground.</p>
 
-      <p>Read this carefully: AI can now operate computers like a human. It can navigate websites, fill out forms, transfer data between systems, run software. The manual computer tasks you hire people to do? Those are now automatable.</p>
+      <h3>The Numbers</h3>
 
-      <p>This isn't about chat interfaces anymore. This is about AI doing work. Huge difference.</p>
+      <p>35% of new US startups in 2025 are led by solo founders. That's up from 22% in 2023. The combined valuation of leading AI coding startups—Cognition, Lovable, Replit, Cursor, Vercel—grew 350% year-over-year to over $36 billion.</p>
 
-      <h3>Claude 3.5 Gets Stronger</h3>
+      <p>Y Combinator reported that 25% of their Winter 2025 batch generated 95% of their code with AI tools. Read that again. A quarter of the most competitive startup cohort on earth is building with almost no traditional coding.</p>
 
-      <p>Alongside computer use, Anthropic released an upgraded Claude 3.5 Sonnet and Claude 3.5 Haiku. Haiku now surpasses the original Claude 3 Opus in capabilities while being significantly faster and cheaper.</p>
+      <h3>What Changed</h3>
 
-      <h3>GitHub Copilot Goes Multi-Model</h3>
+      <p>Claude Haiku 4.5 launched this month—Anthropic's fast, cost-effective model for high-volume applications. For builders, this means you can prototype ten ideas for the cost of one a year ago.</p>
 
-      <p>GitHub announced developers can now power Copilot with Claude 3.5 Sonnet or Gemini 1.5 Pro as alternatives to GPT-4o. Their admission: "no one model rules every scenario." The AI monoculture is over.</p>
-
-      <h3>NotebookLM Gets Customization</h3>
-
-      <p>Google responded to NotebookLM's viral success by adding the ability to customize AI-generated podcast outputs. Users can now guide the AI hosts' focus and style.</p>
+      <p>The term "vibe coding" went mainstream. You describe what you want in plain English. The AI writes the code. You iterate through conversation. No CS degree required.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>The gap between "AI assistant" and "AI employee" just narrowed dramatically. Computer use is in beta, but the trajectory is clear. Start identifying which computer-based tasks in your business are candidates for automation.</p>
+      <p>If you've been putting off building that internal tool, launching that side project, or automating that workflow because "we don't have developers"—that excuse just expired. The barriers to building software are the lowest they've ever been.</p>
+
+      <hr />
+
+      <p><em>The question isn't whether you can build with AI. It's what you would build if the cost of building dropped to nearly zero.</em></p>
     `
   },
   {
-    id: 'ai-sep-2024',
-    title: 'September 2024: The NotebookLM Moment',
-    date: 'SEP 2024',
-    author: 'Frederick A.',
-    excerpt: 'Google\'s podcast feature goes viral, OpenAI releases reasoning models, and AI regulation heats up.',
-    image: '/assets/journal/sep-2024.jpg',
+    id: 'ai-sep-2025',
+    title: 'September 2025: Infrastructure at Scale',
+    date: 'SEP 2025',
+    author: 'Nina R.',
+    excerpt: 'Claude Sonnet 4.5 claims best coding model. Stargate expands to 7 gigawatts. What the buildout signals.',
+    image: '/assets/journal/sep-2025.jpg',
     content: `
-      <p>Google's NotebookLM went viral in September with a feature nobody expected: AI-generated podcasts. Upload any document, and two AI voices have an engaging conversation about your content. It sounds like a gimmick until you use it.</p>
+      <p>OpenAI announced five new Stargate data center sites this month, bringing total capacity to 7 gigawatts and over $400 billion in committed investment over three years. To put that in context: that's roughly the power consumption of a small country dedicated entirely to AI compute.</p>
 
-      <h3>Why NotebookLM Matters</h3>
+      <h3>The Infrastructure Race</h3>
 
-      <p>Upload a 50-page report. Get a 15-minute audio summary while you commute. Research that used to take hours to synthesize happens automatically. This isn't about entertainment—it's about information processing at scale.</p>
+      <p>We're watching a new kind of arms race. Not for weapons, but for compute. The companies building the biggest data centers will have the capacity to train the largest models. The largest models generally perform best. Performance drives adoption. Adoption drives revenue. Revenue funds more infrastructure.</p>
 
-      <p>For businesses drowning in documentation, reports, and research, NotebookLM represents a new paradigm: AI as a learning tool, not just a writing tool.</p>
+      <p>This flywheel is now spinning at unprecedented speed.</p>
 
-      <h3>OpenAI's Reasoning Models</h3>
+      <h3>Claude Sonnet 4.5</h3>
 
-      <p>OpenAI introduced o1-preview and o1-mini—"reasoning" models that take time to think before answering. This pioneered a new approach called test-time compute, where models use more processing during inference for better answers.</p>
+      <p>Anthropic released Claude Sonnet 4.5, which they describe as "the best coding model in the world." Whether that claim holds depends on your benchmarks, but the capability improvements are real. More importantly for businesses, it's faster and cheaper per token than its predecessor.</p>
 
-      <p>The practical impact: for complex problems, these models significantly outperform standard models. For simple tasks, they're overkill. Knowing when to use which is now a competitive advantage.</p>
-
-      <h3>SB-1047 Debate</h3>
-
-      <p>California's AI safety bill sparked heated debate. Advocates saw necessary guardrails. Critics worried about innovation being pushed overseas. The bill's journey highlighted the challenge of regulating a technology that moves faster than legislation.</p>
+      <p>Sora 2 also entered limited release this month. AI video generation is moving from "impressive demo" to "production tool."</p>
 
       <h3>What This Means For You</h3>
 
-      <p>AI is getting better at synthesis and reasoning—the knowledge work that used to require expensive human expertise. NotebookLM and o1 represent two sides of this: making existing knowledge more accessible, and making complex analysis more reliable.</p>
+      <p>The infrastructure buildout signals that major players are betting heavily on AI becoming essential infrastructure—like electricity or internet. They're not building for curiosity. They're building because they expect demand to multiply.</p>
+
+      <p>If the biggest tech companies on earth are investing hundreds of billions in AI infrastructure, the question isn't whether AI will transform business operations. It's whether you'll be ready when it does.</p>
+
+      <hr />
+
+      <p><em>Strategic planning used to mean planning for a world without AI. Now it means planning for a world where AI is everywhere.</em></p>
     `
   },
   {
-    id: 'ai-aug-2024',
-    title: 'August 2024: The Fair Use Fight',
-    date: 'AUG 2024',
+    id: 'ai-aug-2025',
+    title: 'August 2025: GPT-5 Changes the Game',
+    date: 'AUG 2025',
     author: 'Frederick A.',
-    excerpt: 'Music AI companies respond to lawsuits, voice AI adoption accelerates, and video generation matures.',
-    image: '/assets/journal/aug-2024.jpg',
+    excerpt: 'OpenAI\'s flagship model arrives with 256K context, built-in routing, and expert-level performance.',
+    image: '/assets/journal/aug-2025.jpg',
     content: `
-      <p>August saw the AI industry's first major legal reckoning. Suno and Udio responded to the RIAA's June lawsuits, arguing their use of copyrighted materials fell under fair use protections. The outcome will shape AI development for years.</p>
+      <p>GPT-5 launched on August 7th. After months of speculation, OpenAI delivered a model that unifies capabilities most businesses were cobbling together from multiple tools.</p>
 
-      <h3>The Legal Stakes</h3>
+      <h3>What GPT-5 Actually Does</h3>
 
-      <p>The RIAA is seeking up to $150,000 per song in damages. If the music AI companies lose, the precedent could affect all generative AI trained on copyrighted content. If they win, it validates a training approach that most AI companies use.</p>
+      <p>256K token context window (400K via API). That's roughly 500 pages of text in a single conversation. For businesses dealing with complex documents, contracts, or research—this is transformative.</p>
 
-      <p>For businesses using AI tools, this is worth watching. The legal landscape is still being written.</p>
+      <p>Built-in routing between instant and deep thinking modes. The model decides when to respond quickly and when to reason carefully. You don't have to choose which model to use anymore.</p>
 
-      <h3>Voice AI Goes Mainstream</h3>
+      <p>94.6% on AIME 2025 (advanced math). 74.9% on SWE-bench Verified (real-world coding). These aren't demo benchmarks. They're measures of practical capability.</p>
 
-      <p>ElevenLabs continued its rapid expansion. Voice cloning, once a novelty, became a standard business tool for everything from training videos to customer service to content creation.</p>
+      <h3>Claude Opus 4.1</h3>
 
-      <h3>Video Generation Competition</h3>
+      <p>Anthropic released Opus 4.1 just days before GPT-5, focused on agentic tasks and real-world coding. The competition is fierce, which means prices keep dropping and capabilities keep rising.</p>
 
-      <p>Runway Gen-3 Alpha, Luma Dream Machine, and Kling established themselves as the top tier of AI video generation. The quality gap between AI-generated and professionally shot video is narrowing month by month.</p>
+      <h3>The Microsoft Factor</h3>
+
+      <p>GPT-5 integration with Microsoft Copilot means enterprise workflows get frontier AI capabilities without custom development. For mid-market companies already in the Microsoft ecosystem, this is the fastest path to AI adoption.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>Creative AI tools are mature enough for production use, but the legal framework is still evolving. Use them strategically, understand the licensing, and watch the courts. The companies that figure out compliant AI workflows now will have an advantage.</p>
+      <p>If you've been waiting for AI to reach "good enough" for serious business use, it has. GPT-5 and Claude Opus 4.1 handle tasks that required specialized consultants a year ago. The cost of inaction is now concrete: your competitors have access to the same tools.</p>
+
+      <hr />
+
+      <p><em>The question isn't whether these tools work. It's whether your organization can integrate them before your competitors do.</em></p>
     `
   },
   {
-    id: 'ai-jul-2024',
-    title: 'July 2024: Open Source Goes Big',
-    date: 'JUL 2024',
-    author: 'Frederick A.',
-    excerpt: 'Llama 3.1 405B rivals GPT-4, GPT-4o Mini drops prices, and the small model revolution begins.',
-    image: '/assets/journal/jul-2024.jpg',
+    id: 'ai-jul-2025',
+    title: 'July 2025: The Reality Check',
+    date: 'JUL 2025',
+    author: 'David M.',
+    excerpt: 'MIT study claims 95% of businesses found zero AI value. Here\'s what they got wrong—and right.',
+    image: '/assets/journal/jul-2025.jpg',
     content: `
-      <p>July 23rd: Meta released Llama 3.1 with a 405 billion parameter model. This is an open-source model rivaling GPT-4 capabilities. Free. Downloadable. No API costs if you can run it yourself.</p>
+      <p>An MIT study dropped in July claiming 95% of businesses that tried AI found zero value. The headlines were brutal. "AI Hype Bubble Bursts." "Enterprise AI: All Sizzle, No Steak."</p>
 
-      <h3>Why Open Source Matters</h3>
+      <p>The reality is more nuanced—and more useful.</p>
 
-      <p>Llama 3.1 405B changes the economics of AI. Enterprise companies can run frontier-class AI without per-token costs. Startups can build products without dependence on OpenAI or Anthropic. The AI moat just got much harder to defend.</p>
+      <h3>What the Study Actually Found</h3>
 
-      <h3>Small Models Get Smarter</h3>
+      <p>The study examined companies that "tried AI." That's the key word. Most organizations that fail with AI fail because they approach it like a technology purchase rather than a capability transformation.</p>
 
-      <p>OpenAI released GPT-4o Mini—60% cheaper than GPT-3.5 Turbo while being more capable. The industry is moving in two directions simultaneously: toward larger frontier models and toward smaller, cheaper models that handle most tasks.</p>
+      <p>They buy tools. They don't change workflows. They expect magic. They get disappointment.</p>
 
-      <p>As one analyst put it: "Model competition is moving towards small at the same time it's proceeding towards state of the art."</p>
+      <h3>What Success Actually Looks Like</h3>
 
-      <h3>Suno Mobile App</h3>
+      <p>The companies succeeding with AI share common patterns: they start with specific problems, not general "AI initiatives." They measure outcomes, not activity. They integrate AI into existing workflows rather than building parallel systems.</p>
 
-      <p>Suno released its mobile app on July 1st. AI music generation is now as accessible as Instagram. For content creators, this removes another barrier between idea and execution.</p>
+      <p>OpenAI helped by releasing ChatGPT Agent as a unified agentic system. They also dropped GPT-4o pricing to $3/million input tokens. Lower costs mean faster experimentation. Faster experimentation means faster learning.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>The cost of AI dropped dramatically this month. Small models can handle 80% of tasks at a fraction of frontier model costs. Open-source options give you control over your AI infrastructure. The question isn't "can we afford AI?" anymore.</p>
+      <p>The MIT study is a useful corrective to hype. But its conclusion—that AI doesn't work—misses the point. AI works when implemented thoughtfully. It fails when thrown at problems without strategy.</p>
+
+      <p>The question isn't "does AI work?" It's "do we have a clear plan for how AI creates value in our specific context?"</p>
+
+      <hr />
+
+      <p><em>The difference between companies in the 5% that succeeded and the 95% that didn't isn't the technology they used. It's how they approached implementation.</em></p>
     `
   },
   {
-    id: 'ai-jun-2024',
-    title: 'June 2024: Claude Gets Artifacts',
-    date: 'JUN 2024',
+    id: 'ai-jun-2025',
+    title: 'June 2025: The Talent War You Can\'t Win',
+    date: 'JUN 2025',
     author: 'Frederick A.',
-    excerpt: 'Claude 3.5 Sonnet outperforms Opus, Artifacts enables real-time building, and music AI faces legal challenges.',
-    image: '/assets/journal/jun-2024.jpg',
+    excerpt: 'Meta paid $14.3B for Scale AI. Top AI talent commands sports-star compensation. What this means for your hiring strategy.',
+    image: '/assets/journal/jun-2025.jpg',
     content: `
-      <p>June 20th changed the AI landscape. Anthropic released Claude 3.5 Sonnet—a model that outperformed their own flagship Claude 3 Opus while being faster and cheaper. But the real story was Artifacts.</p>
+      <p>Meta's $14.3 billion Scale AI investment was widely interpreted as an acqui-hire of CEO Alexandr Wang. One person, valued at billions. Welcome to the AI talent market.</p>
 
-      <h3>What Artifacts Changes</h3>
+      <h3>The Compensation Reality</h3>
 
-      <p>Artifacts lets Claude generate live, interactive content—code that runs, visualizations you can manipulate, prototypes you can test. You're not just getting answers; you're getting working outputs.</p>
+      <p>Top AI talent now commands tens to hundreds of millions for four-year contracts. These are compensation packages typically reserved for professional athletes and A-list entertainers.</p>
 
-      <p>For entrepreneurs and small teams, this means you can prototype ideas through conversation. Describe what you want, iterate in real-time, and export working code. The gap between idea and implementation just shrank.</p>
+      <p>50% of developers now use AI coding tools daily. In top-quartile organizations, it's 65%. The people who can orchestrate AI systems effectively are the new scarce resource.</p>
 
-      <h3>Music AI Lawsuit</h3>
+      <h3>What This Means For Most Companies</h3>
 
-      <p>June 24th: The RIAA filed landmark copyright lawsuits against Suno and Udio, seeking up to $150,000 per song. This is the first major legal test of whether AI training on copyrighted content constitutes fair use.</p>
+      <p>You're not going to win the AI talent war. The math doesn't work. If Google, Meta, OpenAI, and Anthropic are offering hundreds of millions, mid-market companies can't compete on compensation.</p>
 
-      <h3>Nvidia Passes Apple</h3>
+      <p>But you don't need to.</p>
 
-      <p>On June 5th-6th, Nvidia officially became larger than Apple by market capitalization. The AI infrastructure thesis won. Every major company now needs GPU compute, and Nvidia dominates supply.</p>
+      <h3>The Alternative Strategy</h3>
 
-      <h3>What This Means For You</h3>
+      <p>Instead of hiring AI specialists, upskill your existing team. The tools are designed for this. Claude, GPT, and Gemini are built to be used by people who aren't AI experts.</p>
 
-      <p>Claude 3.5 Sonnet with Artifacts is genuinely useful for building things. If you're not using it, you're working harder than you need to. The music AI lawsuits are worth monitoring—the outcome affects all generative AI.</p>
+      <p>Your competitive advantage isn't hiring the best AI engineers. It's having team members who understand your business deeply AND can leverage AI tools effectively. That combination is more valuable—and more achievable—than competing for unicorn hires.</p>
+
+      <hr />
+
+      <p><em>The companies winning with AI in 2025 aren't the ones with the biggest AI teams. They're the ones that made AI literacy a company-wide capability.</em></p>
     `
   },
   {
-    id: 'ai-may-2024',
-    title: 'May 2024: GPT-4o Goes Free',
-    date: 'MAY 2024',
-    author: 'Frederick A.',
-    excerpt: 'OpenAI makes multimodal AI free for everyone, funding floods into AI startups, and voice becomes mainstream.',
-    image: '/assets/journal/may-2024.jpg',
+    id: 'ai-may-2025',
+    title: 'May 2025: Claude 4 Arrives',
+    date: 'MAY 2025',
+    author: 'David M.',
+    excerpt: 'Anthropic releases Claude 4. Y Combinator reports 25% of startups generate 95% of code with AI. The vibe coding era is official.',
+    image: '/assets/journal/may-2025.jpg',
     content: `
-      <p>May 13th: OpenAI announced GPT-4o—a multimodal model that processes text, audio, photos, and video. Faster than GPT-4 Turbo. Cheaper. And available free to everyone.</p>
+      <p>May 22nd: Anthropic released Claude Sonnet 4 and Claude Opus 4, setting new standards for coding, reasoning, and AI agents. Opus 4 positioned itself as the world's best coding model.</p>
 
-      <h3>Why Free GPT-4o Matters</h3>
+      <p>The timing aligned with a Y Combinator revelation: 25% of their Winter 2025 batch generated 95% of their code using AI tools.</p>
 
-      <p>This isn't "free trial." This is free access to frontier AI capabilities. The excuse of "AI is too expensive" died in May 2024. Anyone with an internet connection now has access to the same AI tools as Fortune 500 companies.</p>
+      <h3>What Claude 4 Changes</h3>
 
-      <p>For small businesses, this levels the playing field in ways that weren't possible six months ago.</p>
+      <p>The performance improvements are significant, but the practical impact matters more. Tasks that required custom development—building internal tools, automating workflows, creating prototypes—now happen through conversation.</p>
 
-      <h3>Money Pours Into AI</h3>
+      <p>Windsurf (formerly Codeium) launched its first family of AI software engineering models optimized for the entire development process. ElevenLabs integrated with n8n, enabling businesses to automate audio content creation.</p>
 
-      <p>Suno raised $125 million. Perplexity was raising at a $3 billion valuation. Pika secured $80 million. Venture capital is betting heavily that AI applications will transform every industry.</p>
+      <h3>The "Vibe Coding" Shift</h3>
 
-      <h3>Nvidia Approaches Apple</h3>
+      <p>Andrej Karpathy's term went mainstream this year: "vibe coding." You describe what you want. The AI writes the code. You iterate through conversation until it works.</p>
 
-      <p>Nvidia approached and briefly surpassed Apple in market capitalization, driven entirely by AI chip demand. The hardware layer of AI became the most valuable company on earth.</p>
+      <p>This isn't a gimmick. It's a fundamental shift in how software gets built. The barrier between "I have an idea" and "I have working software" just collapsed.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>Free GPT-4o access means you can start using AI today with zero budget. Multimodal capabilities mean you can work with images, audio, and text in the same conversation. The barrier to entry just disappeared.</p>
+      <p>If you're a business owner with technical problems but no technical team, Claude 4 is your engineering department. If you're a developer, it's your force multiplier. Either way, the productivity gains are real and immediate.</p>
+
+      <hr />
+
+      <p><em>The tools have arrived. The question is whether you'll use them to build or wait for someone else to build faster.</em></p>
     `
   },
   {
-    id: 'ai-apr-2024',
-    title: 'April 2024: The Open Source Explosion',
-    date: 'APR 2024',
-    author: 'Frederick A.',
-    excerpt: 'Meta releases Llama 3, music AI goes mainstream, and the accessibility revolution begins.',
-    image: '/assets/journal/apr-2024.jpg',
+    id: 'ai-apr-2025',
+    title: 'April 2025: Enterprise Spending Explodes',
+    date: 'APR 2025',
+    author: 'Nina R.',
+    excerpt: 'Departmental AI spend hits $7.3B—up 4.1x year over year. Coding accounts for 55%. What the data reveals.',
+    image: '/assets/journal/apr-2025.jpg',
     content: `
-      <p>April 18th: Meta released Llama 3 with 8B and 70B parameter models. Open-source. Free to use. Outperforming Gemini Pro 1.5 and Claude 3 Sonnet on most benchmarks.</p>
+      <p>The numbers from Q1 2025 are in. Departmental AI spending reached $7.3 billion—up 4.1x year over year. Coding tools alone account for 55% of that spend, roughly $4 billion.</p>
 
-      <h3>Open Source Changes Everything</h3>
+      <p>This isn't hype. This is CFO-approved budget allocation.</p>
 
-      <p>Llama 3 marked a turning point: open-source AI caught up to proprietary models. You can download, modify, and deploy these models without API fees. For businesses building AI products, this changes the economics entirely.</p>
+      <h3>Where the Money Goes</h3>
 
-      <h3>Music AI Arrives</h3>
+      <p>87% of large enterprises have now implemented AI solutions, averaging $6.5 million annual investment per organization. Windsurf (renamed from Codeium) became the second-largest source of enterprise LLM traffic with strong adoption of coding-focused models.</p>
 
-      <p>Udio AI launched in public beta, joining Suno (which released V3 in March) as a major player in AI music generation. Generate broadcast-quality music from text descriptions. For content creators, this removes the most expensive part of audio production.</p>
+      <p>The pattern is clear: enterprises are investing in AI tools that directly augment knowledge work, particularly software development.</p>
 
-      <h3>Creative Tools Proliferate</h3>
+      <h3>The SMB Gap</h3>
 
-      <p>Stability AI released Stable Audio 2.0. Google's Gemini 1.5 Pro entered public preview with a million-token context window. The tools that were research projects a year ago became production-ready.</p>
+      <p>Here's what concerns me. Large enterprises are investing millions in AI capability. Many small and mid-sized businesses are still experimenting with free tiers. The capability gap is widening.</p>
+
+      <p>The good news: the same tools enterprises use are available to smaller organizations. The pricing is accessible. The learning curve is manageable. What's missing is usually strategy and commitment, not budget.</p>
 
       <h3>What This Means For You</h3>
 
-      <p>April 2024 was when AI tools became accessible to everyone. Open-source models mean you're not locked into any vendor. Music and audio AI mean creative content doesn't require expensive production anymore. The democratization is real.</p>
+      <p>Enterprise spending signals where the smart money sees value. Right now, that's coding assistance, workflow automation, and document processing. If you're not investing in these areas, you're falling behind competitors who are.</p>
+
+      <hr />
+
+      <p><em>The ROI data is in. AI implementation pays off when done strategically. The question is whether you'll make the investment now or scramble to catch up later.</em></p>
+    `
+  },
+  {
+    id: 'ai-mar-2025',
+    title: 'March 2025: The Agent Evolution',
+    date: 'MAR 2025',
+    author: 'Frederick A.',
+    excerpt: 'AI task capability doubles every 7 months. Agents won\'t replace jobs—they\'ll transform them.',
+    image: '/assets/journal/mar-2025.jpg',
+    content: `
+      <p>METR published research in March showing AI task duration capability doubles approximately every 7 months. Read that again. Every seven months, AI can handle tasks that take twice as long.</p>
+
+      <p>This has profound implications for how we think about AI and work.</p>
+
+      <h3>The Dr. Strange Theory</h3>
+
+      <p>NLW on AI Daily Brief articulated something important: AI agents won't be 1-to-1 replacements for labor. They won't simply do what humans do, cheaper. They'll transform how jobs get done entirely.</p>
+
+      <p>Think about how spreadsheets changed accounting. Accountants didn't disappear. But the nature of accounting work changed completely. AI agents will do the same across knowledge work.</p>
+
+      <h3>Vibe Coding Goes Mainstream</h3>
+
+      <p>Andrej Karpathy's tweet about "vibe coding" went viral this month. The idea: developers describe what they want in natural language, AI handles the syntax. You iterate through conversation, not code.</p>
+
+      <p>This isn't about replacing developers. It's about what developers can accomplish when they're freed from boilerplate and syntax. The answer: a lot more.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>Plan for AI capability that doubles every seven months. What seems impossible today will be routine in 18 months. Build your AI strategy around this trajectory, not today's limitations.</p>
+
+      <hr />
+
+      <p><em>The organizations that thrive won't be the ones that resist change. They'll be the ones that redesign work around what AI makes possible.</em></p>
+    `
+  },
+  {
+    id: 'ai-feb-2025',
+    title: 'February 2025: Compliance Begins, Adoption Accelerates',
+    date: 'FEB 2025',
+    author: 'Nina R.',
+    excerpt: 'EU AI Act prohibitions take effect. Meanwhile, SMB AI adoption climbs quietly. The two stories are connected.',
+    image: '/assets/journal/feb-2025.jpg',
+    content: `
+      <p>February 2nd marked the beginning of EU AI Act enforcement. Prohibited AI practices and AI literacy obligations came into force across Europe. For businesses operating internationally, this is now a compliance requirement.</p>
+
+      <h3>What the Regulation Requires</h3>
+
+      <p>The EU AI Act categorizes AI systems by risk level. High-risk systems face strict requirements around transparency, human oversight, and documentation. Prohibited practices include social scoring, real-time facial recognition in public spaces, and manipulation techniques.</p>
+
+      <p>For most business applications—chatbots, document processing, workflow automation—the requirements are manageable. But they require attention.</p>
+
+      <h3>The Adoption Data</h3>
+
+      <p>Meanwhile, Census Bureau data shows small business AI adoption (1-4 employees) increased from 4.6% to 5.8%. That might seem small, but it represents thousands of businesses discovering what AI can do for them.</p>
+
+      <p>78% of business owners using AI reported time savings. GoDaddy launched "GoDaddy Airo" to help small businesses enhance online presence. The tool ecosystem for SMBs is expanding rapidly.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>Regulation and adoption aren't opposing forces. Smart regulation builds trust. Trust accelerates adoption. If you're implementing AI, build governance into your approach from the start. It's easier than retrofitting later.</p>
+
+      <hr />
+
+      <p><em>The EU AI Act isn't anti-innovation. It's a framework for responsible innovation. The companies that embrace it early will have a competitive advantage when governance becomes standard expectation.</em></p>
+    `
+  },
+  {
+    id: 'ai-jan-2025',
+    title: 'January 2025: DeepSeek Changes Everything',
+    date: 'JAN 2025',
+    author: 'Frederick A.',
+    excerpt: 'A Chinese AI lab built a GPT-4 competitor for $5.6 million. Then Stargate announced $500 billion. The AI economics just shifted.',
+    image: '/assets/journal/jan-2025.jpg',
+    content: `
+      <p>January 2025 delivered two stories that seem contradictory but actually tell the same tale: AI economics are being rewritten.</p>
+
+      <h3>The DeepSeek Shockwave</h3>
+
+      <p>On January 23rd, Chinese AI startup DeepSeek released its R1 reasoning model. Open-source. Developed for $5.6 million—a fraction of what competitors spent. It matched OpenAI's o1 performance while requiring 50% less compute than GPT-4o.</p>
+
+      <p>By month's end, DeepSeek overtook ChatGPT as the most downloaded app on Apple's App Store. A model that cost almost nothing to train, competing with models that cost billions.</p>
+
+      <h3>Project Stargate</h3>
+
+      <p>Two days earlier, on January 21st, President Trump announced the $500 billion Stargate AI infrastructure project alongside OpenAI's Sam Altman, SoftBank's Masayoshi Son, and Oracle's Larry Ellison. Initial $100 billion deployment began immediately.</p>
+
+      <p>OpenAI also released GPT-4.5 (Orion) to Pro subscribers—incremental improvements while they prepare for GPT-5.</p>
+
+      <h3>What Both Stories Mean</h3>
+
+      <p>DeepSeek proved you don't need billions to build competitive AI. Stargate showed that the biggest players are betting billions anyway. The implication: AI capability is becoming simultaneously cheaper and more powerful. The gap between leaders and followers will widen, but the floor keeps rising.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>The cost of AI implementation dropped dramatically in January. Open-source models like DeepSeek R1 offer enterprise-grade capabilities without enterprise budgets. If cost was your objection to AI adoption, that objection just got much weaker.</p>
+
+      <hr />
+
+      <p><em>2025 began with a clear message: the AI barrier to entry is lower than ever, but the ceiling keeps rising. The time to implement is now.</em></p>
     `
   },
   // Existing thought leadership articles
