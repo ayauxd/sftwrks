@@ -156,6 +156,56 @@ export const CASE_STUDIES: CaseStudy[] = [
 
       <p>Metro's malpractice insurance carrier noticed. Their premium review is "under discussion"—which, in insurance terms, means it's going down.</p>
     `
+  },
+  {
+    id: 'cs4',
+    client: 'Bennett & Associates CPA',
+    sector: 'Professional Services',
+    title: 'How a Three-Person Accounting Firm Built a Content Machine',
+    summary: 'Automating social media video production for a small CPA firm that had zero time for marketing.',
+    outcome: '12 videos/month from 2 hours of work.',
+    imageUrl: '/assets/case-studies/landmark-fortress.png',
+    content: `
+      <p>Lisa Bennett runs a three-person accounting firm in the suburbs. Her problem wasn't finding clients—word of mouth kept her busy. Her problem was visibility. Every marketing consultant told her the same thing: you need to be on social media, posting consistently, showing your expertise.</p>
+
+      <p>"I know I should," she told us. "But I have 47 tax returns due next week. When exactly am I supposed to create content?"</p>
+
+      <p>This is the reality for most small professional services firms. They know content marketing works. They don't have the bandwidth to do it.</p>
+
+      <h3>The Old Way Wasn't Working</h3>
+
+      <p>Lisa had tried the usual approaches. She hired a marketing agency—$2,500/month for generic posts that didn't sound like her. She tried doing it herself—managed three weeks before client work buried her. She bought a video course—never opened it.</p>
+
+      <p>The content marketing advice assumes you have either time or money. Most small business owners have neither to spare.</p>
+
+      <h3>Building the Content Pipeline</h3>
+
+      <p>We built Lisa a system with one goal: turn 10 minutes of her expertise into a week of content. Here's how it works.</p>
+
+      <p>Once a week, Lisa answers three questions into her phone. Common client questions, tax tips, business advice—whatever's on her mind. Total time: 10 minutes.</p>
+
+      <p>The system takes those audio recordings and gets to work. AI transcription cleans up the audio. A language model extracts the key points and writes them into short-form video scripts—maintaining Lisa's voice because we fine-tuned on her previous content. Another model generates simple motion graphics and text overlays. ElevenLabs creates a voice backup if the original audio quality is poor.</p>
+
+      <p>The automation then formats everything for three platforms: 9:16 vertical for Instagram and TikTok, 1:1 square for LinkedIn, 16:9 for YouTube Shorts. Captions are burned in because 85% of social video is watched on mute. A scheduling system queues everything up across the week.</p>
+
+      <h3>The Numbers That Matter</h3>
+
+      <p>From those 10 minutes of talking, Lisa gets 12 unique videos per month across three platforms. Her total time investment: about 2 hours monthly, including review and approval.</p>
+
+      <p>Six months in, here's what changed: Website traffic up 340%. Three new clients directly attributed to "I saw your video about estimated taxes." One local news interview request. And Lisa's favorite metric: zero hours spent editing video or writing captions.</p>
+
+      <p>The ROI calculation is simple. $800/month for the automation system. One new client covers that for the year. She got three in the first quarter.</p>
+
+      <h3>What This Actually Looks Like</h3>
+
+      <p>The videos aren't Hollywood productions. They're simple, clear, and professional. Text on screen. Lisa's voice explaining something useful. Maybe a simple animation. That's it.</p>
+
+      <p>But here's what Lisa figured out: on social media, consistency beats production value. Showing up every week with something helpful matters more than showing up once with something perfect.</p>
+
+      <p>The automation handles the tedium. Lisa provides the expertise. Her audience gets value. Everyone wins.</p>
+
+      <p>"I finally feel like I have a marketing department," Lisa told us recently. "It just happens to be robots."</p>
+    `
   }
 ];
 
@@ -200,7 +250,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     id: 'ai-oct-2025',
     title: 'October 2025: The Solo Founder Revolution',
     date: 'OCT 2025',
-    author: 'Marcus T.',
+    author: 'Frederick A.',
     excerpt: '35% of new US startups are now founded by one person. AI coding tools are the reason.',
     image: '/assets/journal/oct-2025.jpg',
     content: `
@@ -233,7 +283,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     id: 'ai-sep-2025',
     title: 'September 2025: Infrastructure at Scale',
     date: 'SEP 2025',
-    author: 'Nina R.',
+    author: 'Frederick A.',
     excerpt: 'Claude Sonnet 4.5 claims best coding model. Stargate expands to 7 gigawatts. What the buildout signals.',
     image: '/assets/journal/sep-2025.jpg',
     content: `

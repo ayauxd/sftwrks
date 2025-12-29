@@ -20,7 +20,8 @@ export default defineConfig(({ mode }) => {
       define: {
         'process.env.API_KEY': JSON.stringify(geminiKey),
         'process.env.GEMINI_API_KEY': JSON.stringify(geminiKey),
-        'process.env.ANTHROPIC_API_KEY': JSON.stringify(anthropicKey)
+        'process.env.ANTHROPIC_API_KEY': JSON.stringify(anthropicKey),
+        'import.meta.env.VITE_ANTHROPIC_API_KEY': JSON.stringify(anthropicKey)
       },
       resolve: {
         alias: {
