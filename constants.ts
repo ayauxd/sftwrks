@@ -161,6 +161,76 @@ export const CASE_STUDIES: CaseStudy[] = [
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
+    id: 'j0',
+    title: '2024: The Year AI Stopped Being Optional',
+    date: 'DEC 2024',
+    author: 'Frederick A.',
+    excerpt: 'Eight months of AI releases that changed everything—and what it means for businesses still on the sidelines.',
+    image: '/assets/sections/strategy-map.png',
+    content: `
+      <p>I've spent the last eight months tracking AI Daily Brief, one of the best sources for understanding what's actually happening in AI beyond the hype. What I found tells a clear story: 2024 was the year AI became infrastructure, not innovation theater.</p>
+
+      <p>If you're still treating AI as "something to explore eventually," you're already behind. Here's the timeline that should concern you.</p>
+
+      <h3>April-May: The Accessibility Explosion</h3>
+
+      <p>Meta released Llama 3 in April—open-source models that matched proprietary alternatives. Then OpenAI dropped GPT-4o in May and made it free for everyone. Not "free trial." Actually free.</p>
+
+      <p>This matters because the excuse of "AI is too expensive for small businesses" died in Spring 2024. The tools that Fortune 500 companies use are now available to anyone with an internet connection.</p>
+
+      <p>Meanwhile, Suno and Udio launched AI music generation. ElevenLabs voice cloning hit mainstream adoption. The creative tools that used to require studios and expensive talent? They're now accessible to solo operators.</p>
+
+      <h3>June-July: Quality Crossed the Threshold</h3>
+
+      <p>June 20th changed everything. Anthropic released Claude 3.5 Sonnet, which outperformed their own flagship model while being faster and cheaper. The "Artifacts" feature meant you could build functional prototypes through conversation.</p>
+
+      <p>Then Meta released Llama 3.1 405B in July—an open-source model rivaling GPT-4. GitHub Copilot started offering Claude as an alternative to GPT, admitting "no one model rules every scenario."</p>
+
+      <p>The quality gap between AI and human work narrowed dramatically. Not for everything—but for the 80% of routine work that consumes most people's days.</p>
+
+      <h3>September: The NotebookLM Moment</h3>
+
+      <p>Google's NotebookLM went viral in September with a feature nobody expected: it turns your documents into podcasts. Two AI voices having an engaging conversation about your content.</p>
+
+      <p>This seems trivial until you think about what it represents. You can now upload a 50-page report and get a 15-minute audio summary while you commute. Research that used to take hours to synthesize happens automatically.</p>
+
+      <p>ElevenLabs responded by November with GenFM—the same capability in 32 languages. The "information synthesis" problem that plagues every knowledge worker is being solved in real-time.</p>
+
+      <h3>October: AI Got Hands</h3>
+
+      <p>October 22nd, Anthropic released "computer use"—AI that can look at your screen, move your cursor, click buttons, and type. Not theoretical. Working.</p>
+
+      <p>Read that again. AI can now operate computers like a human. It can navigate websites, fill out forms, transfer data between systems, run software. The manual computer tasks you hire people to do? Those are now automatable.</p>
+
+      <p>This is the moment AI went from "answers questions" to "does work." Huge difference.</p>
+
+      <h3>The SMB Numbers That Should Wake You Up</h3>
+
+      <p>Here's what the research shows about small business AI adoption:</p>
+
+      <p>• US SMB AI usage doubled from 14% (2023) to 39% (2024)</p>
+      <p>• 84% of AI-adopting SMBs report positive productivity impact</p>
+      <p>• Average productivity increase: 40%</p>
+      <p>• 78% of SMBs using AI say it will be "a game-changer"</p>
+
+      <p>The gap between AI adopters and laggards is widening. Smaller businesses that adopted AI are outperforming larger competitors who didn't. The playing field isn't just leveling—it's inverting.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>If you're a small business owner or entrepreneur, 2024 delivered a clear message: AI adoption is no longer a strategic choice. It's table stakes.</p>
+
+      <p>The businesses that integrated AI for marketing, content, customer service, and operations are seeing 40%+ productivity gains. That's not a competitive advantage. That's a survival advantage.</p>
+
+      <p>The tools are free or cheap. The quality is professional-grade. The only remaining barrier is the decision to start.</p>
+
+      <p>We're not telling you to replace your team with robots. We're telling you to give your team superpowers. The competitors who figured this out eight months ago are already operating at a different level.</p>
+
+      <hr />
+
+      <p><em>This is what we help businesses figure out—not the hype, but the practical applications that actually move numbers. The AI landscape shifted fundamentally in 2024. The question isn't whether to adapt. It's how fast.</em></p>
+    `
+  },
+  {
     id: 'j1',
     title: 'The Latency Tax Nobody Talks About',
     date: 'MAR 2025',
