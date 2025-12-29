@@ -31,35 +31,23 @@ const Team: React.FC = () => {
         </div>
 
         {/* Collective Write-up */}
-        <div className="grid md:grid-cols-2 gap-12 mb-16">
-          {/* Left: Our Approach */}
+        <div className="grid md:grid-cols-2 gap-8 mb-12">
           <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
-              A growing collective of high-agency professionals
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
+              High-agency professionals
             </h3>
-            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-              <p>
-                We're a collective that's continuously growing—adding specialists who share one defining trait: <span className="text-slate-900 dark:text-white font-medium">high agency</span>. When we engage a professional for a client project, that's the first thing we look for. People who take ownership, solve problems without being told, and deliver without excuses.
-              </p>
-              <p>
-                Our backgrounds span banking, maritime logistics, healthcare, media production, and enterprise tech across three continents. When you work with us, you work directly with senior people who've actually built things.
-              </p>
-            </div>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              We look for one thing first: people who take ownership and deliver. Our growing collective spans three continents—senior specialists who've actually built things.
+            </p>
           </div>
 
-          {/* Right: Human-in-the-Loop Philosophy */}
           <div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-3">
               AI-assisted, human-verified
             </h3>
-            <div className="space-y-4 text-slate-600 dark:text-slate-400 leading-relaxed">
-              <p>
-                We use specialized AI agents throughout our work. They help us research faster, prototype solutions, analyze data, and automate repetitive tasks. That's how a lean collective delivers enterprise-quality results.
-              </p>
-              <p>
-                But here's our code of conduct: <span className="text-slate-900 dark:text-white font-medium">human review happens at every critical touchpoint</span>. Before any deliverable reaches you, a real person—someone accountable for the outcome—has verified the work. AI extends our capabilities; it doesn't replace our judgment.
-              </p>
-            </div>
+            <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
+              We use AI agents to move faster. But every deliverable gets human review before it reaches you. AI extends our capabilities; it doesn't replace our judgment.
+            </p>
           </div>
         </div>
 
