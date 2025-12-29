@@ -5,19 +5,7 @@
 
 import React from 'react';
 
-interface TeamProps {
-  isDark?: boolean;
-}
-
-const EXPERTISE_AREAS = [
-  { label: 'AI Strategy & Integration', icon: '◈' },
-  { label: 'Process Automation', icon: '◇' },
-  { label: 'Media & Communications', icon: '◆' },
-  { label: 'Technical Architecture', icon: '◈' },
-  { label: 'Research & Analysis', icon: '◇' }
-];
-
-const Team: React.FC<TeamProps> = ({ isDark = true }) => {
+const Team: React.FC = () => {
   return (
     <section id="team" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] border-t border-slate-200 dark:border-slate-800">
       <div className="max-w-5xl mx-auto">
@@ -35,8 +23,8 @@ const Team: React.FC<TeamProps> = ({ isDark = true }) => {
         <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
           <div className="aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628]">
             <img
-              src={isDark ? "/assets/team/team-dark.jpg" : "/assets/team/team-light.jpg"}
-              alt="Softworks team collaborating around a display"
+              src="/assets/team/team-collective.jpg"
+              alt="Softworks collective reviewing agentic workflow"
               className="w-full h-full object-cover"
             />
           </div>
@@ -71,40 +59,6 @@ const Team: React.FC<TeamProps> = ({ isDark = true }) => {
               <p>
                 But here's our code of conduct: <span className="text-slate-900 dark:text-white font-medium">human review happens at every critical touchpoint</span>. Before any deliverable reaches you, a real person—someone accountable for the outcome—has verified the work. AI extends our capabilities; it doesn't replace our judgment.
               </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Expertise Areas */}
-        <div className="bg-white dark:bg-[#1E3A5F] border border-slate-200 dark:border-slate-700 p-8 rounded-lg">
-          <h4 className="text-sm font-mono text-[#00D4FF] uppercase tracking-widest mb-6 text-center">
-            Combined Expertise
-          </h4>
-          <div className="flex flex-wrap justify-center gap-4">
-            {EXPERTISE_AREAS.map((area) => (
-              <div
-                key={area.label}
-                className="flex items-center gap-2 px-4 py-2 bg-slate-50 dark:bg-[#0A1628] border border-slate-200 dark:border-slate-600 rounded-full"
-              >
-                <span className="text-[#00D4FF] text-sm">{area.icon}</span>
-                <span className="text-sm text-slate-700 dark:text-slate-300">{area.label}</span>
-              </div>
-            ))}
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-3 gap-8 mt-8 pt-8 border-t border-slate-200 dark:border-slate-600">
-            <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900 dark:text-white">3</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Continents</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-[#00D4FF]">↑</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Growing</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold text-slate-900 dark:text-white">∞</div>
-              <div className="text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider mt-1">Human Touchpoints</div>
             </div>
           </div>
         </div>

@@ -145,7 +145,7 @@ function App() {
                setShowMedia(false);
                setTimeout(() => scrollToSection('top'), 100);
            }} />
-           <Footer onLinkClick={handleLinkClick} />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -166,7 +166,7 @@ function App() {
         <About />
 
         {/* TEAM */}
-        <Team isDark={isDark} />
+        <Team />
 
         {/* CASE STUDIES */}
         <section id="work" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">
@@ -282,7 +282,7 @@ function App() {
         </section>
 
         {/* FOOTER */}
-        <Footer onLinkClick={handleLinkClick} />
+        <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
 
       </main>
 

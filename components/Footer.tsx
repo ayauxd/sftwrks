@@ -7,9 +7,10 @@ import React from 'react';
 
 interface FooterProps {
   onLinkClick: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
+  onOpenDiscovery?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
+const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
   return (
     <footer className="bg-[#0A1628] pt-24 pb-12 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -94,13 +95,12 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
           <p className="text-slate-400 font-light text-sm mb-6 leading-relaxed">
             Ready to make AI work for your business? Let's talk about what you need.
           </p>
-          <a
-            href="#contact"
-            onClick={(e) => onLinkClick(e, 'contact')}
+          <button
+            onClick={onOpenDiscovery}
             className="inline-block px-6 py-3 bg-[#00D4FF] text-[#0A1628] font-semibold uppercase tracking-wider text-xs hover:bg-[#22D3EE] hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
           >
             Schedule Discovery Call
-          </a>
+          </button>
         </div>
       </div>
 
