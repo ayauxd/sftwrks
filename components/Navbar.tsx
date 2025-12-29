@@ -39,25 +39,32 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Brand Text */}
+          {/* Brand Logo + Text */}
           <button
             onClick={() => handleLink('top')}
-            className="flex flex-col items-start hover:opacity-80 transition-opacity"
+            className="flex items-center gap-3 hover:opacity-80 transition-opacity"
           >
-            <span className={`font-sans font-bold text-xl md:text-2xl tracking-wide transition-colors ${
-              scrolled
-                ? 'text-slate-900 dark:text-white'
-                : isDark ? 'text-white' : 'text-slate-900'
-            }`}>
-              SOFTWORKS
-            </span>
-            <span className={`font-sans font-medium text-[9px] md:text-[11px] tracking-[0.47em] uppercase transition-colors ${
-              scrolled
-                ? 'text-slate-500 dark:text-slate-400'
-                : isDark ? 'text-slate-300' : 'text-slate-500'
-            }`}>
-              Trading Company
-            </span>
+            <img
+              src="/assets/logos/logo-icon.png"
+              alt="Softworks"
+              className="w-10 h-10 md:w-12 md:h-12 object-contain"
+            />
+            <div className="flex flex-col items-end">
+              <span className={`font-sans font-bold text-lg md:text-xl tracking-wide transition-colors ${
+                scrolled
+                  ? 'text-slate-900 dark:text-white'
+                  : isDark ? 'text-white' : 'text-slate-900'
+              }`}>
+                SOFTWORKS
+              </span>
+              <span className={`font-sans font-medium text-[8px] md:text-[10px] tracking-[0.47em] uppercase transition-colors ${
+                scrolled
+                  ? 'text-slate-500 dark:text-slate-400'
+                  : isDark ? 'text-slate-300' : 'text-slate-500'
+              }`}>
+                Trading Company
+              </span>
+            </div>
           </button>
 
           {/* Desktop Links */}
@@ -139,9 +146,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
       {mobileMenuOpen && (
         <div className="fixed inset-0 top-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 p-6 flex flex-col justify-center items-center gap-8 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
             {/* Mobile Brand */}
-            <div className="flex flex-col items-center mb-4">
-              <span className="font-sans text-slate-900 dark:text-white font-bold text-3xl tracking-wide">SOFTWORKS</span>
-              <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-sm tracking-[0.47em] uppercase">Trading Company</span>
+            <div className="flex items-center gap-4 mb-8">
+              <img
+                src="/assets/logos/logo-icon.png"
+                alt="Softworks"
+                className="w-16 h-16 object-contain"
+              />
+              <div className="flex flex-col items-end">
+                <span className="font-sans text-slate-900 dark:text-white font-bold text-2xl tracking-wide">SOFTWORKS</span>
+                <span className="font-sans text-slate-500 dark:text-slate-400 font-medium text-xs tracking-[0.47em] uppercase">Trading Company</span>
+              </div>
             </div>
             <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">HOW WE HELP</button>
             <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors">TEAM</button>
