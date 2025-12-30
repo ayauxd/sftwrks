@@ -368,7 +368,7 @@ Examples:
           max_tokens: 300,
           messages: [{
             role: 'user',
-            content: `You are an AI consultant for Softworks Trading Company. Based on this assessment, provide ONE specific, actionable AI recommendation in 2-3 sentences. Be direct and practical.
+            content: `You are an AI consultant for Softworks. Based on this assessment, provide ONE specific, actionable AI recommendation in 2-3 sentences. Be direct and practical.
 
 Assessment Results (Score: ${totalScore}/25 - ${tier.name}):
 ${contextSummary}

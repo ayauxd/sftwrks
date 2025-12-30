@@ -7,7 +7,7 @@
 import { GoogleGenAI } from "@google/genai";
 
 const getSystemInstruction = () => {
-  return `You are tiwa.ai (Tool Intelligent Workflow Assistant), the automated analyst for Softworks Trading Company.
+  return `You are tiwa.ai (Tool Intelligent Workflow Assistant), the automated analyst for Softworks.
   
   CONTEXT:
   Softworks is a "High Agency" consulting firm. We don't just advise; we design systems that work. We help professionals and enterprises adopt AI with precision and control.

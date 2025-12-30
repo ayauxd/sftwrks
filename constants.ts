@@ -5,9 +5,10 @@
 
 import { Initiative, Product, JournalArticle, CaseStudy } from './types';
 
-export const BRAND_NAME = 'Softworks Trading Company';
+export const BRAND_NAME = 'Softworks';
 export const BRAND_NAME_SHORT = 'SOFTWORKS';
-export const BRAND_TAGLINE = 'Trading Company';
+export const BRAND_TAGLINE = 'AI that works for your business';
+export const BRAND_LEGAL_NAME = 'Softworks Trading Company';
 
 export const INITIATIVES: Initiative[] = [
   {
