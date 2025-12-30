@@ -26,10 +26,24 @@ async function generateOGCard() {
   const logoPath = path.join(rootDir, 'public/assets/logos/softworks-icon-3d-master.png');
   const outputPath = path.join(rootDir, 'public/assets/logos/og-preview-landscape.png');
 
-  // Load and resize logo
+  // Load and resize logo - larger for better visibility
   const logo = await sharp(logoPath)
-    .resize(280, 280, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize(340, 340, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
+
+  // Create a subtle glow effect behind the logo
+  const glowSvg = `
+    <svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" style="stop-color:${CYAN};stop-opacity:0.3" />
+          <stop offset="70%" style="stop-color:${CYAN};stop-opacity:0.1" />
+          <stop offset="100%" style="stop-color:${CYAN};stop-opacity:0" />
+        </radialGradient>
+      </defs>
+      <ellipse cx="200" cy="200" rx="180" ry="180" fill="url(#glow)"/>
+    </svg>
+  `;
 
   // Create SVG text overlay
   const textSvg = `
@@ -40,10 +54,10 @@ async function generateOGCard() {
           <stop offset="100%" style="stop-color:${NAVY_MID};stop-opacity:1" />
         </linearGradient>
         <style>
-          @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;display=swap');
           .title { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 700; font-size: 72px; fill: white; }
           .slogan { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 400; font-size: 32px; fill: ${CYAN}; }
-          .url { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 400; font-size: 24px; fill: #64748B; }
+          .url { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 600; font-size: 28px; fill: #94A3B8; }
+          .legal { font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 400; font-size: 16px; fill: #64748B; }
         </style>
       </defs>
 
@@ -59,11 +73,16 @@ async function generateOGCard() {
       <rect width="100%" height="100%" fill="url(#grid)"/>
 
       <!-- Text content (right side) -->
-      <text x="480" y="260" class="title">Softworks</text>
-      <text x="480" y="320" class="slogan">AI that works for your business.</text>
-      <text x="480" y="420" class="url">sftwrks.com</text>
+      <text x="500" y="240" class="title">Softworks</text>
+      <text x="500" y="300" class="slogan">AI that works for your business.</text>
+      <text x="500" y="380" class="url">www.sftwrks.com</text>
+      <text x="500" y="420" class="legal">Softworks Trading Co.</text>
     </svg>
   `;
+
+  const glowBuffer = await sharp(Buffer.from(glowSvg))
+    .resize(400, 400)
+    .toBuffer();
 
   // Create the card
   await sharp({
@@ -81,11 +100,17 @@ async function generateOGCard() {
         top: 0,
         left: 0
       },
-      // Logo on left
+      // Glow effect behind logo
+      {
+        input: glowBuffer,
+        top: 115,
+        left: 40
+      },
+      // Logo on left - centered vertically
       {
         input: logo,
-        top: 175,
-        left: 100
+        top: 145,
+        left: 70
       }
     ])
     .png()
