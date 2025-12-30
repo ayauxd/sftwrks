@@ -2,144 +2,166 @@
 
 AI Strategy, Governance, and Integration Advisory website.
 
-**Live Site:** [softworkstrading.com](https://softworkstrading.com)
+**Live Site:** [sftwrks.com](https://www.sftwrks.com)
+
+## Tech Stack
+
+- **Framework:** React 19 + TypeScript
+- **Styling:** Tailwind CSS v4 (build-time compilation)
+- **Build:** Vite
+- **Fonts:** Inter, Courier Prime, JetBrains Mono
+- **Hosting:** Vercel (via GitHub Pages)
+- **Image Generation:** Google Imagen 4
 
 ## Run Locally
 
 **Prerequisites:** Node.js 18+
 
-1. Install dependencies: `npm install`
-2. Set the `GEMINI_API_KEY` in `.env.local` to your Gemini API key
-3. Run the app: `npm run dev`
-4. Build for production: `npm run build`
+```bash
+# Install dependencies
+npm install
 
----
+# Set environment variables
+cp .env.example .env.local
+# Add your GEMINI_API_KEY to .env.local
+
+# Run development server
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+```
+
+## Project Structure
+
+```
+sftwrks/
+├── src/
+│   ├── index.css          # Tailwind directives + custom styles
+│   └── constants.ts       # Site content and configuration
+├── public/
+│   └── assets/
+│       ├── logos/         # Brand assets, OG cards
+│       ├── sections/      # Section illustrations
+│       ├── team/          # Team section imagery
+│       └── journal/       # Article header images
+├── scripts/
+│   ├── generate-og-card.mjs      # OG preview card generation
+│   ├── generate-section-images.mjs
+│   └── optimize-images.mjs       # Image compression
+├── App.tsx                # Main application component
+├── index.html             # Entry point with SEO meta tags
+└── index.tsx              # React entry point
+```
 
 ## Image Generation
 
-This project uses Google's Gemini API for generating illustrations. Below is the research on current models (December 2025).
+This project uses **Google Imagen 4** for generating illustrations.
 
-### Current Models (Recommended)
+### Available Models (December 2025)
 
-| Model | Model ID | Best For | Pricing |
-|-------|----------|----------|---------|
-| **Gemini 3 Pro Image** (Nano Banana Pro) | `gemini-3-pro-image-preview` | Highest quality, 4K output, text rendering | $0.134/image (1K-2K), $0.24/image (4K) |
-| **Gemini 2.5 Flash Image** (Nano Banana) | `gemini-2.5-flash-image` | Fast, cost-effective, stable | Free tier available |
+| Model | Model ID | Best For |
+|-------|----------|----------|
+| **Imagen 4 Ultra** | `imagen-4.0-ultra-generate-001` | Highest quality |
+| **Imagen 4** | `imagen-4.0-generate-001` | Balanced quality/speed |
+| **Imagen 4 Fast** | `imagen-4.0-fast-generate-001` | Rapid iteration |
 
-### Deprecated/Legacy Models
-
-| Model | Status | Notes |
-|-------|--------|-------|
-| `gemini-2.0-flash-exp` | Deprecated Sept 2025 | Still works but quality degraded after May 2025 updates |
-| `gemini-2.0-flash-preview-image-generation` | Legacy | Not available in EU/MEA regions |
-| `imagen-3.0-generate-001` | Vertex AI Only | Requires GCP Vertex AI, not available via standard Gemini API |
-
-### Migration Guide
-
-**From `gemini-2.0-flash-exp` to `gemini-3-pro-image-preview`:**
+### Generation Example
 
 ```javascript
-// OLD (deprecated)
-const model = genAI.getGenerativeModel({
-  model: 'gemini-2.0-flash-exp',
-  generationConfig: {
-    responseModalities: ['TEXT', 'IMAGE']
+const response = await fetch(
+  `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`,
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      instances: [{ prompt: 'Your prompt here' }],
+      parameters: {
+        sampleCount: 1,
+        aspectRatio: '16:9',
+        personGeneration: 'allow_adult',
+        outputOptions: { mimeType: 'image/png' }
+      }
+    })
   }
-});
+);
 
-// NEW (recommended - December 2025)
-const model = genAI.getGenerativeModel({
-  model: 'gemini-3-pro-image-preview',
-  generationConfig: {
-    responseModalities: ['TEXT', 'IMAGE']
-  }
-});
-
-// Or use the new SDK pattern
-import { GoogleGenAI } from '@google/genai';
-const client = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
-
-const response = await client.models.generateContent({
-  model: 'gemini-3-pro-image-preview',
-  contents: [{ role: 'user', parts: [{ text: prompt }] }],
-  config: {
-    responseModalities: ['TEXT', 'IMAGE'],
-    imageConfig: {
-      aspectRatio: '16:9',
-      outputSize: '2K'  // Options: '1K', '2K', '4K'
-    }
-  }
-});
+const data = await response.json();
+const imageBuffer = Buffer.from(data.predictions[0].bytesBase64Encoded, 'base64');
 ```
 
-### Key Features by Model
+### Visual Style Guide
 
-**Gemini 3 Pro Image (Nano Banana Pro):**
-- High-resolution output: 1K, 2K, 4K
-- Advanced text rendering (legible, stylized text)
-- Up to 14 reference images for character consistency
-- Google Search grounding for real-time data
-- Best for: professional asset production, illustrations with text
+**Noir Paper-Cut Style** (matches site aesthetic):
+```
+Cinematic noir illustration with paper-cut layered effect.
 
-**Gemini 2.5 Flash Image (Nano Banana):**
-- Fast generation
-- Good for rapid iteration
-- Free tier in AI Studio
-- Best for: prototyping, high-volume generation
+STYLE:
+- Paper-cut layered effect: distinct geometric layers with depth
+- Cinematic noir: dramatic lighting, deep shadows
+- Colors: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan (#00D4FF)
+- Sharp geometric edges, abstract silhouettes
+- NO text, NO realistic faces
 
-### Aspect Ratios Supported
+SCENE: [describe your scene]
+```
 
-Both models support: `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9`
+### Regenerate Images
 
-### Image Generation Scripts
-
-Located in `scripts/`:
-
-- `generate-sections-noir.mjs` - Challenge and Team section images (noir paper-cut style)
-- `generate-imagen3.mjs` - Legacy Imagen 3 attempt (requires Vertex AI)
-- `generate-imagen3-v2.mjs` - Fallback script with improved prompts
-
-**To regenerate images:**
 ```bash
-source .env.local && node scripts/generate-sections-noir.mjs
+# Section images (noir style)
+source .env.local && node scripts/generate-section-images.mjs
+
+# OG preview card
+source .env.local && node scripts/generate-og-card.mjs
+
+# Optimize all images
+node scripts/optimize-images.mjs
 ```
 
-### Prompt Best Practice
+## Performance
 
-From Google's documentation: "Describe the scene, don't just list keywords."
+Optimizations implemented:
+- Build-time Tailwind CSS compilation (removed 300KB+ CDN runtime)
+- Font preloading with `preconnect` and `preload`
+- Image compression (target <150KB per image)
+- Static asset caching
 
-Our proven noir paper-cut style template:
+## Dark Mode
+
+Class-based dark mode configured in Tailwind v4:
+
+```css
+/* src/index.css */
+@import "tailwindcss";
+@variant dark (&:where(.dark, .dark *));
 ```
-Create a cinematic noir style illustration with paper-cut layered effect.
 
-REQUIRED STYLE:
-- Cinematic noir aesthetic: dramatic lighting, deep shadows, film noir mood
-- Paper-cut/layered effect: distinct layers with depth, like cut paper art
-- Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan accent (#00D4FF)
-- High contrast between light and dark areas
-- NO text, NO faces, NO photorealistic elements
+Toggle via `.dark` class on `<html>` element.
 
-SPECIFIC VISUAL: [describe scene here]
+## Deployment
+
+Automatic deployment via GitHub Actions on push to `main`:
+
+```bash
+git add . && git commit -m "Your message" && git push origin main
 ```
+
+Pre-commit hooks run TypeScript checks and build verification.
+
+## Brand Colors
+
+| Name | Hex | Usage |
+|------|-----|-------|
+| Navy | `#0F172A` | Primary text, dark backgrounds |
+| Navy Dark | `#0A1628` | Dark mode background |
+| Steel | `#1E3A5F` | Secondary elements |
+| Cyan | `#00D4FF` | Accent, highlights, CTAs |
+| Slate | `#F1F5F9` | Light mode background |
 
 ---
 
-## Tech Stack
-
-- **Framework:** React 19 + TypeScript
-- **Styling:** Tailwind CSS (CDN)
-- **Build:** Vite
-- **Fonts:** Inter, Courier Prime, JetBrains Mono
-- **Hosting:** Vercel
-
-## Sources
-
-Research conducted December 2025:
-
-- [Gemini 3 Flash Announcement](https://blog.google/products/gemini/gemini-3-flash/)
-- [Gemini 3 Developer Guide](https://ai.google.dev/gemini-api/docs/gemini-3)
-- [Image Generation with Gemini](https://ai.google.dev/gemini-api/docs/image-generation)
-- [Gemini Models Documentation](https://ai.google.dev/gemini-api/docs/models)
-- [Gemini Deprecations](https://ai.google.dev/gemini-api/docs/deprecations)
-- [Nano Banana Pro Tutorial](https://www.cometapi.com/how-to-use-the-nano-banana-pro-api/)
-- [Raymond Camden's Model Comparison](https://www.raymondcamden.com/2025/04/08/comparing-googles-image-generation-models)
+Built by [Softworks Trading Company](https://www.sftwrks.com)
