@@ -5,13 +5,20 @@
 
 import React from 'react';
 import { JournalArticle } from '../types';
+import { JOURNAL_ARTICLES } from '../constants';
 
 interface JournalDetailProps {
   article: JournalArticle;
   onBack: () => void;
+  onNavigate?: (article: JournalArticle) => void;
 }
 
-const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack }) => {
+const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack, onNavigate }) => {
+  // Find current index and adjacent articles
+  const currentIndex = JOURNAL_ARTICLES.findIndex(a => a.id === article.id);
+  const prevArticle = currentIndex > 0 ? JOURNAL_ARTICLES[currentIndex - 1] : null;
+  const nextArticle = currentIndex < JOURNAL_ARTICLES.length - 1 ? JOURNAL_ARTICLES[currentIndex + 1] : null;
+
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24 font-sans text-slate-900 dark:text-white">
        <div className="max-w-3xl mx-auto px-6">
@@ -54,7 +61,52 @@ const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack }) => {
             dangerouslySetInnerHTML={{ __html: article.content }}
           />
 
-          <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700 flex justify-between items-center">
+          {/* Navigation to other articles */}
+          {onNavigate && (prevArticle || nextArticle) && (
+            <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Previous */}
+                {prevArticle ? (
+                  <button
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onNavigate(prevArticle); }}
+                    className="group text-left p-4 bg-slate-100 dark:bg-[#1E3A5F]/50 border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF] transition-colors"
+                  >
+                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest flex items-center gap-1 mb-2">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      Previous
+                    </span>
+                    <h4 className="font-bold font-['Courier_Prime'] text-slate-900 dark:text-white group-hover:text-[#00D4FF] transition-colors line-clamp-1 text-sm">
+                      {prevArticle.title}
+                    </h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{prevArticle.date}</p>
+                  </button>
+                ) : <div />}
+
+                {/* Next */}
+                {nextArticle ? (
+                  <button
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onNavigate(nextArticle); }}
+                    className="group text-right p-4 bg-slate-100 dark:bg-[#1E3A5F]/50 border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF] transition-colors"
+                  >
+                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest flex items-center justify-end gap-1 mb-2">
+                      Next
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                    <h4 className="font-bold font-['Courier_Prime'] text-slate-900 dark:text-white group-hover:text-[#00D4FF] transition-colors line-clamp-1 text-sm">
+                      {nextArticle.title}
+                    </h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{nextArticle.date}</p>
+                  </button>
+                ) : <div />}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8 pt-8 border-t border-slate-300 dark:border-slate-700 flex justify-between items-center">
              <span className="text-sm font-mono text-slate-400 uppercase tracking-widest">End of File</span>
              <span className="text-lg font-bold font-mono text-[#00D4FF]">SOFTWORKS</span>
           </div>

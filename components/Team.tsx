@@ -19,13 +19,13 @@ const Team: React.FC = () => {
           </h2>
         </div>
 
-        {/* Team Photo - Responsive aspect ratio */}
+        {/* Team Illustration - Responsive aspect ratio */}
         <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
           <div className="aspect-[4/3] md:aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628]">
             <img
-              src="/assets/team/team-workflow.jpg"
-              alt="Softworks collective reviewing agentic workflow"
-              className="w-full h-full object-cover object-left"
+              src="/assets/team/team-workflow-noir.png"
+              alt="Softworks collective - human expertise amplified by AI"
+              className="w-full h-full object-cover"
             />
           </div>
         </div>

@@ -122,14 +122,18 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <JournalDetail article={selectedArticle} onBack={() => {
+           <JournalDetail
+             article={selectedArticle}
+             onBack={() => {
                setSelectedArticle(null);
                if (showInsightsList) {
                  // Stay on insights list
                } else {
                  setTimeout(() => scrollToSection('journal'), 100);
                }
-           }} />
+             }}
+             onNavigate={(article) => setSelectedArticle(article)}
+           />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -156,10 +160,14 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <CaseStudyDetail study={selectedCaseStudy} onBack={() => {
+           <CaseStudyDetail
+             study={selectedCaseStudy}
+             onBack={() => {
                setSelectedCaseStudy(null);
                setTimeout(() => scrollToSection('work'), 100);
-           }} />
+             }}
+             onNavigate={(study) => setSelectedCaseStudy(study)}
+           />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -205,7 +213,12 @@ function App() {
                         <h2 className="text-3xl md:text-4xl text-slate-900 dark:text-white mt-4 font-bold font-['Courier_Prime']">Case Studies</h2>
                     </div>
                     <div className="hidden md:block">
-                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Real results from real implementations</span>
+                        <button
+                          onClick={() => setSelectedCaseStudy(CASE_STUDIES[0])}
+                          className="text-xs font-mono underline underline-offset-4 text-slate-500 dark:text-slate-400 hover:text-[#00D4FF] transition-colors"
+                        >
+                          View All Case Studies &rarr;
+                        </button>
                     </div>
                 </div>
 
@@ -242,23 +255,6 @@ function App() {
                     ))}
                 </div>
 
-                {/* CTA for more case studies */}
-                {CASE_STUDIES.length > 3 && (
-                    <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700 text-center">
-                      <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
-                        These examples showcase how we approach different challenges. Every engagement is tailored to the specific needs of the business.
-                      </p>
-                      <button
-                        onClick={() => setSelectedCaseStudy(CASE_STUDIES[3])}
-                        className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0A1628] dark:bg-[#1E3A5F] text-white font-mono text-sm uppercase tracking-widest hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-300 border border-transparent hover:border-[#00D4FF]"
-                      >
-                        View More Case Studies
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                        </svg>
-                      </button>
-                    </div>
-                )}
             </div>
         </section>
 
@@ -311,21 +307,6 @@ function App() {
                     ))}
                 </div>
 
-                {/* CTA for more insights */}
-                <div className="mt-16 pt-12 border-t border-slate-700 text-center">
-                  <p className="text-slate-400 mb-6 max-w-2xl mx-auto">
-                    We publish monthly analysis of AI industry developments, backed by authoritative sources and filtered through our hands-on implementation experience.
-                  </p>
-                  <button
-                    onClick={() => setShowInsightsList(true)}
-                    className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1E3A5F] text-white font-mono text-sm uppercase tracking-widest hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-300 border border-slate-700 hover:border-[#00D4FF]"
-                  >
-                    View All Insights
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </button>
-                </div>
             </div>
         </section>
 

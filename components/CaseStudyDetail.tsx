@@ -5,13 +5,20 @@
 
 import React from 'react';
 import { CaseStudy } from '../types';
+import { CASE_STUDIES } from '../constants';
 
 interface CaseStudyDetailProps {
   study: CaseStudy;
   onBack: () => void;
+  onNavigate?: (study: CaseStudy) => void;
 }
 
-const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ study, onBack }) => {
+const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ study, onBack, onNavigate }) => {
+  // Find current index and adjacent studies
+  const currentIndex = CASE_STUDIES.findIndex(s => s.id === study.id);
+  const prevStudy = currentIndex > 0 ? CASE_STUDIES[currentIndex - 1] : null;
+  const nextStudy = currentIndex < CASE_STUDIES.length - 1 ? CASE_STUDIES[currentIndex + 1] : null;
+
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24 font-sans text-slate-900 dark:text-white">
        <div className="max-w-4xl mx-auto px-6">
@@ -65,7 +72,52 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ study, onBack }) => {
               />
           </div>
 
-          <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700 flex justify-between items-center">
+          {/* Navigation to other case studies */}
+          {onNavigate && (prevStudy || nextStudy) && (
+            <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Previous */}
+                {prevStudy ? (
+                  <button
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onNavigate(prevStudy); }}
+                    className="group text-left p-4 bg-slate-100 dark:bg-[#1E3A5F]/50 border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF] transition-colors"
+                  >
+                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest flex items-center gap-1 mb-2">
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                      Previous
+                    </span>
+                    <h4 className="font-bold font-['Courier_Prime'] text-slate-900 dark:text-white group-hover:text-[#00D4FF] transition-colors line-clamp-1">
+                      {prevStudy.title}
+                    </h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{prevStudy.sector}</p>
+                  </button>
+                ) : <div />}
+
+                {/* Next */}
+                {nextStudy ? (
+                  <button
+                    onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); onNavigate(nextStudy); }}
+                    className="group text-right p-4 bg-slate-100 dark:bg-[#1E3A5F]/50 border border-slate-200 dark:border-slate-700 hover:border-[#00D4FF] transition-colors"
+                  >
+                    <span className="text-[10px] font-mono text-slate-400 uppercase tracking-widest flex items-center justify-end gap-1 mb-2">
+                      Next
+                      <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </span>
+                    <h4 className="font-bold font-['Courier_Prime'] text-slate-900 dark:text-white group-hover:text-[#00D4FF] transition-colors line-clamp-1">
+                      {nextStudy.title}
+                    </h4>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{nextStudy.sector}</p>
+                  </button>
+                ) : <div />}
+              </div>
+            </div>
+          )}
+
+          <div className="mt-8 pt-8 border-t border-slate-300 dark:border-slate-700 flex justify-between items-center">
              <span className="text-sm font-mono text-slate-400 uppercase tracking-widest">Case File Closed</span>
              <span className="text-lg font-bold font-mono text-[#00D4FF]">SOFTWORKS</span>
           </div>
