@@ -28,6 +28,8 @@ function App() {
 
   // Preview only first 3 articles on home page
   const previewArticles = JOURNAL_ARTICLES.slice(0, 3);
+  // Preview only first 3 case studies on home page
+  const previewCaseStudies = CASE_STUDIES.slice(0, 3);
 
   useEffect(() => {
     // Check initial preference - default to dark for brand aesthetic
@@ -203,12 +205,12 @@ function App() {
                         <h2 className="text-3xl md:text-4xl text-slate-900 dark:text-white mt-4 font-bold font-['Courier_Prime']">Case Studies</h2>
                     </div>
                     <div className="hidden md:block">
-                        <a href="#contact" onClick={(e) => handleLinkClick(e, 'contact')} className="text-xs font-mono underline underline-offset-4 text-slate-500 dark:text-slate-400 hover:text-[#00D4FF]">See More Work &rarr;</a>
+                        <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Real results from real implementations</span>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {CASE_STUDIES.map((study) => (
+                    {previewCaseStudies.map((study) => (
                         <div key={study.id} className="group cursor-pointer" onClick={() => setSelectedCaseStudy(study)}>
                             {/* Card Image */}
                             <div className="aspect-[4/3] bg-slate-200 dark:bg-[#1E3A5F] mb-6 overflow-hidden border border-slate-300 dark:border-slate-700 relative">
@@ -239,6 +241,24 @@ function App() {
                         </div>
                     ))}
                 </div>
+
+                {/* CTA for more case studies */}
+                {CASE_STUDIES.length > 3 && (
+                    <div className="mt-16 pt-12 border-t border-slate-300 dark:border-slate-700 text-center">
+                      <p className="text-slate-600 dark:text-slate-400 mb-6 max-w-2xl mx-auto">
+                        These examples showcase how we approach different challenges. Every engagement is tailored to the specific needs of the business.
+                      </p>
+                      <button
+                        onClick={() => setSelectedCaseStudy(CASE_STUDIES[3])}
+                        className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0A1628] dark:bg-[#1E3A5F] text-white font-mono text-sm uppercase tracking-widest hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-300 border border-transparent hover:border-[#00D4FF]"
+                      >
+                        View More Case Studies
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                        </svg>
+                      </button>
+                    </div>
+                )}
             </div>
         </section>
 

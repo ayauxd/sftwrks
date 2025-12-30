@@ -29,20 +29,15 @@ const About: React.FC = () => {
             </p>
           </div>
 
-          {/* Visual: Softworks Brand Video */}
+          {/* Visual: Challenge Section Illustration */}
           <div className="relative">
             <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-slate-700/50">
-              {/* Video Loop */}
-              <video
-                autoPlay
-                loop
-                muted
-                playsInline
+              {/* Noir-themed Illustration */}
+              <img
+                src="/assets/sections/challenge-noir.png"
+                alt="AI transformation challenge - abstract visualization of disconnected systems"
                 className="w-full h-full object-cover"
-                poster="/assets/sections/softworks-brand-logo.png"
-              >
-                <source src="/assets/sections/softworks-logo-loop.mp4" type="video/mp4" />
-              </video>
+              />
 
               {/* Subtle vignette overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/40 via-transparent to-[#0A1628]/20 pointer-events-none" />

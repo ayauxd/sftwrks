@@ -67,36 +67,65 @@ const ASSESSMENT_STEPS = [
 const getTier = (score: number, answers: AssessmentAnswer[]) => {
   // Find key answers for personalized messaging
   const painPoint = answers.find(a => a.stepId === 2)?.label || "operations";
+  const painPointValue = answers.find(a => a.stepId === 2)?.value || "admin";
   const goal = answers.find(a => a.stepId === 5)?.label || "efficiency";
   const experience = answers.find(a => a.stepId === 3)?.value || "tried";
+  const industry = answers.find(a => a.stepId === 1)?.label || "your industry";
+  const teamSize = answers.find(a => a.stepId === 4)?.label || "your team";
+
+  // Get specific workflow suggestions based on pain point
+  const workflowSuggestions: Record<string, string[]> = {
+    admin: ["Document classification & routing", "Invoice processing automation", "Meeting notes & action items"],
+    customer: ["24/7 AI chat support", "Email response drafting", "FAQ knowledge base"],
+    content: ["Social media scheduling", "Blog post drafts", "Video script generation"],
+    data: ["Report generation automation", "Data entry from documents", "Dashboard updates"]
+  };
+
+  const suggestions = workflowSuggestions[painPointValue] || workflowSuggestions.admin;
 
   if (score >= 18) return {
     name: "AI Pioneer",
     color: "#00D4FF",
     description: "High readiness for advanced AI integration",
-    recommendation: `With your experience and focus on "${painPoint.toLowerCase()}", you're ready for autonomous workflows. A full assessment will map out your 90-day implementation plan.`,
-    nextStep: "Schedule Strategy Session"
+    headline: "You're ready for autonomous AI workflows",
+    recommendation: `Your ${industry.toLowerCase()} experience combined with daily AI usage positions you perfectly for advanced automation. You can move beyond simple chatbots to AI agents that handle end-to-end workflows autonomously.`,
+    keyInsight: `Focus on "${painPoint.toLowerCase()}" automation first—this is where ${industry.toLowerCase()} businesses see 60-80% time savings within 90 days.`,
+    opportunities: suggestions,
+    nextStep: "Get Your 90-Day Implementation Plan",
+    ctaSubtext: "Detailed workflow mapping + ROI projections for your specific situation"
   };
   if (score >= 13) return {
     name: "AI Ready",
     color: "#22D3EE",
     description: "Strong foundation for AI adoption",
-    recommendation: `Your goal to "${goal.toLowerCase()}" aligns well with AI automation. The next step is identifying which ${painPoint.toLowerCase()} workflows to tackle first.`,
-    nextStep: "Get Implementation Roadmap"
+    headline: "Strong foundation—time to build on it",
+    recommendation: `With ${teamSize.toLowerCase()} and a clear goal to "${goal.toLowerCase()}", you're in the sweet spot for AI implementation. Your team size means changes can move fast without enterprise bureaucracy.`,
+    keyInsight: `The ${painPoint.toLowerCase()} bottleneck you identified is solvable—similar businesses typically automate 40-60% of this work within the first month.`,
+    opportunities: suggestions,
+    nextStep: "Get Your Implementation Roadmap",
+    ctaSubtext: "Step-by-step guide tailored to your workflow priorities"
   };
   if (score >= 8) return {
     name: "AI Curious",
     color: "#94A3B8",
     description: "Good starting point for exploration",
-    recommendation: `Starting with "${painPoint.toLowerCase()}" is smart—it's where most businesses see quick wins. An in-depth assessment will show you exactly where to begin.`,
-    nextStep: "Get Starter Guide"
+    headline: "Good instincts—let's channel them",
+    recommendation: `Starting with "${painPoint.toLowerCase()}" is smart—it's where most ${industry.toLowerCase()} businesses see their first quick wins. You don't need to transform everything at once.`,
+    keyInsight: `With limited AI experience, the key is starting small: one workflow, one tool, visible results in weeks. That builds momentum for bigger changes.`,
+    opportunities: suggestions,
+    nextStep: "Get Your Quick-Win Starter Guide",
+    ctaSubtext: "Low-risk first projects matched to your specific situation"
   };
   return {
     name: "AI Explorer",
     color: "#64748B",
     description: "Early in your AI journey",
-    recommendation: `Everyone starts somewhere. Let's identify one specific task in "${painPoint.toLowerCase()}" where AI could save you time this week.`,
-    nextStep: "Book Intro Call"
+    headline: "Everyone starts somewhere",
+    recommendation: `The ${painPoint.toLowerCase()} challenges you mentioned are exactly where AI shines—even without technical experience. Modern tools are designed for business users, not developers.`,
+    keyInsight: `Small teams like yours actually adapt faster to AI than enterprises. No committees, no bureaucracy—you can test something this week and see if it works.`,
+    opportunities: suggestions,
+    nextStep: "Book Your Intro Consultation",
+    ctaSubtext: "15-minute call to identify your best first project"
   };
 };
 
@@ -441,6 +470,17 @@ Ready for follow-up consultation.
     // Results screen
     if (currentStep > totalSteps) {
       const hasCustomAnswers = answers.some(a => a.isCustom);
+      const tierData = tier as {
+        name: string;
+        color: string;
+        description: string;
+        headline: string;
+        recommendation: string;
+        keyInsight: string;
+        opportunities: string[];
+        nextStep: string;
+        ctaSubtext: string;
+      };
 
       return (
         <div className="flex-1 flex flex-col px-5 py-6 overflow-y-auto">
@@ -448,22 +488,23 @@ Ready for follow-up consultation.
             <>
               {/* Score Display with Context */}
               <div className="text-center mb-4">
-                <div className="inline-flex items-center justify-center w-20 h-20 rounded-full border-4 mb-3 relative" style={{ borderColor: tier.color }}>
-                  <span className="text-2xl font-bold text-slate-900 dark:text-white">{totalScore}</span>
+                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full border-4 mb-2 relative" style={{ borderColor: tierData.color }}>
+                  <span className="text-xl font-bold text-slate-900 dark:text-white">{totalScore}</span>
                   <span className="absolute -bottom-1 text-[10px] text-slate-400">/{maxScore}</span>
                 </div>
-                <h3 className="text-xl font-bold mb-1" style={{ color: tier.color }}>{tier.name}</h3>
-                <p className="text-slate-500 dark:text-slate-400 text-sm">{tier.description}</p>
-                {/* Score context tooltip */}
-                <p className="text-[10px] text-slate-400 mt-1">
-                  {totalScore >= 18 ? '18-23 = Pioneer' : totalScore >= 13 ? '13-17 = Ready' : totalScore >= 8 ? '8-12 = Curious' : '0-7 = Explorer'}
-                </p>
+                <h3 className="text-lg font-bold mb-1" style={{ color: tierData.color }}>{tierData.name}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-xs">{tierData.description}</p>
+              </div>
+
+              {/* Headline Insight */}
+              <div className="bg-gradient-to-r from-[#00D4FF]/10 to-transparent border-l-2 border-[#00D4FF] pl-3 py-2 mb-4">
+                <p className="text-sm font-semibold text-slate-900 dark:text-white">{tierData.headline}</p>
               </div>
 
               {/* Visual Score Breakdown with Labels */}
-              <div className="bg-slate-50 dark:bg-[#0A1628] rounded-lg p-3 mb-4">
+              <div className="bg-slate-50 dark:bg-[#0A1628] rounded-lg p-3 mb-3">
                 <h4 className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Your Profile</h4>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {answers.map(a => {
                     const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
                     const maxStepScore = step ? Math.max(...step.options.map(o => o.score)) : 5;
@@ -478,64 +519,69 @@ Ready for follow-up consultation.
                     return (
                       <div key={a.stepId} className="flex items-center gap-2">
                         <span className="text-[9px] text-slate-400 w-14 shrink-0">{categoryLabels[a.stepId]}</span>
-                        <div className="flex-1 h-2 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
+                        <div className="flex-1 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full transition-all"
-                            style={{ width: `${percentage}%`, backgroundColor: tier.color }}
+                            style={{ width: `${percentage}%`, backgroundColor: tierData.color }}
                           />
                         </div>
-                        <span className="text-[10px] text-slate-500 dark:text-slate-400 w-20 truncate text-right">{a.label}</span>
+                        <span className="text-[9px] text-slate-500 dark:text-slate-400 w-20 truncate text-right">{a.label}</span>
                       </div>
                     );
                   })}
                 </div>
               </div>
 
-              {/* Personalized Recommendation */}
-              <div className="bg-slate-100 dark:bg-[#1E3A5F] rounded-lg p-4 mb-4">
-                <h4 className="text-xs font-semibold text-[#00D4FF] uppercase tracking-wider mb-2">Based on Your Answers</h4>
-                <p className="text-sm text-slate-600 dark:text-slate-400">{tier.recommendation}</p>
+              {/* Personalized Analysis */}
+              <div className="bg-slate-100 dark:bg-[#1E3A5F] rounded-lg p-3 mb-3">
+                <h4 className="text-[10px] font-semibold text-[#00D4FF] uppercase tracking-wider mb-1.5">Analysis</h4>
+                <p className="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-2">{tierData.recommendation}</p>
+                <div className="bg-slate-200/50 dark:bg-[#0A1628]/50 rounded p-2">
+                  <p className="text-[11px] text-slate-700 dark:text-slate-300 italic">"{tierData.keyInsight}"</p>
+                </div>
               </div>
 
-              {/* Prominent CTA for In-Depth Assessment */}
-              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-5 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden">
+              {/* Opportunity Areas */}
+              <div className="mb-3">
+                <h4 className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Quick Win Opportunities</h4>
+                <div className="flex flex-wrap gap-1.5">
+                  {tierData.opportunities.map((opp, idx) => (
+                    <span key={idx} className="inline-flex items-center gap-1 text-[10px] bg-[#00D4FF]/10 text-[#00D4FF] px-2 py-1 rounded-full">
+                      <svg className="w-2.5 h-2.5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
+                      {opp}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              {/* Prominent CTA for Full Report */}
+              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-4 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden">
                 <div className="absolute top-0 right-0 bg-[#00D4FF] text-[#0A1628] text-[9px] font-bold px-2 py-0.5 rounded-bl">
                   FREE
                 </div>
-                <h4 className="text-white font-semibold mb-1">
-                  Want the Full Picture?
+                <h4 className="text-white font-semibold text-sm mb-1">
+                  Ready for the Full Picture?
                 </h4>
-                <p className="text-slate-400 text-xs mb-3">
-                  This was a quick pulse check. Get a <span className="text-[#00D4FF]">comprehensive AI readiness audit</span> with specific recommendations for your business.
+                <p className="text-slate-400 text-[11px] mb-3">
+                  {tierData.ctaSubtext}
                 </p>
-                <ul className="text-slate-400 text-xs mb-4 space-y-1">
-                  <li className="flex items-center gap-2">
-                    <svg className="w-3 h-3 text-[#00D4FF]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                    Detailed workflow analysis
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-3 h-3 text-[#00D4FF]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                    ROI projections for your industry
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <svg className="w-3 h-3 text-[#00D4FF]" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/></svg>
-                    Custom implementation roadmap
-                  </li>
-                </ul>
                 <button
                   onClick={() => {
                     setShowDetailedResults(true);
                     generateAIInsight();
                   }}
-                  className="w-full bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold py-3 rounded-lg transition-colors text-sm"
+                  className="w-full bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-bold py-3 rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
                 >
-                  {tier.nextStep} →
+                  {tierData.nextStep}
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
                 </button>
               </div>
 
               <button
                 onClick={resetAssessment}
-                className="mt-3 text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-center"
+                className="mt-2 text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-center"
               >
                 Retake assessment
               </button>
