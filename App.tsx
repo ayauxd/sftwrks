@@ -13,6 +13,7 @@ import Assistant from './components/Assistant';
 import CaseStudyDetail from './components/CaseStudyDetail';
 import JournalDetail from './components/JournalDetail';
 import InsightsList from './components/InsightsList';
+import CaseStudiesList from './components/CaseStudiesList';
 import Media from './components/Media';
 import { CASE_STUDIES, JOURNAL_ARTICLES } from './constants';
 import { CaseStudy, JournalArticle } from './types';
@@ -24,6 +25,7 @@ function App() {
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [showMedia, setShowMedia] = useState(false);
   const [showInsightsList, setShowInsightsList] = useState(false);
+  const [showCaseStudiesList, setShowCaseStudiesList] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
   // Preview only first 3 articles on home page
@@ -156,6 +158,23 @@ function App() {
     );
   }
 
+  if (showCaseStudiesList) {
+    return (
+        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
+           <CaseStudiesList
+             onStudyClick={(study) => setSelectedCaseStudy(study)}
+             onBack={() => {
+               setShowCaseStudiesList(false);
+               setTimeout(() => scrollToSection('work'), 100);
+             }}
+           />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+        </div>
+    );
+  }
+
   if (selectedCaseStudy) {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
@@ -214,7 +233,7 @@ function App() {
                     </div>
                     <div className="hidden md:block">
                         <button
-                          onClick={() => setSelectedCaseStudy(CASE_STUDIES[0])}
+                          onClick={() => setShowCaseStudiesList(true)}
                           className="text-xs font-mono underline underline-offset-4 text-slate-500 dark:text-slate-400 hover:text-[#00D4FF] transition-colors"
                         >
                           View All Case Studies &rarr;
@@ -255,6 +274,18 @@ function App() {
                     ))}
                 </div>
 
+                {/* Mobile View All Button */}
+                <div className="mt-12 text-center md:hidden">
+                    <button
+                      onClick={() => setShowCaseStudiesList(true)}
+                      className="inline-flex items-center gap-2 bg-slate-100 dark:bg-[#1E3A5F] text-slate-700 dark:text-slate-300 px-6 py-3 rounded-lg font-mono text-sm hover:bg-[#00D4FF] hover:text-[#0A1628] transition-colors"
+                    >
+                      View All Case Studies
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -307,6 +338,18 @@ function App() {
                     ))}
                 </div>
 
+                {/* Mobile View All Button */}
+                <div className="mt-12 text-center md:hidden">
+                    <button
+                      onClick={() => setShowInsightsList(true)}
+                      className="inline-flex items-center gap-2 bg-[#1E3A5F] text-slate-300 px-6 py-3 rounded-lg font-mono text-sm hover:bg-[#00D4FF] hover:text-[#0A1628] transition-colors"
+                    >
+                      View All Insights
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </button>
+                </div>
             </div>
         </section>
 

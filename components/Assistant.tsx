@@ -670,21 +670,44 @@ Ready for follow-up consultation.
               </button>
             </>
           ) : (
-            <div className="flex-1 flex flex-col items-center justify-center text-center">
-              <div className="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mb-4">
-                <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
+              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#0891B2]/20 flex items-center justify-center mb-6">
+                <svg className="w-10 h-10 text-[#00D4FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">You're All Set!</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-6">
-                Your personalized AI roadmap will arrive within 24 hours.
+              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Request Received!</h3>
+              <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 max-w-[280px]">
+                We'll send your personalized AI roadmap within 24 hours. In the meantime:
               </p>
+
+              {/* Next Steps */}
+              <div className="w-full space-y-3 mb-8">
+                <a
+                  href="mailto:agents@softworkstrading.com?subject=Schedule%20AI%20Strategy%20Call"
+                  className="w-full flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold py-3 px-4 rounded-lg transition-colors text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Schedule Strategy Call
+                </a>
+                <a
+                  href="mailto:agents@softworkstrading.com?subject=Request%20Full%20Assessment"
+                  className="w-full flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF] font-medium py-3 px-4 rounded-lg transition-colors text-sm"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Request Extended Assessment
+                </a>
+              </div>
+
               <button
                 onClick={resetAssessment}
-                className="text-[#00D4FF] hover:underline text-sm"
+                className="text-slate-400 hover:text-[#00D4FF] text-xs font-mono transition-colors"
               >
-                Take another assessment
+                Retake quick assessment
               </button>
             </div>
           )}
@@ -819,9 +842,9 @@ Ready for follow-up consultation.
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-[calc(100vw-2rem)] sm:w-[380px] max-h-[calc(100vh-6rem)] h-[580px] mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-xl fixed sm:relative bottom-20 sm:bottom-auto left-4 sm:left-auto right-4 sm:right-auto">
+        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-full sm:w-[400px] h-[100dvh] sm:h-auto sm:max-h-[calc(100vh-6rem)] sm:min-h-[600px] mb-0 sm:mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:bottom-20 sm:right-0">
           {/* Header */}
-          <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628]">
+          <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628] safe-area-inset-top">
             <div className="flex items-center gap-3">
               <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#00D4FF] to-[#0891B2] flex items-center justify-center">
                 <span className="text-white font-bold text-sm">S</span>
@@ -835,10 +858,11 @@ Ready for follow-up consultation.
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="p-2 text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 transition-colors rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="p-2.5 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 transition-colors rounded-lg hover:bg-slate-200 dark:hover:bg-slate-700"
+              aria-label="Close assessment"
             >
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
@@ -867,12 +891,12 @@ Ready for follow-up consultation.
         </div>
       )}
 
-      {/* Toggle Button */}
+      {/* Toggle Button - Hidden on mobile when open */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`relative w-14 h-14 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center ${
           isOpen
-            ? 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
+            ? 'hidden sm:flex bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
             : 'bg-gradient-to-br from-[#00D4FF] to-[#0891B2] text-white hover:scale-105'
         }`}
       >
