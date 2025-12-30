@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 import Assistant from './components/Assistant';
 import CaseStudyDetail from './components/CaseStudyDetail';
 import JournalDetail from './components/JournalDetail';
+import InsightsList from './components/InsightsList';
 import Media from './components/Media';
 import { CASE_STUDIES, JOURNAL_ARTICLES } from './constants';
 import { CaseStudy, JournalArticle } from './types';
@@ -22,7 +23,11 @@ function App() {
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [showMedia, setShowMedia] = useState(false);
+  const [showInsightsList, setShowInsightsList] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
+
+  // Preview only first 3 articles on home page
+  const previewArticles = JOURNAL_ARTICLES.slice(0, 3);
 
   useEffect(() => {
     // Check initial preference - default to dark for brand aesthetic
@@ -117,8 +122,29 @@ function App() {
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <JournalDetail article={selectedArticle} onBack={() => {
                setSelectedArticle(null);
-               setTimeout(() => scrollToSection('journal'), 100);
+               if (showInsightsList) {
+                 // Stay on insights list
+               } else {
+                 setTimeout(() => scrollToSection('journal'), 100);
+               }
            }} />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+        </div>
+    );
+  }
+
+  if (showInsightsList) {
+    return (
+        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
+           <InsightsList
+             onArticleClick={(article) => setSelectedArticle(article)}
+             onBack={() => {
+               setShowInsightsList(false);
+               setTimeout(() => scrollToSection('journal'), 100);
+             }}
+           />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -216,18 +242,26 @@ function App() {
             </div>
         </section>
 
-        {/* JOURNAL / INSIGHTS */}
+        {/* JOURNAL / INSIGHTS - Preview of 3 articles */}
         <section id="journal" className="py-24 px-6 lg:px-12 bg-[#0F172A] dark:bg-[#0A1628] relative z-10 border-b border-slate-800">
             <div className="max-w-6xl mx-auto">
                 <div className="flex justify-between items-end mb-16 border-b border-slate-700 pb-6">
                     <div>
-                        <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Insights</span>
-                        <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">From the Journal</h2>
+                        <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Monthly Analysis</span>
+                        <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Industry Insights</h2>
+                    </div>
+                    <div className="hidden md:block">
+                        <button
+                          onClick={() => setShowInsightsList(true)}
+                          className="text-xs font-mono underline underline-offset-4 text-slate-400 hover:text-[#00D4FF] transition-colors"
+                        >
+                          View All Insights &rarr;
+                        </button>
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {JOURNAL_ARTICLES.map((article) => (
+                    {previewArticles.map((article) => (
                         <article
                             key={article.id}
                             className="group cursor-pointer"
@@ -255,6 +289,22 @@ function App() {
                             </span>
                         </article>
                     ))}
+                </div>
+
+                {/* CTA for more insights */}
+                <div className="mt-16 pt-12 border-t border-slate-700 text-center">
+                  <p className="text-slate-400 mb-6 max-w-2xl mx-auto">
+                    We publish monthly analysis of AI industry developments, backed by authoritative sources and filtered through our hands-on implementation experience.
+                  </p>
+                  <button
+                    onClick={() => setShowInsightsList(true)}
+                    className="group inline-flex items-center gap-3 px-8 py-4 bg-[#1E3A5F] text-white font-mono text-sm uppercase tracking-widest hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-300 border border-slate-700 hover:border-[#00D4FF]"
+                  >
+                    View All Insights
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                    </svg>
+                  </button>
                 </div>
             </div>
         </section>

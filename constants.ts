@@ -47,12 +47,12 @@ export const INITIATIVES: Initiative[] = [
 export const CASE_STUDIES: CaseStudy[] = [
   {
     id: 'cs1',
-    client: 'Regional Logistics Authority',
+    client: 'Government Logistics Agency',
     sector: 'Public Sector',
-    title: 'The Document Problem Nobody Wanted to Talk About',
-    summary: 'How a government agency went from drowning in paper to processing 4,000 manifests daily—without hiring anyone.',
+    title: 'The Document Backlog Crisis',
+    summary: 'A public logistics authority drowning in 4,000 daily manifests found a way to process them in seconds—without adding headcount.',
     outcome: '90% reduction in processing time.',
-    imageUrl: '/assets/case-studies/landmark-gears.png',
+    imageUrl: '/assets/case-studies/logistics-noir.png',
     content: `
       <p>Here's a dirty secret about government operations: most of them run on paper, prayer, and the institutional knowledge of whoever's been there longest.</p>
 
@@ -77,12 +77,12 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'cs2',
-    client: 'Apex Financial',
-    sector: 'Enterprise',
-    title: 'When "Move Fast" Meets "Don\'t Get Sued"',
-    summary: "Building an AI customer service agent that's never wrong—because in finance, 'mostly right' isn't good enough.",
+    client: 'Mid-Size Financial Services Firm',
+    sector: 'Financial Services',
+    title: 'The Hallucination Problem in Regulated AI',
+    summary: "When your AI chatbot can't afford to be wrong—building customer service that's accurate 100% of the time.",
     outcome: 'Zero AI hallucinations in 150K+ interactions.',
-    imageUrl: '/assets/case-studies/landmark-brain.png',
+    imageUrl: '/assets/case-studies/finance-noir.png',
     content: `
       <p>The call came in late November. Apex Financial's Head of Digital had just watched their competitor launch an AI chatbot. Two weeks later, that chatbot told a customer they qualified for a 2.9% mortgage rate that didn't exist. The screenshot went viral. The competitor's stock dropped 4%.</p>
 
@@ -117,12 +117,12 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'cs3',
-    client: 'Metro Health Systems',
+    client: 'Regional Healthcare Network',
     sector: 'Healthcare',
-    title: 'Ten Years of Medical Records, Actually Searchable',
-    summary: 'Turning a "data lake" that was really a data swamp into something doctors can actually use.',
+    title: 'The Unsearchable Medical Records Problem',
+    summary: 'A decade of patient data locked in incompatible systems—and the knowledge graph that finally unlocked it.',
     outcome: 'Patient history retrieval: hours → seconds.',
-    imageUrl: '/assets/case-studies/landmark-library.png',
+    imageUrl: '/assets/case-studies/healthcare-noir.png',
     content: `
       <p>Every hospital administrator in America will tell you they have an "electronic health record system." What they actually have, in most cases, is several electronic health record systems that don't talk to each other, plus a decade of scanned PDFs, plus faxes (yes, healthcare still runs on faxes), plus handwritten notes from before the digital transition.</p>
 
@@ -159,12 +159,12 @@ export const CASE_STUDIES: CaseStudy[] = [
   },
   {
     id: 'cs4',
-    client: 'Bennett & Associates CPA',
+    client: 'Small Accounting Practice',
     sector: 'Professional Services',
-    title: 'How a Three-Person Accounting Firm Built a Content Machine',
-    summary: 'Automating social media video production for a small CPA firm that had zero time for marketing.',
+    title: 'The Content Marketing Time Crunch',
+    summary: 'A three-person CPA firm with no time for marketing built an AI video pipeline that runs itself.',
     outcome: '12 videos/month from 2 hours of work.',
-    imageUrl: '/assets/case-studies/landmark-fortress.png',
+    imageUrl: '/assets/case-studies/accounting-noir.png',
     content: `
       <p>Lisa Bennett runs a three-person accounting firm in the suburbs. Her problem wasn't finding clients—word of mouth kept her busy. Her problem was visibility. Every marketing consultant told her the same thing: you need to be on social media, posting consistently, showing your expertise.</p>
 
