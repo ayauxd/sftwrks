@@ -28,10 +28,19 @@ async function generateOGCard() {
   const logoPath = path.join(rootDir, 'public/assets/logos/softworks-icon-3d-master.png');
   const outputPath = path.join(rootDir, 'public/assets/logos/og-preview-landscape.png');
 
-  // Load and resize logo - larger for better visibility
+  // Load and resize logo - fit within bounds with padding
+  const logoMeta = await sharp(logoPath).metadata();
+  const maxHeight = 480; // Leave 75px padding top and bottom
+  const scaledHeight = Math.min(maxHeight, logoMeta.height);
+  const scaledWidth = Math.round((logoMeta.width / logoMeta.height) * scaledHeight);
+
   const logo = await sharp(logoPath)
-    .resize(340, 340, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
+    .resize(scaledWidth, scaledHeight, { fit: 'inside', background: { r: 0, g: 0, b: 0, alpha: 0 } })
     .toBuffer();
+
+  const logoInfo = await sharp(logo).metadata();
+  const logoTop = Math.round((HEIGHT - logoInfo.height) / 2); // Center vertically
+  const logoLeft = 60;
 
   // Create SVG text overlay - white background with dark text
   const textSvg = `
@@ -87,8 +96,8 @@ async function generateOGCard() {
       // Logo on left - centered vertically
       {
         input: logo,
-        top: 145,
-        left: 70
+        top: logoTop,
+        left: logoLeft
       }
     ])
     .png()

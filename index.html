@@ -33,14 +33,14 @@
     <meta name="twitter:description" content="AI strategy, governance, and integration advisory. We help businesses make AI work—from confusion to real results." />
     <meta name="twitter:image" content="https://www.sftwrks.com/assets/logos/og-preview-landscape.png" />
 
+    <!-- Preload Critical Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/logos/favicon-16x16.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="48x48" href="/assets/logos/favicon-48x48.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="192x192" href="/assets/logos/android-chrome-192x192.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/assets/logos/android-chrome-512x512.png" />
 
     <!-- Organization Schema (JSON-LD) -->
     <script type="application/ld+json">
@@ -63,7 +63,7 @@
     }
     </script>
 
-    <!-- LocalBusiness Schema for better search differentiation -->
+    <!-- ProfessionalService Schema -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -75,157 +75,7 @@
       "serviceType": "AI Consulting"
     }
     </script>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-      tailwind.config = {
-        darkMode: 'class',
-        theme: {
-          extend: {
-            colors: {
-              // Primary Navy/Steel palette
-              navy: {
-                DEFAULT: '#0F172A',
-                dark: '#0A1628',
-                mid: '#0F172A',
-              },
-              steel: {
-                DEFAULT: '#1E3A5F',
-                blue: '#1E3A5F',
-              },
-              // Cyan accent palette
-              cyan: {
-                glow: '#00D4FF',
-                hover: '#22D3EE',
-                muted: '#0891B2',
-              },
-              // Light mode colors
-              ice: {
-                blue: '#E0F2FE',
-              },
-              // Legacy stone overrides for dark mode
-              stone: {
-                850: '#1E293B',
-                950: '#0A1628',
-              }
-            },
-            boxShadow: {
-              'card': '0 4px 24px rgba(0, 212, 255, 0.08)',
-              'elevated': '0 8px 32px rgba(10, 22, 40, 0.24)',
-              'glow': '0 0 24px rgba(0, 212, 255, 0.3)',
-              'glow-sm': '0 0 12px rgba(0, 212, 255, 0.2)',
-            }
-          }
-        }
-      }
-    </script>
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap');
-      
-      html {
-        scroll-behavior: smooth;
-      }
-
-      body {
-        font-family: 'Inter', sans-serif;
-        background-color: #F1F5F9; /* Slate 100 - Light mode */
-        color: #0F172A; /* Navy - Primary text */
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 0.3s ease, color 0.3s ease;
-      }
-
-      .dark body {
-        background-color: #0A1628; /* Navy Dark */
-        color: #F8FAFC; /* Slate 50 */
-      }
-
-      /* Typewriter Headings */
-      h1, h2, h3, h4, h5, h6 {
-        font-family: 'Courier Prime', monospace;
-        letter-spacing: -0.02em; /* Tighter tracking for headings */
-      }
-      
-      .font-mono {
-        font-family: 'JetBrains Mono', monospace;
-      }
-
-      /* Circuit/Data Grid Background - Very subtle */
-      .bg-grid-pattern {
-        background-size: 40px 40px;
-        background-image:
-          linear-gradient(to right, rgba(148, 163, 184, 0.15) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(148, 163, 184, 0.15) 1px, transparent 1px);
-        background-position: center top;
-      }
-
-      /* Dark Mode Grid Override - Very faint cyan */
-      .dark .bg-grid-pattern {
-        background-image:
-          linear-gradient(to right, rgba(0, 212, 255, 0.04) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
-      }
-
-      .paper-card {
-        background-color: #FFFFFF;
-        border: 1px solid #CBD5E1; /* Slate 300 */
-        box-shadow: 0 4px 24px rgba(0, 212, 255, 0.08); /* Subtle cyan glow */
-        transition: box-shadow 0.3s ease, border-color 0.3s ease;
-      }
-
-      .paper-card:hover {
-        box-shadow: 0 0 24px rgba(0, 212, 255, 0.15);
-        border-color: #0891B2; /* Cyan muted */
-      }
-
-      .dark .paper-card {
-        background-color: #1E3A5F; /* Steel Blue */
-        border-color: #334155; /* Slate 700 */
-        box-shadow: 0 4px 24px rgba(0, 212, 255, 0.1);
-      }
-
-      .dark .paper-card:hover {
-        box-shadow: 0 0 24px rgba(0, 212, 255, 0.3);
-        border-color: #00D4FF; /* Cyan glow */
-      }
-
-      .animate-fade-in-up {
-        animation: fade-in-up 0.8s cubic-bezier(0.2, 1, 0.3, 1) forwards;
-        opacity: 0;
-        transform: translateY(20px);
-      }
-
-      @keyframes fade-in-up {
-        to { opacity: 1; transform: translateY(0); }
-      }
-      
-      /* Scrollbar - Navy/Cyan aesthetic */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #F1F5F9; /* Slate 100 */
-      }
-      .dark ::-webkit-scrollbar-track {
-        background: #0A1628; /* Navy Dark */
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #64748B; /* Slate 500 */
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #00D4FF; /* Cyan glow on hover */
-      }
-    </style>
-  <script type="importmap">
-{
-  "imports": {
-    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
-    "react/": "https://aistudiocdn.com/react@^19.2.0/",
-    "react": "https://aistudiocdn.com/react@^19.2.0",
-    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/"
-  }
-}
-</script>
-</head>
+  </head>
   <body>
     <div id="root"></div>
     <script type="module" src="/index.tsx"></script>
@@ -237,51 +87,25 @@
           <h1>Softworks</h1>
           <p><strong>AI that works for your business</strong></p>
         </header>
-
         <main>
           <section>
             <h2>Making AI Work for Your Business</h2>
             <p>We help you go from AI confusion to real results.</p>
             <p>Trusted by forward-thinking organizations: Mid-Market Enterprises, Growth-Stage Startups, Professional Services.</p>
           </section>
-
-          <section>
-            <h2>The Challenge</h2>
-            <p>AI promises to save time and money, but 70% of projects don't pay off. The problem isn't the technology—it's how you set it up.</p>
-            <p>Without a clear plan and the right setup, AI becomes a money pit instead of a game-changer.</p>
-          </section>
-
           <section>
             <h2>Our Services</h2>
-            <h3>Strategy</h3>
-            <p>Figure out where AI can actually help your business—then build a plan to get there.</p>
-
-            <h3>Governance</h3>
-            <p>Set up the rules and safeguards so AI works the way you want—safely, responsibly, and within regulations.</p>
-
-            <h3>Integration</h3>
-            <p>Connect AI to how your team already works—so it helps instead of getting in the way.</p>
+            <p><strong>Strategy</strong> - Figure out where AI can actually help your business.</p>
+            <p><strong>Governance</strong> - Set up rules and safeguards for AI.</p>
+            <p><strong>Integration</strong> - Connect AI to how your team already works.</p>
           </section>
-
-          <section>
-            <h2>How We Work</h2>
-            <ol>
-              <li><strong>Discovery</strong> - We learn about your business, your challenges, and your goals.</li>
-              <li><strong>Planning</strong> - We create a custom plan for how AI will fit into your business.</li>
-              <li><strong>Setup</strong> - We help you test, choose the right tools, and roll them out.</li>
-              <li><strong>Improvement</strong> - We help you get better over time—tracking what works and training your team.</li>
-            </ol>
-          </section>
-
           <section>
             <h2>Contact Us</h2>
-            <p>Ready to make AI work for your business? Let's talk about what you need.</p>
             <p>Email: <a href="mailto:agents@softworkstrading.com">agents@softworkstrading.com</a></p>
           </section>
         </main>
-
         <footer>
-          <p>&copy; 2025 Softworks Trading Company. AI that works for your business.</p>
+          <p>&copy; 2025 Softworks Trading Company.</p>
         </footer>
       </div>
     </noscript>
