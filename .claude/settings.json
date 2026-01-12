@@ -1,11 +1,27 @@
 {
-  "skills": ["softworks-site-manager"],
+  "skills": [
+    "softworks-site-manager",
+    "frederick-ecosystem"
+  ],
   "permissions": {
     "allow": [
       "Bash(npm run build)",
       "Bash(npm run dev)",
+      "Bash(npm run preview)",
       "Bash(vercel --prod)",
-      "Bash(bash ~/.claude/skills/softworks-site-manager/scripts/*)"
+      "Bash(bash ~/.claude/skills/softworks-site-manager/scripts/*)",
+      "Bash(npx tsc --noEmit)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
+    ]
+  },
+  "hooks": {
+    "preToolUse": [
+      {
+        "matcher": "Bash",
+        "command": "echo 'Executing command...'"
+      }
     ]
   }
 }
