@@ -38,12 +38,12 @@ Three pillars:
 
 ## Ventures
 
-| Venture | Domain | Purpose |
-|---------|--------|---------|
-| Pitch Film Studio | pitchfilmstudio.com | Media production |
-| PrePurchasePro | - | Vehicle inspection |
-| tiwa.ai | tiwa.ai | Customized AI assistance |
-| CBAH Organization | - | Community network |
+| Venture | Domain | Email | Purpose |
+|---------|--------|-------|---------|
+| Pitch Film Studio | pitchfilmstudio.com | fred@pitchfilmstudio.com | Media production |
+| PrePurchasePro | prepurchasepro.com | contact@prepurchasepro.com | Vehicle inspection |
+| tiwa.ai | tiwa.ai | hello@tiwa.ai | Customized AI assistance |
+| CBAH Organization | - | - | Community network |
 
 ## Infrastructure
 
@@ -68,6 +68,9 @@ Three pillars:
 |------|----------|-----------|
 | 2026-01-12 | Use fred@sftwrks.com as primary email | "Trading Company" sounds like finance, not AI consulting |
 | 2026-01-12 | Keep softworkstrading.com for formal docs | Legal continuity, SEO authority |
+| 2026-01-12 | sftwrks.com as Domain Alias | All team members auto-get @sftwrks.com addresses |
+| 2026-01-12 | Venture domains as Secondary | Assign specific people to specific ventures |
+| 2026-01-12 | Single Google Workspace for all domains | Cost efficiency ($0 per additional domain) |
 | 2025-12-28 | Deploy to Vercel free tier | Low traffic, cost efficiency |
 
 ## Brand Voice
@@ -86,20 +89,65 @@ Three pillars:
 
 ## Team
 
-| Name | Role | Email |
-|------|------|-------|
-| Frederick Aya | Founder, Super Admin | fred@sftwrks.com |
-| Peter Obie | Team Member | peter@softworkstrading.com |
+| Name | Role | Primary Email | Aliases |
+|------|------|---------------|---------|
+| Frederick Aya | Founder, Super Admin | fred@sftwrks.com | fred@softworkstrading.com, fred@pitchfilmstudio.com |
+| Peter Obie | Team Member | peter@sftwrks.com | peter@softworkstrading.com |
+
+## Email Infrastructure
+
+**Google Workspace:** Business Standard ($16.80/user/month)
+**Total Cost:** $33.60/month for 2 users (domains are FREE)
+
+### Domain Structure
+
+| Domain | Type | Status | Users |
+|--------|------|--------|-------|
+| softworkstrading.com | Primary | ✅ Verified | All |
+| sftwrks.com | Domain Alias (planned) | ✅ Verified | All (automatic) |
+| pitchfilmstudio.com | Secondary | ⏳ Pending | Assigned only |
+| tiwa.ai | Secondary | ⏳ Pending | Assigned only |
+| prepurchasepro.com | Secondary | ⏳ Pending | Assigned only |
+
+### Email Strategy
+
+- **@sftwrks.com** → Day-to-day business, client communication
+- **@softworkstrading.com** → Invoices, contracts, legal documents
+- **@pitchfilmstudio.com** → Media production clients
+- **@tiwa.ai** → AI product communications
+- **@prepurchasepro.com** → Vehicle inspection service
+
+### DNS Configuration (Namecheap)
+
+All email domains require:
+```
+MX  @  aspmx.l.google.com (Priority 1)
+MX  @  alt1.aspmx.l.google.com (Priority 5)
+MX  @  alt2.aspmx.l.google.com (Priority 5)
+MX  @  alt3.aspmx.l.google.com (Priority 10)
+MX  @  alt4.aspmx.l.google.com (Priority 10)
+TXT @  v=spf1 include:_spf.google.com ~all
+```
+
+## Accounts & Access
+
+| Chrome Profile | Account | Services |
+|----------------|---------|----------|
+| ayauxd | ayauxd@gmail.com | Namecheap, Vercel, Anthropic, Google AI |
+| softworks | fred@softworkstrading.com | Google Workspace Admin, Gmail |
+| vaprojects | (OpenAI account) | OpenAI API |
 
 ## API Services
 
-| Service | Purpose | Account |
-|---------|---------|---------|
-| Anthropic Claude | LLM API | Softworks Trading org |
-| OpenAI | GPT-4 + DALL-E | ayauxd@gmail.com |
-| Google Gemini | LLM + Imagen | ayauxd@gmail.com |
-| ElevenLabs | Voice synthesis | - |
-| Twilio | WhatsApp/SMS | - |
+| Service | Purpose | Account | Balance/Plan |
+|---------|---------|---------|--------------|
+| Anthropic Claude | LLM API | Softworks Trading org | $24.19 credits |
+| OpenAI | GPT-4 + DALL-E | vaprojects | - |
+| Google Gemini | LLM + Imagen | ayauxd@gmail.com | - |
+| ElevenLabs | Voice synthesis | - | - |
+| Twilio | WhatsApp/SMS | - | - |
+| Vercel | Hosting | ayauxd@gmail.com | Hobby (Free) |
+| Namecheap | Domains (24) | ayauxd@gmail.com | ~$300/year |
 
 ## Automation Status (n8n)
 
