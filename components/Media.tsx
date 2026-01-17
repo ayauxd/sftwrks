@@ -148,7 +148,7 @@ const Media: React.FC<MediaProps> = ({ onBack }) => {
                 We produce case study videos for our clients. Interested in showcasing your AI transformation?
               </p>
               <a
-                href="mailto:agents@softworkstrading.com?subject=Video%20Feature%20Interest"
+                href="mailto:agents@sftwrks.com?subject=Video%20Feature%20Interest"
                 className="inline-block bg-[#00D4FF] text-[#0A1628] px-6 py-3 font-semibold text-sm uppercase tracking-wider hover:bg-[#22D3EE] transition-colors"
               >
                 Get in Touch

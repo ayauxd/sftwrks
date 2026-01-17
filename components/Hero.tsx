@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParallaxScroll } from '../hooks/useScrollAnimation';
 
 interface HeroProps {
   isDark: boolean;
@@ -15,6 +16,9 @@ const FEATURED_VIDEO_URL = ''; // e.g., 'https://www.youtube.com/embed/VIDEO_ID'
 
 const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
   const [showVideo, setShowVideo] = useState(false);
+
+  // Enable parallax scrolling effect
+  useParallaxScroll();
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>, targetId: string) => {
     e.preventDefault();
@@ -48,7 +52,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
     <section className="relative w-full min-h-screen overflow-hidden">
 
       {/* Background - Same image for both modes with different overlays */}
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 hero-parallax">
         {/* Hero image - visible in both modes */}
         <img
           src="/assets/hero/bridge-metaphor.png"
@@ -73,8 +77,8 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         </div>
       </div>
 
-      {/* Circuit Grid Pattern Overlay - Very subtle, theme responsive */}
-      <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 ${isDark ? 'opacity-5' : 'opacity-[0.03]'}`}>
+      {/* Circuit Grid Pattern Overlay - Very subtle, theme responsive, with floating animation */}
+      <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 animate-float ${isDark ? 'opacity-5' : 'opacity-[0.03]'}`}>
         <div
           className="absolute inset-0"
           style={{
@@ -88,8 +92,8 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         />
       </div>
 
-      {/* Subtle Glow Accents */}
-      <div className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-[200px] transition-all duration-500 ${
+      {/* Subtle Glow Accents - with breathing pulse animation */}
+      <div className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-[200px] transition-all duration-500 animate-glow-pulse ${
         isDark ? 'bg-[#00D4FF] opacity-10' : 'bg-cyan-400 opacity-20'
       }`} />
 

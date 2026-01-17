@@ -88,7 +88,7 @@ const CaseStudiesList: React.FC<CaseStudiesListProps> = ({ onStudyClick, onBack 
             Ready to become our next success story?
           </p>
           <a
-            href="mailto:agents@softworkstrading.com?subject=Case%20Study%20Inquiry"
+            href="mailto:agents@sftwrks.com?subject=Case%20Study%20Inquiry"
             className="inline-block bg-[#00D4FF] text-[#0A1628] px-8 py-3 font-semibold hover:bg-[#22D3EE] transition-colors text-sm uppercase tracking-widest font-mono"
           >
             Start a Conversation

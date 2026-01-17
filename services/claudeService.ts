@@ -78,7 +78,7 @@ export const sendMessageToClaude = async (
 
     if (!apiKey) {
       return {
-        text: "I'm currently offline. Please email agents@softworkstrading.com for assistance.",
+        text: "I'm currently offline. Please email agents@sftwrks.com for assistance.",
         assessmentReady: false
       };
     }
@@ -113,7 +113,7 @@ export const sendMessageToClaude = async (
       const error = await response.text();
       console.error("Claude API Error:", error);
       return {
-        text: "I'm having trouble connecting right now. Please email agents@softworkstrading.com or try again in a moment.",
+        text: "I'm having trouble connecting right now. Please email agents@sftwrks.com or try again in a moment.",
         assessmentReady: false
       };
     }
@@ -134,13 +134,13 @@ export const sendMessageToClaude = async (
     }
 
     return {
-      text: "I couldn't process that. Please try again or email agents@softworkstrading.com.",
+      text: "I couldn't process that. Please try again or email agents@sftwrks.com.",
       assessmentReady: false
     };
   } catch (error) {
     console.error("Claude API Error:", error);
     return {
-      text: "I'm having trouble connecting right now. Please email agents@softworkstrading.com or try again in a moment.",
+      text: "I'm having trouble connecting right now. Please email agents@sftwrks.com or try again in a moment.",
       assessmentReady: false
     };
   }

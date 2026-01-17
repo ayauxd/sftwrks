@@ -393,12 +393,76 @@ Give a brief, specific recommendation for their biggest opportunity with AI. No 
     setLoadingInsight(false);
   };
 
+  // Send assessment to n8n webhook for persistent storage and automation
+  const sendToWebhook = async (payload: {
+    source: string;
+    timestamp: string;
+    score: number;
+    tier: string;
+    email: string;
+    phone?: string;
+    responses: Array<{ question: string; answer: string; isCustom: boolean }>;
+    aiInsight?: string;
+  }) => {
+    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+    if (!webhookUrl) {
+      console.warn('No webhook URL configured - skipping webhook submission');
+      return { success: false, error: 'No webhook URL' };
+    }
+
+    try {
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log('Assessment submitted to n8n:', data);
+        return { success: true, data };
+      } else {
+        console.error('Webhook submission failed:', response.status);
+        return { success: false, error: `HTTP ${response.status}` };
+      }
+    } catch (error) {
+      console.error('Webhook submission error:', error);
+      return { success: false, error: String(error) };
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email.trim()) return;
 
     setIsSubmitting(true);
 
+    // Build structured payload for webhook
+    const webhookPayload = {
+      source: 'website_assessment',
+      timestamp: new Date().toISOString(),
+      score: totalScore,
+      tier: tier.name,
+      email: email.trim(),
+      phone: phone.trim() || undefined,
+      responses: answers.map(a => {
+        const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
+        return {
+          question: step?.question || `Step ${a.stepId}`,
+          answer: a.label,
+          isCustom: a.isCustom
+        };
+      }),
+      aiInsight: aiInsight || undefined
+    };
+
+    // Send to webhook (non-blocking - don't wait for response)
+    sendToWebhook(webhookPayload);
+
+    // Fallback: Also send via mailto for reliability
     const customAnswers = answers.filter(a => a.isCustom);
     const assessmentSummary = answers.map(a => {
       const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
@@ -424,7 +488,7 @@ ${aiInsight ? `AI INSIGHT GENERATED:\n${aiInsight}` : ''}
 Ready for follow-up consultation.
     `);
 
-    window.open(`mailto:agents@softworkstrading.com?subject=${subject}&body=${body}`, '_blank');
+    window.open(`mailto:agents@sftwrks.com?subject=${subject}&body=${body}`, '_blank');
 
     setSubmitted(true);
     setIsSubmitting(false);
@@ -684,7 +748,7 @@ Ready for follow-up consultation.
               {/* Next Steps */}
               <div className="w-full space-y-3 mb-8">
                 <a
-                  href="mailto:agents@softworkstrading.com?subject=Schedule%20AI%20Strategy%20Call"
+                  href="mailto:agents@sftwrks.com?subject=Schedule%20AI%20Strategy%20Call"
                   className="w-full flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold py-3 px-4 rounded-lg transition-colors text-sm"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -693,7 +757,7 @@ Ready for follow-up consultation.
                   Schedule Strategy Call
                 </a>
                 <a
-                  href="mailto:agents@softworkstrading.com?subject=Request%20Full%20Assessment"
+                  href="mailto:agents@sftwrks.com?subject=Request%20Full%20Assessment"
                   className="w-full flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF] font-medium py-3 px-4 rounded-lg transition-colors text-sm"
                 >
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

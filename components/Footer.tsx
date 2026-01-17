@@ -25,13 +25,13 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
             We help businesses make AI work. Strategy, setup, and support to get real results.
           </p>
           <a
-            href="mailto:agents@softworkstrading.com"
+            href="mailto:agents@sftwrks.com"
             className="inline-flex items-center gap-2 text-[#00D4FF] hover:text-[#22D3EE] transition-colors text-sm"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            agents@softworkstrading.com
+            agents@sftwrks.com
           </a>
         </div>
 
@@ -110,8 +110,8 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
           Softworks Trading Company
         </p>
         <div className="flex items-center gap-6 text-xs text-slate-500">
-          <a href="mailto:agents@softworkstrading.com?subject=Privacy%20Policy%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
-          <a href="mailto:agents@softworkstrading.com?subject=Terms%20of%20Service%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
+          <a href="mailto:agents@sftwrks.com?subject=Privacy%20Policy%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
+          <a href="mailto:agents@sftwrks.com?subject=Terms%20of%20Service%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
         </div>
       </div>
     </footer>

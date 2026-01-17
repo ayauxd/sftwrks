@@ -84,10 +84,10 @@ const InsightsList: React.FC<InsightsListProps> = ({ onArticleClick, onBack }) =
             Subscribe to receive monthly insights directly in your inbox
           </p>
           <a
-            href="mailto:agents@softworkstrading.com?subject=Subscribe%20to%20Monthly%20Insights"
+            href="mailto:agents@sftwrks.com?subject=Subscribe%20to%20Monthly%20Insights"
             className="inline-block mt-6 text-[#00D4FF] hover:underline font-mono text-sm"
           >
-            agents@softworkstrading.com
+            agents@sftwrks.com
           </a>
         </div>
       </div>

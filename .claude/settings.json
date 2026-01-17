@@ -17,10 +17,15 @@
     ]
   },
   "hooks": {
-    "preToolUse": [
+    "PreToolUse": [
       {
         "matcher": "Bash",
-        "command": "echo 'Executing command...'"
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Executing command...'"
+          }
+        ]
       }
     ]
   }

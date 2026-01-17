@@ -40,7 +40,7 @@ export const sendMessageToGemini = async (history: {role: string, text: string}[
     }
     
     if (!apiKey) {
-      return "I'm currently offline. Please email agents@softworkstrading.com for assistance, or try again later.";
+      return "I'm currently offline. Please email agents@sftwrks.com for assistance, or try again later.";
     }
 
     const ai = new GoogleGenAI({ apiKey });
@@ -61,6 +61,6 @@ export const sendMessageToGemini = async (history: {role: string, text: string}[
 
   } catch (error) {
     console.error("Gemini API Error:", error);
-    return "I'm having trouble connecting right now. Please email agents@softworkstrading.com or try again in a moment.";
+    return "I'm having trouble connecting right now. Please email agents@sftwrks.com or try again in a moment.";
   }
 };
