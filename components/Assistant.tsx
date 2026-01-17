@@ -160,6 +160,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [submissionMethod, setSubmissionMethod] = useState<'webhook' | 'mailto' | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPrompt, setShowPrompt] = useState(false);
   const [promptDismissed, setPromptDismissed] = useState(false);
@@ -465,6 +466,7 @@ Give a brief, specific recommendation for their biggest opportunity with AI. No 
     if (webhookResult.success) {
       // Webhook succeeded - no need for mailto fallback
       console.log('Assessment submitted via n8n:', webhookResult.data);
+      setSubmissionMethod('webhook');
       setSubmitted(true);
       setIsSubmitting(false);
       return;
@@ -472,6 +474,7 @@ Give a brief, specific recommendation for their biggest opportunity with AI. No 
 
     // Fallback: Only use mailto if webhook fails
     console.warn('Webhook failed, falling back to mailto:', webhookResult.error);
+    setSubmissionMethod('mailto');
     const customAnswers = answers.filter(a => a.isCustom);
     const assessmentSummary = answers.map(a => {
       const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
@@ -509,6 +512,7 @@ Ready for follow-up consultation.
     setEmail('');
     setPhone('');
     setSubmitted(false);
+    setSubmissionMethod(null);
     setAiInsight(null);
     setShowDetailedResults(false);
   };
@@ -744,37 +748,62 @@ Ready for follow-up consultation.
             </>
           ) : (
             <div className="flex-1 flex flex-col items-center justify-center text-center px-6">
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#0891B2]/20 flex items-center justify-center mb-6">
-                <svg className="w-10 h-10 text-[#00D4FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Request Received!</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 max-w-[280px]">
-                We'll send your personalized AI roadmap within 24 hours. In the meantime:
-              </p>
+              {submissionMethod === 'webhook' ? (
+                <>
+                  {/* Success via n8n webhook */}
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-[#00D4FF]/20 to-[#0891B2]/20 flex items-center justify-center mb-6">
+                    <svg className="w-10 h-10 text-[#00D4FF]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Sent!</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 max-w-[280px]">
+                    Your assessment has been received. We'll send your personalized AI roadmap within 24 hours.
+                  </p>
 
-              {/* Next Steps */}
-              <div className="w-full space-y-3 mb-8">
-                <a
-                  href="mailto:agents@sftwrks.com?subject=Schedule%20AI%20Strategy%20Call"
-                  className="w-full flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold py-3 px-4 rounded-lg transition-colors text-sm"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                  Schedule Strategy Call
-                </a>
-                <a
-                  href="mailto:agents@sftwrks.com?subject=Request%20Full%20Assessment"
-                  className="w-full flex items-center justify-center gap-2 border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF] font-medium py-3 px-4 rounded-lg transition-colors text-sm"
-                >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  Request Extended Assessment
-                </a>
-              </div>
+                  {/* Next Steps */}
+                  <div className="w-full space-y-3 mb-8">
+                    <a
+                      href="mailto:agents@sftwrks.com?subject=Schedule%20AI%20Strategy%20Call"
+                      className="w-full flex items-center justify-center gap-2 bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold py-3 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      Schedule Strategy Call
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* Fallback via mailto */}
+                  <div className="w-20 h-20 rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center mb-6">
+                    <svg className="w-10 h-10 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 dark:text-white mb-3">Almost There!</h3>
+                  <p className="text-slate-500 dark:text-slate-400 text-sm mb-4 max-w-[280px]">
+                    Please send the email that just opened to complete your submission.
+                  </p>
+                  <p className="text-xs text-slate-400 dark:text-slate-500 mb-8 max-w-[280px]">
+                    Email not open? Click below to try again.
+                  </p>
+
+                  {/* Retry email */}
+                  <div className="w-full space-y-3 mb-8">
+                    <a
+                      href={`mailto:agents@sftwrks.com?subject=${encodeURIComponent(`AI Assessment: ${tier.name} (Score: ${totalScore})`)}`}
+                      className="w-full flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold py-3 px-4 rounded-lg transition-colors text-sm"
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      Open Email Again
+                    </a>
+                  </div>
+                </>
+              )}
 
               <button
                 onClick={resetAssessment}
