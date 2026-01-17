@@ -459,10 +459,19 @@ Give a brief, specific recommendation for their biggest opportunity with AI. No 
       aiInsight: aiInsight || undefined
     };
 
-    // Send to webhook (non-blocking - don't wait for response)
-    sendToWebhook(webhookPayload);
+    // Try n8n webhook first (primary method)
+    const webhookResult = await sendToWebhook(webhookPayload);
 
-    // Fallback: Also send via mailto for reliability
+    if (webhookResult.success) {
+      // Webhook succeeded - no need for mailto fallback
+      console.log('Assessment submitted via n8n:', webhookResult.data);
+      setSubmitted(true);
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Fallback: Only use mailto if webhook fails
+    console.warn('Webhook failed, falling back to mailto:', webhookResult.error);
     const customAnswers = answers.filter(a => a.isCustom);
     const assessmentSummary = answers.map(a => {
       const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
