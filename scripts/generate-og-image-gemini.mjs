@@ -11,8 +11,14 @@ import { fileURLToPath } from 'url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const outputDir = path.join(__dirname, '..', 'public/assets/logos');
 
-// Gemini API key from environment
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyCLJyVq1BosGZD-ZQAEsn1DQOQHQ__5kAQ';
+// Gemini API key from environment - NEVER hardcode API keys!
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+
+if (!GEMINI_API_KEY) {
+  console.error('ERROR: GEMINI_API_KEY environment variable is required.');
+  console.error('Set it in your .env.local file or export it before running.');
+  process.exit(1);
+}
 
 async function generateOGImage() {
   console.log('Generating OG preview image with Gemini Imagen 3...\n');
