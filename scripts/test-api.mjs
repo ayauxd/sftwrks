@@ -1,7 +1,14 @@
 #!/usr/bin/env node
 import { GoogleGenAI } from '@google/genai';
 
-const apiKey = process.env.GEMINI_API_KEY || 'AIzaSyAltMw5iORgqNqNGz5lsjmZYGhYqOQH1k8';
+const apiKey = process.env.GEMINI_API_KEY;
+
+if (!apiKey) {
+  console.error('ERROR: GEMINI_API_KEY environment variable is required.');
+  console.error('Run: export GEMINI_API_KEY=your-key-here');
+  process.exit(1);
+}
+
 const ai = new GoogleGenAI({ apiKey });
 
 async function test() {
