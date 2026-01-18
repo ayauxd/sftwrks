@@ -207,6 +207,52 @@ export const CASE_STUDIES: CaseStudy[] = [
 
       <p>"I finally feel like I have a marketing department," Lisa told us recently. "It just happens to be robots."</p>
     `
+  },
+  {
+    id: 'cs5',
+    client: 'Private Event',
+    sector: 'Consumer / Events',
+    title: 'The AI Photo Booth That Runs Itself',
+    summary: 'A birthday party needed personalized dinosaur adventure photos for 30 guests—with zero staff and a $10 budget.',
+    outcome: '168 AI-generated images, $0.05 each, fully automated.',
+    imageUrl: '/assets/case-studies/photobooth-noir.png',
+    content: `
+      <p>The request came three days before a 5-year-old's birthday party. "I want every kid to see themselves as a dinosaur adventurer." Thirty kids. Custom photos for each one. No photographer budget. No staff to run it.</p>
+
+      <p>Traditional photo booths run $500-2,000 for an afternoon, require an attendant, and produce generic results. AI image generation could create personalized adventures—but the technology typically requires someone who knows what they're doing.</p>
+
+      <p>The question: could we build something that runs itself?</p>
+
+      <h3>The Constraint That Shaped Everything</h3>
+
+      <p>No staff meant no troubleshooting. No "let me fix that for you." No "try uploading again." Everything had to work the first time, every time, operated by 5-year-olds and their parents who'd never used AI tools.</p>
+
+      <p>This constraint drove every design decision. Single-page interface. One button to upload. One button to generate. Progress indicators that actually tell you what's happening. Error messages that suggest fixes instead of displaying codes.</p>
+
+      <p>We built a multi-code access system—one host code with 10 uses for the birthday family, nine guest codes with 2 uses each. Parents could share their code via text message. No accounts. No passwords. No friction.</p>
+
+      <h3>The Technical Reality</h3>
+
+      <p>Google's Gemini 2.0 Flash handles the image generation—fast enough for party energy, cheap enough for party budgets. The prompt engineering took longer than the code. Getting AI to preserve a child's face while placing them in a prehistoric jungle required structured prompts with specific scene, environment, and mood parameters.</p>
+
+      <p>localStorage tracks usage per code, per browser. No database. No backend complexity. The entire system runs on Vercel's free tier. Total infrastructure cost: $0.</p>
+
+      <h3>What Happened at the Party</h3>
+
+      <p>168 photos generated across the afternoon. Kids cycling back for "one more adventure." Parents texting the results before they left. The birthday boy insisted on being placed in every possible dinosaur scenario.</p>
+
+      <p>Total generation cost at $0.05 per image: $8.40.</p>
+
+      <p>The system ran for four hours without intervention. No crashes. No confused users. No one asking how it works. They just used it.</p>
+
+      <h3>The Bigger Point</h3>
+
+      <p>This wasn't enterprise software. It was a party favor. But it demonstrates something important: AI applications don't require AI expertise to use. The complexity can be hidden. The magic can feel effortless.</p>
+
+      <p>When a 5-year-old can operate your AI system without help, you've probably designed it right.</p>
+
+      <p>Live at: kai.slopgpt.com</p>
+    `
   }
 ];
 

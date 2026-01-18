@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>View the Future | Softworks Trading Company</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --brown: #4a3728;
+      --brown-light: #6b5344;
+      --teal: #2d8a8a;
+      --teal-light: #3aa8a8;
+      --green: #4a7c59;
+      --sandstone: #d4c4a8;
+      --cream: #faf8f5;
+      --fog: #f0ece6;
+      --white: #ffffff;
+      --text: #2d2d2d;
+      --text-light: #666;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+
+    /* ═══════════════════════════════════════════════════════════
+       PASSWORD GATE
+    ═══════════════════════════════════════════════════════════ */
+    .password-gate {
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, var(--brown) 0%, #2d2420 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 1;
+      transition: opacity 0.5s ease;
+    }
+    .password-gate.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .gate-content {
+      text-align: center;
+      padding: 3rem;
+      max-width: 400px;
+    }
+    .gate-logo {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--sandstone);
+      margin-bottom: 2rem;
+      opacity: 0.8;
+    }
+    .gate-title {
+      font-size: 2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .gate-subtitle {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+    .gate-input {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-family: inherit;
+      border: 2px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      text-align: center;
+      letter-spacing: 0.1em;
+      transition: all 0.2s;
+    }
+    .gate-input::placeholder { color: rgba(255,255,255,0.3); }
+    .gate-input:focus {
+      outline: none;
+      border-color: var(--teal);
+      background: rgba(255,255,255,0.08);
+    }
+    .gate-input.error {
+      border-color: #c0392b;
+      animation: shake 0.4s ease;
+    }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-8px); }
+      75% { transform: translateX(8px); }
+    }
+    .gate-hint {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .gate-btn {
+      width: 100%;
+      margin-top: 1rem;
+      padding: 1rem;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border: none;
+      border-radius: 12px;
+      background: var(--teal);
+      color: var(--white);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .gate-btn:hover {
+      background: var(--teal-light);
+    }
+    .gate-btn:active {
+      transform: scale(0.98);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       PRESENTATION CONTAINER
+    ═══════════════════════════════════════════════════════════ */
+    .presentation {
+      display: none;
+      height: 100vh;
+    }
+    .presentation.visible { display: block; }
+
+    /* Progress */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--teal), var(--green));
+      transition: width 0.4s ease;
+      z-index: 100;
+    }
+
+    /* Counter */
+    .slide-counter {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-light);
+      letter-spacing: 0.05em;
+      z-index: 100;
+      transition: color 0.3s ease;
+    }
+    .slide-counter.light {
+      color: rgba(255,255,255,0.7);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SLIDES
+    ═══════════════════════════════════════════════════════════ */
+    .slide-container {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 32px 100px;
+    }
+
+    .slide {
+      max-width: 1000px;
+      width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      display: none;
+    }
+    .slide.active {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       CINEMATIC HERO (opening slide with parallax)
+    ═══════════════════════════════════════════════════════════ */
+    .slide-cinematic {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+      max-width: none;
+    }
+    .slide-cinematic .bg-image {
+      position: absolute;
+      inset: -60px;
+      /* Oregon Foothills - Banks, Tualatin Valley (placeholder - replace with VtF photography) */
+      background-image: url('https://www.islands.com/img/gallery/hidden-in-the-foothills-between-portland-and-the-oregon-coast-is-a-quaint-town-with-wine-and-wild-trails/l-intro-1767848670.jpg');
+      background-size: cover;
+      background-position: center 40%;
+      animation: slowPan 25s ease-in-out infinite alternate;
+    }
+    @keyframes slowPan {
+      0% {
+        transform: scale(1.1) translate(0, 0);
+      }
+      100% {
+        transform: scale(1.15) translate(-20px, -10px);
+      }
+    }
+    .slide-cinematic .bg-overlay {
+      position: absolute;
+      inset: 0;
+      /* Subtle overlay for daylight image - maintains natural feel */
+      background: rgba(0,0,0,0.35);
+    }
+    .slide-cinematic .content {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      padding: 2rem;
+      max-width: 750px;
+      width: 100%;
+      text-align: center;
+    }
+    .slide-cinematic .intro-label {
+      font-size: clamp(0.75rem, 1.5vw, 0.9rem);
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 1.25rem;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+      animation: fadeInUp 1s ease-out;
+    }
+    .slide-cinematic h1 {
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      color: var(--white);
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 1.75rem;
+      text-shadow: 0 4px 30px rgba(0,0,0,0.5);
+      animation: fadeInUp 1s ease-out 0.15s both;
+    }
+    .slide-cinematic .tagline {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      color: rgba(255,255,255,0.95);
+      font-weight: 400;
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.7;
+      text-shadow: 0 2px 15px rgba(0,0,0,0.5);
+      animation: fadeInUp 1s ease-out 0.3s both;
+    }
+    .slide-cinematic .tagline strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+    .slide-cinematic .byline {
+      margin-top: 3rem;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.5);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.4);
+      animation: fadeInUp 1s ease-out 0.45s both;
+    }
+    .slide-cinematic .scroll-hint {
+      position: absolute;
+      bottom: 110px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255,255,255,0.7);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      animation: fadeInUp 1s ease-out 0.8s both;
+    }
+    .slide-cinematic .scroll-hint svg {
+      width: 20px;
+      height: 20px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    .slide-cinematic .placeholder-notice {
+      position: absolute;
+      bottom: 170px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.7);
+      color: rgba(255,255,255,0.9);
+      font-size: 0.7rem;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px dashed rgba(255,255,255,0.3);
+      z-index: 2;
+    }
+
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .slide-cinematic .bg-image {
+        animation: none;
+        transform: scale(1.05);
+      }
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       HERO SLIDES (full-impact)
+    ═══════════════════════════════════════════════════════════ */
+    .slide-hero {
+      text-align: center;
+    }
+    .slide-hero .big-number {
+      font-size: clamp(4rem, 15vw, 10rem);
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .slide-hero h1 {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      color: var(--brown);
+      font-weight: 500;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.02em;
+    }
+    .slide-hero .tagline {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--text-light);
+      font-weight: 300;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+    .slide-hero .byline {
+      margin-top: 3rem;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--sandstone);
+    }
+    .slide-hero .cta-btn {
+      display: inline-block;
+      margin-top: 2.5rem;
+      padding: 1rem 2.5rem;
+      font-size: 1rem;
+      font-family: inherit;
+      font-weight: 500;
+      text-decoration: none;
+      color: var(--white);
+      background: var(--teal);
+      border-radius: 12px;
+      transition: all 0.2s;
+    }
+    .slide-hero .cta-btn:hover {
+      background: var(--teal-light);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(45,138,138,0.3);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       STATEMENT SLIDES (one big idea)
+    ═══════════════════════════════════════════════════════════ */
+    .slide-statement {
+      text-align: center;
+      padding: 0 5%;
+    }
+    .slide-statement h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+      color: var(--brown);
+      font-weight: 500;
+      line-height: 1.3;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+    .slide-statement p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--text-light);
+      max-width: 550px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .slide-statement .accent {
+      color: var(--teal);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       SCREENSHOT SLIDES
+    ═══════════════════════════════════════════════════════════ */
+    .slide-screenshot {
+      text-align: center;
+    }
+    .slide-screenshot h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      color: var(--brown);
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+
+    /* Frame container - desktop shows both, mobile shows toggle */
+    .frames-desktop {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+      height: 52vh;
+      max-height: 480px;
+    }
+
+    /* Desktop browser frame - 16:10 aspect ratio */
+    .frame-browser {
+      flex: 1;
+      max-width: 640px;
+      aspect-ratio: 16 / 10;
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.08);
+      position: relative;
+    }
+    .frame-browser::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 32px;
+      background: var(--fog);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .frame-browser::after {
+      content: '';
+      position: absolute;
+      top: 11px;
+      left: 14px;
+      width: 10px;
+      height: 10px;
+      background: #ff6058;
+      border-radius: 50%;
+      box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27ca40;
+    }
+    .frame-browser img {
+      position: absolute;
+      top: 32px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 32px);
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* Mobile phone frame - 9:19.5 aspect ratio (iPhone) */
+    .frame-phone {
+      width: 140px;
+      flex-shrink: 0;
+      aspect-ratio: 9 / 19.5;
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      border: 4px solid #1a1a1a;
+      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .frame-phone::before {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 18px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      z-index: 10;
+    }
+    .frame-phone img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* Mobile-only large frame */
+    .frames-mobile {
+      display: none;
+    }
+    .frame-phone-large {
+      width: auto;
+      height: 45vh;
+      max-height: 400px;
+      aspect-ratio: 9 / 19.5;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 28px;
+      overflow: hidden;
+      border: 4px solid #1a1a1a;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+      position: relative;
+    }
+    .frame-phone-large::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 18px;
+      background: #1a1a1a;
+      border-radius: 10px;
+      z-index: 10;
+    }
+    .frame-phone-large img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .frame-browser-mobile {
+      display: none;
+      width: 100%;
+      max-width: 500px;
+      aspect-ratio: 16 / 10;
+      margin: 0 auto;
+      background: var(--white);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+      position: relative;
+    }
+    .frame-browser-mobile::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 24px;
+      background: var(--fog);
+    }
+    .frame-browser-mobile::after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 10px;
+      width: 8px;
+      height: 8px;
+      background: #ff6058;
+      border-radius: 50%;
+      box-shadow: 12px 0 0 #ffbd2e, 24px 0 0 #27ca40;
+    }
+    .frame-browser-mobile img {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      width: 100%;
+      height: calc(100% - 24px);
+      object-fit: cover;
+      object-position: top;
+    }
+
+    /* View toggle */
+    .view-toggle {
+      display: none;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
+    .view-toggle-inner {
+      display: flex;
+      background: var(--fog);
+      border-radius: 10px;
+      padding: 4px;
+    }
+    .view-toggle button {
+      padding: 0.6rem 1.25rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      font-family: inherit;
+      border: none;
+      background: transparent;
+      color: var(--text-light);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .view-toggle button.active {
+      background: var(--white);
+      color: var(--brown);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+
+    /* Caption */
+    .caption {
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 400;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.5;
+    }
+    .caption strong {
+      color: var(--teal);
+      font-weight: 600;
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       STATS SLIDE
+    ═══════════════════════════════════════════════════════════ */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1;
+    }
+    .stat-label {
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       NAVIGATION
+    ═══════════════════════════════════════════════════════════ */
+    .nav-container {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(0,0,0,0.06);
+      padding: 1rem 1.5rem;
+      z-index: 100;
+    }
+    .nav-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-btn {
+      min-width: 100px;
+      min-height: 44px;
+      padding: 0.7rem 1.5rem;
+      font-size: 0.8rem;
+      font-family: inherit;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border: 1px solid rgba(0,0,0,0.12);
+      background: var(--white);
+      color: var(--text);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .nav-btn:hover:not(:disabled) {
+      background: var(--fog);
+    }
+    .nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+    .nav-btn.primary {
+      background: var(--teal);
+      border-color: var(--teal);
+      color: var(--white);
+    }
+    .nav-btn.primary:hover:not(:disabled) {
+      background: var(--teal-light);
+    }
+
+    .dots {
+      display: flex;
+      gap: 6px;
+    }
+    .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--fog);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    .dot.active {
+      background: var(--teal);
+      width: 24px;
+      border-radius: 4px;
+    }
+    .dot:hover:not(.active) {
+      background: var(--sandstone);
+    }
+
+    /* ═══════════════════════════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      .frames-desktop { display: none; }
+      .frames-mobile { display: block; }
+      .view-toggle { display: flex; }
+      .frame-phone-large { display: block; }
+      .frame-phone-large.hidden { display: none; }
+      .frame-browser-mobile.visible { display: block; }
+
+      .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .slide-container {
+        padding: 50px 20px 100px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .nav-btn {
+        min-width: 80px;
+        padding: 0.6rem 1rem;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PASSWORD GATE
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="password-gate" id="passwordGate">
+    <div class="gate-content">
+      <div class="gate-logo">Softworks Trading Company</div>
+      <h1 class="gate-title serif">Client Preview</h1>
+      <p class="gate-subtitle">Enter the password to view this presentation</p>
+      <input
+        type="password"
+        class="gate-input"
+        id="passwordInput"
+        placeholder="Password"
+        autocomplete="off"
+      >
+      <button class="gate-btn" id="enterBtn">Enter</button>
+      <p class="gate-hint">Or press Enter on keyboard</p>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════════
+       PRESENTATION
+  ═══════════════════════════════════════════════════════════ -->
+  <div class="presentation" id="presentation">
+
+    <!-- Progress bar -->
+    <div class="progress-bar" id="progress"></div>
+
+    <!-- Counter -->
+    <div class="slide-counter" id="counter">1 / 12</div>
+
+    <!-- Slides -->
+    <div class="slide-container" id="slideContainer">
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 1: THE HOOK (Cinematic)
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-cinematic active" data-slide="0">
+        <div class="bg-image" id="parallaxBg"></div>
+        <div class="bg-overlay"></div>
+        <div class="content">
+          <p class="intro-label">Introducing a new digital home for</p>
+          <h1 class="serif">View the Future</h1>
+          <p class="tagline">A website designed to protect <strong>441 acres</strong><br>of Oregon's most beautiful coastline.</p>
+          <p class="byline">Website Redesign Proposal</p>
+        </div>
+        <div class="scroll-hint">
+          <span>Swipe to explore</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 18l6-6-6-6"/>
+          </svg>
+        </div>
+        <div class="placeholder-notice">
+          Placeholder image - Replace with authentic VtF photography
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 2: THE STAKES
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-statement" data-slide="1">
+        <h2 class="serif">Every visitor who leaves your site <span class="accent">is a donor who never was.</span></h2>
+        <p>Your mission is too important for an outdated web presence. The new View the Future website is designed to turn visitors into advocates.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 3: HOMEPAGE
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="2">
+        <h2 class="serif">First Impressions Matter</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/home-desktop.png" alt="Homepage">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/home-mobile.png" alt="Homepage mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/home-mobile.png" alt="Homepage mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/home-desktop.png" alt="Homepage">
+          </div>
+        </div>
+        <p class="caption"><strong>3 seconds</strong> to capture attention. This hero does it with impact.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 4: ABOUT
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="3">
+        <h2 class="serif">Your Story, Told Beautifully</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/about-desktop.png" alt="About page">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/about-mobile.png" alt="About page mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/about-mobile.png" alt="About page mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/about-desktop.png" alt="About page">
+          </div>
+        </div>
+        <p class="caption"><strong>Trust is built through story.</strong> Your history becomes their connection.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 5: YACHATS RIDGE
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="4">
+        <h2 class="serif">Flagship Project, Front and Center</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/yachats-ridge-desktop.png" alt="Yachats Ridge">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/yachats-ridge-mobile.png" alt="Yachats Ridge mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/yachats-ridge-mobile.png" alt="Yachats Ridge mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/yachats-ridge-desktop.png" alt="Yachats Ridge">
+          </div>
+        </div>
+        <p class="caption"><strong>441 acres of potential.</strong> Visitors see progress. Donors see impact.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 6: DONATE
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="5">
+        <h2 class="serif">Make Giving Easy</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/donate-desktop.png" alt="Donate page">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/donate-mobile.png" alt="Donate page mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/donate-mobile.png" alt="Donate page mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/donate-desktop.png" alt="Donate page">
+          </div>
+        </div>
+        <p class="caption"><strong>Fewer clicks, more donations.</strong> A dedicated page that converts.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 7: GET INVOLVED
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="6">
+        <h2 class="serif">Multiple Paths to Participate</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/get-involved-desktop.png" alt="Get Involved">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/get-involved-mobile.png" alt="Get Involved mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/get-involved-mobile.png" alt="Get Involved mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/get-involved-desktop.png" alt="Get Involved">
+          </div>
+        </div>
+        <p class="caption"><strong>Not everyone can give money.</strong> Time and land are just as valuable.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 8: EVENTS & CONTACT
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-screenshot" data-slide="7">
+        <h2 class="serif">Community Connection</h2>
+        <div class="view-toggle">
+          <div class="view-toggle-inner">
+            <button class="active" data-view="mobile">Mobile</button>
+            <button data-view="desktop">Desktop</button>
+          </div>
+        </div>
+        <div class="frames-desktop">
+          <div class="frame-browser">
+            <img src="slides/events-desktop.png" alt="Events page">
+          </div>
+          <div class="frame-phone">
+            <img src="slides/contact-mobile.png" alt="Contact mobile">
+          </div>
+        </div>
+        <div class="frames-mobile">
+          <div class="frame-phone-large">
+            <img src="slides/contact-mobile.png" alt="Contact mobile">
+          </div>
+          <div class="frame-browser-mobile">
+            <img src="slides/events-desktop.png" alt="Events page">
+          </div>
+        </div>
+        <p class="caption"><strong>Events build community.</strong> Easy contact builds relationships.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 9: PERFORMANCE
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-statement" data-slide="8">
+        <h2 class="serif">Fast enough that visitors <span class="accent">never think about speed.</span></h2>
+        <div class="stats-grid" style="margin-top: 2.5rem;">
+          <div class="stat-item">
+            <div class="stat-number">1.7s</div>
+            <div class="stat-label">Page Load</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">93</div>
+            <div class="stat-label">Performance Score</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Layout Shift</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 10: NEXT STEPS
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-statement" data-slide="9">
+        <h2 class="serif">Your feedback. Your photos. <span class="accent">Your launch.</span></h2>
+        <p>We'll incorporate your notes, swap in authentic VtF photography, connect your donation processor, and go live on viewthefuture.org.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 11: VISION
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-hero" data-slide="10">
+        <h1 class="serif">Imagine a visitor finding you for the first time.</h1>
+        <p class="tagline">They came curious. They leave committed.<br>That's what this website will do.</p>
+      </div>
+
+      <!-- ═══════════════════════════════════════════════════════════
+           SLIDE 12: CLOSE
+      ═══════════════════════════════════════════════════════════ -->
+      <div class="slide slide-hero" data-slide="11">
+        <h1 class="serif">Let's protect the coast together.</h1>
+        <p class="tagline">Ready when you are.</p>
+        <a href="https://vtf.sftwrks.com" target="_blank" class="cta-btn">View Live Site</a>
+        <p class="byline">sftwrks.com</p>
+      </div>
+
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-container">
+      <div class="nav-inner">
+        <button class="nav-btn" id="prevBtn" disabled>Previous</button>
+        <div class="dots" id="dots"></div>
+        <button class="nav-btn primary" id="nextBtn">Next</button>
+      </div>
+    </nav>
+
+  </div>
+
+  <script>
+    // ═══════════════════════════════════════════════════════════
+    // PASSWORD GATE
+    // ═══════════════════════════════════════════════════════════
+    const PASSWORD = 'pass123';
+    const gate = document.getElementById('passwordGate');
+    const input = document.getElementById('passwordInput');
+    const enterBtn = document.getElementById('enterBtn');
+    const presentation = document.getElementById('presentation');
+
+    // Check session
+    if (sessionStorage.getItem('vtf_auth') === 'true') {
+      gate.classList.add('hidden');
+      presentation.classList.add('visible');
+    }
+
+    function tryLogin() {
+      if (input.value === PASSWORD) {
+        sessionStorage.setItem('vtf_auth', 'true');
+        gate.classList.add('hidden');
+        setTimeout(() => {
+          presentation.classList.add('visible');
+        }, 300);
+      } else {
+        input.classList.add('error');
+        input.value = '';
+        setTimeout(() => input.classList.remove('error'), 400);
+      }
+    }
+
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') tryLogin();
+    });
+
+    enterBtn.addEventListener('click', tryLogin);
+
+    // Focus input on load
+    setTimeout(() => input.focus(), 100);
+
+    // ═══════════════════════════════════════════════════════════
+    // PARALLAX EFFECT
+    // ═══════════════════════════════════════════════════════════
+    const parallaxBg = document.getElementById('parallaxBg');
+
+    document.addEventListener('mousemove', (e) => {
+      if (!parallaxBg || currentSlide !== 0) return;
+      const x = (e.clientX / window.innerWidth - 0.5) * 20;
+      const y = (e.clientY / window.innerHeight - 0.5) * 20;
+      parallaxBg.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+    });
+
+    // Device orientation parallax for mobile
+    window.addEventListener('deviceorientation', (e) => {
+      if (!parallaxBg || currentSlide !== 0) return;
+      const x = (e.gamma || 0) * 0.5;
+      const y = (e.beta || 0) * 0.3;
+      parallaxBg.style.transform = `translate(${x}px, ${y}px) scale(1.05)`;
+    });
+
+    // ═══════════════════════════════════════════════════════════
+    // PRESENTATION CONTROLS
+    // ═══════════════════════════════════════════════════════════
+    const totalSlides = 12;
+    let currentSlide = 0;
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    const slides = document.querySelectorAll('.slide');
+    const progress = document.getElementById('progress');
+    const counter = document.getElementById('counter');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dotsContainer = document.getElementById('dots');
+
+    // Create dots
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('button');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goToSlide(i));
+      dotsContainer.appendChild(dot);
+    }
+
+    // View toggle for mobile
+    document.querySelectorAll('.view-toggle').forEach(toggle => {
+      toggle.querySelectorAll('button').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const view = e.target.dataset.view;
+          const slide = e.target.closest('.slide');
+          toggle.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+          e.target.classList.add('active');
+
+          const phoneFrame = slide.querySelector('.frame-phone-large');
+          const browserFrame = slide.querySelector('.frame-browser-mobile');
+
+          if (view === 'mobile') {
+            phoneFrame.classList.remove('hidden');
+            browserFrame.classList.remove('visible');
+          } else {
+            phoneFrame.classList.add('hidden');
+            browserFrame.classList.add('visible');
+          }
+        });
+      });
+    });
+
+    function updateUI() {
+      progress.style.width = ((currentSlide + 1) / totalSlides * 100) + '%';
+      counter.textContent = (currentSlide + 1) + ' / ' + totalSlides;
+
+      // Toggle light counter on cinematic slides
+      counter.classList.toggle('light', currentSlide === 0);
+
+      slides.forEach((slide, index) => {
+        slide.classList.toggle('active', index === currentSlide);
+      });
+
+      document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+      });
+
+      prevBtn.disabled = currentSlide === 0;
+      nextBtn.disabled = currentSlide === totalSlides - 1;
+    }
+
+    function goToSlide(index) {
+      if (index >= 0 && index < totalSlides && index !== currentSlide) {
+        currentSlide = index;
+        updateUI();
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        currentSlide++;
+        updateUI();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        currentSlide--;
+        updateUI();
+      }
+    }
+
+    prevBtn.addEventListener('click', prevSlide);
+    nextBtn.addEventListener('click', nextSlide);
+
+    // Keyboard
+    document.addEventListener('keydown', (e) => {
+      if (gate.classList.contains('hidden')) {
+        if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextSlide(); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); prevSlide(); }
+      }
+    });
+
+    // Touch/swipe
+    document.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (!gate.classList.contains('hidden')) return;
+      const diffX = touchStartX - e.changedTouches[0].screenX;
+      const diffY = Math.abs(touchStartY - e.changedTouches[0].screenY);
+      if (Math.abs(diffX) > 50 && Math.abs(diffX) > diffY) {
+        if (diffX > 0) nextSlide();
+        else prevSlide();
+      }
+    }, { passive: true });
+
+    // Click to advance (edges)
+    document.querySelector('.slide-container').addEventListener('click', (e) => {
+      if (e.target.closest('.nav-container, button, .view-toggle')) return;
+      const clickX = e.clientX;
+      const width = window.innerWidth;
+      if (clickX > width * 0.65) nextSlide();
+      else if (clickX < width * 0.35) prevSlide();
+    });
+
+    updateUI();
+  </script>
+</body>
+</html>
