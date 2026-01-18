@@ -23,7 +23,7 @@ const Team: React.FC = () => {
         <div className="relative mb-12 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700">
           <div className="aspect-[4/3] md:aspect-[21/9] bg-gradient-to-br from-slate-100 to-slate-200 dark:from-[#1E3A5F] dark:to-[#0A1628]">
             <img
-              src="/assets/team/team-workflow-noir.png"
+              src="/assets/team/team-workflow-noir.webp"
               alt="Softworks collective - human expertise amplified by AI"
               className="w-full h-full object-cover"
             />
@@ -53,7 +53,7 @@ const Team: React.FC = () => {
 
         {/* Closing note */}
         <div className="mt-12 text-center">
-          <p className="text-slate-500 dark:text-slate-500 text-sm max-w-2xl mx-auto italic">
+          <p className="text-slate-600 dark:text-slate-400 text-sm max-w-2xl mx-auto italic">
             "We'd rather build something that works than talk about building something that works."
           </p>
         </div>

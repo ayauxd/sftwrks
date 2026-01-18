@@ -1,0 +1,14 @@
+Title: The Year AI Became Infrastructure
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "Foundation Built":
+A calendar page curling/turning from 2025 to 2026 in the upper portion of the frame.
+Below the calendar, a solid interconnected foundation of glowing nodes and connections has formed.
+The foundation wasn't there before - now it's permanent bedrock.
+Foundation glows with subtle cyan network connections.
+Paper-cut layers: calendar page in front, foundation below/behind.
+Visual metaphor: AI shifting from experimental novelty to permanent infrastructure.
+4:3 aspect ratio.

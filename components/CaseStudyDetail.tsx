@@ -14,10 +14,13 @@ interface CaseStudyDetailProps {
 }
 
 const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ study, onBack, onNavigate }) => {
-  // Find current index and adjacent studies
-  const currentIndex = CASE_STUDIES.findIndex(s => s.id === study.id);
-  const prevStudy = currentIndex > 0 ? CASE_STUDIES[currentIndex - 1] : null;
-  const nextStudy = currentIndex < CASE_STUDIES.length - 1 ? CASE_STUDIES[currentIndex + 1] : null;
+  // Sort case studies by completedDate (newest first) for navigation
+  const sortedStudies = [...CASE_STUDIES].sort((a, b) =>
+    b.completedDate.localeCompare(a.completedDate)
+  );
+  const currentIndex = sortedStudies.findIndex(s => s.id === study.id);
+  const prevStudy = currentIndex > 0 ? sortedStudies[currentIndex - 1] : null;
+  const nextStudy = currentIndex < sortedStudies.length - 1 ? sortedStudies[currentIndex + 1] : null;
 
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24 font-sans text-slate-900 dark:text-white">
@@ -42,6 +45,10 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ study, onBack, onNavi
                  <div className="flex flex-col gap-2 mb-6">
                     <span className="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest">Sector</span>
                     <span className="text-lg font-bold font-['Courier_Prime']">{study.sector}</span>
+                 </div>
+                 <div className="flex flex-col gap-2 mb-6">
+                    <span className="text-xs font-mono text-slate-400 dark:text-slate-500 uppercase tracking-widest">Completed</span>
+                    <span className="text-lg font-bold font-['Courier_Prime']">{study.date}</span>
                  </div>
                  <div className="flex flex-col gap-2">
                     <span className="text-xs font-mono text-[#00D4FF] uppercase tracking-widest font-bold">Outcome</span>

@@ -48,4 +48,6 @@ export interface CaseStudy {
   imageUrl: string;
   outcome: string;
   content: string;
+  date: string;         // Display date (e.g., "DEC 2025")
+  completedDate: string; // ISO date for sorting (e.g., "2025-12")
 }

@@ -172,6 +172,9 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   const [validatingInput, setValidatingInput] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
   const [honeypot, setHoneypot] = useState(''); // Anti-spam honeypot field
+  const [answerTimestamps, setAnswerTimestamps] = useState<number[]>([]); // Track answer times for speed detection
+  const [showSpeedNudge, setShowSpeedNudge] = useState(false); // Show gentle reminder about pacing
+  const [speedNudgeShown, setSpeedNudgeShown] = useState(false); // Only show once per session
 
   // Show prompt after 3 seconds if not opened
   React.useEffect(() => {
@@ -241,6 +244,25 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
 
   const handleOptionSelect = (option: { label: string; value: string; score: number }) => {
     const step = ASSESSMENT_STEPS[currentStep - 1];
+    const now = Date.now();
+
+    // Track answer timestamp for speed detection
+    const newTimestamps = [...answerTimestamps, now];
+    setAnswerTimestamps(newTimestamps);
+
+    // Check if user is clicking too fast (3+ answers in under 4 seconds total = too fast)
+    // Only show nudge once per session and only after 2+ quick answers
+    if (!speedNudgeShown && newTimestamps.length >= 3) {
+      const lastThree = newTimestamps.slice(-3);
+      const timeSpan = lastThree[2] - lastThree[0];
+      if (timeSpan < 4000) { // Less than 4 seconds for 3 answers
+        setShowSpeedNudge(true);
+        setSpeedNudgeShown(true);
+        // Auto-dismiss after 4 seconds
+        setTimeout(() => setShowSpeedNudge(false), 4000);
+      }
+    }
+
     const newAnswer: AssessmentAnswer = {
       stepId: step.id,
       value: option.value,
@@ -347,8 +369,8 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     setLoadingInsight(false);
   };
 
-  // Send assessment to n8n webhook for persistent storage and automation
-  const sendToWebhook = async (payload: {
+  // Send assessment via FormSubmit (free email service, no backend needed)
+  const sendViaFormSubmit = async (payload: {
     source: string;
     timestamp: string;
     score: number;
@@ -358,32 +380,42 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     responses: Array<{ question: string; answer: string; isCustom: boolean }>;
     aiInsight?: string;
   }) => {
-    const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-
-    if (!webhookUrl) {
-      console.warn('No webhook URL configured - skipping webhook submission');
-      return { success: false, error: 'No webhook URL' };
-    }
-
     try {
-      const response = await fetch(webhookUrl, {
+      // Format responses for email readability
+      const responsesText = payload.responses
+        .map(r => `• ${r.question}: ${r.answer}${r.isCustom ? ' (custom)' : ''}`)
+        .join('\n');
+
+      const response = await fetch('https://formsubmit.co/ajax/agents@sftwrks.com', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json'
         },
-        body: JSON.stringify(payload),
+        body: JSON.stringify({
+          _subject: `AI Assessment: ${payload.tier} (Score: ${payload.score}/25)`,
+          _template: 'table',
+          source: payload.source,
+          timestamp: payload.timestamp,
+          'Prospect Email': payload.email,
+          'Phone': payload.phone || 'Not provided',
+          'Score': `${payload.score}/25`,
+          'Tier': payload.tier,
+          'Responses': responsesText,
+          'AI Insight': payload.aiInsight || 'Not generated'
+        })
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Assessment submitted to n8n:', data);
+        console.log('Assessment submitted via FormSubmit:', data);
         return { success: true, data };
       } else {
-        console.error('Webhook submission failed:', response.status);
+        console.error('FormSubmit failed:', response.status);
         return { success: false, error: `HTTP ${response.status}` };
       }
     } catch (error) {
-      console.error('Webhook submission error:', error);
+      console.error('FormSubmit error:', error);
       return { success: false, error: String(error) };
     }
   };
@@ -421,22 +453,20 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
       aiInsight: aiInsight || undefined
     };
 
-    // Try n8n webhook first (primary method)
-    const webhookResult = await sendToWebhook(webhookPayload);
+    // Send via FormSubmit (emails to agents@sftwrks.com)
+    const result = await sendViaFormSubmit(webhookPayload);
 
-    if (webhookResult.success) {
-      // Webhook succeeded - no need for mailto fallback
-      console.log('Assessment submitted via n8n:', webhookResult.data);
-      setSubmissionMethod('webhook');
+    if (result.success) {
+      console.log('Assessment submitted via FormSubmit');
+      setSubmissionMethod('webhook'); // Using 'webhook' for success UI
       setSubmitted(true);
       setIsSubmitting(false);
       return;
     }
 
-    // Fallback: Only use mailto if webhook fails
-    console.warn('Webhook failed, falling back to mailto:', webhookResult.error);
+    // Fallback: Only use mailto if FormSubmit fails
+    console.warn('FormSubmit failed, falling back to mailto:', result.error);
     setSubmissionMethod('mailto');
-    const customAnswers = answers.filter(a => a.isCustom);
     const assessmentSummary = answers.map(a => {
       const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
       return `${step?.question}: ${a.label}${a.isCustom ? ' (custom)' : ''}`;
@@ -450,15 +480,11 @@ SCORE: ${totalScore}/25 - ${tier.name}
 EMAIL: ${email}
 PHONE: ${phone || 'Not provided'}
 TIME: ${new Date().toISOString()}
-CUSTOM ANSWERS: ${customAnswers.length}
 
 RESPONSES:
 ${assessmentSummary}
 
 ${aiInsight ? `AI INSIGHT GENERATED:\n${aiInsight}` : ''}
-
----
-Ready for follow-up consultation.
     `);
 
     window.open(`mailto:agents@sftwrks.com?subject=${subject}&body=${body}`, '_blank');
@@ -477,6 +503,9 @@ Ready for follow-up consultation.
     setSubmissionMethod(null);
     setAiInsight(null);
     setShowDetailedResults(false);
+    setAnswerTimestamps([]);
+    setShowSpeedNudge(false);
+    // Note: speedNudgeShown is NOT reset - only show the nudge once per session
   };
 
   const renderContent = () => {
@@ -492,9 +521,14 @@ Ready for follow-up consultation.
           <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
             AI Readiness Assessment
           </h3>
-          <p className="text-slate-500 dark:text-slate-400 text-sm mb-8 max-w-[280px]">
+          <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 max-w-[280px]">
             5 quick questions to discover your AI potential. Get instant results—detailed insights available on request.
           </p>
+          <div className="bg-slate-100 dark:bg-[#1E3A5F]/50 rounded-lg px-4 py-3 mb-6 max-w-[280px]">
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
+              <span className="text-[#00D4FF] font-semibold">Tip:</span> Take a moment on each question. Thoughtful answers help us give you more relevant recommendations.
+            </p>
+          </div>
           <button
             onClick={() => setCurrentStep(1)}
             className="bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-semibold px-8 py-3 rounded-lg transition-colors text-sm uppercase tracking-wide"
@@ -522,7 +556,7 @@ Ready for follow-up consultation.
       };
 
       return (
-        <div className="flex-1 flex flex-col px-5 py-6 pb-safe overflow-y-auto" style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
+        <div className="flex-1 flex flex-col px-5 py-6 overflow-y-auto" style={{ paddingBottom: 'max(6rem, calc(4rem + env(safe-area-inset-bottom)))' }}>
           {!showDetailedResults ? (
             <>
               {/* Score Display with Context */}
@@ -593,37 +627,38 @@ Ready for follow-up consultation.
                 </div>
               </div>
 
-              {/* Prominent CTA for Full Report */}
-              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-4 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden mb-6 sm:mb-0">
-                <div className="absolute top-0 right-0 bg-[#00D4FF] text-[#0A1628] text-[9px] font-bold px-2 py-0.5 rounded-bl">
-                  FREE
+              {/* Prominent CTA for Full Report - Sticky on mobile */}
+              <div className="sticky bottom-0 -mx-5 px-5 pt-4 pb-6 bg-gradient-to-t from-white via-white dark:from-[#0F172A] dark:via-[#0F172A] to-transparent sm:relative sm:mx-0 sm:px-0 sm:pt-0 sm:pb-0 sm:bg-none">
+                <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-4 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden shadow-xl">
+                  <div className="absolute top-0 right-0 bg-[#00D4FF] text-[#0A1628] text-[9px] font-bold px-2 py-0.5 rounded-bl">
+                    FREE
+                  </div>
+                  <h4 className="text-white font-semibold text-sm mb-1">
+                    Ready for the Full Picture?
+                  </h4>
+                  <p className="text-slate-400 text-[11px] mb-3">
+                    {tierData.ctaSubtext}
+                  </p>
+                  <button
+                    onClick={() => {
+                      setShowDetailedResults(true);
+                      generateAIInsight();
+                    }}
+                    className="w-full bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-bold py-3 rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
+                  >
+                    {tierData.nextStep}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </button>
                 </div>
-                <h4 className="text-white font-semibold text-sm mb-1">
-                  Ready for the Full Picture?
-                </h4>
-                <p className="text-slate-400 text-[11px] mb-3">
-                  {tierData.ctaSubtext}
-                </p>
                 <button
-                  onClick={() => {
-                    setShowDetailedResults(true);
-                    generateAIInsight();
-                  }}
-                  className="w-full bg-[#00D4FF] hover:bg-[#22D3EE] text-[#0A1628] font-bold py-3 rounded-lg transition-colors text-sm flex items-center justify-center gap-2"
+                  onClick={resetAssessment}
+                  className="mt-3 w-full text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-center"
                 >
-                  {tierData.nextStep}
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                  </svg>
+                  Retake assessment
                 </button>
               </div>
-
-              <button
-                onClick={resetAssessment}
-                className="mt-2 text-[10px] text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-center"
-              >
-                Retake assessment
-              </button>
             </>
           ) : !submitted ? (
             <>
@@ -794,6 +829,20 @@ Ready for follow-up consultation.
     const step = ASSESSMENT_STEPS[currentStep - 1];
     return (
       <div className="flex-1 flex flex-col px-5 py-6">
+        {/* Speed Nudge - Gentle reminder */}
+        {showSpeedNudge && (
+          <div className="mb-4 bg-slate-100 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg p-3 animate-fade-in-up">
+            <div className="flex items-start gap-2">
+              <svg className="w-4 h-4 text-[#00D4FF] mt-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-xs text-slate-600 dark:text-slate-300">
+                Taking a moment on each question helps us give you better recommendations tailored to your situation.
+              </p>
+            </div>
+          </div>
+        )}
+
         {/* Progress */}
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">

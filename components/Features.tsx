@@ -98,7 +98,7 @@ const Features: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {/* Tier 1: Setup Support */}
             <div className="p-8 bg-[#1E3A5F]/50 border border-slate-700 hover:border-[#00D4FF]/50 transition-all">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-4 block">Foundation</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 block">Foundation</span>
               <h3 className="text-2xl font-bold text-white mb-4">AI Setup Support</h3>
               <p className="text-slate-400 font-light leading-relaxed mb-6">
                 Hands-on implementation help for Google Workspace + AI tools. Perfect for teams ready to get started.
@@ -165,7 +165,7 @@ const Features: React.FC = () => {
 
             {/* Tier 3: Enterprise Strategy */}
             <div className="p-8 bg-[#1E3A5F]/50 border border-slate-700 hover:border-[#00D4FF]/50 transition-all">
-              <span className="text-xs font-mono uppercase tracking-wider text-slate-500 mb-4 block">Enterprise</span>
+              <span className="text-xs font-mono uppercase tracking-wider text-slate-400 mb-4 block">Enterprise</span>
               <h3 className="text-2xl font-bold text-white mb-4">AI Strategy Consultation</h3>
               <p className="text-slate-400 font-light leading-relaxed mb-6">
                 AI planning for larger organizations. Full policy setup, system design, and team training included.

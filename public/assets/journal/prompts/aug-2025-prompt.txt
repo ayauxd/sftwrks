@@ -1,0 +1,14 @@
+Title: GPT-5 Changes the Game
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "The Unified Core":
+A central glowing orb/sphere in the middle of the frame.
+Multiple capability rays extend outward from it like a star or sun - representing text, code, image, reasoning capabilities.
+Each ray is distinct but all originate from the single unified source.
+The central sphere glows brightest cyan.
+Paper-cut depth with orb in foreground, rays extending to background.
+Visual metaphor: unified AI model with many capabilities in one.
+4:3 aspect ratio.

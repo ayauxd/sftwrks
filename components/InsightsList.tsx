@@ -12,7 +12,23 @@ interface InsightsListProps {
   onBack: () => void;
 }
 
+// Parse "MMM YYYY" date format to sortable value (e.g., "JAN 2026" -> "2026-01")
+const parseArticleDate = (dateStr: string): string => {
+  const months: Record<string, string> = {
+    'JAN': '01', 'FEB': '02', 'MAR': '03', 'APR': '04',
+    'MAY': '05', 'JUN': '06', 'JUL': '07', 'AUG': '08',
+    'SEP': '09', 'OCT': '10', 'NOV': '11', 'DEC': '12'
+  };
+  const [month, year] = dateStr.split(' ');
+  return `${year}-${months[month] || '01'}`;
+};
+
 const InsightsList: React.FC<InsightsListProps> = ({ onArticleClick, onBack }) => {
+  // Sort articles by date (newest first)
+  const sortedArticles = [...JOURNAL_ARTICLES].sort((a, b) =>
+    parseArticleDate(b.date).localeCompare(parseArticleDate(a.date))
+  );
+
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
@@ -43,7 +59,7 @@ const InsightsList: React.FC<InsightsListProps> = ({ onArticleClick, onBack }) =
 
         {/* Articles Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {JOURNAL_ARTICLES.map((article) => (
+          {sortedArticles.map((article) => (
             <div
               key={article.id}
               className="group cursor-pointer flex flex-col text-left"

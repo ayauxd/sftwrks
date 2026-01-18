@@ -1,0 +1,14 @@
+Title: The Reality Check
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "The Truth Mirror":
+A vertical mirror frame in the center of the composition.
+On the left (reflection side): a shiny, polished, sparkly surface representing hype and promise.
+On the right (reality side): practical tools being used, representing actual implementation.
+The reality/practical side has subtle cyan glow showing genuine value.
+Paper-cut layers create the mirror depth effect.
+Visual metaphor: looking past AI hype to find real implementation value.
+4:3 aspect ratio.

@@ -1,0 +1,13 @@
+Title: DeepSeek Changes Everything
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "David vs Goliath":
+A tiny glowing seed/sprout on the left that grows into a tree matching the height of massive dark corporate skyscrapers on the right.
+The small seed glows bright cyan, showing its efficiency and power.
+The corporate buildings are imposing dark monolithic shapes in navy and steel blue.
+Paper-cut depth: seed in foreground, tree growing in midground, skyscrapers in background.
+Visual metaphor: small and efficient can rival big and expensive.
+4:3 aspect ratio.

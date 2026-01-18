@@ -1,0 +1,14 @@
+Title: The Solo Founder Revolution
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "One Person Orchestra":
+A single small human silhouette in the center of the frame.
+Multiple glowing tool extensions/mechanical arms radiate outward from them.
+Each tool represents a different capability (code, design, analysis, communication).
+The tools glow cyan, dramatically extending the person's reach and capability.
+Like a one-person orchestra with AI instruments.
+Visual metaphor: solo founders amplified exponentially by AI tools.
+4:3 aspect ratio.

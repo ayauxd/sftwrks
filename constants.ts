@@ -53,7 +53,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'The Document Backlog Crisis',
     summary: 'A public logistics authority drowning in 4,000 daily manifests found a way to process them in seconds—without adding headcount.',
     outcome: '90% reduction in processing time.',
-    imageUrl: '/assets/case-studies/logistics-noir.png',
+    imageUrl: '/assets/case-studies/logistics-noir.webp',
+    date: 'MAR 2025',
+    completedDate: '2025-03',
     content: `
       <p>Here's a dirty secret about government operations: most of them run on paper, prayer, and the institutional knowledge of whoever's been there longest.</p>
 
@@ -83,7 +85,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'The Hallucination Problem in Regulated AI',
     summary: "When your AI chatbot can't afford to be wrong—building customer service that's accurate 100% of the time.",
     outcome: 'Zero AI hallucinations in 150K+ interactions.',
-    imageUrl: '/assets/case-studies/finance-noir.png',
+    imageUrl: '/assets/case-studies/finance-noir.webp',
+    date: 'NOV 2025',
+    completedDate: '2025-11',
     content: `
       <p>The call came in late November. Apex Financial's Head of Digital had just watched their competitor launch an AI chatbot. Two weeks later, that chatbot told a customer they qualified for a 2.9% mortgage rate that didn't exist. The screenshot went viral. The competitor's stock dropped 4%.</p>
 
@@ -117,55 +121,15 @@ export const CASE_STUDIES: CaseStudy[] = [
     `
   },
   {
-    id: 'cs3',
-    client: 'Regional Healthcare Network',
-    sector: 'Healthcare',
-    title: 'The Unsearchable Medical Records Problem',
-    summary: 'A decade of patient data locked in incompatible systems—and the knowledge graph that finally unlocked it.',
-    outcome: 'Patient history retrieval: hours → seconds.',
-    imageUrl: '/assets/case-studies/healthcare-noir.png',
-    content: `
-      <p>Every hospital administrator in America will tell you they have an "electronic health record system." What they actually have, in most cases, is several electronic health record systems that don't talk to each other, plus a decade of scanned PDFs, plus faxes (yes, healthcare still runs on faxes), plus handwritten notes from before the digital transition.</p>
-
-      <p>Metro Health was refreshingly honest about their situation: "We have ten years of patient data. We cannot search any of it."</p>
-
-      <p>A surgeon preparing for a complex case would spend—this is real—up to four hours manually reviewing patient history across multiple systems. Looking for drug interactions. Previous conditions. Old lab results buried in scanned documents from 2014.</p>
-
-      <p>This isn't a technology problem. It's a patient safety problem wearing technology clothes.</p>
-
-      <h3>Why "Just Digitize Everything" Doesn't Work</h3>
-
-      <p>The obvious solution—OCR all the documents, dump them in a database, build a search function—sounds reasonable until you try it. Medical records aren't keyword-searchable in any useful way. A search for "diabetes" misses records that say "DM2" or "glucose intolerance" or "HbA1c elevated." Medical knowledge is relational, not textual.</p>
-
-      <p>You don't want to find documents that mention a drug. You want to find all the times a patient interacted with that drug class—prescriptions, reactions, alternatives tried, dosage changes. That's a fundamentally different kind of search.</p>
-
-      <h3>Building the Knowledge Graph</h3>
-
-      <p>We built what's called a GraphRAG system—part knowledge graph, part retrieval-augmented generation. Every patient record gets processed not just for text, but for entities and relationships.</p>
-
-      <p>Patient → diagnosed with → Condition → treated with → Medication → caused → Side Effect → leading to → Alternative Treatment.</p>
-
-      <p>These relationships get stored in a Neo4j graph database. When a doctor asks "show me everything about this patient's cardiovascular history," the system doesn't search for keywords. It traverses relationships. It finds the cardiac event from 2019, the medication change that followed, the follow-up tests, the referral notes, the imaging results—all connected, all in context.</p>
-
-      <p>The interface is natural language because doctors don't have time to learn query syntax. "What medications has this patient tried for hypertension?" Just works.</p>
-
-      <h3>The Impact</h3>
-
-      <p>Pre-surgical patient review went from hours to minutes. But the bigger impact was unexpected: the system started catching things humans missed. Drug interactions buried in old records. Contraindications that nobody remembered. Family history notes from intake forms that never made it into the active chart.</p>
-
-      <p>We built a search tool. It turned into a safety net.</p>
-
-      <p>Metro's malpractice insurance carrier noticed. Their premium review is "under discussion"—which, in insurance terms, means it's going down.</p>
-    `
-  },
-  {
     id: 'cs4',
     client: 'Small Accounting Practice',
     sector: 'Professional Services',
     title: 'The Content Marketing Time Crunch',
     summary: 'A three-person CPA firm with no time for marketing built an AI video pipeline that runs itself.',
     outcome: '12 videos/month from 2 hours of work.',
-    imageUrl: '/assets/case-studies/accounting-noir.png',
+    imageUrl: '/assets/case-studies/accounting-noir.webp',
+    date: 'JUN 2025',
+    completedDate: '2025-06',
     content: `
       <p>Lisa Bennett runs a three-person accounting firm in the suburbs. Her problem wasn't finding clients—word of mouth kept her busy. Her problem was visibility. Every marketing consultant told her the same thing: you need to be on social media, posting consistently, showing your expertise.</p>
 
@@ -215,7 +179,9 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'The AI Photo Booth That Runs Itself',
     summary: 'A birthday party needed personalized dinosaur adventure photos for 30 guests—with zero staff and a $10 budget.',
     outcome: '168 AI-generated images, $0.05 each, fully automated.',
-    imageUrl: '/assets/case-studies/photobooth-noir.png',
+    imageUrl: '/assets/case-studies/photobooth-noir.webp',
+    date: 'JAN 2026',
+    completedDate: '2026-01',
     content: `
       <p>The request came three days before a 5-year-old's birthday party. "I want every kid to see themselves as a dinosaur adventurer." Thirty kids. Custom photos for each one. No photographer budget. No staff to run it.</p>
 
@@ -257,14 +223,95 @@ export const CASE_STUDIES: CaseStudy[] = [
 ];
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [
-  // Monthly AI Updates - 2025 (November to January, newest first)
+  // 2026 Articles (newest first)
+  {
+    id: 'ai-jan-2026',
+    title: 'January 2026: When Your Payment Processor Forgets You Exist',
+    date: 'JAN 2026',
+    author: 'Frederick A.',
+    excerpt: 'A single integration glitch orphaned a business owner\'s entire Stripe account. Here\'s what every cloud-dependent business needs to know.',
+    image: '/assets/journal/jan-2026.webp',
+    content: `
+      <p>On January 14th, machine learning author Andriy Burkov shared a cautionary tale that should concern every business running on cloud infrastructure. He connected his existing Stripe account to X's Creator Revenue Sharing program. What happened next is a masterclass in platform dependency risk.</p>
+
+      <h3>The Incident</h3>
+
+      <p>The moment Burkov linked his Stripe account to X, his primary business account—the one handling all his ChapterPal app subscriptions—effectively disappeared from Stripe's system. Authenticator codes stopped working. Customer subscriptions failed with errors claiming the user didn't exist. Stripe support could only see an empty X-linked account.</p>
+
+      <p>His entire payment infrastructure vanished because of an integration glitch.</p>
+
+      <h3>The Resolution (And Why It Was Lucky)</h3>
+
+      <p>Burkov found his original Stripe account ID cached in his browser history. Support used this to locate and restore access. The account "magically" started working again—a backend glitch, not permanent deletion.</p>
+
+      <p>But Burkov knows how this could have ended. He previously had an Amazon KDP account deleted—permanently wiping his books and royalties with no recovery possible. That data is gone forever.</p>
+
+      <h3>Best Practices for Cloud-Dependent Businesses</h3>
+
+      <p><strong>Diversify payment processors.</strong> Never rely on a single provider. Set up backups (PayPal, Square, Adyen) that can handle transactions if one fails.</p>
+
+      <p><strong>Maintain separate accounts for distinct integrations.</strong> Use dedicated accounts for different platform connections. This prevents cross-contamination when one integration goes wrong.</p>
+
+      <p><strong>Keep detailed records outside the platform.</strong> Document account IDs, API keys, transaction histories, and customer data in secure offline storage. Browser history saved Burkov—but you shouldn't rely on luck.</p>
+
+      <p><strong>Build existential redundancy.</strong> Design systems to reconstitute your business outside any single platform. Own your customer emails. Export data regularly. Assume any platform can fail or freeze your account without warning.</p>
+
+      <h3>What This Means For You</h3>
+
+      <p>The cloud giveth and the cloud taketh away. Every business running on third-party infrastructure is one database glitch away from operational crisis. The question isn't whether to use cloud services—they're essential. The question is whether you've built enough redundancy to survive when they fail.</p>
+
+      <hr />
+
+      <p><em>Your payment processor, your cloud storage, your SaaS tools—they're all rented infrastructure. Build your business knowing that any piece could disappear tomorrow. The survivors are the ones who planned for exactly that.</em></p>
+    `
+  },
+  {
+    id: 'ai-dec-2025',
+    title: 'December 2025: The Year AI Became Infrastructure',
+    date: 'DEC 2025',
+    author: 'Frederick A.',
+    excerpt: '2025 in review: From curiosity to necessity. How AI shifted from "should we?" to "how do we?" across every industry.',
+    image: '/assets/journal/dec-2025.webp',
+    content: `
+      <p>A year ago, the question was whether AI would live up to the hype. Twelve months later, the question has changed entirely. It's no longer "should we adopt AI?" It's "how do we implement it before our competitors do?"</p>
+
+      <h3>The Numbers That Defined 2025</h3>
+
+      <p><strong>$7.3 billion</strong> in departmental AI spending by Q1 alone—up 4.1x year over year. <strong>35%</strong> of new US startups founded by solo entrepreneurs, enabled by AI coding tools. <strong>87%</strong> of large enterprises now have AI implementations in production.</p>
+
+      <p>The shift wasn't gradual. It was a phase change. AI went from experimental to essential in the span of months.</p>
+
+      <h3>What Actually Shipped</h3>
+
+      <p>GPT-5 arrived in August with 256K context windows. Claude 4 and Opus 4.5 pushed coding capabilities to near-human levels. DeepSeek proved you don't need billions to build competitive models. Gemini 3 finally gave Google a clear win in the foundation model race.</p>
+
+      <p>But the real story wasn't the models—it was the applications. AI video generation went from "impressive demo" to "production tool." Coding assistants became standard developer equipment. Customer service bots stopped being jokes.</p>
+
+      <h3>The Talent Paradox</h3>
+
+      <p>Top AI talent now commands sports-star compensation—tens to hundreds of millions for four-year contracts. Yet the tools became accessible enough that non-technical founders are building sophisticated products through "vibe coding."</p>
+
+      <p>The message: you don't need AI experts to use AI effectively. You need people who understand your business and can learn the tools.</p>
+
+      <h3>Looking to 2026</h3>
+
+      <p>Expect agents to become mainstream—AI systems that don't just respond but act autonomously on your behalf. Expect multimodal to become standard—models that work with text, images, video, and audio interchangeably. Expect prices to keep falling and capabilities to keep rising.</p>
+
+      <p>The question for 2026 isn't whether AI matters. It's whether you've built the organizational capability to use it.</p>
+
+      <hr />
+
+      <p><em>2025 was the year AI proved itself. 2026 will be the year it becomes invisible—infrastructure so fundamental we stop noticing it's there.</em></p>
+    `
+  },
+  // 2025 Articles (newest first)
   {
     id: 'ai-nov-2025',
     title: 'November 2025: Three Frontier Models in One Week',
     date: 'NOV 2025',
     author: 'Frederick A.',
     excerpt: 'Gemini 3, Claude Opus 4.5, and GPT-5.1 released within days. Here\'s what it means for your business.',
-    image: '/assets/journal/nov-2025.png',
+    image: '/assets/journal/nov-2025.webp',
     content: `
       <p>The week of November 18th was the most competitive seven days in commercial AI history. Google dropped Gemini 3 Pro. Anthropic responded with Claude Opus 4.5. OpenAI released GPT-5.1. Three frontier models in one week.</p>
 
@@ -299,7 +346,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'OCT 2025',
     author: 'Frederick A.',
     excerpt: '35% of new US startups are now founded by one person. AI coding tools are the reason.',
-    image: '/assets/journal/oct-2025.png',
+    image: '/assets/journal/oct-2025.webp',
     content: `
       <p>Cursor's parent company just closed a $2.3 billion funding round at a $29.3 billion valuation. That's not a typo. A coding assistant is now worth more than most publicly traded tech companies.</p>
 
@@ -332,7 +379,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'SEP 2025',
     author: 'Frederick A.',
     excerpt: 'Claude Sonnet 4.5 claims best coding model. Stargate expands to 7 gigawatts. What the buildout signals.',
-    image: '/assets/journal/sep-2025.png',
+    image: '/assets/journal/sep-2025.webp',
     content: `
       <p>OpenAI announced five new Stargate data center sites this month, bringing total capacity to 7 gigawatts and over $400 billion in committed investment over three years. To put that in context: that's roughly the power consumption of a small country dedicated entirely to AI compute.</p>
 
@@ -365,7 +412,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'AUG 2025',
     author: 'Frederick A.',
     excerpt: 'OpenAI\'s flagship model arrives with 256K context, built-in routing, and expert-level performance.',
-    image: '/assets/journal/aug-2025.png',
+    image: '/assets/journal/aug-2025.webp',
     content: `
       <p>GPT-5 launched on August 7th. After months of speculation, OpenAI delivered a model that unifies capabilities most businesses were cobbling together from multiple tools.</p>
 
@@ -400,7 +447,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JUL 2025',
     author: 'David M.',
     excerpt: 'MIT study claims 95% of businesses found zero AI value. Here\'s what they got wrong—and right.',
-    image: '/assets/journal/jul-2025.png',
+    image: '/assets/journal/jul-2025.webp',
     content: `
       <p>An MIT study dropped in July claiming 95% of businesses that tried AI found zero value. The headlines were brutal. "AI Hype Bubble Bursts." "Enterprise AI: All Sizzle, No Steak."</p>
 
@@ -435,7 +482,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JUN 2025',
     author: 'Frederick A.',
     excerpt: 'Meta paid $14.3B for Scale AI. Top AI talent commands sports-star compensation. What this means for your hiring strategy.',
-    image: '/assets/journal/jun-2025.png',
+    image: '/assets/journal/jun-2025.webp',
     content: `
       <p>Meta's $14.3 billion Scale AI investment was widely interpreted as an acqui-hire of CEO Alexandr Wang. One person, valued at billions. Welcome to the AI talent market.</p>
 
@@ -468,7 +515,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'MAY 2025',
     author: 'David M.',
     excerpt: 'Anthropic releases Claude 4. Y Combinator reports 25% of startups generate 95% of code with AI. The vibe coding era is official.',
-    image: '/assets/journal/may-2025.png',
+    image: '/assets/journal/may-2025.webp',
     content: `
       <p>May 22nd: Anthropic released Claude Sonnet 4 and Claude Opus 4, setting new standards for coding, reasoning, and AI agents. Opus 4 positioned itself as the world's best coding model.</p>
 
@@ -501,7 +548,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'APR 2025',
     author: 'Nina R.',
     excerpt: 'Departmental AI spend hits $7.3B—up 4.1x year over year. Coding accounts for 55%. What the data reveals.',
-    image: '/assets/journal/apr-2025.png',
+    image: '/assets/journal/apr-2025.webp',
     content: `
       <p>The numbers from Q1 2025 are in. Departmental AI spending reached $7.3 billion—up 4.1x year over year. Coding tools alone account for 55% of that spend, roughly $4 billion.</p>
 
@@ -534,7 +581,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'MAR 2025',
     author: 'Frederick A.',
     excerpt: 'AI task capability doubles every 7 months. Agents won\'t replace jobs—they\'ll transform them.',
-    image: '/assets/journal/mar-2025.png',
+    image: '/assets/journal/mar-2025.webp',
     content: `
       <p>METR published research in March showing AI task duration capability doubles approximately every 7 months. Read that again. Every seven months, AI can handle tasks that take twice as long.</p>
 
@@ -567,7 +614,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'FEB 2025',
     author: 'Nina R.',
     excerpt: 'EU AI Act prohibitions take effect. Meanwhile, SMB AI adoption climbs quietly. The two stories are connected.',
-    image: '/assets/journal/feb-2025.png',
+    image: '/assets/journal/feb-2025.webp',
     content: `
       <p>February 2nd marked the beginning of EU AI Act enforcement. Prohibited AI practices and AI literacy obligations came into force across Europe. For businesses operating internationally, this is now a compliance requirement.</p>
 
@@ -598,7 +645,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     date: 'JAN 2025',
     author: 'Frederick A.',
     excerpt: 'A Chinese AI lab built a GPT-4 competitor for $5.6 million. Then Stargate announced $500 billion. The AI economics just shifted.',
-    image: '/assets/journal/jan-2025.png',
+    image: '/assets/journal/jan-2025.webp',
     content: `
       <p>January 2025 delivered two stories that seem contradictory but actually tell the same tale: AI economics are being rewritten.</p>
 
@@ -627,14 +674,14 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
       <p><em>2025 began with a clear message: the AI barrier to entry is lower than ever, but the ceiling keeps rising. The time to implement is now.</em></p>
     `
   },
-  // Existing thought leadership articles
+  // Thought Leadership Articles (spread across months with double entries)
   {
     id: 'j1',
     title: 'The Latency Tax Nobody Talks About',
     date: 'MAR 2025',
     author: 'David M.',
     excerpt: 'Your AI agent is probably too slow. Here\'s why that matters more than its intelligence.',
-    image: '/assets/sections/integration-hub.png',
+    image: '/assets/journal/latency-tax.webp',
     content: `
       <p>I watched a product demo last month where the founder proudly showed off their AI assistant. It was genuinely impressive—nuanced responses, excellent reasoning, could handle complex multi-step tasks.</p>
 
@@ -676,10 +723,10 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     id: 'j2',
     title: 'Your Context Window Is Not a Database',
-    date: 'FEB 2025',
+    date: 'JUN 2025',
     author: 'Nina R.',
     excerpt: 'The biggest mistake companies make with RAG: treating AI memory like a filing cabinet.',
-    image: '/assets/sections/strategy-map.png',
+    image: '/assets/journal/context-window.webp',
     content: `
       <p>Every few weeks, someone pitches me on their new RAG system. "We can stuff a million tokens into context now," they say. "The model can access everything."</p>
 
@@ -723,10 +770,10 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   {
     id: 'j3',
     title: 'The Chief AI Officer Won\'t Exist in Three Years',
-    date: 'JAN 2025',
+    date: 'NOV 2025',
     author: 'Frederick A.',
     excerpt: 'Why the hottest role in tech is already obsolete—and what\'s actually coming next.',
-    image: '/assets/hero/bridge-metaphor.png',
+    image: '/assets/journal/chief-ai-officer.webp',
     content: `
       <p>I've been getting a lot of calls from companies looking to hire their first "Head of AI" or "Chief AI Officer." The conversations all go roughly the same way.</p>
 

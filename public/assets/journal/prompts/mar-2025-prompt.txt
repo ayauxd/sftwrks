@@ -1,0 +1,14 @@
+Title: The Agent Evolution
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "Metamorphosis":
+A horizontal sequence showing evolution: simple geometric robot shape on left → transitioning middle form → elegant autonomous agent silhouette on right.
+Like a butterfly metamorphosis but for AI.
+Each stage more sophisticated than the last.
+Cyan energy trails connect the three stages, showing progression.
+Paper-cut depth with figures at different layers.
+Visual metaphor: AI agents rapidly evolving in capability.
+4:3 aspect ratio.

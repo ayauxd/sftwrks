@@ -13,11 +13,25 @@ interface JournalDetailProps {
   onNavigate?: (article: JournalArticle) => void;
 }
 
+// Parse "MMM YYYY" date format to sortable value (e.g., "JAN 2026" -> "2026-01")
+const parseArticleDate = (dateStr: string): string => {
+  const months: Record<string, string> = {
+    'JAN': '01', 'FEB': '02', 'MAR': '03', 'APR': '04',
+    'MAY': '05', 'JUN': '06', 'JUL': '07', 'AUG': '08',
+    'SEP': '09', 'OCT': '10', 'NOV': '11', 'DEC': '12'
+  };
+  const [month, year] = dateStr.split(' ');
+  return `${year}-${months[month] || '01'}`;
+};
+
 const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack, onNavigate }) => {
-  // Find current index and adjacent articles
-  const currentIndex = JOURNAL_ARTICLES.findIndex(a => a.id === article.id);
-  const prevArticle = currentIndex > 0 ? JOURNAL_ARTICLES[currentIndex - 1] : null;
-  const nextArticle = currentIndex < JOURNAL_ARTICLES.length - 1 ? JOURNAL_ARTICLES[currentIndex + 1] : null;
+  // Sort articles by date (newest first) for navigation
+  const sortedArticles = [...JOURNAL_ARTICLES].sort((a, b) =>
+    parseArticleDate(b.date).localeCompare(parseArticleDate(a.date))
+  );
+  const currentIndex = sortedArticles.findIndex(a => a.id === article.id);
+  const prevArticle = currentIndex > 0 ? sortedArticles[currentIndex - 1] : null;
+  const nextArticle = currentIndex < sortedArticles.length - 1 ? sortedArticles[currentIndex + 1] : null;
 
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24 font-sans text-slate-900 dark:text-white">

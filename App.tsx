@@ -22,7 +22,7 @@ import { CaseStudy, JournalArticle } from './types';
 
 function App() {
   // Theme Management
-  const [isDark, setIsDark] = useState(false); // Default to light mode
+  const [isDark, setIsDark] = useState(true); // Default to dark mode
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<CaseStudy | null>(null);
   const [selectedArticle, setSelectedArticle] = useState<JournalArticle | null>(null);
   const [showMedia, setShowMedia] = useState(false);
@@ -32,10 +32,24 @@ function App() {
   const [showTermsOfService, setShowTermsOfService] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
-  // Preview only first 3 articles on home page
-  const previewArticles = JOURNAL_ARTICLES.slice(0, 3);
-  // Preview only first 3 case studies on home page
-  const previewCaseStudies = CASE_STUDIES.slice(0, 3);
+  // Parse article date "MMM YYYY" to sortable format
+  const parseArticleDate = (dateStr: string): string => {
+    const months: Record<string, string> = {
+      'JAN': '01', 'FEB': '02', 'MAR': '03', 'APR': '04',
+      'MAY': '05', 'JUN': '06', 'JUL': '07', 'AUG': '08',
+      'SEP': '09', 'OCT': '10', 'NOV': '11', 'DEC': '12'
+    };
+    const [month, year] = dateStr.split(' ');
+    return `${year}-${months[month] || '01'}`;
+  };
+
+  // Preview sorted by date (newest first), limited to 3
+  const previewArticles = [...JOURNAL_ARTICLES]
+    .sort((a, b) => parseArticleDate(b.date).localeCompare(parseArticleDate(a.date)))
+    .slice(0, 3);
+  const previewCaseStudies = [...CASE_STUDIES]
+    .sort((a, b) => b.completedDate.localeCompare(a.completedDate))
+    .slice(0, 3);
 
   // Reset all page states to home
   const resetToHome = () => {
@@ -92,13 +106,13 @@ function App() {
   }, []);
 
   useEffect(() => {
-    // Check initial preference - default to light mode
-    if (localStorage.theme === 'dark') {
-      setIsDark(true);
-      document.documentElement.classList.add('dark');
-    } else {
+    // Check initial preference - default to dark mode
+    if (localStorage.theme === 'light') {
       setIsDark(false);
       document.documentElement.classList.remove('dark');
+    } else {
+      setIsDark(true);
+      document.documentElement.classList.add('dark');
     }
   }, []);
 
@@ -362,6 +376,9 @@ function App() {
                                 <div className="absolute inset-0 bg-[#0F172A]/10 group-hover:bg-transparent transition-colors"></div>
                                 <div className="absolute top-3 left-3 bg-white dark:bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300 uppercase">
                                     {study.sector}
+                                </div>
+                                <div className="absolute top-3 right-3 bg-white dark:bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300 uppercase">
+                                    {study.date}
                                 </div>
                             </div>
 

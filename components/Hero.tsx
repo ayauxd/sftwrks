@@ -82,17 +82,17 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/60" />
         </div>
 
-        {/* Light mode overlay - lighter, more transparent */}
+        {/* Light mode overlay - reduced opacity for more image visibility */}
         <div className={`absolute inset-0 transition-opacity duration-500 ${
           isDark ? 'opacity-0' : 'opacity-100'
         }`}>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/90 via-white/70 to-white/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-white/60" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/50 to-white/20" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-white/40" />
         </div>
       </div>
 
       {/* Circuit Grid Pattern Overlay - Very subtle, theme responsive, with floating animation */}
-      <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 animate-float ${isDark ? 'opacity-5' : 'opacity-[0.03]'}`}>
+      <div className={`absolute inset-0 pointer-events-none transition-opacity duration-500 animate-float ${isDark ? 'opacity-5' : 'opacity-[0.05]'}`}>
         <div
           className="absolute inset-0"
           style={{
@@ -118,7 +118,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
 
             {/* Empathy Hook */}
             <p className={`animate-fade-in-up text-sm md:text-base mb-6 transition-colors duration-300 ${
-              isDark ? 'text-slate-400' : 'text-slate-500'
+              isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
               AI doesn't have to be complicated.
             </p>
@@ -132,7 +132,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
 
             {/* Subheadline - How */}
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
-              isDark ? 'text-slate-400' : 'text-slate-600'
+              isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
               We handle the strategy, setup, and support—you get results.
             </p>
@@ -155,7 +155,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
                 className={`group px-8 py-4 font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center flex items-center justify-center gap-2 border w-full sm:w-auto ${
                   isDark
                     ? 'border-slate-500 text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF]'
-                    : 'border-slate-400 text-slate-600 hover:border-cyan-600 hover:text-cyan-600'
+                    : 'border-slate-500 text-slate-700 hover:border-cyan-600 hover:text-cyan-600'
                 }`}
               >
                 View Our Work
@@ -182,7 +182,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
 
             {/* Trust Indicators - Specific social proof */}
             <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
-              <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+              <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
                 <span className={`font-semibold ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`}>50+ teams</span> have shipped AI that actually works
               </p>
             </div>
@@ -198,7 +198,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         aria-label="Scroll to next section"
       >
         <div className="flex flex-col items-center gap-2 animate-bounce group-hover:animate-none">
-          <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${isDark ? 'text-slate-500 group-hover:text-[#00D4FF]' : 'text-slate-500 group-hover:text-cyan-600'}`}>
+          <span className={`text-xs font-mono uppercase tracking-widest transition-colors ${isDark ? 'text-slate-400 group-hover:text-[#00D4FF]' : 'text-slate-600 group-hover:text-cyan-600'}`}>
             Explore
           </span>
           <svg className={`w-6 h-6 transition-transform group-hover:translate-y-1 ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

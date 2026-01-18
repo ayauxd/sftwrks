@@ -1,0 +1,13 @@
+Title: The Talent War You Can't Win
+
+Prompt:
+Create a sophisticated, minimal illustration in a premium paper-cut diorama style.
+STYLE: Paper-cut layered effect with visible depth. Color palette: Deep navy (#0A1628), Steel blue (#1E3A5F), Cyan glow (#00D4FF). Cinematic noir lighting. Abstract and symbolic. NO text, NO realistic faces. Professional mood.
+
+CONCEPT - "Many Paths, One Destination":
+A central glowing destination/goal orb at the top of frame.
+Multiple paths lead to it: one golden/prominent highway (expensive talent route) and several alternative winding paths (upskilling routes).
+All paths converge on the same destination.
+A small figure silhouette on one of the alternative paths, succeeding.
+Visual metaphor: multiple ways to build AI capability, not just expensive hiring.
+4:3 aspect ratio.

@@ -1,0 +1,14 @@
+Title: When Your Payment Processor Forgets You Exist
+
+Prompt:
+
+Minimal paper-cut illustration style.
+Colors: Navy (#0A1628) background, steel blue (#1E3A5F) mid-tones, cyan (#00D4FF) glow accents.
+4:3 aspect ratio.
+No text. No realistic human faces. No cluttered compositions.
+Clean, simple, one clear focal point.
+
+A narrow bridge connecting two islands/platforms, but the middle section is dissolving/pixelating.
+A small figure stranded on one side watches the bridge crumble.
+The stable parts glow steady, the dissolving parts flicker.
+Visual metaphor: platform dependency risk, connections can fail unexpectedly.

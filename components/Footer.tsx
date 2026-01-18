@@ -108,10 +108,10 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
 
       {/* Bottom Bar */}
       <div className="max-w-7xl mx-auto mt-20 pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-xs text-slate-500 font-mono uppercase tracking-wider">
+        <p className="text-xs text-slate-600 dark:text-slate-400 font-mono uppercase tracking-wider">
           Softworks Trading Company
         </p>
-        <div className="flex items-center gap-6 text-xs text-slate-500">
+        <div className="flex items-center gap-6 text-xs text-slate-600 dark:text-slate-400">
           <a href="/privacy" onClick={(e) => { e.preventDefault(); onShowPrivacy?.(); }} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
           <a href="/terms" onClick={(e) => { e.preventDefault(); onShowTerms?.(); }} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
         </div>

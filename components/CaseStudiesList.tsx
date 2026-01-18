@@ -13,6 +13,11 @@ interface CaseStudiesListProps {
 }
 
 const CaseStudiesList: React.FC<CaseStudiesListProps> = ({ onStudyClick, onBack }) => {
+  // Sort case studies by completedDate (newest first)
+  const sortedStudies = [...CASE_STUDIES].sort((a, b) =>
+    b.completedDate.localeCompare(a.completedDate)
+  );
+
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] animate-fade-in-up pt-24 pb-24">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
@@ -42,7 +47,7 @@ const CaseStudiesList: React.FC<CaseStudiesListProps> = ({ onStudyClick, onBack 
 
         {/* Case Studies Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
-          {CASE_STUDIES.map((study) => (
+          {sortedStudies.map((study) => (
             <div
               key={study.id}
               className="group cursor-pointer flex flex-col text-left"
@@ -57,6 +62,9 @@ const CaseStudiesList: React.FC<CaseStudiesListProps> = ({ onStudyClick, onBack 
                 <div className="absolute inset-0 bg-[#0F172A]/10 group-hover:bg-transparent transition-colors"></div>
                 <div className="absolute top-3 left-3 bg-white dark:bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300 uppercase">
                   {study.sector}
+                </div>
+                <div className="absolute top-3 right-3 bg-white dark:bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-300 uppercase">
+                  {study.date}
                 </div>
               </div>
               <div className="flex flex-col flex-1 text-left">
