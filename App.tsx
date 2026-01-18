@@ -3,14 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
 import Team from './components/Team';
 import Footer from './components/Footer';
-import Assistant from './components/Assistant';
 import CaseStudyDetail from './components/CaseStudyDetail';
+
+// Lazy load the Assistant component (chatbot) - not needed on initial render
+const Assistant = lazy(() => import('./components/Assistant'));
 import JournalDetail from './components/JournalDetail';
 import InsightsList from './components/InsightsList';
 import CaseStudiesList from './components/CaseStudiesList';
@@ -218,7 +220,7 @@ function App() {
              }}
              onNavigate={(article) => setSelectedArticle(article)}
            />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -238,7 +240,7 @@ function App() {
              }}
            />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -255,7 +257,7 @@ function App() {
              }}
              onNavigate={(study) => setSelectedCaseStudy(study)}
            />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -275,7 +277,7 @@ function App() {
              }}
            />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -289,7 +291,7 @@ function App() {
                setTimeout(() => scrollToSection('top'), 100);
            }} />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -299,7 +301,7 @@ function App() {
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <PrivacyPolicy onBack={() => navigateTo('/')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -309,7 +311,7 @@ function App() {
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <TermsOfService onBack={() => navigateTo('/')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -488,7 +490,7 @@ function App() {
 
       </main>
 
-      <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
     </div>
   );
 }
