@@ -37,6 +37,60 @@ function App() {
   // Preview only first 3 case studies on home page
   const previewCaseStudies = CASE_STUDIES.slice(0, 3);
 
+  // Reset all page states to home
+  const resetToHome = () => {
+    setSelectedCaseStudy(null);
+    setSelectedArticle(null);
+    setShowMedia(false);
+    setShowInsightsList(false);
+    setShowCaseStudiesList(false);
+    setShowPrivacyPolicy(false);
+    setShowTermsOfService(false);
+  };
+
+  // Navigate to a route and update browser history
+  const navigateTo = (path: string, state?: { skipHistory?: boolean }) => {
+    resetToHome();
+
+    if (path === '/privacy') {
+      setShowPrivacyPolicy(true);
+    } else if (path === '/terms') {
+      setShowTermsOfService(true);
+    } else if (path === '/insights') {
+      setShowInsightsList(true);
+    } else if (path === '/case-studies') {
+      setShowCaseStudiesList(true);
+    } else if (path === '/media') {
+      setShowMedia(true);
+    }
+    // For '/' (home), all states are already reset
+
+    // Update URL without reload (unless skipHistory is true for popstate handling)
+    if (!state?.skipHistory) {
+      window.history.pushState({ path }, '', path);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  // Handle initial URL path on mount
+  useEffect(() => {
+    const path = window.location.pathname;
+    if (path !== '/') {
+      navigateTo(path, { skipHistory: true });
+    }
+  }, []);
+
+  // Handle browser back/forward navigation
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      navigateTo(path, { skipHistory: true });
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   useEffect(() => {
     // Check initial preference - default to dark for brand aesthetic
     if (localStorage.theme === 'light') {
@@ -183,7 +237,7 @@ function App() {
                setTimeout(() => scrollToSection('journal'), 100);
              }}
            />
-           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => { setShowPrivacyPolicy(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} onShowTerms={() => { setShowTermsOfService(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -220,7 +274,7 @@ function App() {
                setTimeout(() => scrollToSection('work'), 100);
              }}
            />
-           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => { setShowPrivacyPolicy(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} onShowTerms={() => { setShowTermsOfService(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -234,7 +288,7 @@ function App() {
                setShowMedia(false);
                setTimeout(() => scrollToSection('top'), 100);
            }} />
-           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => { setShowPrivacyPolicy(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} onShowTerms={() => { setShowTermsOfService(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -244,10 +298,7 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <PrivacyPolicy onBack={() => {
-               setShowPrivacyPolicy(false);
-               setTimeout(() => scrollToSection('top'), 100);
-           }} />
+           <PrivacyPolicy onBack={() => navigateTo('/')} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -257,10 +308,7 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <TermsOfService onBack={() => {
-               setShowTermsOfService(false);
-               setTimeout(() => scrollToSection('top'), 100);
-           }} />
+           <TermsOfService onBack={() => navigateTo('/')} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -436,7 +484,7 @@ function App() {
         </section>
 
         {/* FOOTER */}
-        <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => { setShowPrivacyPolicy(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} onShowTerms={() => { setShowTermsOfService(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }} />
+        <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
 
       </main>
 

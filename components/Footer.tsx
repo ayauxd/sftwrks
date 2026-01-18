@@ -112,8 +112,8 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
           Softworks Trading Company
         </p>
         <div className="flex items-center gap-6 text-xs text-slate-500">
-          <button onClick={onShowPrivacy} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</button>
-          <button onClick={onShowTerms} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</button>
+          <a href="/privacy" onClick={(e) => { e.preventDefault(); onShowPrivacy?.(); }} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
+          <a href="/terms" onClick={(e) => { e.preventDefault(); onShowTerms?.(); }} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
         </div>
       </div>
     </footer>

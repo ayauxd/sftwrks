@@ -13,15 +13,16 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ onBack }) => {
   return (
     <div className="min-h-screen bg-[#F1F5F9] dark:bg-[#0A1628] pt-24 pb-24">
       <div className="max-w-3xl mx-auto px-6">
-        <button
-          onClick={onBack}
+        <a
+          href="/"
+          onClick={(e) => { e.preventDefault(); onBack(); }}
           className="group flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-slate-500 dark:text-slate-400 hover:text-[#00D4FF] transition-colors mb-12"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:-translate-x-1 transition-transform">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
           </svg>
           Back to Home
-        </button>
+        </a>
 
         <div className="border-b border-slate-300 dark:border-slate-700 pb-8 mb-8">
           <span className="px-2 py-1 bg-white dark:bg-[#1E3A5F] border border-slate-200 dark:border-slate-700 text-[10px] font-mono uppercase tracking-widest text-[#00D4FF] mb-4 inline-block">
