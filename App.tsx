@@ -98,6 +98,18 @@ function App() {
         return;
     }
 
+    if (showInsightsList) {
+        setShowInsightsList(false);
+        closeAndScroll();
+        return;
+    }
+
+    if (showCaseStudiesList) {
+        setShowCaseStudiesList(false);
+        closeAndScroll();
+        return;
+    }
+
     if (targetId === 'top') {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
@@ -146,27 +158,13 @@ function App() {
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <InsightsList
-             onArticleClick={(article) => setSelectedArticle(article)}
+             onArticleClick={(article) => {
+               setSelectedArticle(article);
+               window.scrollTo({ top: 0, behavior: 'smooth' });
+             }}
              onBack={() => {
                setShowInsightsList(false);
                setTimeout(() => scrollToSection('journal'), 100);
-             }}
-           />
-           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
-        </div>
-    );
-  }
-
-  if (showCaseStudiesList) {
-    return (
-        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
-           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <CaseStudiesList
-             onStudyClick={(study) => setSelectedCaseStudy(study)}
-             onBack={() => {
-               setShowCaseStudiesList(false);
-               setTimeout(() => scrollToSection('work'), 100);
              }}
            />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
@@ -187,6 +185,26 @@ function App() {
              }}
              onNavigate={(study) => setSelectedCaseStudy(study)}
            />
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+        </div>
+    );
+  }
+
+  if (showCaseStudiesList) {
+    return (
+        <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+           <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
+           <CaseStudiesList
+             onStudyClick={(study) => {
+               setSelectedCaseStudy(study);
+               window.scrollTo({ top: 0, behavior: 'smooth' });
+             }}
+             onBack={() => {
+               setShowCaseStudiesList(false);
+               setTimeout(() => scrollToSection('work'), 100);
+             }}
+           />
+           <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} />
            <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
@@ -243,7 +261,7 @@ function App() {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                     {previewCaseStudies.map((study) => (
-                        <div key={study.id} className="group cursor-pointer" onClick={() => setSelectedCaseStudy(study)}>
+                        <div key={study.id} className="group cursor-pointer" onClick={() => { setSelectedCaseStudy(study); window.scrollTo({ top: 0, behavior: 'smooth' }); }}>
                             {/* Card Image */}
                             <div className="aspect-[4/3] bg-slate-200 dark:bg-[#1E3A5F] mb-6 overflow-hidden border border-slate-300 dark:border-slate-700 relative">
                                 <img
@@ -312,7 +330,7 @@ function App() {
                         <article
                             key={article.id}
                             className="group cursor-pointer"
-                            onClick={() => setSelectedArticle(article)}
+                            onClick={() => { setSelectedArticle(article); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                         >
                             <div className="aspect-[16/10] bg-[#1E3A5F] mb-6 overflow-hidden border border-slate-700 relative">
                                 <img

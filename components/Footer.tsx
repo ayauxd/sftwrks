@@ -50,12 +50,12 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
               </a>
             </li>
             <li>
-              <a href="#process" onClick={(e) => onLinkClick(e, 'process')} className="hover:text-[#00D4FF] transition-colors">
+              <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
                 Integration Advisory
               </a>
             </li>
             <li>
-              <a href="#process" onClick={(e) => onLinkClick(e, 'process')} className="hover:text-[#00D4FF] transition-colors">
+              <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
                 Workflow Automation
               </a>
             </li>

@@ -55,7 +55,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
       <div className="absolute inset-0 hero-parallax">
         {/* Hero image - visible in both modes */}
         <img
-          src="/assets/hero/bridge-metaphor.png"
+          src="/assets/hero/hero-friendly.png"
           alt=""
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
@@ -102,52 +102,52 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         <div className="max-w-7xl mx-auto w-full">
           <div className="max-w-2xl">
 
-            {/* Mono Label */}
-            <span className={`animate-fade-in-up inline-block text-xs font-mono uppercase tracking-[0.3em] mb-8 border px-4 py-2 transition-colors duration-300 ${
-              isDark
-                ? 'text-[#00D4FF] border-[#00D4FF]/30'
-                : 'text-cyan-600 border-cyan-600/30'
+            {/* Empathy Hook */}
+            <p className={`animate-fade-in-up text-sm md:text-base mb-6 transition-colors duration-300 ${
+              isDark ? 'text-slate-400' : 'text-slate-500'
             }`}>
-              AI Strategy & Integration Advisory
-            </span>
+              AI doesn't have to be complicated.
+            </p>
 
-            {/* Main Headline */}
+            {/* Main Headline - Outcome Focused */}
             <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 leading-[1.1] transition-colors duration-300" style={{ animationDelay: '100ms' }}>
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>Making </span>
-              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>AI Work</span>
+              <span className={isDark ? 'text-white' : 'text-slate-900'}>Get AI Working</span>
               <br />
-              <span className={`font-light ${isDark ? 'text-slate-300' : 'text-slate-600'}`}>for Your Business</span>
+              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>in Weeks, Not Months</span>
             </h1>
 
-            {/* Subheadline */}
+            {/* Subheadline - How */}
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`} style={{ animationDelay: '200ms' }}>
-              We help you go from AI confusion to real results.
+              We handle the strategy, setup, and support—you get results.
             </p>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Single clear action */}
             <div className="animate-fade-in-up flex flex-col sm:flex-row gap-4 items-center sm:items-start" style={{ animationDelay: '300ms' }}>
               <button
                 onClick={onOpenAssessment}
-                className={`group px-8 py-4 font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-center w-full sm:w-auto ${
+                className={`group px-10 py-4 font-semibold uppercase tracking-wider text-sm transition-all duration-300 text-center w-full sm:w-auto ${
                   isDark
                     ? 'bg-[#00D4FF] text-[#0A1628] hover:bg-[#22D3EE] hover:shadow-[0_0_30px_rgba(0,212,255,0.4)]'
                     : 'bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg'
                 }`}
               >
-                Check Your AI Readiness
+                See How It Works
               </button>
               <a
                 href="#work"
                 onClick={(e) => handleNavClick(e, 'work')}
-                className={`group px-8 py-4 border font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center w-full sm:w-auto ${
+                className={`group px-6 py-4 font-medium text-sm transition-all duration-300 text-center flex items-center gap-2 ${
                   isDark
-                    ? 'border-slate-500 text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF]'
-                    : 'border-slate-400 text-slate-600 hover:border-cyan-600 hover:text-cyan-600'
+                    ? 'text-slate-400 hover:text-[#00D4FF]'
+                    : 'text-slate-500 hover:text-cyan-600'
                 }`}
               >
-                View Case Studies
+                or view our work
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
               </a>
               {FEATURED_VIDEO_URL && (
                 <button
@@ -166,34 +166,11 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
               )}
             </div>
 
-            {/* Direct contact link */}
-            <p className={`animate-fade-in-up mt-4 text-sm ${isDark ? 'text-slate-500' : 'text-slate-500'}`} style={{ animationDelay: '350ms' }}>
-              Or{' '}
-              <a
-                href="#contact"
-                onClick={(e) => handleNavClick(e, 'contact')}
-                className={`underline underline-offset-4 hover:no-underline ${isDark ? 'text-slate-400 hover:text-[#00D4FF]' : 'text-slate-600 hover:text-cyan-600'} transition-colors`}
-              >
-                talk to us directly
-              </a>
-            </p>
-
-            {/* Trust Indicators */}
-            <div className={`animate-fade-in-up mt-16 pt-8 border-t transition-colors duration-300 ${
-              isDark ? 'border-slate-700/50' : 'border-slate-300/50'
-            }`} style={{ animationDelay: '400ms' }}>
-              <p className={`text-xs font-mono uppercase tracking-[0.2em] mb-4 ${
-                isDark ? 'text-slate-500' : 'text-slate-500'
-              }`}>
-                Trusted by forward-thinking organizations
+            {/* Trust Indicators - Specific social proof */}
+            <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
+              <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>
+                <span className={`font-semibold ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`}>50+ teams</span> have shipped AI that actually works
               </p>
-              <div className={`flex flex-wrap items-center gap-6 ${isDark ? 'text-slate-500' : 'text-slate-500'}`}>
-                <span className="text-sm font-light">Mid-Market Enterprises</span>
-                <span className={`hidden sm:block ${isDark ? 'text-slate-700' : 'text-slate-300'}`}>|</span>
-                <span className="text-sm font-light">Growth-Stage Startups</span>
-                <span className={`hidden sm:block ${isDark ? 'text-slate-700' : 'text-slate-300'}`}>|</span>
-                <span className="text-sm font-light">Professional Services</span>
-              </div>
             </div>
 
           </div>
