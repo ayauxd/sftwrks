@@ -68,7 +68,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
           <img
             src="/assets/hero/hero-desktop.png"
             alt="AI consulting guidance - illuminating the path forward"
-            className="absolute inset-0 w-full h-full object-cover object-center"
+            className="absolute inset-0 w-full h-full object-cover object-[center_70%] md:object-center"
             loading="eager"
             fetchPriority="high"
           />
@@ -152,13 +152,13 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
               <a
                 href="#work"
                 onClick={(e) => handleNavClick(e, 'work')}
-                className={`group px-6 py-4 font-medium text-sm transition-all duration-300 text-center flex items-center gap-2 ${
+                className={`group px-8 py-4 font-medium uppercase tracking-wider text-sm transition-all duration-300 text-center flex items-center justify-center gap-2 border w-full sm:w-auto ${
                   isDark
-                    ? 'text-slate-400 hover:text-[#00D4FF]'
-                    : 'text-slate-500 hover:text-cyan-600'
+                    ? 'border-slate-500 text-slate-300 hover:border-[#00D4FF] hover:text-[#00D4FF]'
+                    : 'border-slate-400 text-slate-600 hover:border-cyan-600 hover:text-cyan-600'
                 }`}
               >
-                or view our work
+                View Our Work
                 <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
