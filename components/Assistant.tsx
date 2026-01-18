@@ -522,7 +522,7 @@ Ready for follow-up consultation.
       };
 
       return (
-        <div className="flex-1 flex flex-col px-5 py-6 overflow-y-auto">
+        <div className="flex-1 flex flex-col px-5 py-6 pb-safe overflow-y-auto" style={{ paddingBottom: 'max(1.5rem, env(safe-area-inset-bottom))' }}>
           {!showDetailedResults ? (
             <>
               {/* Score Display with Context */}
@@ -594,7 +594,7 @@ Ready for follow-up consultation.
               </div>
 
               {/* Prominent CTA for Full Report */}
-              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-4 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden">
+              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-4 rounded-xl border border-[#00D4FF]/30 relative overflow-hidden mb-6 sm:mb-0">
                 <div className="absolute top-0 right-0 bg-[#00D4FF] text-[#0A1628] text-[9px] font-bold px-2 py-0.5 rounded-bl">
                   FREE
                 </div>
@@ -671,7 +671,7 @@ Ready for follow-up consultation.
               </div>
 
               {/* Email Capture for Full Report */}
-              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-5 rounded-xl border border-[#00D4FF]/30">
+              <div className="bg-gradient-to-br from-[#1E3A5F] to-[#0F172A] p-5 rounded-xl border border-[#00D4FF]/30 mb-6 sm:mb-0">
                 <h4 className="text-white font-semibold mb-2">Send Me the Full Report</h4>
                 <p className="text-slate-400 text-xs mb-4">Get your complete analysis + actionable next steps delivered to your inbox.</p>
 
