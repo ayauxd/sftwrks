@@ -51,43 +51,52 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
 
-      {/* Background - Same image for both modes with different overlays */}
-      <div className="absolute inset-0 hero-parallax">
-        {/* Hero image - responsive with WebP support */}
-        <picture>
-          <source
-            type="image/webp"
-            srcSet="/assets/hero/hero-mobile.webp 640w, /assets/hero/hero-tablet.webp 1024w, /assets/hero/hero-desktop.webp 1920w"
-            sizes="100vw"
-          />
-          <source
-            type="image/png"
-            srcSet="/assets/hero/hero-mobile.png 640w, /assets/hero/hero-tablet.png 1024w, /assets/hero/hero-desktop.png 1920w"
-            sizes="100vw"
-          />
-          <img
-            src="/assets/hero/hero-desktop.png"
-            alt="AI consulting guidance - illuminating the path forward"
-            className="absolute inset-0 w-full h-full object-cover object-[center_70%] md:object-center"
-            loading="eager"
-            fetchPriority="high"
-          />
-        </picture>
-
-        {/* Dark mode overlay */}
-        <div className={`absolute inset-0 transition-opacity duration-500 ${
-          isDark ? 'opacity-100' : 'opacity-0'
-        }`}>
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/80 to-[#0A1628]/40" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/60" />
+      {/* Background - Multi-layer zoom parallax system "The Clarity Engine" */}
+      <div className="absolute inset-0 overflow-hidden">
+        {/* Layer 1: Background - Slowest, most zoom */}
+        <div className="absolute inset-0 hero-layer-bg">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet="/assets/hero/hero-mobile.webp 640w, /assets/hero/hero-tablet.webp 1024w, /assets/hero/hero-desktop.webp 1920w"
+              sizes="100vw"
+            />
+            <source
+              type="image/png"
+              srcSet="/assets/hero/hero-mobile.png 640w, /assets/hero/hero-tablet.png 1024w, /assets/hero/hero-desktop.png 1920w"
+              sizes="100vw"
+            />
+            <img
+              src="/assets/hero/hero-desktop.png"
+              alt="AI consulting - transforming complexity into clarity"
+              className="absolute inset-0 w-full h-full object-cover object-center"
+              loading="eager"
+              fetchPriority="high"
+            />
+          </picture>
         </div>
 
-        {/* Light mode overlay - reduced opacity for more image visibility */}
-        <div className={`absolute inset-0 transition-opacity duration-500 ${
+        {/* Layer 2: Cyan glow center - The "Clarity Engine" focal point */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none hero-glow-center">
+          <div className={`w-[600px] h-[600px] rounded-full blur-[150px] transition-colors duration-500 ${
+            isDark ? 'bg-[#00D4FF]' : 'bg-cyan-400'
+          }`} />
+        </div>
+
+        {/* Layer 3: Dark mode overlay */}
+        <div className={`absolute inset-0 transition-opacity duration-500 hero-layer-fg ${
+          isDark ? 'opacity-100' : 'opacity-0'
+        }`}>
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/95 via-[#0A1628]/70 to-[#0A1628]/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628] via-transparent to-[#0A1628]/50" />
+        </div>
+
+        {/* Layer 4: Light mode overlay */}
+        <div className={`absolute inset-0 transition-opacity duration-500 hero-layer-fg ${
           isDark ? 'opacity-0' : 'opacity-100'
         }`}>
-          <div className="absolute inset-0 bg-gradient-to-r from-white/80 via-white/50 to-white/20" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-white/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white/85 via-white/50 to-white/10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-50 via-transparent to-white/30" />
         </div>
       </div>
 

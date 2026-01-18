@@ -136,6 +136,68 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
+/* ============================================
+   ZOOM-OUT PARALLAX HERO SYSTEM
+   "The Clarity Engine"
+   ============================================ */
+
+/* Hero zoom container - starts zoomed in, zooms out on scroll */
+.hero-zoom-container {
+  --zoom-progress: 0;
+  transform: scale(calc(1.3 - (var(--zoom-progress) * 0.3)));
+  transform-origin: center center;
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+/* Multi-layer parallax system */
+.hero-layer-bg {
+  --layer-speed: 0.1;
+  transform:
+    translateY(calc(var(--scroll-y) * var(--layer-speed) * 1px))
+    scale(calc(1.4 - (var(--zoom-progress) * 0.4)));
+  will-change: transform;
+}
+
+.hero-layer-mid {
+  --layer-speed: 0.2;
+  transform:
+    translateY(calc(var(--scroll-y) * var(--layer-speed) * 1px))
+    scale(calc(1.25 - (var(--zoom-progress) * 0.25)));
+  will-change: transform;
+}
+
+.hero-layer-fg {
+  --layer-speed: 0.3;
+  transform:
+    translateY(calc(var(--scroll-y) * var(--layer-speed) * 1px))
+    scale(calc(1.1 - (var(--zoom-progress) * 0.1)));
+  will-change: transform;
+}
+
+/* Cyan glow focal point - pulses and scales */
+.hero-glow-center {
+  transform: scale(calc(0.8 + (var(--zoom-progress) * 0.4)));
+  opacity: calc(0.3 + (var(--zoom-progress) * 0.7));
+  transition: transform 0.2s ease-out, opacity 0.2s ease-out;
+}
+
+/* Reduced motion fallback */
+@media (prefers-reduced-motion: reduce) {
+  .hero-zoom-container,
+  .hero-layer-bg,
+  .hero-layer-mid,
+  .hero-layer-fg,
+  .hero-glow-center {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .hero-parallax {
+    transform: none !important;
+  }
+}
+
 /* Floating animation - gentle movement */
 @keyframes float {
   0%, 100% { transform: translateY(0); }

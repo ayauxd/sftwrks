@@ -53,21 +53,29 @@ export function useScrollAnimation(containerRef?: React.RefObject<HTMLElement>) 
 }
 
 /**
- * Hook to track scroll position and update CSS custom property for parallax effects.
- * Updates --scroll-y on document root for CSS-based parallax.
+ * Hook to track scroll position and update CSS custom properties for parallax effects.
+ * Updates --scroll-y and --zoom-progress on document root for CSS-based parallax and zoom.
  */
 export function useParallaxScroll() {
   useEffect(() => {
     let ticking = false;
 
-    const updateScrollY = () => {
-      document.documentElement.style.setProperty('--scroll-y', String(window.scrollY));
+    const updateScrollValues = () => {
+      const scrollY = window.scrollY;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate zoom progress (0 at top, 1 at one viewport height)
+      const zoomProgress = Math.min(scrollY / viewportHeight, 1);
+
+      document.documentElement.style.setProperty('--scroll-y', String(scrollY));
+      document.documentElement.style.setProperty('--zoom-progress', String(zoomProgress));
+
       ticking = false;
     };
 
     const handleScroll = () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateScrollY);
+        window.requestAnimationFrame(updateScrollValues);
         ticking = true;
       }
     };
@@ -75,7 +83,7 @@ export function useParallaxScroll() {
     window.addEventListener('scroll', handleScroll, { passive: true });
 
     // Initial value
-    updateScrollY();
+    updateScrollValues();
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
