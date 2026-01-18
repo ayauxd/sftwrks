@@ -14,22 +14,33 @@ if (!apiKey) {
   process.exit(1);
 }
 
-// Premium hero prompt - technical blueprint editorial style
-const HERO_PROMPT = `Premium 3D isometric editorial illustration, technical blueprint aesthetic, paper-craft diorama with extreme depth and layering.
+// Cinematic noir paper-cut hero prompt - "The Clarity Machine"
+const HERO_PROMPT = `Generate a photorealistic, cinematic noir composition that visualizes AI consulting transformation inside a dimly lit, moody industrial workshop. Use a sophisticated paper-cut style to create deep, layered textures with dark, grainy cardstock forming the architecture of an elegant processing machine, illuminated by harsh, high-contrast chiaroscuro lighting with a warm amber spotlight from above.
 
-Scene composition - information transformation from chaos to clarity:
+LEFT SIDE (Input Zone): A chaotic pile of paper documents, scattered manila folders, tangled paper ribbons, and messy data cards tumbling onto a paper conveyor belt. The chaos represents overwhelming business complexity before AI intervention.
 
-Left third: Towering wall of stacked white papers, cream documents, manila folders, open books spilling chaotically. Overwhelming mass of paperwork with visible paper textures and soft shadows between layers.
+CENTER (The AI Engine): An intricate three-dimensional paper mechanism - a central processing unit made of layered cardstock with visible gears, pipes, and mechanical components. At its core, a subtle cyan glow (#00D4FF) emanates from within, representing the AI intelligence. Paper conveyor belts feed into and out of this machine.
 
-Center: Elegant brain shape formed by clean circuit board traces and glowing connection pathways. Bright cyan glowing nodes at key neural intersections. This is the processing engine where complexity becomes understanding.
+RIGHT SIDE (Output Zone): The same documents now emerge perfectly organized - neat paper file stacks, labeled folders with visible tabs, structured document trays, clean data cards in precise rows. Everything precise, ordered, purposeful. The transformation is complete.
 
-Right third: Perfectly organized output - neat filing cabinet drawers, precisely aligned folder stacks with visible tabs, structured document trays. Everything precise, labeled, purposeful.
+STYLE:
+- Cinematic noir paper-cut diorama with 6-8 visible depth layers
+- Dark charcoal/navy background (#0A1628)
+- Warm sepia/amber spotlight lighting from above
+- Grainy cardstock textures, matte paper materials
+- Industrial machinery aesthetic (gears, conveyor belts, pipes)
+- Tactile and gritty yet futuristically precise
+- Premium editorial quality like NotebookLM marketing materials
 
-Style: Architectural paper model aesthetic like premium editorial illustrations. Warm off-white blueprint grid background. Visible depth layers with soft directional shadows. Materials look like real paper, cardboard, matte surfaces. Premium quality like Anthropic or NotebookLM marketing materials.
+COLOR PALETTE:
+- Background: Deep charcoal/navy
+- Papers: Cream, warm gray, manila brown
+- Machinery: Dark gray, bronze/copper accents
+- AI core: Subtle cyan glow (#00D4FF) - the ONLY bright accent
 
-Color palette: Cream, white, warm gray papers. Navy blue shadows for depth. Bright cyan (#00D4FF) accent ONLY on circuit brain connection nodes.
+Absolutely no text, no words, no labels, no letters, no numbers, no human figures, no faces.
 
-Absolutely no text, no words, no labels, no letters, no numbers, no human figures, no faces.`;
+16:9 aspect ratio.`;
 
 // Test GPT-4o Image API
 async function generateWithGPT4o() {

@@ -6,20 +6,20 @@
   "redirects": [
     {
       "source": "/:path*",
-      "has": [{ "type": "host", "value": "sftwrks.com" }],
-      "destination": "https://softworkstrading.com/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [{ "type": "host", "value": "www.sftwrks.com" }],
-      "destination": "https://softworkstrading.com/:path*",
+      "has": [{ "type": "host", "value": "softworkstrading.com" }],
+      "destination": "https://www.sftwrks.com/:path*",
       "permanent": true
     },
     {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "www.softworkstrading.com" }],
-      "destination": "https://softworkstrading.com/:path*",
+      "destination": "https://www.sftwrks.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "sftwrks.com" }],
+      "destination": "https://www.sftwrks.com/:path*",
       "permanent": true
     }
   ],

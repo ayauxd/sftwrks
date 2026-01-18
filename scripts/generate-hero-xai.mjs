@@ -13,18 +13,20 @@ if (!apiKey) {
   process.exit(1);
 }
 
-// Premium hero prompt - condensed for xAI (max 1024 chars)
-const HERO_PROMPT = `3D isometric paper-craft diorama illustration, premium editorial quality.
+// Cinematic noir paper-cut prompt - "The Clarity Machine" (condensed for xAI)
+const HERO_PROMPT = `Cinematic noir paper-cut diorama, dimly lit industrial workshop, AI transformation machine.
 
-LEFT: Towering chaotic stack of white papers, documents, manila folders spilling over. Visual complexity.
+LEFT: Chaotic paper documents, manila folders, tangled ribbons tumbling onto paper conveyor belt. Business chaos.
 
-CENTER: Brain made of circuit board traces with glowing cyan (#00D4FF) connection nodes. Clean geometric processing engine.
+CENTER: Intricate paper mechanism - layered cardstock gears, pipes, mechanical components. Subtle cyan glow (#00D4FF) at core. Paper conveyor belts feed in and out.
 
-RIGHT: Organized filing cabinets, neat folder stacks, structured document trays. Perfect alignment.
+RIGHT: Documents emerge organized - neat file stacks, labeled folders, structured trays. Precise, purposeful.
 
-STYLE: Paper-craft architectural model aesthetic, off-white blueprint grid background, soft shadows, matte paper textures. NO glossy plastic look. NO text, NO faces.
+STYLE: 6-8 depth layers, dark charcoal/navy background (#0A1628), warm amber spotlight from above, grainy cardstock textures, industrial machinery aesthetic.
 
-MOOD: Sophisticated, precise. Information chaos becoming clarity.`;
+COLORS: Deep navy background, cream/manila papers, bronze machinery accents, cyan glow ONLY at AI core.
+
+NO text, NO faces, NO humans. 16:9 aspect ratio.`;
 
 async function generateImage() {
   console.log('🎨 Generating hero image with xAI Aurora...\n');
