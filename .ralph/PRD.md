@@ -10,24 +10,29 @@ Adding automated PR validation and deployment workflows to sftwrks.com (Softwork
 ## Success Criteria
 
 ### Workflow 1: PR Validation (`validate.yml`)
-- [ ] Triggers on all pull requests to main
-- [ ] Runs TypeScript type checking (`npx tsc --noEmit`)
-- [ ] Runs build verification (`npm run build`)
-- [ ] Uses Node 20.x
-- [ ] Caches node_modules for speed
-- [ ] Fails PR if any check fails
+- [x] Triggers on all pull requests to main
+- [x] Runs TypeScript type checking (`npx tsc --noEmit`)
+- [x] Runs build verification (`npm run build`)
+- [x] Uses Node 20.x
+- [x] Caches node_modules for speed
+- [x] Fails PR if any check fails
 
 ### Workflow 2: Production Deploy (`deploy.yml`)
-- [ ] Triggers on push to main branch only
-- [ ] Runs build verification first
-- [ ] Deploys to Vercel using Vercel CLI
-- [ ] Uses Vercel project/org tokens from secrets
-- [ ] Includes deployment URL in workflow summary
+- [x] Triggers on push to main branch only
+- [x] Runs build verification first
+- [x] Deploys to Vercel using Vercel CLI
+- [x] Uses Vercel project/org tokens from secrets
+- [x] Includes deployment URL in workflow summary
 
 ### Repository Setup
-- [ ] `.github/workflows/` directory created
-- [ ] Both workflow files are valid YAML
+- [x] `.github/workflows/` directory created
+- [x] Both workflow files are valid YAML
 - [ ] Workflows appear in GitHub Actions tab
+
+### GitHub Secrets (Manual Step Required)
+- [ ] Add `VERCEL_TOKEN` to GitHub secrets
+- [ ] Add `VERCEL_ORG_ID` (value: `team_qVKqxJ9pStikymvWFb6ls4wH`)
+- [ ] Add `VERCEL_PROJECT_ID` (value: `prj_4rhA4zwFRSsMGDjxiXyKeXutuMj5`)
 
 ### Verification
 - [ ] Create test PR → validate workflow runs
