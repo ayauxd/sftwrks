@@ -138,9 +138,9 @@ Consider adding to CI/CD pipeline.
 
 ## Implementation Priority
 
-1. **Immediate:** Add security headers to vercel.json
+1. ~~**Immediate:** Add security headers to vercel.json~~ **DONE**
 2. **Short-term:** Implement honeypot for webhook spam
-3. **Medium-term:** Move API calls to serverless functions
+3. ~~**Medium-term:** Move API calls to serverless functions~~ **DONE**
 4. **Ongoing:** Regular dependency audits
 
 ## Quick Wins (Can Do Now)
