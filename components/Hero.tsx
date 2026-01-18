@@ -53,12 +53,26 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
 
       {/* Background - Same image for both modes with different overlays */}
       <div className="absolute inset-0 hero-parallax">
-        {/* Hero image - visible in both modes */}
-        <img
-          src="/assets/hero/hero-friendly.png"
-          alt=""
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
+        {/* Hero image - responsive with WebP support */}
+        <picture>
+          <source
+            type="image/webp"
+            srcSet="/assets/hero/hero-mobile.webp 640w, /assets/hero/hero-tablet.webp 1024w, /assets/hero/hero-desktop.webp 1920w"
+            sizes="100vw"
+          />
+          <source
+            type="image/png"
+            srcSet="/assets/hero/hero-mobile.png 640w, /assets/hero/hero-tablet.png 1024w, /assets/hero/hero-desktop.png 1920w"
+            sizes="100vw"
+          />
+          <img
+            src="/assets/hero/hero-desktop.png"
+            alt="AI consulting guidance - illuminating the path forward"
+            className="absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
+        </picture>
 
         {/* Dark mode overlay */}
         <div className={`absolute inset-0 transition-opacity duration-500 ${

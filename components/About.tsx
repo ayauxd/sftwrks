@@ -64,7 +64,7 @@ const About: React.FC = () => {
               <br />
               <span className="text-[#00D4FF]">"now what?" to "this works."</span>
             </h2>
-            <p className="max-w-2xl mx-auto text-lg text-slate-400 font-light">
+            <p className="max-w-2xl mx-auto text-lg text-slate-300 font-light">
               We give you the plan, the guardrails, and the step-by-step path to make AI actually work for your business.
             </p>
           </div>
@@ -79,7 +79,7 @@ const About: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Strategy</h3>
-              <p className="text-slate-400 font-light leading-relaxed">
+              <p className="text-slate-300 font-light leading-relaxed">
                 Figure out where AI can actually help your business—then build a plan to get there.
               </p>
             </div>
@@ -92,7 +92,7 @@ const About: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Governance</h3>
-              <p className="text-slate-400 font-light leading-relaxed">
+              <p className="text-slate-300 font-light leading-relaxed">
                 Set up the rules and safeguards so AI works the way you want—safely, responsibly, and within regulations.
               </p>
             </div>
@@ -105,7 +105,7 @@ const About: React.FC = () => {
                 </svg>
               </div>
               <h3 className="text-xl font-bold text-white mb-4">Integration</h3>
-              <p className="text-slate-400 font-light leading-relaxed">
+              <p className="text-slate-300 font-light leading-relaxed">
                 Connect AI to how your team already works—so it helps instead of getting in the way.
               </p>
             </div>

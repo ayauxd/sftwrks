@@ -37,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
 
         {/* Services Column */}
         <div className="md:col-span-2">
-          <h4 className="font-medium text-white mb-6 tracking-wide text-xs uppercase">Services</h4>
+          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">Services</p>
           <ul className="space-y-4 text-slate-400 font-light text-sm">
             <li>
               <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
@@ -64,7 +64,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
 
         {/* Company Column */}
         <div className="md:col-span-2">
-          <h4 className="font-medium text-white mb-6 tracking-wide text-xs uppercase">Company</h4>
+          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">Company</p>
           <ul className="space-y-4 text-slate-400 font-light text-sm">
             <li>
               <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
@@ -91,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
 
         {/* CTA Column */}
         <div className="md:col-span-4">
-          <h4 className="font-medium text-white mb-6 tracking-wide text-xs uppercase">Start a Conversation</h4>
+          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">Start a Conversation</p>
           <p className="text-slate-400 font-light text-sm mb-6 leading-relaxed">
             Ready to make AI work for your business? Let's talk about what you need.
           </p>
