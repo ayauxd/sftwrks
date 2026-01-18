@@ -195,63 +195,34 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     setValidationError(null);
   }, [currentStep]);
 
-  // Validate custom input with Haiku
+  // Validate custom input via serverless proxy
   const validateCustomInput = async (input: string, question: string): Promise<{ valid: boolean; message?: string }> => {
-    const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY || '';
-
-    if (!apiKey) {
-      // If no API key, allow the input but log warning
-      console.warn('No API key for validation - allowing input');
-      return { valid: true };
-    }
-
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/anthropic', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-3-haiku-20240307',
-          max_tokens: 100,
-          messages: [{
-            role: 'user',
-            content: `You are validating user input for a business AI readiness assessment.
-
-Question: "${question}"
-User's answer: "${input}"
-
-Is this a sensible, relevant answer to the question? Consider:
-- Does it actually answer the question asked?
-- Is it a real business type, pain point, goal, or team size?
-- Is it gibberish, random characters, or clearly nonsensical?
-
-Respond with ONLY one of these formats:
-- If valid: VALID
-- If invalid: INVALID: [brief friendly suggestion for what they should enter]
-
-Examples:
-- "Tech startup" for "What describes your business?" → VALID
-- "Ggg" for any question → INVALID: Please describe your actual situation
-- "asdfgh" → INVALID: Please enter a meaningful response
-- "customer support takes too long" for pain point → VALID`
-          }]
+          action: 'validate',
+          input,
+          question
         })
       });
 
       if (response.ok) {
         const data = await response.json();
-        const result = data.content[0].text.trim();
+        const result = (data.result || '').trim();
 
         if (result.startsWith('VALID')) {
           return { valid: true };
         } else if (result.startsWith('INVALID:')) {
           return { valid: false, message: result.replace('INVALID:', '').trim() };
         }
-        // Default to valid if response is unclear
+        return { valid: true };
+      }
+
+      // Rate limited or server error - allow input to not block user
+      if (response.status === 429) {
+        console.warn('Rate limited - allowing input');
         return { valid: true };
       }
     } catch (error) {
@@ -338,17 +309,9 @@ Examples:
   };
 
   const generateAIInsight = async () => {
-    const apiKey = import.meta.env.VITE_ANTHROPIC_API_KEY || '';
-
-    if (!apiKey) {
-      setAiInsight("Connect with us to get your personalized AI strategy based on your specific situation.");
-      return;
-    }
-
     setLoadingInsight(true);
 
     const customAnswers = answers.filter(a => a.isCustom);
-    const standardAnswers = answers.filter(a => !a.isCustom);
 
     const contextSummary = answers.map(a => {
       const step = ASSESSMENT_STEPS.find(s => s.id === a.stepId);
@@ -356,34 +319,23 @@ Examples:
     }).join('\n');
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/anthropic', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-api-key': apiKey,
-          'anthropic-version': '2023-06-01',
-          'anthropic-dangerous-direct-browser-access': 'true'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          model: 'claude-3-haiku-20240307',
-          max_tokens: 300,
-          messages: [{
-            role: 'user',
-            content: `You are an AI consultant for Softworks. Based on this assessment, provide ONE specific, actionable AI recommendation in 2-3 sentences. Be direct and practical.
-
-Assessment Results (Score: ${totalScore}/25 - ${tier.name}):
-${contextSummary}
-
-${customAnswers.length > 0 ? `Note: They provided custom answers showing specific context about their situation.` : ''}
-
-Give a brief, specific recommendation for their biggest opportunity with AI. No fluff.`
-          }]
+          action: 'insight',
+          assessmentData: {
+            score: totalScore,
+            tier: tier.name,
+            contextSummary,
+            hasCustomAnswers: customAnswers.length > 0
+          }
         })
       });
 
       if (response.ok) {
         const data = await response.json();
-        setAiInsight(data.content[0].text);
+        setAiInsight(data.result || tier.recommendation);
       } else {
         setAiInsight(tier.recommendation);
       }
