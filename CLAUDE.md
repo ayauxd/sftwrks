@@ -7,7 +7,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 **Softworks is an AI consulting firm, NOT a trading company.**
 - Brand name: Softworks
 - Legal name: Softworks Trading Company
-- Primary email: fred@sftwrks.com (casual) / fred@softworkstrading.com (formal)
+- **Primary domain: sftwrks.com** (always deploy here)
+- Legacy domain: softworkstrading.com (expiring, do not use)
+- Primary email: fred@sftwrks.com
 
 ## Commands
 
@@ -131,3 +133,4 @@ Required in `.env.local` (dev) and Vercel (prod):
 ## Mistakes Log
 
 - [2026-01-12] Don't assume "trading company" relates to stocks - it's AI consulting
+- [2026-01-18] Always use sftwrks.com - softworkstrading.com is being retired

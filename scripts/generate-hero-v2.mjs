@@ -13,31 +13,41 @@ if (!apiKey) {
   process.exit(1);
 }
 
-// Premium hero image prompt - sophisticated, authoritative, professional
-const HERO_PROMPT = `Create a breathtaking, editorial-quality illustration in a sophisticated paper-cut diorama style with extreme depth and dimensionality.
+// Premium hero image prompt - "The Processing Engine" concept
+// Inspired by: technical blueprint aesthetic, paper stacks, isometric 3D style
+const HERO_PROMPT = `Create a premium 3D isometric illustration with technical blueprint aesthetic.
 
-SCENE: "The Navigator" - A commanding lighthouse on a rocky cliff overlooking a vast ocean at dawn/dusk golden hour. The lighthouse beam cuts through atmospheric fog, illuminating a safe path for distant ships. The scene conveys guidance, expertise, and trustworthy leadership.
+SCENE: "The Processing Engine" - Information transformation from chaos to clarity.
 
-COMPOSITION:
-- Dramatic perspective from slightly below, looking up at the lighthouse
-- Multiple paper-cut depth layers creating 3D parallax effect (at least 5-6 distinct layers)
-- Foreground: Rocky cliffs with geometric facets, small wildflowers
-- Midground: The lighthouse - elegant, architectural, with warm glowing windows
-- Background: Calm ocean with distant ships finding their way, dramatic sky with layered clouds
-- Far background: Sunrise/sunset gradient casting warm light across the scene
+LEFT SIDE: A towering wall of stacked papers, documents, and file folders in disarray. Overwhelming mass of grayscale papers with subtle cream/tan tones. Papers spilling, overlapping, creating visual weight representing data overload.
+
+CENTER: A sophisticated brain-shaped circuit board or processing mechanism. Clean geometric form with visible circuit traces and connection nodes. The nodes glow with bright cyan (#00D4FF). This is the transformation engine - where complexity becomes understanding.
+
+RIGHT SIDE: Organized output - neat file folders, structured documents, clean data visualization elements. Everything aligned, labeled, purposeful. Connected by thin cyan circuit lines to the center brain.
+
+BACKGROUND:
+- Subtle grid pattern like technical blueprint paper
+- Light warm gray or off-white base (#F5F5F0)
+- Very faint dimension lines and measurement marks for architectural feel
 
 STYLE:
-- Premium paper-cut diorama aesthetic with visible depth shadows between layers
-- Sophisticated color palette: Deep navy (#0A1628), warm sunset gold/amber, soft steel blue (#1E3A5F), cyan accent (#00D4FF) on the lighthouse beam
-- Soft, diffused lighting as if golden hour is filtering through the layers
-- Clean geometric forms with organic flowing edges on natural elements
-- No text, no realistic human faces
+- 3D isometric paper-craft / diorama aesthetic
+- Visible depth and soft shadows between layers
+- Technical, precise, editorial quality
+- Materials should look like actual paper, cardboard, matte surfaces
+- NO glossy or plastic look
+- NO text, labels, or readable words
+- NO human figures or faces
 
-MOOD: Inspiring, trustworthy, calm confidence. A sense of "we've navigated these waters before."
+COLOR PALETTE:
+- Background: Warm light gray/cream (#F5F5F0)
+- Papers: White, cream, light gray variations
+- Accent highlights: Bright cyan (#00D4FF) on circuit nodes and connection lines only
+- Subtle navy (#0A1628) for shadows and depth
 
-QUALITY: Ultra-premium editorial illustration suitable for a Fortune 500 consulting firm homepage.
+MOOD: Sophisticated, precise, trustworthy. "We process complexity into clarity."
 
-Aspect ratio: 16:9 landscape for hero banner.`;
+Aspect ratio: 16:9 landscape.`;
 
 // Responsive sizes to generate
 const SIZES = [
@@ -50,9 +60,9 @@ async function generateImage(size) {
   console.log(`\nGenerating ${size.name} hero image (${size.aspectRatio})...`);
 
   const prompt = size.name === 'mobile'
-    ? HERO_PROMPT.replace('16:9 landscape', '3:4 portrait - focus on lighthouse and cliff')
+    ? HERO_PROMPT.replace('16:9 landscape', '3:4 portrait - Focus on the center brain/circuit processing mechanism with cyan glowing nodes. Show partial paper stacks on edges. Vertical composition with brain prominent in center.')
     : size.name === 'tablet'
-      ? HERO_PROMPT.replace('16:9 landscape', '4:3 - balanced composition')
+      ? HERO_PROMPT.replace('16:9 landscape', '4:3 - Show the center processing brain and the organized output on right. Reduce the chaotic paper wall on left to just a hint at the edge.')
       : HERO_PROMPT;
 
   try {

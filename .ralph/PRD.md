@@ -1,62 +1,68 @@
-# PRD: VtF Story-Driven Presentation Rebuild
+# PRD: GitHub Actions CI/CD for sftwrks
 
 ## Context
-Rebuilding client proposal presentation from feature-list format to story-driven narrative.
 
-**Target file:** `/Users/fredpro/sftwrks/public/vtf-presentation/index.html`
+Adding automated PR validation and deployment workflows to sftwrks.com (Softworks Trading Company website).
 
-**Available assets:**
-- Desktop screenshots: 1440×900 (16:10 ratio) - 7 pages
-- Mobile screenshots: 780×1688 (~9:19.5 ratio) - 7 pages
-- Location: `public/vtf-presentation/slides/`
+**Stack**: React 19 + TypeScript + Vite + Tailwind CSS v4, deployed on Vercel
+**Current state**: No CI/CD automation exists
 
 ## Success Criteria
 
-### Password & Security
-- [ ] Password gate on page load (password: `pass123`)
-- [ ] Clean branded gate UI (not browser prompt)
-- [ ] Gate remembers session (sessionStorage)
+### Workflow 1: PR Validation (`validate.yml`)
+- [ ] Triggers on all pull requests to main
+- [ ] Runs TypeScript type checking (`npx tsc --noEmit`)
+- [ ] Runs build verification (`npm run build`)
+- [ ] Uses Node 20.x
+- [ ] Caches node_modules for speed
+- [ ] Fails PR if any check fails
 
-### Story Structure
-- [ ] Slide 1: Mission hook (their land, their purpose) - NOT "Website Redesign Proposal"
-- [ ] Slide 2: The stakes (what outdated presence costs them)
-- [ ] One big idea per slide maximum (no 4-card dumps)
-- [ ] Final slide: Vision of their future, not generic "Thank You"
+### Workflow 2: Production Deploy (`deploy.yml`)
+- [ ] Triggers on push to main branch only
+- [ ] Runs build verification first
+- [ ] Deploys to Vercel using Vercel CLI
+- [ ] Uses Vercel project/org tokens from secrets
+- [ ] Includes deployment URL in workflow summary
 
-### Screenshot Presentation
-- [ ] Desktop frames use 16:10 aspect ratio (matches 1440×900 images)
-- [ ] Mobile frames use 9:19.5 aspect ratio (matches 780×1688 images)
-- [ ] Images fit frames without cropping or distortion
-- [ ] Each screenshot has impact-focused caption (donor benefit, not feature)
+### Repository Setup
+- [ ] `.github/workflows/` directory created
+- [ ] Both workflow files are valid YAML
+- [ ] Workflows appear in GitHub Actions tab
 
-### Visual Polish
-- [ ] Generous whitespace between elements
-- [ ] Bold typography hierarchy (one thing stands out per slide)
-- [ ] Consistent color palette (VtF brand: teal #2d8a8a, brown #4a3728, sandstone #d4c4a8)
-
-### Mobile Experience
-- [ ] Proper touch/swipe navigation
-- [ ] Mobile-only view shows full device frame (proper aspect ratio)
-- [ ] View toggle (mobile/desktop) works correctly
-- [ ] Navigation buttons touch-friendly (min 44px tap targets)
-
-### Deployment
-- [ ] Builds without errors: `cd /Users/fredpro/sftwrks && npm run build`
-- [ ] Deploys to production: `cd /Users/fredpro/sftwrks && npx vercel --prod --yes`
-- [ ] Accessible at sftwrks.com/vtf-presentation/
+### Verification
+- [ ] Create test PR → validate workflow runs
+- [ ] Merge to main → deploy workflow runs
+- [ ] Site is live after deploy completes
 
 ## Done When
-ALL checkboxes above are checked. Verify by:
-1. Opening sftwrks.com/vtf-presentation/
-2. Password gate appears and accepts `pass123`
-3. First slide is mission-focused (land/conservation imagery or statement)
-4. No slide has more than 2 elements competing for attention
-5. Screenshots fit their frames perfectly
-6. Mobile swipe works
-7. Final slide inspires action
+
+1. Both workflow files exist in `.github/workflows/`
+2. Push to repo triggers workflows
+3. PR validation blocks merge on type errors
+4. Main branch push deploys to production
 
 ## Out of Scope
-- Recapturing screenshots
-- Changing VtF website itself
-- Adding actual payment processing
-- Video or animated content
+
+- Adding linting (no eslint configured currently)
+- Adding test suite (no tests exist currently)
+- Release/tagging workflows
+- Desktop app builds
+- Slack/Discord notifications
+
+## Technical Notes
+
+**Vercel Secrets Needed** (add to GitHub repo secrets):
+- `VERCEL_TOKEN` - Vercel API token
+- `VERCEL_ORG_ID` - Vercel org/team ID
+- `VERCEL_PROJECT_ID` - Vercel project ID
+
+**Get Vercel IDs**:
+```bash
+cd /Users/fredpro/sftwrks
+cat .vercel/project.json  # Contains projectId and orgId
+```
+
+## Files to Create
+
+1. `/Users/fredpro/sftwrks/.github/workflows/validate.yml`
+2. `/Users/fredpro/sftwrks/.github/workflows/deploy.yml`
