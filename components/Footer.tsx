@@ -8,9 +8,11 @@ import React from 'react';
 interface FooterProps {
   onLinkClick: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
   onOpenDiscovery?: () => void;
+  onShowPrivacy?: () => void;
+  onShowTerms?: () => void;
 }
 
-const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
+const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPrivacy, onShowTerms }) => {
   return (
     <footer className="bg-[#0A1628] pt-24 pb-12 px-6">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-12">
@@ -110,8 +112,8 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery }) => {
           Softworks Trading Company
         </p>
         <div className="flex items-center gap-6 text-xs text-slate-500">
-          <a href="mailto:agents@sftwrks.com?subject=Privacy%20Policy%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</a>
-          <a href="mailto:agents@sftwrks.com?subject=Terms%20of%20Service%20Request" className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</a>
+          <button onClick={onShowPrivacy} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Privacy Policy</button>
+          <button onClick={onShowTerms} className="hover:text-[#00D4FF] transition-colors cursor-pointer">Terms of Service</button>
         </div>
       </div>
     </footer>
