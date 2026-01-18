@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState, useEffect, lazy, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -16,11 +16,9 @@ import CaseStudiesList from './components/CaseStudiesList';
 import Media from './components/Media';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
+import Assistant from './components/Assistant';
 import { CASE_STUDIES, JOURNAL_ARTICLES } from './constants';
 import { CaseStudy, JournalArticle } from './types';
-
-// Lazy load the Assistant component (chatbot) - not needed on initial render
-const Assistant = lazy(() => import('./components/Assistant'));
 
 function App() {
   // Theme Management
@@ -220,7 +218,7 @@ function App() {
              }}
              onNavigate={(article) => setSelectedArticle(article)}
            />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -240,7 +238,7 @@ function App() {
              }}
            />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -257,7 +255,7 @@ function App() {
              }}
              onNavigate={(study) => setSelectedCaseStudy(study)}
            />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -277,7 +275,7 @@ function App() {
              }}
            />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -291,7 +289,7 @@ function App() {
                setTimeout(() => scrollToSection('top'), 100);
            }} />
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -301,7 +299,7 @@ function App() {
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <PrivacyPolicy onBack={() => navigateTo('/')} />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -311,7 +309,7 @@ function App() {
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
            <TermsOfService onBack={() => navigateTo('/')} />
-           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
         </div>
     );
   }
@@ -490,7 +488,7 @@ function App() {
 
       </main>
 
-      <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
+      <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
     </div>
   );
 }
