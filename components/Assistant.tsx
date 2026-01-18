@@ -171,6 +171,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   const [showDetailedResults, setShowDetailedResults] = useState(false);
   const [validatingInput, setValidatingInput] = useState(false);
   const [validationError, setValidationError] = useState<string | null>(null);
+  const [honeypot, setHoneypot] = useState(''); // Anti-spam honeypot field
 
   // Show prompt after 3 seconds if not opened
   React.useEffect(() => {
@@ -391,6 +392,14 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     e.preventDefault();
     if (!email.trim()) return;
 
+    // Honeypot check - if filled, silently "succeed" without submitting
+    if (honeypot) {
+      console.warn('Honeypot triggered - blocking spam submission');
+      setSubmitted(true);
+      setSubmissionMethod('webhook'); // Fake success
+      return;
+    }
+
     setIsSubmitting(true);
 
     // Build structured payload for webhook
@@ -463,6 +472,7 @@ Ready for follow-up consultation.
     setAnswers([]);
     setEmail('');
     setPhone('');
+    setHoneypot('');
     setSubmitted(false);
     setSubmissionMethod(null);
     setAiInsight(null);
@@ -666,6 +676,17 @@ Ready for follow-up consultation.
                 <p className="text-slate-400 text-xs mb-4">Get your complete analysis + actionable next steps delivered to your inbox.</p>
 
                 <form onSubmit={handleSubmit} className="space-y-3">
+                  {/* Honeypot field - hidden from users, catches bots */}
+                  <input
+                    type="text"
+                    name="website"
+                    value={honeypot}
+                    onChange={(e) => setHoneypot(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                    aria-hidden="true"
+                    className="absolute -left-[9999px] opacity-0 h-0 w-0 pointer-events-none"
+                  />
                   <input
                     type="email"
                     value={email}
