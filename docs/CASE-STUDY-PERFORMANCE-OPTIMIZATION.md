@@ -223,6 +223,8 @@ Via softworkstrading.com (redirect):
 | 9:46 PM | Measured actual latency: blank screen confirmed |
 | 9:50 PM | Deployed instant loading shell |
 | 9:51 PM | Documented for case study |
+| 9:55 PM | User confirms loading shell works - hero loads slower |
+| 9:58 PM | Added hero image to loading shell (loads before React) |
 
 ---
 
