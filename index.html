@@ -37,6 +37,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
 
+    <!-- Preload Hero Images (LCP optimization) -->
+    <link rel="preload" href="/assets/hero/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 640px)" />
+    <link rel="preload" href="/assets/hero/hero-tablet.webp" as="image" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" />
+    <link rel="preload" href="/assets/hero/hero-desktop.webp" as="image" type="image/webp" media="(min-width: 1025px)" />
+
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/logos/favicon-32x32.png" />
