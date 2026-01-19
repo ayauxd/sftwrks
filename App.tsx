@@ -7,6 +7,8 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
+import Features from './components/Features';
+import Filter from './components/Filter';
 import Footer from './components/Footer';
 import { CaseStudy, JournalArticle } from './types';
 
@@ -19,7 +21,8 @@ const CaseStudiesList = lazy(() => import('./components/CaseStudiesList'));
 const Media = lazy(() => import('./components/Media'));
 const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
 const TermsOfService = lazy(() => import('./components/TermsOfService'));
-const Assistant = lazy(() => import('./components/Assistant'));
+// Assistant (Time Value Calculator) NOT lazy loaded - causes React hooks error when lazy
+import Assistant from './components/Assistant';
 
 // Lazy load data - only fetch when needed
 const loadConstants = () => import('./constants').then(m => ({
@@ -388,10 +391,16 @@ function App() {
         {/* ABOUT - Problem & Solution */}
         <About />
 
+        {/* FEATURES - The Path & Value Philosophy */}
+        <Features onOpenCalculator={() => setIsAssessmentOpen(true)} />
+
         {/* TEAM - lazy loaded */}
         <Suspense fallback={<div className="py-24" />}>
           <Team />
         </Suspense>
+
+        {/* FILTER - Is This Right For You? */}
+        <Filter />
 
         {/* CASE STUDIES */}
         <section id="work" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">

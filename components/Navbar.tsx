@@ -59,15 +59,15 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
               ? 'text-slate-700 dark:text-slate-400'
               : isDark ? 'text-slate-300' : 'text-slate-700'
           }`}>
-            <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">How We Help</button>
+            <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">How We Work</button>
             <button onClick={() => handleLink('team')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Team</button>
-            <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Case Studies</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Insights</button>
+            <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Results</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Journal</button>
             <button
               onClick={() => handleLink('contact')}
               className="ml-2 px-4 py-2 border border-[#00D4FF] text-[#00D4FF] hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-200 uppercase text-xs tracking-wider"
             >
-              Contact
+              Start
             </button>
 
             {/* Theme Toggle */}
@@ -138,11 +138,11 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             <div className="mb-4">
               <span className="font-sans text-slate-900 dark:text-white font-bold text-4xl tracking-wide">SOFTWORKS</span>
             </div>
-            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">HOW WE HELP</button>
+            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">HOW WE WORK</button>
             <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors">TEAM</button>
-            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors">CASE STUDIES</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors">INSIGHTS</button>
-            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors">CONTACT</button>
+            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors">RESULTS</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors">JOURNAL</button>
+            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors">START</button>
             <button onClick={() => setMobileMenuOpen(false)} className="mt-8 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
         </div>
       )}

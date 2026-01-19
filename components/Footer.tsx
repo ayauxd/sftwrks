@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
             <span className="font-sans text-slate-400 font-medium text-[10px] tracking-[0.15em] uppercase">Trading Company</span>
           </div>
           <p className="max-w-xs text-slate-400 font-light leading-relaxed mb-6">
-            We help businesses make AI work. Strategy, setup, and support to get real results.
+            Systems first. Automation second. We find where your problem actually lives, then build one thing that fixes it.
           </p>
           <a
             href="mailto:agents@sftwrks.com"
@@ -39,26 +39,26 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
 
         {/* Services Column */}
         <div className="md:col-span-2">
-          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">Services</p>
+          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">How We Work</p>
           <ul className="space-y-4 text-slate-400 font-light text-sm">
             <li>
               <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
-                AI Strategy
+                Find the Constraint
               </a>
             </li>
             <li>
               <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
-                Governance Design
+                Build the System
               </a>
             </li>
             <li>
               <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
-                Integration Advisory
+                Hand It Over
               </a>
             </li>
             <li>
-              <a href="#about" onClick={(e) => onLinkClick(e, 'about')} className="hover:text-[#00D4FF] transition-colors">
-                Workflow Automation
+              <a href="#process" onClick={(e) => onLinkClick(e, 'process')} className="hover:text-[#00D4FF] transition-colors">
+                Pricing
               </a>
             </li>
           </ul>
@@ -93,16 +93,23 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
 
         {/* CTA Column */}
         <div className="md:col-span-4">
-          <p className="font-medium text-white mb-6 tracking-wide text-xs uppercase" role="heading" aria-level="2">Start a Conversation</p>
-          <p className="text-slate-400 font-light text-sm mb-6 leading-relaxed">
-            Ready to make AI work for your business? Let's talk about what you need.
+          <p className="font-medium text-white mb-4 tracking-wide text-xs uppercase" role="heading" aria-level="2">Not Sure If This Fits?</p>
+          <p className="text-slate-400 font-light text-sm mb-4 leading-relaxed">
+            Most problems we solve start with a 15-minute conversation. Describe what's slowing you down—I'll tell you if we can help.
           </p>
-          <button
-            onClick={onOpenDiscovery}
-            className="inline-block px-6 py-3 bg-[#00D4FF] text-[#0A1628] font-semibold uppercase tracking-wider text-xs hover:bg-[#22D3EE] hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
+          <p className="text-slate-500 font-light text-xs mb-6 italic">
+            — Frederick, Founder
+          </p>
+          <a
+            href="mailto:agents@sftwrks.com?subject=Constraint%20to%20Discuss"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D4FF] text-[#0A1628] font-semibold uppercase tracking-wider text-xs hover:bg-[#22D3EE] hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
           >
-            Schedule Discovery Call
-          </button>
+            Describe Your Constraint
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          <p className="text-xs text-slate-500 mt-3">Response within 24 hours</p>
         </div>
       </div>
 

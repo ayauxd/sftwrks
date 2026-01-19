@@ -1,49 +1,75 @@
-# PRD: Fix www.sftwrks.com OG Preview on OpenGraph.xyz
+# PRD: Fix Hero Image Quality and Scroll Blocking
 
 ## Context
-- www.sftwrks.com DNS was just configured (CNAME added in Namecheap)
-- Site works when tested directly via curl, Puppeteer, multiple DNS resolvers
-- opengraph.xyz returns "fetch failed" - likely cached error or DNS propagation delay
-- OG tags currently point to sftwrks.com (non-www) while testing www.sftwrks.com
 
-## Root Cause Analysis
-1. DNS propagation may not have reached opengraph.xyz's servers yet
-2. opengraph.xyz may have cached the previous NXDOMAIN error
-3. OG meta tags use sftwrks.com URLs while testing www.sftwrks.com (URL mismatch)
+### Current State
+1. **Hero images severely over-compressed:**
+   - hero-desktop.jpg: 26KB (should be ~150-200KB for quality)
+   - hero-mobile.jpg: 19KB (should be ~80-100KB)
+   - hero-tablet.jpg: 24KB
+
+2. **New high-quality images available:**
+   - /Users/fredpro/Downloads/desktop.jpeg: 778KB
+   - /Users/fredpro/Downloads/mobile.jpeg: 1.3MB
+
+3. **Scroll blocking for 10-15 seconds** - Possible causes:
+   - Heavy CSS blur effects (150px blur on 600x600 element in Hero.tsx)
+   - useParallaxScroll hook running expensive scroll listeners
+   - React hydration blocking main thread
+   - 52KB constants.ts being parsed synchronously
+
+4. **Twitter card loads slowly** - OG image is 149KB (acceptable but could optimize)
+
+### Files to Modify
+- `public/assets/hero/hero-desktop.jpg` - Replace with optimized version of Downloads/desktop.jpeg
+- `public/assets/hero/hero-mobile.jpg` - Replace with optimized version of Downloads/mobile.jpeg
+- `public/assets/hero/hero-tablet.jpg` - Create from desktop.jpeg
+- `components/Hero.tsx` - Reduce heavy effects if needed
+- `hooks/useScrollAnimation.ts` - Optimize if causing jank
+- `App.tsx` - Ensure non-blocking render
 
 ## Success Criteria
-- [x] Update OG meta tags to use www.sftwrks.com as canonical URL
-- [x] Update canonical link to www.sftwrks.com
-- [x] Update JSON-LD schema URLs to www.sftwrks.com
-- [x] Configure Vercel redirect: sftwrks.com → www.sftwrks.com
-- [x] Deploy changes to production
-- [x] Test with metatags.io (alternative OG tool) ✅ SUCCESS
-- [x] Rich branded OG image displays correctly
-- [ ] Confirm opengraph.xyz successfully fetches www.sftwrks.com ⚠️ BLOCKED (their infra issue)
+
+- [x] Replace hero-desktop.jpg with optimized version (~150-200KB, good quality) ✅ 434KB
+- [x] Replace hero-mobile.jpg with optimized version (~80-100KB, good quality) ✅ 126KB
+- [x] Create hero-tablet.jpg from desktop image (~100-120KB) ✅ 140KB
+- [x] Page scrolls immediately after hero appears (no 10-15s block) ✅ Blur effects replaced
+- [x] Reduce/optimize blur effects if causing performance issues ✅ Radial gradients
+- [x] Build passes with no errors ✅
+- [x] Deploy to production ✅
+- [ ] Verify hero images look sharp on both desktop and mobile (USER TEST)
+- [ ] Verify page is scrollable within 2 seconds of load (USER TEST)
 
 ## Done When
-opengraph.xyz successfully fetches and displays OG preview for https://www.sftwrks.com with the rich branded image.
+1. Desktop/mobile hero images replaced with high-quality versions
+2. Page scrolls immediately without 10-15s delay
+3. Twitter card loads fast
+4. Deployed and verified
 
 ## Out of Scope
-- Changing the actual OG image design
-- DNS provider migration
-- Non-OG related site changes
+- Changing hero content/copy
+- Redesigning the hero section
+- Adding new features
 
 ## Verification Commands
 ```bash
-# DNS check
-dig www.sftwrks.com +short
-
-# HTTP check
-curl -sI https://www.sftwrks.com | head -5
-
-# OG tags check
-curl -s https://www.sftwrks.com | grep -E "og:" | head -10
-
-# OG image check
-curl -sI https://www.sftwrks.com/assets/logos/og-preview.png | head -5
+npm run build          # Build must pass
+npx tsc --noEmit       # TypeScript check
+npm run preview        # Test locally
+vercel --prod          # Deploy
+curl -s -o /dev/null -w "%{http_code}" https://www.sftwrks.com/  # Verify live
 ```
 
-## Files to Modify
-1. `/Users/fredpro/sftwrks/index.html` - Update OG tags to www.sftwrks.com
-2. `/Users/fredpro/sftwrks/vercel.json` - Add redirect sftwrks.com → www.sftwrks.com
+## Technical Approach
+
+### Image Optimization
+The new images need to be optimized for web:
+- Desktop: Resize to 1920px width, JPEG quality 80-85, target ~150-200KB
+- Mobile: Resize to 640px width, JPEG quality 80-85, target ~80-100KB
+- Tablet: Resize to 1024px width, JPEG quality 80-85, target ~100-120KB
+
+### Scroll Blocking Fix
+1. Check if useParallaxScroll has expensive operations
+2. Check if blur effects are GPU-accelerated (should use transform/opacity)
+3. Ensure React hydration doesn't block interaction
+4. Consider using `will-change` CSS for animated elements

@@ -71,11 +71,16 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
           </picture>
         </div>
 
-        {/* Layer 2: Cyan glow center - The "Clarity Engine" focal point */}
+        {/* Layer 2: Cyan glow center - Performant radial gradient (no blur) */}
         <div className="absolute inset-0 flex items-center justify-center pointer-events-none hero-glow-center">
-          <div className={`w-[600px] h-[600px] rounded-full blur-[150px] transition-colors duration-500 ${
-            isDark ? 'bg-[#00D4FF]' : 'bg-cyan-400'
-          }`} />
+          <div
+            className="w-[800px] h-[800px] rounded-full transition-opacity duration-500"
+            style={{
+              background: isDark
+                ? 'radial-gradient(circle, rgba(0,212,255,0.4) 0%, rgba(0,212,255,0.1) 40%, transparent 70%)'
+                : 'radial-gradient(circle, rgba(34,211,238,0.5) 0%, rgba(34,211,238,0.15) 40%, transparent 70%)'
+            }}
+          />
         </div>
 
         {/* Layer 3: Dark mode overlay */}
@@ -110,10 +115,15 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         />
       </div>
 
-      {/* Subtle Glow Accents - with breathing pulse animation */}
-      <div className={`absolute top-1/3 left-1/4 w-96 h-96 rounded-full blur-[200px] transition-all duration-500 animate-glow-pulse ${
-        isDark ? 'bg-[#00D4FF] opacity-10' : 'bg-cyan-400 opacity-20'
-      }`} />
+      {/* Subtle Glow Accents - performant radial gradient */}
+      <div
+        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full transition-opacity duration-500 animate-glow-pulse"
+        style={{
+          background: isDark
+            ? 'radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 60%)'
+            : 'radial-gradient(circle, rgba(34,211,238,0.25) 0%, transparent 60%)'
+        }}
+      />
 
       {/* Content */}
       <div className="relative z-10 h-full min-h-screen flex items-center px-6 py-24">
@@ -124,21 +134,21 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up text-sm md:text-base mb-6 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
-              AI doesn't have to be complicated.
+              Most AI projects automate symptoms. We find where the problem actually lives.
             </p>
 
             {/* Main Headline - Outcome Focused */}
             <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 leading-[1.1] transition-colors duration-300" style={{ animationDelay: '100ms' }}>
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>Get AI Working</span>
+              <span className={isDark ? 'text-white' : 'text-slate-900'}>Systems First.</span>
               <br />
-              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>in Weeks, Not Months</span>
+              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>Automation Second.</span>
             </h1>
 
             {/* Subheadline - How */}
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              We handle the strategy, setup, and support—you get results.
+              We diagnose before we build. You get AI set up for your workflow—not the other way around.
             </p>
 
             {/* CTA Buttons - Single clear action */}
@@ -151,7 +161,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
                     : 'bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg'
                 }`}
               >
-                See How It Works
+                Find Your Constraint
               </button>
               <a
                 href="#work"
@@ -184,10 +194,10 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
               )}
             </div>
 
-            {/* Trust Indicators - Specific social proof */}
+            {/* Trust Indicators - Filter statement */}
             <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
               <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                <span className={`font-semibold ${isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}`}>50+ teams</span> have shipped AI that actually works
+                For business owners who can describe what's slowing them down—and have time to get it right.
               </p>
             </div>
 

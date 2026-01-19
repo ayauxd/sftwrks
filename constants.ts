@@ -51,8 +51,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: 'Government Logistics Agency',
     sector: 'Public Sector',
     title: 'The Document Backlog Crisis',
-    summary: 'A public logistics authority drowning in 4,000 daily manifests found a way to process them in seconds—without adding headcount.',
-    outcome: '90% reduction in processing time.',
+    summary: 'They said: "We need to hire more people." The real constraint: routing decisions were buried in a 6-step manual process. One system fixed it.',
+    outcome: 'Constraint: routing, not headcount. Result: 90% faster processing.',
     imageUrl: '/assets/case-studies/logistics-noir.webp',
     date: 'MAR 2025',
     completedDate: '2025-03',
@@ -83,8 +83,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: 'Mid-Size Financial Services Firm',
     sector: 'Financial Services',
     title: 'The Hallucination Problem in Regulated AI',
-    summary: "When your AI chatbot can't afford to be wrong—building customer service that's accurate 100% of the time.",
-    outcome: 'Zero AI hallucinations in 150K+ interactions.',
+    summary: 'They said: "We need a smarter AI model." The real constraint: no verification layer between generation and customer. We built one.',
+    outcome: 'Constraint: verification, not intelligence. Result: 0 hallucinations in 150K+ chats.',
     imageUrl: '/assets/case-studies/finance-noir.webp',
     date: 'NOV 2025',
     completedDate: '2025-11',
@@ -125,8 +125,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: 'Small Accounting Practice',
     sector: 'Professional Services',
     title: 'The Content Marketing Time Crunch',
-    summary: 'A three-person CPA firm with no time for marketing built an AI video pipeline that runs itself.',
-    outcome: '12 videos/month from 2 hours of work.',
+    summary: 'They said: "We need to hire a marketing person." The real constraint: content production bottlenecked on the expert. We automated the tedious parts.',
+    outcome: 'Constraint: production, not expertise. Result: 12 videos/mo from 2 hours.',
     imageUrl: '/assets/case-studies/accounting-noir.webp',
     date: 'JUN 2025',
     completedDate: '2025-06',
@@ -177,8 +177,8 @@ export const CASE_STUDIES: CaseStudy[] = [
     client: 'Private Event',
     sector: 'Consumer / Events',
     title: 'The AI Photo Booth That Runs Itself',
-    summary: 'A birthday party needed personalized dinosaur adventure photos for 30 guests—with zero staff and a $10 budget.',
-    outcome: '168 AI-generated images, $0.05 each, fully automated.',
+    summary: 'They said: "We need a photo booth attendant." The real constraint: the interface required technical knowledge. We built one a 5-year-old could use.',
+    outcome: 'Constraint: interface, not staffing. Result: 168 images, $0.05 each, zero help needed.',
     imageUrl: '/assets/case-studies/photobooth-noir.webp',
     date: 'JAN 2026',
     completedDate: '2026-01',
@@ -229,7 +229,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     title: 'January 2026: When Your Payment Processor Forgets You Exist',
     date: 'JAN 2026',
     author: 'Frederick A.',
-    excerpt: 'A single integration glitch orphaned a business owner\'s entire Stripe account. Here\'s what every cloud-dependent business needs to know.',
+    excerpt: 'Your payment processor doesn\'t care about your business. One API glitch deleted a founder\'s entire revenue stream. The recovery trick he used was pure luck.',
     image: '/assets/journal/jan-2026.webp',
     content: `
       <p>On January 14th, machine learning author Andriy Burkov shared a cautionary tale that should concern every business running on cloud infrastructure. He connected his existing Stripe account to X's Creator Revenue Sharing program. What happened next is a masterclass in platform dependency risk.</p>
@@ -270,7 +270,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     title: 'December 2025: The Year AI Became Infrastructure',
     date: 'DEC 2025',
     author: 'Frederick A.',
-    excerpt: '2025 in review: From curiosity to necessity. How AI shifted from "should we?" to "how do we?" across every industry.',
+    excerpt: 'The debate is over. AI isn\'t optional anymore. But most companies who "adopted AI" in 2025 built the wrong things. Here\'s what the 5% got right.',
     image: '/assets/journal/dec-2025.webp',
     content: `
       <p>A year ago, the question was whether AI would live up to the hype. Twelve months later, the question has changed entirely. It's no longer "should we adopt AI?" It's "how do we implement it before our competitors do?"</p>
@@ -446,7 +446,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     title: 'July 2025: The Reality Check',
     date: 'JUL 2025',
     author: 'David M.',
-    excerpt: 'MIT study claims 95% of businesses found zero AI value. Here\'s what they got wrong—and right.',
+    excerpt: '95% of businesses found zero AI value. The 5% who won all did the same thing first—and it wasn\'t what the consultants recommended.',
     image: '/assets/journal/jul-2025.webp',
     content: `
       <p>An MIT study dropped in July claiming 95% of businesses that tried AI found zero value. The headlines were brutal. "AI Hype Bubble Bursts." "Enterprise AI: All Sizzle, No Steak."</p>
@@ -677,94 +677,111 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
   // Thought Leadership Articles (spread across months with double entries)
   {
     id: 'j1',
-    title: 'The Latency Tax Nobody Talks About',
+    title: 'The Latency Tax: Why Speed Beats Intelligence',
     date: 'MAR 2025',
-    author: 'David M.',
-    excerpt: 'Your AI agent is probably too slow. Here\'s why that matters more than its intelligence.',
+    author: 'SFTWRKS Intel',
+    excerpt: 'If your AI takes more than a second to respond, people stop using it. Speed matters more than smarts. Here\'s the math.',
     image: '/assets/journal/latency-tax.webp',
     content: `
-      <p>I watched a product demo last month where the founder proudly showed off their AI assistant. It was genuinely impressive—nuanced responses, excellent reasoning, could handle complex multi-step tasks.</p>
+      <p class="intel-label">SFTWRKS INTEL | DEPLOYMENT PATTERNS</p>
 
-      <p>It also took 8 seconds to respond to a simple question.</p>
+      <p>User tolerance for AI latency drops sharply after 400 milliseconds. By 2 seconds, abandonment rates spike. By 5 seconds, users have switched to manual methods.</p>
 
-      <p>The founder didn't seem to notice. Everyone in the room was politely waiting, the way you do. But here's what I kept thinking: nobody is going to use this. Not because it's not smart. Because it's not fast.</p>
+      <p>This isn't preference. It's cognitive load. Working memory decays in 10-15 seconds. Slow AI breaks the user's train of thought before it can help.</p>
 
-      <h3>The 400ms Threshold</h3>
+      <h3>The Threshold Data</h3>
 
-      <p>We've deployed enough AI systems at this point to know where the breaking point is. It's around 400 milliseconds. That's the moment where waiting for AI becomes more friction than just doing the thing yourself.</p>
+      <table>
+        <tr><td><strong>&lt; 400ms</strong></td><td>AI feels like extension of thought</td></tr>
+        <tr><td><strong>400ms - 2s</strong></td><td>User notices the wait</td></tr>
+        <tr><td><strong>2s - 5s</strong></td><td>User considers doing it manually</td></tr>
+        <tr><td><strong>&gt; 5s</strong></td><td>User has already opened another tab</td></tr>
+      </table>
 
-      <p>Below 400ms, the AI feels like an extension of your thinking. Above it, you start noticing you're waiting. By 2 seconds, you're wondering if you should just do it manually. By 5 seconds, you've already opened another tab.</p>
+      <h3>The Benchmark Trap</h3>
 
-      <p>This isn't a preference. It's neuroscience. Your working memory can only hold information for about 10-15 seconds before it starts decaying. A slow AI isn't just annoying—it's breaking your train of thought.</p>
+      <p>Model releases emphasize accuracy gains: 3% better at graduate math, 5% improvement on coding benchmarks. Latency benchmarks rarely appear in announcements.</p>
 
-      <h3>The Smartness Trap</h3>
+      <p>In production, the tradeoff matters:</p>
+      <ul>
+        <li>90% accuracy at 200ms → gets used</li>
+        <li>95% accuracy at 3 seconds → gets abandoned</li>
+      </ul>
 
-      <p>The AI industry has an obsession with benchmark performance. Every new model release comes with charts showing it's 3% better at graduate-level math or 5% better at coding puzzles.</p>
+      <h3>Routing as Solution</h3>
 
-      <p>Nobody shows the latency charts. Because they're embarrassing.</p>
+      <p>Production systems that maintain perceived speed use model routing:</p>
+      <ul>
+        <li>Simple queries → small, fast models (Haiku, GPT-4o-mini)</li>
+        <li>Complex queries → capable models (Opus, GPT-4)</li>
+        <li>User experience → consistent sub-second response</li>
+      </ul>
 
-      <p>The smartest model in the world is useless if it takes 10 seconds to respond. A slightly dumber model that responds instantly will get used. A genius that takes forever will collect dust.</p>
+      <p>The routing logic adds ~50ms overhead. The perceived speed improvement is 10x.</p>
 
-      <p>This is why we route aggressively. Simple questions go to small, fast models. Complex questions go to capable models. The user never sees the routing—they just experience speed.</p>
+      <h3>Implementation Note</h3>
 
-      <h3>What This Means For Deployment</h3>
-
-      <p>If you're building AI into your product or workflow, measure latency before you measure accuracy. Run your prompts through a stopwatch before you run them through an eval suite.</p>
-
-      <p>The painful truth: sometimes you need to make your AI dumber to make it useful. A 90% accurate response in 200ms beats a 95% accurate response in 3 seconds for almost every real-world application.</p>
-
-      <p>Intelligence that arrives too late is indistinguishable from stupidity.</p>
+      <p>Measure latency before accuracy. Run prompts through a stopwatch before an eval suite. If p95 latency exceeds 1 second, optimize for speed first—even at accuracy cost.</p>
 
       <hr />
 
-      <p><em>This is something we think about constantly when designing systems for our clients. Speed isn't a feature—it's the feature. Everything else is academic if nobody waits around to see it.</em></p>
+      <p><em>Intelligence that arrives too late is indistinguishable from stupidity.</em></p>
     `
   },
   {
     id: 'j2',
-    title: 'Your Context Window Is Not a Database',
+    title: 'Context Windows: Why More Memory Makes Models Dumber',
     date: 'JUN 2025',
-    author: 'Nina R.',
-    excerpt: 'The biggest mistake companies make with RAG: treating AI memory like a filing cabinet.',
+    author: 'SFTWRKS Intel',
+    excerpt: 'There\'s a right way and wrong way to give AI information. Most people do it wrong—and wonder why their chatbot sounds stupid.',
     image: '/assets/journal/context-window.webp',
     content: `
-      <p>Every few weeks, someone pitches me on their new RAG system. "We can stuff a million tokens into context now," they say. "The model can access everything."</p>
+      <p class="intel-label">SFTWRKS INTEL | RAG ARCHITECTURE</p>
 
-      <p>Cool. Have you actually tested what happens when you do that?</p>
-
-      <p>Because what happens is this: the model gets dumber. Not slightly dumber. Dramatically, measurably dumber. The more "memory" you give it, the worse it performs.</p>
-
-      <p>This is not a bug. It's how attention mechanisms work. And if you're deploying AI systems without understanding this, you're building on sand.</p>
+      <p>Filling a context window degrades model performance. This is documented behavior, not a bug. Attention mechanisms lose signal in noise.</p>
 
       <h3>The "Lost in the Middle" Problem</h3>
 
-      <p>Researchers at Stanford documented this last year, but practitioners have known it forever. When you fill a context window with documents, the model reliably ignores information in the middle. It pays attention to the beginning. It pays attention to the end. Everything in between becomes statistical noise.</p>
+      <p>Stanford research confirmed what practitioners observed: models reliably ignore information in the middle of long contexts. Attention concentrates on the beginning and end. Everything between becomes statistical noise.</p>
 
-      <p>Think about what this means for the naive RAG approach: "just embed everything and retrieve the top-k chunks." You're literally burying your most relevant information in a sea of moderately-relevant context. The model can't find it. It doesn't even look.</p>
+      <p>Implications for naive RAG:</p>
+      <ul>
+        <li>"Embed everything, retrieve top-k chunks" buries relevant information</li>
+        <li>The model can't find what it needs</li>
+        <li>Performance degrades as context grows</li>
+      </ul>
 
-      <h3>Memory Is Not Storage</h3>
+      <h3>Two-System Architecture</h3>
 
-      <p>Human memory doesn't work by storing everything and searching through it. It works by encoding relationships and retrieving through association. We remember things because they connect to other things.</p>
+      <p>Effective retrieval separates concerns:</p>
 
-      <p>AI memory should work the same way. Not "dump everything in context and hope attention finds it," but "carefully select exactly what's needed and nothing else."</p>
+      <p><strong>Working Memory (Context Window)</strong></p>
+      <ul>
+        <li>Small, focused, constantly refreshed</li>
+        <li>Only what's needed for current task</li>
+        <li>Target: 5-10 highly relevant passages, not 50 moderately relevant ones</li>
+      </ul>
 
-      <p>We think about this as two distinct systems:</p>
+      <p><strong>Long-Term Storage (Vector DB / Knowledge Graph)</strong></p>
+      <ul>
+        <li>Everything else</li>
+        <li>Structured for retrieval by relationship</li>
+        <li>Accessed surgically, never dumped wholesale</li>
+      </ul>
 
-      <p><strong>Working Memory</strong> (the context window) — Small, focused, constantly refreshed. Only what's needed for the current task. Like your desk while you're working: clean, relevant, immediate.</p>
+      <h3>The Selection Principle</h3>
 
-      <p><strong>Long-Term Storage</strong> (vector databases, knowledge graphs) — Everything else. Structured for retrieval by relationship, not by keyword. Accessed surgically, not dumped wholesale.</p>
+      <p>Time spent on what NOT to include > time spent on what to include.</p>
 
-      <h3>The Practical Implication</h3>
+      <p>Five perfectly relevant paragraphs outperform fifty moderately relevant pages. The model doesn't need comprehensive context. It needs precise context.</p>
 
-      <p>When we build retrieval systems, we spend more time on what NOT to include than what to include. The goal isn't comprehensive context—it's precise context.</p>
+      <h3>Implementation Note</h3>
 
-      <p>Five perfectly relevant paragraphs will outperform fifty moderately relevant pages every single time. The model doesn't need everything. It needs exactly the right thing.</p>
-
-      <p>This is harder than it sounds. It requires understanding your data well enough to know what "right" means for any given query. There are no shortcuts here.</p>
+      <p>If RAG results are mediocre, the fix is rarely "bigger model" or "more chunks." The fix is almost always "more selective retrieval." Garbage in, garbage out—even with a trillion parameters.</p>
 
       <hr />
 
-      <p><em>If your RAG system is returning mediocre results, the answer probably isn't "use a bigger model" or "increase chunk size." It's probably "be more selective about what you're retrieving." Garbage in, garbage out—even with a trillion parameters.</em></p>
+      <p><em>Retrieval quality is inversely proportional to retrieval quantity.</em></p>
     `
   },
   {
@@ -772,7 +789,7 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
     title: 'The Chief AI Officer Won\'t Exist in Three Years',
     date: 'NOV 2025',
     author: 'Frederick A.',
-    excerpt: 'Why the hottest role in tech is already obsolete—and what\'s actually coming next.',
+    excerpt: 'Stop hiring prompt engineers. The role was dead on arrival. Here\'s the 3-person team structure that actually ships AI products.',
     image: '/assets/journal/chief-ai-officer.webp',
     content: `
       <p>I've been getting a lot of calls from companies looking to hire their first "Head of AI" or "Chief AI Officer." The conversations all go roughly the same way.</p>
@@ -815,3 +832,62 @@ export const JOURNAL_ARTICLES: JournalArticle[] = [
 ];
 
 export const PRODUCTS: Product[] = [];
+
+// Currency configuration for Time Value Calculator
+export interface Currency {
+  code: string;
+  symbol: string;
+  name: string;
+  locale: string;
+}
+
+export const CURRENCIES: Currency[] = [
+  { code: 'USD', symbol: '$', name: 'US Dollar', locale: 'en-US' },
+  { code: 'EUR', symbol: '€', name: 'Euro', locale: 'de-DE' },
+  { code: 'GBP', symbol: '£', name: 'British Pound', locale: 'en-GB' },
+  { code: 'NGN', symbol: '₦', name: 'Nigerian Naira', locale: 'en-NG' },
+  { code: 'CAD', symbol: 'C$', name: 'Canadian Dollar', locale: 'en-CA' },
+  { code: 'AUD', symbol: 'A$', name: 'Australian Dollar', locale: 'en-AU' },
+  { code: 'INR', symbol: '₹', name: 'Indian Rupee', locale: 'en-IN' },
+  { code: 'ZAR', symbol: 'R', name: 'South African Rand', locale: 'en-ZA' },
+  { code: 'KES', symbol: 'KSh', name: 'Kenyan Shilling', locale: 'en-KE' },
+  { code: 'GHS', symbol: 'GH₵', name: 'Ghanaian Cedi', locale: 'en-GH' },
+  { code: 'AED', symbol: 'د.إ', name: 'UAE Dirham', locale: 'ar-AE' },
+  { code: 'SGD', symbol: 'S$', name: 'Singapore Dollar', locale: 'en-SG' },
+];
+
+// Time Value Calculator regions
+export const REGIONS = [
+  { label: 'North America', value: 'na' },
+  { label: 'Europe', value: 'eu' },
+  { label: 'Africa', value: 'af' },
+  { label: 'Asia Pacific', value: 'apac' },
+  { label: 'Middle East', value: 'me' },
+  { label: 'Latin America', value: 'latam' },
+];
+
+// Time Value Calculator - Challenge options
+export const CHALLENGE_OPTIONS = [
+  { label: 'Admin overload', value: 'admin', description: 'Paperwork, data entry, repetitive tasks eating your day' },
+  { label: 'Customer response time', value: 'response', description: 'Leads going cold, slow follow-up, missed opportunities' },
+  { label: 'Team handoffs', value: 'handoffs', description: 'Information lost between people, duplicated work' },
+  { label: 'Data & reporting', value: 'data', description: 'Manual reports, scattered data, no clear picture' },
+  { label: 'Content creation', value: 'content', description: 'Marketing materials, documentation, proposals' },
+];
+
+// Team size options
+export const TEAM_SIZE_OPTIONS = [
+  { label: 'Just me', value: 'solo', multiplier: 1 },
+  { label: '2-5 people', value: 'small', multiplier: 3 },
+  { label: '6-15 people', value: 'medium', multiplier: 8 },
+  { label: '16-50 people', value: 'large', multiplier: 25 },
+  { label: '50+ people', value: 'enterprise', multiplier: 50 },
+];
+
+// Success goal options
+export const SUCCESS_OPTIONS = [
+  { label: 'Reclaim time each week', value: 'time', description: 'Get hours back for high-value work' },
+  { label: 'Handle more without hiring', value: 'scale', description: 'Grow capacity without growing headcount' },
+  { label: 'Reduce errors & rework', value: 'errors', description: 'Stop fixing the same mistakes' },
+  { label: 'Faster customer response', value: 'speed', description: 'Beat competitors to the reply' },
+];

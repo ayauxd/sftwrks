@@ -2,6 +2,52 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+---
+
+## NEXT SESSION REMINDER (Jan 19, 2026)
+
+**1. Generate infographic cards and images for the site!**
+- Use Imagen 4 with the noir/papercut theme from hero image
+- Create cards for: The 5-Step Path, Value Philosophy, Good Fit section
+- Style: Deep navy (#0A1628), cyan accents (#00D4FF), layered paper cutout effect
+- See plan file for detailed Imagen 4 prompts: `~/.claude/plans/tidy-greeting-honey.md`
+
+**2. Fix Slack Integration**
+- Form submissions go to Formspree but NOT to Slack yet
+- Option A: Configure Formspree's Slack plugin (may need paid plan)
+- Option B: Add Slack webhook directly
+
+---
+
+## Latest Session Report
+
+**Date**: January 19, 2026 at 08:35 AM (Lagos Time)
+**Site**: https://www.sftwrks.com
+
+### Completed
+
+1. **Time Value Calculator** - Complete rewrite of chat widget
+   - 7-step conversational flow with 12 international currencies
+   - "Something else" option with business-relevance validation
+   - Word representation for large amounts (e.g., "350k to 700k")
+
+2. **CSP Fix** - Form was blocked by Content Security Policy
+   - Added `formspree.io` to `connect-src` and `form-action` in `vercel.json`
+   - Form submissions now working
+
+3. **Copy/UI Updates**
+   - "May not fit if..." (shortened from long version)
+   - Better icons, micro-interactions, warmer tone
+   - 5-step "The Path" flow with connecting line
+
+### Pending
+
+- [ ] Slack integration for form submissions
+- [ ] Generate noir-style infographic images
+- [ ] Possible: AI deeper analysis option
+
+---
+
 ## Identity
 
 **Softworks is an AI consulting firm, NOT a trading company.**
@@ -130,7 +176,14 @@ Required in `.env.local` (dev) and Vercel (prod):
 
 **Important:** Use unrestricted keys for local dev, restricted keys for production. See `docs/API_KEY_MANAGEMENT.md` for setup guide.
 
+## Donovan Protocol
+
+> See global: `~/.claude/CLAUDE.md`
+
+When detecting frustration (3+ failures, terse messages, version hell), suggest documented solutions over continued debugging.
+
 ## Mistakes Log
 
 - [2026-01-12] Don't assume "trading company" relates to stocks - it's AI consulting
 - [2026-01-18] Always use sftwrks.com - softworkstrading.com is being retired
+- [2026-01-19] CSP blocked Formspree - always add external API domains to `connect-src` in vercel.json

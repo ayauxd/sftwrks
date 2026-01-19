@@ -12,6 +12,7 @@
     "@anthropic-ai/sdk": "^0.71.2",
     "@google/genai": "^1.29.0",
     "react": "^19.2.0",
+    "react-currency-input-field": "^4.0.3",
     "react-dom": "^19.2.0"
   },
   "devDependencies": {

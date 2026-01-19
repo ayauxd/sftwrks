@@ -243,3 +243,14 @@ h1, h2, h3, h4, h5, h6 {
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
+
+/* SFTWRKS Intel Article Label */
+.intel-label {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: #00D4FF;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  font-family: 'JetBrains Mono', monospace;
+}

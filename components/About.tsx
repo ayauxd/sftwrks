@@ -14,18 +14,18 @@ const About: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-[#00D4FF] mb-6">
-              The Challenge
+              The Real Problem
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-slate-900 dark:text-white leading-tight mb-8">
-              AI is transforming industries.
+              Most AI projects
               <br />
-              <span className="text-slate-500 dark:text-slate-400">Most organizations aren't ready.</span>
+              <span className="text-slate-500 dark:text-slate-400">automate the wrong thing.</span>
             </h2>
             <p className="text-lg text-slate-700 dark:text-slate-400 font-light leading-relaxed mb-6">
-              AI promises to save time and money, but 70% of projects don't pay off. The problem isn't the technology—it's how you set it up.
+              You speed up a broken process—now it breaks faster. You add AI to a workflow that shouldn't exist—now you're paying to maintain both.
             </p>
             <p className="text-lg text-slate-700 dark:text-slate-400 font-light leading-relaxed">
-              Without a clear plan and the right setup, AI becomes a money pit instead of a game-changer.
+              The constraint isn't the technology. It's knowing where your problem actually lives before you start building.
             </p>
           </div>
 
@@ -57,67 +57,67 @@ const About: React.FC = () => {
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <span className="inline-block text-xs font-mono uppercase tracking-[0.2em] text-[#00D4FF] mb-6">
-              Our Approach
+              How We Work
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
-              From <span className="text-[#00D4FF]">"now what?"</span>
+              <span className="text-[#00D4FF]">Diagnose.</span> Build.
               <br />
-              to <span className="text-[#00D4FF]">"this works."</span>
+              <span className="text-[#00D4FF]">Hand Over.</span>
             </h2>
             <p className="max-w-2xl mx-auto text-lg text-slate-300 font-light">
-              We give you the plan, the guardrails, and the step-by-step path to make AI actually work for your business.
+              We find the real constraint, build one system that addresses it, then hand you the keys. No retainers. No dependency.
             </p>
           </div>
 
           {/* Three Pillars */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Strategy */}
+            {/* Find the Constraint */}
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src="/assets/sections/strategy-card.webp"
-                  alt="AI Strategy - illuminating the path forward"
+                  alt="Find the Constraint - diagnostic session"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">Strategy</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Find the Constraint</h3>
                 <p className="text-slate-300 font-light leading-relaxed text-sm">
-                  Figure out where AI can actually help your business—then build a plan to get there.
+                  A working session to map your operations and find where the actual bottleneck lives—not where you think it is.
                 </p>
               </div>
             </div>
 
-            {/* Governance */}
+            {/* Build the System */}
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src="/assets/sections/governance-card.webp"
-                  alt="AI Governance - protected framework"
+                  alt="Build the System - focused implementation"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">Governance</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Build the System</h3>
                 <p className="text-slate-300 font-light leading-relaxed text-sm">
-                  Set up the rules and safeguards so AI works the way you want—safely, responsibly, and within regulations.
+                  One system that solves one problem completely. We scope it, build it, and make sure it works before you pay.
                 </p>
               </div>
             </div>
 
-            {/* Integration */}
+            {/* Hand It Over */}
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
                   src="/assets/sections/integration-card.webp"
-                  alt="AI Integration - seamless connection"
+                  alt="Hand It Over - complete ownership transfer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-xl font-bold text-white mb-3">Integration</h3>
+                <h3 className="text-xl font-bold text-white mb-3">Hand It Over</h3>
                 <p className="text-slate-300 font-light leading-relaxed text-sm">
-                  Connect AI to how your team already works—so it helps instead of getting in the way.
+                  You own it. You run it. Documentation, training, and 30-day support included. No ongoing fees. No dependency.
                 </p>
               </div>
             </div>
