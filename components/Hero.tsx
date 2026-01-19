@@ -69,7 +69,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <img
               src="/assets/hero/hero-desktop.png"
               alt="AI consulting - transforming complexity into clarity"
-              className="absolute inset-0 w-full h-full object-contain md:object-cover object-center"
+              className="absolute inset-0 w-full h-full object-cover object-center"
               loading="eager"
               fetchPriority="high"
             />

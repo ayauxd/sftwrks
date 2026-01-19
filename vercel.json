@@ -5,15 +5,33 @@
   "framework": "vite",
   "redirects": [
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "sftwrks.com" }],
+      "destination": "https://www.sftwrks.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "sftwrks.com" }],
       "destination": "https://www.sftwrks.com/:path*",
       "permanent": true
     },
     {
+      "source": "/",
+      "has": [{ "type": "host", "value": "softworkstrading.com" }],
+      "destination": "https://www.sftwrks.com/",
+      "permanent": true
+    },
+    {
       "source": "/:path*",
       "has": [{ "type": "host", "value": "softworkstrading.com" }],
       "destination": "https://www.sftwrks.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.softworkstrading.com" }],
+      "destination": "https://www.sftwrks.com/",
       "permanent": true
     },
     {
