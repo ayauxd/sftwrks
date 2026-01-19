@@ -87,7 +87,43 @@
     </script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant loading shell - replaced by React -->
+      <style>
+        .loading-shell{min-height:100vh;background:#F8FAFC;display:flex;flex-direction:column}
+        .loading-nav{padding:1rem 1.5rem;border-bottom:1px solid #E2E8F0;background:white}
+        .loading-logo{font-family:system-ui;font-weight:700;font-size:1.125rem;letter-spacing:0.05em;color:#0F172A}
+        .loading-hero{flex:1;display:flex;align-items:center;padding:2rem 1.5rem}
+        .loading-content{max-width:32rem}
+        .loading-hook{font-size:0.875rem;color:#64748B;margin-bottom:1rem}
+        .loading-h1{font-size:2.25rem;font-weight:700;line-height:1.1;color:#0F172A;margin-bottom:1rem}
+        .loading-h1 span{color:#0891B2}
+        .loading-sub{font-size:1.125rem;color:#475569;line-height:1.6}
+        .loading-pulse{animation:pulse 2s infinite}
+        @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+        @media(prefers-color-scheme:dark){
+          .loading-shell{background:#0F172A}
+          .loading-nav{background:#0F172A;border-color:#334155}
+          .loading-logo{color:white}
+          .loading-hook{color:#94A3B8}
+          .loading-h1{color:white}
+          .loading-h1 span{color:#00D4FF}
+          .loading-sub{color:#94A3B8}
+        }
+      </style>
+      <div class="loading-shell">
+        <nav class="loading-nav">
+          <div class="loading-logo">SOFTWORKS</div>
+        </nav>
+        <div class="loading-hero">
+          <div class="loading-content">
+            <p class="loading-hook loading-pulse">AI doesn't have to be complicated.</p>
+            <h1 class="loading-h1">Get AI Working<br><span>in Weeks, Not Months</span></h1>
+            <p class="loading-sub">We handle the strategy, setup, and support—you get results.</p>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/index.tsx"></script>
 
     <!-- Static content for crawlers/bots that don't execute JavaScript -->
