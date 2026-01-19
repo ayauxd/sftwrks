@@ -60,9 +60,9 @@ const About: React.FC = () => {
               Our Approach
             </span>
             <h2 className="text-3xl md:text-5xl font-bold text-white leading-tight mb-6">
-              We help you go from
+              From <span className="text-[#00D4FF]">"now what?"</span>
               <br />
-              <span className="text-[#00D4FF]">"now what?" to "this works."</span>
+              to <span className="text-[#00D4FF]">"this works."</span>
             </h2>
             <p className="max-w-2xl mx-auto text-lg text-slate-300 font-light">
               We give you the plan, the guardrails, and the step-by-step path to make AI actually work for your business.

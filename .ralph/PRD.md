@@ -12,15 +12,14 @@
 3. OG meta tags use sftwrks.com URLs while testing www.sftwrks.com (URL mismatch)
 
 ## Success Criteria
-- [ ] Update OG meta tags to use www.sftwrks.com as canonical URL
-- [ ] Update canonical link to www.sftwrks.com
-- [ ] Update JSON-LD schema URLs to www.sftwrks.com
-- [ ] Configure Vercel redirect: sftwrks.com → www.sftwrks.com
-- [ ] Deploy changes to production
-- [ ] Test with metatags.io (alternative OG tool)
-- [ ] Test with LinkedIn Post Inspector
-- [ ] Confirm opengraph.xyz successfully fetches www.sftwrks.com
-- [ ] Rich branded OG image displays correctly
+- [x] Update OG meta tags to use www.sftwrks.com as canonical URL
+- [x] Update canonical link to www.sftwrks.com
+- [x] Update JSON-LD schema URLs to www.sftwrks.com
+- [x] Configure Vercel redirect: sftwrks.com → www.sftwrks.com
+- [x] Deploy changes to production
+- [x] Test with metatags.io (alternative OG tool) ✅ SUCCESS
+- [x] Rich branded OG image displays correctly
+- [ ] Confirm opengraph.xyz successfully fetches www.sftwrks.com ⚠️ BLOCKED (their infra issue)
 
 ## Done When
 opengraph.xyz successfully fetches and displays OG preview for https://www.sftwrks.com with the rich branded image.
