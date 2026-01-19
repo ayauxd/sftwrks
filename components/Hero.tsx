@@ -57,11 +57,6 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         <div className="absolute inset-0 hero-layer-bg">
           <picture>
             <source
-              type="image/webp"
-              srcSet="/assets/hero/hero-mobile.webp 640w, /assets/hero/hero-tablet.webp 1024w, /assets/hero/hero-desktop.webp 1920w"
-              sizes="100vw"
-            />
-            <source
               type="image/jpeg"
               srcSet="/assets/hero/hero-mobile.jpg 640w, /assets/hero/hero-tablet.jpg 1024w, /assets/hero/hero-desktop.jpg 1920w"
               sizes="100vw"

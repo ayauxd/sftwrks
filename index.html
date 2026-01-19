@@ -43,9 +43,9 @@
     <link rel="preload" href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hjp-Ek-_EeA.woff2" as="font" type="font/woff2" crossorigin />
 
     <!-- Preload Hero Images (LCP optimization) - high priority -->
-    <link rel="preload" href="/assets/hero/hero-mobile.webp" as="image" type="image/webp" media="(max-width: 640px)" fetchpriority="high" />
-    <link rel="preload" href="/assets/hero/hero-tablet.webp" as="image" type="image/webp" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high" />
-    <link rel="preload" href="/assets/hero/hero-desktop.webp" as="image" type="image/webp" media="(min-width: 1025px)" fetchpriority="high" />
+    <link rel="preload" href="/assets/hero/hero-mobile.jpg" as="image" type="image/jpeg" media="(max-width: 640px)" fetchpriority="high" />
+    <link rel="preload" href="/assets/hero/hero-tablet.jpg" as="image" type="image/jpeg" media="(min-width: 641px) and (max-width: 1024px)" fetchpriority="high" />
+    <link rel="preload" href="/assets/hero/hero-desktop.jpg" as="image" type="image/jpeg" media="(min-width: 1025px)" fetchpriority="high" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -130,7 +130,7 @@
         (function(){var w=window.innerWidth,img=new Image();
         img.onload=function(){var bg=document.getElementById('loading-bg');
         if(bg){bg.style.backgroundImage='url('+img.src+')';bg.classList.add('loaded');}};
-        img.src=w<=640?'/assets/hero/hero-mobile.webp':w<=1024?'/assets/hero/hero-tablet.webp':'/assets/hero/hero-desktop.webp';})();
+        img.src=w<=640?'/assets/hero/hero-mobile.jpg':w<=1024?'/assets/hero/hero-tablet.jpg':'/assets/hero/hero-desktop.jpg';})();
       </script>
     </div>
     <script type="module" src="/index.tsx"></script>
