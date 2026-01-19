@@ -62,12 +62,12 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
               sizes="100vw"
             />
             <source
-              type="image/png"
-              srcSet="/assets/hero/hero-mobile.png 640w, /assets/hero/hero-tablet.png 1024w, /assets/hero/hero-desktop.png 1920w"
+              type="image/jpeg"
+              srcSet="/assets/hero/hero-mobile.jpg 640w, /assets/hero/hero-tablet.jpg 1024w, /assets/hero/hero-desktop.jpg 1920w"
               sizes="100vw"
             />
             <img
-              src="/assets/hero/hero-desktop.png"
+              src="/assets/hero/hero-desktop.jpg"
               alt="AI consulting - transforming complexity into clarity"
               className="absolute inset-0 w-full h-full object-cover object-center"
               loading="eager"

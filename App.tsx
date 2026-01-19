@@ -3,22 +3,36 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Team from './components/Team';
 import Footer from './components/Footer';
-import CaseStudyDetail from './components/CaseStudyDetail';
-import JournalDetail from './components/JournalDetail';
-import InsightsList from './components/InsightsList';
-import CaseStudiesList from './components/CaseStudiesList';
-import Media from './components/Media';
-import PrivacyPolicy from './components/PrivacyPolicy';
-import TermsOfService from './components/TermsOfService';
-import Assistant from './components/Assistant';
-import { CASE_STUDIES, JOURNAL_ARTICLES } from './constants';
 import { CaseStudy, JournalArticle } from './types';
+
+// Lazy load non-critical components (code splitting)
+const Team = lazy(() => import('./components/Team'));
+const CaseStudyDetail = lazy(() => import('./components/CaseStudyDetail'));
+const JournalDetail = lazy(() => import('./components/JournalDetail'));
+const InsightsList = lazy(() => import('./components/InsightsList'));
+const CaseStudiesList = lazy(() => import('./components/CaseStudiesList'));
+const Media = lazy(() => import('./components/Media'));
+const PrivacyPolicy = lazy(() => import('./components/PrivacyPolicy'));
+const TermsOfService = lazy(() => import('./components/TermsOfService'));
+const Assistant = lazy(() => import('./components/Assistant'));
+
+// Lazy load data - only fetch when needed
+const loadConstants = () => import('./constants').then(m => ({
+  CASE_STUDIES: m.CASE_STUDIES,
+  JOURNAL_ARTICLES: m.JOURNAL_ARTICLES
+}));
+
+// Loading fallback
+const LoadingFallback = () => (
+  <div className="flex items-center justify-center min-h-[200px]">
+    <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin"></div>
+  </div>
+);
 
 function App() {
   // Theme Management
@@ -32,6 +46,24 @@ function App() {
   const [showTermsOfService, setShowTermsOfService] = useState(false);
   const [isAssessmentOpen, setIsAssessmentOpen] = useState(false);
 
+  // Lazy loaded data
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
+  const [journalArticles, setJournalArticles] = useState<JournalArticle[]>([]);
+  const [dataLoaded, setDataLoaded] = useState(false);
+
+  // Load constants on demand (after initial render)
+  useEffect(() => {
+    // Delay loading data until after hero is visible
+    const timer = setTimeout(() => {
+      loadConstants().then(data => {
+        setCaseStudies(data.CASE_STUDIES);
+        setJournalArticles(data.JOURNAL_ARTICLES);
+        setDataLoaded(true);
+      });
+    }, 100); // Small delay to prioritize hero render
+    return () => clearTimeout(timer);
+  }, []);
+
   // Parse article date "MMM YYYY" to sortable format
   const parseArticleDate = (dateStr: string): string => {
     const months: Record<string, string> = {
@@ -44,10 +76,10 @@ function App() {
   };
 
   // Preview sorted by date (newest first), limited to 3
-  const previewArticles = [...JOURNAL_ARTICLES]
+  const previewArticles = [...journalArticles]
     .sort((a, b) => parseArticleDate(b.date).localeCompare(parseArticleDate(a.date)))
     .slice(0, 3);
-  const previewCaseStudies = [...CASE_STUDIES]
+  const previewCaseStudies = [...caseStudies]
     .sort((a, b) => b.completedDate.localeCompare(a.completedDate))
     .slice(0, 3);
 
@@ -220,19 +252,21 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <JournalDetail
-             article={selectedArticle}
-             onBack={() => {
-               setSelectedArticle(null);
-               if (showInsightsList) {
-                 // Stay on insights list
-               } else {
-                 setTimeout(() => scrollToSection('journal'), 100);
-               }
-             }}
-             onNavigate={(article) => setSelectedArticle(article)}
-           />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={<LoadingFallback />}>
+             <JournalDetail
+               article={selectedArticle}
+               onBack={() => {
+                 setSelectedArticle(null);
+                 if (showInsightsList) {
+                   // Stay on insights list
+                 } else {
+                   setTimeout(() => scrollToSection('journal'), 100);
+                 }
+               }}
+               onNavigate={(article) => setSelectedArticle(article)}
+             />
+             <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           </Suspense>
         </div>
     );
   }
@@ -241,18 +275,20 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <InsightsList
-             onArticleClick={(article) => {
-               setSelectedArticle(article);
-               window.scrollTo({ top: 0, behavior: 'smooth' });
-             }}
-             onBack={() => {
-               setShowInsightsList(false);
-               setTimeout(() => scrollToSection('journal'), 100);
-             }}
-           />
+           <Suspense fallback={<LoadingFallback />}>
+             <InsightsList
+               onArticleClick={(article) => {
+                 setSelectedArticle(article);
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+               }}
+               onBack={() => {
+                 setShowInsightsList(false);
+                 setTimeout(() => scrollToSection('journal'), 100);
+               }}
+             />
+           </Suspense>
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -261,15 +297,17 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <CaseStudyDetail
-             study={selectedCaseStudy}
-             onBack={() => {
-               setSelectedCaseStudy(null);
-               setTimeout(() => scrollToSection('work'), 100);
-             }}
-             onNavigate={(study) => setSelectedCaseStudy(study)}
-           />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={<LoadingFallback />}>
+             <CaseStudyDetail
+               study={selectedCaseStudy}
+               onBack={() => {
+                 setSelectedCaseStudy(null);
+                 setTimeout(() => scrollToSection('work'), 100);
+               }}
+               onNavigate={(study) => setSelectedCaseStudy(study)}
+             />
+             <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           </Suspense>
         </div>
     );
   }
@@ -278,18 +316,20 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <CaseStudiesList
-             onStudyClick={(study) => {
-               setSelectedCaseStudy(study);
-               window.scrollTo({ top: 0, behavior: 'smooth' });
-             }}
-             onBack={() => {
-               setShowCaseStudiesList(false);
-               setTimeout(() => scrollToSection('work'), 100);
-             }}
-           />
+           <Suspense fallback={<LoadingFallback />}>
+             <CaseStudiesList
+               onStudyClick={(study) => {
+                 setSelectedCaseStudy(study);
+                 window.scrollTo({ top: 0, behavior: 'smooth' });
+               }}
+               onBack={() => {
+                 setShowCaseStudiesList(false);
+                 setTimeout(() => scrollToSection('work'), 100);
+               }}
+             />
+           </Suspense>
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -298,12 +338,14 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <Media onBack={() => {
-               setShowMedia(false);
-               setTimeout(() => scrollToSection('top'), 100);
-           }} />
+           <Suspense fallback={<LoadingFallback />}>
+             <Media onBack={() => {
+                 setShowMedia(false);
+                 setTimeout(() => scrollToSection('top'), 100);
+             }} />
+           </Suspense>
            <Footer onLinkClick={handleLinkClick} onOpenDiscovery={() => setIsAssessmentOpen(true)} onShowPrivacy={() => navigateTo('/privacy')} onShowTerms={() => navigateTo('/terms')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={null}><Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} /></Suspense>
         </div>
     );
   }
@@ -312,8 +354,10 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <PrivacyPolicy onBack={() => navigateTo('/')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={<LoadingFallback />}>
+             <PrivacyPolicy onBack={() => navigateTo('/')} />
+             <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           </Suspense>
         </div>
     );
   }
@@ -322,8 +366,10 @@ function App() {
     return (
         <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
            <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
-           <TermsOfService onBack={() => navigateTo('/')} />
-           <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           <Suspense fallback={<LoadingFallback />}>
+             <TermsOfService onBack={() => navigateTo('/')} />
+             <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+           </Suspense>
         </div>
     );
   }
@@ -342,8 +388,10 @@ function App() {
         {/* ABOUT - Problem & Solution */}
         <About />
 
-        {/* TEAM */}
-        <Team />
+        {/* TEAM - lazy loaded */}
+        <Suspense fallback={<div className="py-24" />}>
+          <Team />
+        </Suspense>
 
         {/* CASE STUDIES */}
         <section id="work" className="py-24 px-6 lg:px-12 bg-[#F1F5F9] dark:bg-[#0F172A] relative z-10 border-b border-slate-200 dark:border-slate-800">
@@ -505,7 +553,9 @@ function App() {
 
       </main>
 
-      <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      <Suspense fallback={null}>
+        <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
+      </Suspense>
     </div>
   );
 }
