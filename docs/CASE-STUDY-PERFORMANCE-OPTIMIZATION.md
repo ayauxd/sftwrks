@@ -226,6 +226,20 @@ Via softworkstrading.com (redirect):
 
 ---
 
+## Comparison: kai.slopgpt.com vs sftwrks.com
+
+### Why kai.slopgpt.com feels faster
+| Factor | kai.slopgpt.com | sftwrks.com |
+|--------|-----------------|-------------|
+| Redirect | None | sftwrks.com → www.sftwrks.com |
+| JS Bundle | 647KB (larger!) | 347KB |
+| TTFB | 0.38s | 0.16s (faster!) |
+| Loading Shell | None | Yes (after fix) |
+
+**Conclusion:** sftwrks.com is technically faster, but the redirect adds perceived latency. The loading shell compensates by showing content immediately.
+
+---
+
 ## Conclusion
 
 The core issue wasn't Safari or the network - it was that **React SPAs are invisible until JavaScript executes**. By adding an inline loading shell, users now see meaningful content immediately while the full application loads in the background.
