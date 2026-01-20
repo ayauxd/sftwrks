@@ -133,17 +133,19 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 p-6 flex flex-col justify-center items-center gap-8 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
+        <div className="fixed inset-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 overflow-y-auto overflow-x-hidden">
+          <div className="min-h-full p-6 pt-20 flex flex-col justify-center items-center gap-6 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
             {/* Mobile Brand */}
-            <div className="mb-4">
-              <span className="font-sans text-slate-900 dark:text-white font-bold text-4xl tracking-wide">SOFTWORKS</span>
+            <div className="mb-2">
+              <span className="font-sans text-slate-900 dark:text-white font-bold text-3xl tracking-wide">SOFTWORKS</span>
             </div>
-            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors">HOW WE WORK</button>
-            <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors">TEAM</button>
-            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors">RESULTS</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors">JOURNAL</button>
-            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors">START</button>
-            <button onClick={() => setMobileMenuOpen(false)} className="mt-8 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
+            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors py-2">HOW WE WORK</button>
+            <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors py-2">TEAM</button>
+            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors py-2">RESULTS</button>
+            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors py-2">JOURNAL</button>
+            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors py-2">START</button>
+            <button onClick={() => setMobileMenuOpen(false)} className="mt-6 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
+          </div>
         </div>
       )}
     </>

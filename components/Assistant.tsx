@@ -898,7 +898,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   return (
     <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
       {isOpen && (
-        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-full sm:w-[400px] h-[100dvh] sm:h-auto sm:max-h-[calc(100vh-6rem)] sm:min-h-[600px] mb-0 sm:mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:bottom-20 sm:right-0">
+        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-screen sm:w-[400px] max-w-full h-[100dvh] sm:h-auto sm:max-h-[calc(100vh-6rem)] sm:min-h-[600px] mb-0 sm:mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:bottom-20 sm:right-0">
           {/* Header */}
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628] safe-area-inset-top">
             <div className="flex items-center gap-3">

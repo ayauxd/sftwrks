@@ -121,9 +121,9 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
         />
       </div>
 
-      {/* Subtle Glow Accents - performant radial gradient */}
+      {/* Subtle Glow Accents - performant radial gradient, hidden on mobile to prevent overflow */}
       <div
-        className="absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full transition-opacity duration-500 animate-glow-pulse"
+        className="hidden md:block absolute top-1/3 left-1/4 w-[500px] h-[500px] rounded-full transition-opacity duration-500 animate-glow-pulse"
         style={{
           background: isDark
             ? 'radial-gradient(circle, rgba(0,212,255,0.15) 0%, transparent 60%)'

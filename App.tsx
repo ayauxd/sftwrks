@@ -378,10 +378,10 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300">
+    <div className="min-h-screen font-sans selection:bg-cyan-200 selection:text-cyan-900 bg-[#F1F5F9] dark:bg-[#0A1628] transition-colors duration-300 overflow-x-hidden">
       <Navbar onNavClick={scrollToSection} isDark={isDark} toggleTheme={toggleTheme} />
 
-      <main className="relative">
+      <main className="relative overflow-x-hidden">
         {/* Circuit Grid Background - Very subtle */}
         <div className="fixed inset-0 bg-grid-pattern opacity-10 pointer-events-none z-0"></div>
 
