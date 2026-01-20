@@ -11,10 +11,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Option A: Configure Formspree's Slack plugin (may need paid plan)
 - Option B: Add Slack webhook directly
 
-**2. Journal Article Images**
-- 12 journal articles need noir-style images
-- Use same approach: `gemini-3-pro-image-preview` model
-- Create prompts reflecting each article's content
+**2. All Images Complete**
+- Case studies: 4 images regenerated
+- Journal articles: 13 images regenerated
+- Model used: `gemini-3-pro-image-preview`
+- Total: 840KB optimized webp
 
 ---
 
@@ -68,10 +69,28 @@ const model = genAI.getGenerativeModel({
 | accounting-noir.webp | Voice → content pipeline → social videos | 35KB |
 | photobooth-noir.webp | Photos → imagination chamber → adventure scenes | 47KB |
 
+**Journal article images generated (13 total):**
+| Article | Content | Size |
+|---------|---------|------|
+| jan-2026.webp | Payment infrastructure fragility, dissolving cards | 39KB |
+| dec-2025.webp | AI as infrastructure, utility poles with data streams | 39KB |
+| nov-2025.webp | Three competing AI monuments (Gemini/Claude/GPT) | 66KB |
+| oct-2025.webp | Solo desk with multiple outputs emanating | 69KB |
+| sep-2025.webp | Massive data center buildout, power infrastructure | 55KB |
+| aug-2025.webp | Expanding book/brain, unlocked potential | 63KB |
+| jul-2025.webp | Diverging paths (95% fail, 5% succeed) | 39KB |
+| jun-2025.webp | Talent bidding war, figures pulled in directions | 44KB |
+| may-2025.webp | Speech bubbles transforming to code | 56KB |
+| apr-2025.webp | Dramatic growth chart, investment surge | 53KB |
+| mar-2025.webp | Exponential staircase, doubling capability | 37KB |
+| feb-2025.webp | Scales of justice, EU regulation | 31KB |
+| jan-2025.webp | Seed/spark of emergence, dawn/promise | 58KB |
+
+**Total image sizes:** Case studies 191KB + Journal 649KB = **840KB**
+
 ### Pending
 
 - [ ] Slack integration for form submissions
-- [ ] Generate noir-style journal article images (12 articles)
 - [ ] Possible: AI deeper analysis option
 
 ---

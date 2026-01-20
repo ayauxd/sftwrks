@@ -32,11 +32,13 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
       number: '01',
       title: 'Map',
       description: 'Walk your operations. Find the real bottleneck.',
+      image: '/assets/sections/step-01-map.webp',
     },
     {
       number: '02',
       title: 'Value',
       description: 'Calculate what fixing it is worth to you.',
+      image: '/assets/sections/step-02-value.webp',
     },
   ];
 
@@ -45,16 +47,19 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
       number: '03',
       title: 'Scope',
       description: 'Fixed price. Clear deliverable. No surprises.',
+      image: '/assets/sections/step-03-scope.webp',
     },
     {
       number: '04',
       title: 'Build',
       description: 'One system at a time. Weekly progress.',
+      image: '/assets/sections/step-04-build.webp',
     },
     {
       number: '05',
       title: 'Hand Over',
       description: 'You own it. We train, document, then exit.',
+      image: '/assets/sections/step-05-handover.webp',
     },
   ];
 
@@ -140,14 +145,25 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                     className={`step-card group ${isVisible ? 'visible' : ''}`}
                     style={{ animationDelay: `${0.1 + index * 0.1}s` }}
                   >
-                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                      <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                        {step.number}
+                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl overflow-hidden transition-all duration-300 h-full">
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={step.image}
+                          alt={step.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                      <p className="text-sm text-slate-400 leading-relaxed">
-                        {step.description}
-                      </p>
+                      <div className="p-4">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
+                            {step.number}
+                          </div>
+                          <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                        </div>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -169,14 +185,25 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                     className={`step-card group ${isVisible ? 'visible' : ''}`}
                     style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                   >
-                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                      <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                        {step.number}
+                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl overflow-hidden transition-all duration-300 h-full">
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={step.image}
+                          alt={step.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                      <p className="text-sm text-slate-400 leading-relaxed">
-                        {step.description}
-                      </p>
+                      <div className="p-4">
+                        <div className="flex items-center gap-3 mb-2">
+                          <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
+                            {step.number}
+                          </div>
+                          <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                        </div>
+                        <p className="text-sm text-slate-400 leading-relaxed">
+                          {step.description}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -199,14 +226,25 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                   className={`step-card group ${isVisible ? 'visible' : ''}`}
                   style={{ animationDelay: `${0.1 + index * 0.1}s` }}
                 >
-                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300">
-                    <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                      {step.number}
+                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl overflow-hidden transition-all duration-300">
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {step.description}
-                    </p>
+                    <div className="p-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
+                          {step.number}
+                        </div>
+                        <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                      </div>
+                      <p className="text-sm text-slate-400 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {/* Arrow connector */}
@@ -239,14 +277,25 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                   className={`step-card group ${isVisible ? 'visible' : ''}`}
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                 >
-                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300">
-                    <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                      {step.number}
+                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl overflow-hidden transition-all duration-300">
+                    <div className="aspect-[16/9] overflow-hidden">
+                      <img
+                        src={step.image}
+                        alt={step.title}
+                        className="w-full h-full object-cover"
+                      />
                     </div>
-                    <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
-                    <p className="text-sm text-slate-400 leading-relaxed">
-                      {step.description}
-                    </p>
+                    <div className="p-4">
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
+                          {step.number}
+                        </div>
+                        <h3 className="text-lg font-bold text-white">{step.title}</h3>
+                      </div>
+                      <p className="text-sm text-slate-400 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
                   </div>
                 </div>
                 {/* Arrow connector - except for last item */}
