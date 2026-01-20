@@ -140,8 +140,19 @@ function App() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Handle initial URL path on mount
+  // Handle initial URL path on mount (including hash URLs for OG redirects)
   useEffect(() => {
+    // Check for hash URL first (from OG redirects like /#/article/ai-jan-2026)
+    const hash = window.location.hash;
+    if (hash && hash.startsWith('#/')) {
+      const hashPath = hash.substring(1); // Remove the # to get /article/ai-jan-2026
+      navigateTo(hashPath, { skipHistory: true });
+      // Clean up the URL by replacing hash with clean path
+      window.history.replaceState({ path: hashPath }, '', hashPath);
+      return;
+    }
+
+    // Handle clean paths
     const path = window.location.pathname;
     if (path !== '/') {
       navigateTo(path, { skipHistory: true });
