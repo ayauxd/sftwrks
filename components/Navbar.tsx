@@ -60,7 +60,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
               : isDark ? 'text-slate-300' : 'text-slate-700'
           }`}>
             <button onClick={() => handleLink('about')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">How We Work</button>
-            <button onClick={() => handleLink('team')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Team</button>
             <button onClick={() => handleLink('work')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Results</button>
             <button onClick={() => handleLink('journal')} className="hover:text-cyan-500 dark:hover:text-[#00D4FF] transition-colors uppercase">Journal</button>
             <button
@@ -140,7 +139,6 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
               <span className="font-sans text-slate-900 dark:text-white font-bold text-3xl tracking-wide">SOFTWORKS</span>
             </div>
             <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors py-2">HOW WE WORK</button>
-            <button onClick={() => handleLink('team')} className="hover:text-[#00D4FF] transition-colors py-2">TEAM</button>
             <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors py-2">RESULTS</button>
             <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors py-2">JOURNAL</button>
             <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors py-2">START</button>
