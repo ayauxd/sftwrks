@@ -45,12 +45,20 @@ const DEFAULT_CURRENCY = CURRENCIES[0];
 // Calculate value range based on inputs
 const calculateValue = (data: CalculatorData): { conservative: number; potential: number } => {
   const baseCost = data.constraintCost || 0;
+  const teamMultiplier = data.teamMultiplier || 1;
 
-  // Conservative: 35% of stated constraint cost (realistic recovery)
-  // Potential: 70% of stated constraint cost (best case recovery)
-  // Cannot exceed the constraint cost itself
-  const conservative = Math.round(baseCost * 0.35);
-  const potential = Math.round(baseCost * 0.7);
+  // Adjust recovery rates based on team size
+  // Larger teams = more people benefit from process improvement = higher recovery potential
+  // teamMultiplier ranges: 1 (solo) → 3 (small) → 8 (medium) → 25 (large) → 50 (enterprise)
+  const teamFactor = Math.min(teamMultiplier / 50, 1); // Normalize to 0-1
+
+  // Conservative: 30-40% recovery based on team size
+  // Potential: 60-75% recovery based on team size
+  const conservativeRate = 0.30 + (teamFactor * 0.10);
+  const potentialRate = 0.60 + (teamFactor * 0.15);
+
+  const conservative = Math.round(baseCost * conservativeRate);
+  const potential = Math.round(baseCost * potentialRate);
 
   return { conservative, potential };
 };
@@ -292,7 +300,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
             Time Value Calculator
           </h3>
           <p className="text-slate-500 dark:text-slate-400 text-sm mb-6 max-w-[280px]">
-            Find out what your biggest constraint costs you, and what solving it could save.
+            Tell us about your slowest process. We'll calculate what it costs your business — and what fixing it saves.
           </p>
           <div className="bg-slate-100 dark:bg-[#1E3A5F]/50 rounded-lg px-4 py-3 mb-6 max-w-[280px]">
             <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed">
@@ -571,7 +579,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
             How big is your team?
           </h3>
           <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-            People affected by this constraint.
+            People affected by this process.
           </p>
 
           <div className="space-y-3 flex-1">
@@ -637,8 +645,40 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
       );
     }
 
-    // Constraint cost input
+    // Cost estimation helper content based on challenge type
+    const getCostHelperText = (challenge: string) => {
+      const helpers: Record<string, { example: string; formula: string }> = {
+        'admin': {
+          formula: 'Hours on admin/week × hourly rate × 4 weeks',
+          example: 'e.g., 10 hrs/week × $50/hr = $2,000/month'
+        },
+        'response': {
+          formula: 'Leads lost/month × average deal value',
+          example: 'e.g., 5 cold leads × $1,000 deal = $5,000/month'
+        },
+        'handoffs': {
+          formula: 'Time on handoffs × people involved × hourly rate',
+          example: 'e.g., 2 hrs/week × 4 people × $40/hr = $1,280/month'
+        },
+        'data': {
+          formula: 'Hours on reports × hourly rate × 4 weeks',
+          example: 'e.g., 8 hrs/week × $60/hr = $1,920/month'
+        },
+        'content': {
+          formula: 'Hours creating content × hourly rate × 4 weeks',
+          example: 'e.g., 15 hrs/week × $50/hr = $3,000/month'
+        },
+      };
+      return helpers[challenge] || {
+        formula: 'Hours spent × hourly cost × 4 weeks',
+        example: 'e.g., 10 hrs/week × $50/hr = $2,000/month'
+      };
+    };
+
+    // Process cost input
     if (phase === 'constraint-cost') {
+      const costHelper = getCostHelperText(data.challenge);
+
       return (
         <div className="flex-1 flex flex-col px-5 py-6">
           <div className="mb-6">
@@ -651,9 +691,19 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
           <h3 className="text-lg font-semibold text-slate-900 dark:text-white mb-2">
             Roughly, how much does "{data.challengeLabel.toLowerCase()}" cost you per month?
           </h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mb-6">
-            Think: lost time, missed opportunities, rework, delays. A rough estimate is fine.
+          <p className="text-sm text-slate-500 dark:text-slate-400 mb-4">
+            A rough estimate is fine. Here's a quick way to think about it:
           </p>
+
+          {/* Cost estimation helper */}
+          <div className="bg-slate-50 dark:bg-[#1E3A5F]/30 rounded-lg p-3 mb-4 border border-slate-200 dark:border-slate-700/50">
+            <p className="text-xs font-medium text-slate-700 dark:text-slate-300 mb-1">
+              {costHelper.formula}
+            </p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">
+              {costHelper.example}
+            </p>
+          </div>
 
           <div className="mb-4">
             <div className="relative">
@@ -669,13 +719,13 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
               />
             </div>
             <p className="text-xs text-slate-400 mt-2">
-              Include: wasted hours × team cost, lost deals, error fixes, delays
+              Include: wasted time, missed opportunities, rework, delays
             </p>
           </div>
 
           <div className="bg-slate-100 dark:bg-[#1E3A5F]/50 rounded-lg p-3 mb-6">
             <p className="text-xs text-slate-600 dark:text-slate-400">
-              <span className="text-[#00D4FF] font-semibold">No pressure:</span> This helps us give you a fair range estimate. Not a quote -just a conversation starter.
+              <span className="text-[#00D4FF] font-semibold">No pressure:</span> This helps us give you a fair range estimate. Not a quote — just a conversation starter.
             </p>
           </div>
 
@@ -697,8 +747,33 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
       );
     }
 
+    // Get personalized insight based on success goal
+    const getGoalInsight = (goal: string, potential: number) => {
+      const insights: Record<string, { icon: string; message: string }> = {
+        'Reclaim time each week': {
+          icon: '⏱️',
+          message: `At an average rate, that's potentially ${Math.round(potential / 50)} hours/month you could redirect to high-value work.`
+        },
+        'Handle more without hiring': {
+          icon: '📈',
+          message: `This capacity gain could help you scale output without adding headcount.`
+        },
+        'Reduce errors & rework': {
+          icon: '✓',
+          message: `Fewer mistakes means less time fixing problems and more time moving forward.`
+        },
+        'Faster customer response': {
+          icon: '⚡',
+          message: `Faster responses mean warmer leads and better close rates.`
+        },
+      };
+      return insights[goal] || { icon: '💡', message: 'Solving this could free up significant resources for your business.' };
+    };
+
     // Results screen
     if (phase === 'results') {
+      const goalInsight = getGoalInsight(data.successGoal, value.potential);
+
       return (
         <div className="flex-1 flex flex-col px-5 py-6 overflow-y-auto">
           <div className="text-center mb-6">
@@ -737,6 +812,14 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
             </p>
           </div>
 
+          {/* Personalized insight based on goal */}
+          <div className="bg-[#00D4FF]/10 dark:bg-[#00D4FF]/5 rounded-lg p-3 mb-4 border border-[#00D4FF]/20">
+            <p className="text-sm text-slate-700 dark:text-slate-300">
+              <span className="mr-2">{goalInsight.icon}</span>
+              {goalInsight.message}
+            </p>
+          </div>
+
           {/* Breakdown */}
           <div className="bg-slate-100 dark:bg-[#0A1628] rounded-lg p-4 mb-4">
             <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">Based on your inputs</h4>
@@ -750,7 +833,7 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
                 <span className="text-slate-900 dark:text-white font-medium">{data.teamSize}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-slate-500 dark:text-slate-400">Estimated constraint cost:</span>
+                <span className="text-slate-500 dark:text-slate-400">Your monthly cost estimate:</span>
                 <span className="text-slate-900 dark:text-white font-medium">{formatCurrency(data.constraintCost, data.currency)}/mo</span>
               </div>
               <div className="flex justify-between">
@@ -944,8 +1027,8 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <p className="text-sm font-medium text-slate-900 dark:text-white">What's your constraint costing?</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Quick value estimate</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">Got a slow process?</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">Calculate what it costs your business</p>
             <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white dark:bg-[#1E3A5F] border-r border-b border-slate-200 dark:border-slate-700 transform rotate-45"></div>
           </div>
         </div>
