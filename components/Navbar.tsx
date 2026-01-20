@@ -44,12 +44,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             onClick={() => handleLink('top')}
             className="hover:opacity-80 transition-opacity"
           >
-            <span className={`font-sans font-bold text-2xl md:text-3xl tracking-wide transition-colors ${
+            <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
               scrolled
                 ? 'text-slate-900 dark:text-white'
                 : isDark ? 'text-white' : 'text-slate-900'
             }`}>
-              SOFTWORKS
+              Softworks
             </span>
           </button>
 
@@ -165,7 +165,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           <div className="relative min-h-full p-8 pt-24 pb-12 flex flex-col justify-center items-center overflow-y-auto">
             {/* Brand */}
             <div className="mb-12">
-              <span className="font-sans text-white font-bold text-4xl tracking-wider">SOFTWORKS</span>
+              <span className="font-['Nunito'] text-white font-black text-4xl tracking-tight">Softworks</span>
               <div className="h-0.5 w-16 bg-gradient-to-r from-[#00D4FF] to-transparent mx-auto mt-4" />
             </div>
 

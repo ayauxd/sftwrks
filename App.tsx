@@ -408,7 +408,7 @@ function App() {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Latest</span>
-                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Our Work & Insights</h2>
+                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Case Studies & Journal</h2>
                 </div>
 
                 {/* Side-by-side layout on desktop, stacked on mobile */}
@@ -418,7 +418,7 @@ function App() {
                     {previewCaseStudies[0] && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Case Study</span>
+                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Case Studies</span>
                                 <button
                                     onClick={() => { setShowCaseStudiesList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                     className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
@@ -433,7 +433,7 @@ function App() {
                             >
                                 <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
                                     <img
-                                        src={previewCaseStudies[0].imageUrl}
+                                        src={`${previewCaseStudies[0].imageUrl}?v=2`}
                                         alt={previewCaseStudies[0].title}
                                         className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                                     />
@@ -464,7 +464,7 @@ function App() {
                     {previewArticles[0] && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Latest Insight</span>
+                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Journal</span>
                                 <button
                                     onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                     className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
@@ -479,7 +479,7 @@ function App() {
                             >
                                 <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
                                     <img
-                                        src={previewArticles[0].image}
+                                        src={`${previewArticles[0].image}?v=2`}
                                         alt={previewArticles[0].title}
                                         className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
                                     />
