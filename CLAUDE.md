@@ -4,46 +4,74 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
-## NEXT SESSION REMINDER (Jan 19, 2026)
+## NEXT SESSION REMINDER (Jan 20, 2026)
 
-**1. Generate infographic cards and images for the site!**
-- Use Imagen 4 with the noir/papercut theme from hero image
-- Create cards for: The 5-Step Path, Value Philosophy, Good Fit section
-- Style: Deep navy (#0A1628), cyan accents (#00D4FF), layered paper cutout effect
-- See plan file for detailed Imagen 4 prompts: `~/.claude/plans/tidy-greeting-honey.md`
-
-**2. Fix Slack Integration**
+**1. Fix Slack Integration**
 - Form submissions go to Formspree but NOT to Slack yet
 - Option A: Configure Formspree's Slack plugin (may need paid plan)
 - Option B: Add Slack webhook directly
+
+**2. Journal Article Images**
+- 12 journal articles need noir-style images
+- Use same approach: `gemini-3-pro-image-preview` model
+- Create prompts reflecting each article's content
 
 ---
 
 ## Latest Session Report
 
-**Date**: January 19, 2026 at 08:35 AM (Lagos Time)
+**Date**: January 20, 2026 at 03:45 AM (Lagos Time)
 **Site**: https://www.sftwrks.com
 
 ### Completed
 
-1. **Time Value Calculator** - Complete rewrite of chat widget
-   - 7-step conversational flow with 12 international currencies
-   - "Something else" option with business-relevance validation
-   - Word representation for large amounts (e.g., "350k to 700k")
+1. **Case Study Images Regenerated** - All 4 images now match noir style
+   - Model: `gemini-3-pro-image-preview` (Gemini 3 Pro)
+   - Style: Cinematic noir paper-cut diorama, dark navy background, warm amber spotlight, cyan glow accent
+   - Images reflect actual case study content (not generic prompts)
+   - Total size: 191KB (down from 344KB with Flux)
 
-2. **CSP Fix** - Form was blocked by Content Security Policy
-   - Added `formspree.io` to `connect-src` and `form-action` in `vercel.json`
-   - Form submissions now working
+2. **Image Generation Scripts Created**
+   - `scripts/generate-case-studies-replicate.mjs` - Replicate/Flux Schnell
+   - `scripts/generate-single-case-study.mjs` - Single image via Replicate
+   - `scripts/generate-case-study-images.mjs` - Gemini (updated)
 
-3. **Copy/UI Updates**
-   - "May not fit if..." (shortened from long version)
-   - Better icons, micro-interactions, warmer tone
-   - 5-step "The Path" flow with connecting line
+3. **Previous Session Work**
+   - "The Path" section redesign with two-phase layout
+   - Mobile menu dark theme redesign
+   - Mobile horizontal scroll fix
+   - Case study content redaction (pricing, tech details)
+   - Hero image retina fix (2x srcSet)
+
+### Image Generation Reference
+
+**Recommended approach:** Gemini 3 Pro Image
+```bash
+# Model to use
+gemini-3-pro-image-preview
+
+# Style base for all images
+STYLE = 'Cinematic noir paper-cut diorama style. Dark navy background, warm amber spotlight from above, layered cardstock textures, subtle cyan glow accent. Premium editorial quality. No text, no human figures.'
+
+# Generate with prompt reflecting actual content
+const model = genAI.getGenerativeModel({
+  model: 'gemini-3-pro-image-preview',
+  generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
+});
+```
+
+**Case study images generated:**
+| Case Study | Content | Size |
+|------------|---------|------|
+| logistics-noir.webp | Document chaos → sorting machine → organized output | 39KB |
+| finance-noir.webp | Two AI brains verifying each other | 70KB |
+| accounting-noir.webp | Voice → content pipeline → social videos | 35KB |
+| photobooth-noir.webp | Photos → imagination chamber → adventure scenes | 47KB |
 
 ### Pending
 
 - [ ] Slack integration for form submissions
-- [ ] Generate noir-style infographic images
+- [ ] Generate noir-style journal article images (12 articles)
 - [ ] Possible: AI deeper analysis option
 
 ---
