@@ -146,9 +146,8 @@ function App() {
     const hash = window.location.hash;
     if (hash && hash.startsWith('#/')) {
       const hashPath = hash.substring(1); // Remove the # to get /article/ai-jan-2026
-      navigateTo(hashPath, { skipHistory: true });
-      // Clean up the URL by replacing hash with clean path
-      window.history.replaceState({ path: hashPath }, '', hashPath);
+      // Store for pending navigation - will be processed when data loads
+      setPendingNavigation(hashPath);
       return;
     }
 
@@ -163,6 +162,8 @@ function App() {
   useEffect(() => {
     if (dataLoaded && pendingNavigation) {
       navigateTo(pendingNavigation, { skipHistory: true });
+      // Clean up the URL by replacing hash with clean path
+      window.history.replaceState({ path: pendingNavigation }, '', pendingNavigation);
       setPendingNavigation(null);
     }
   }, [dataLoaded, pendingNavigation]);
