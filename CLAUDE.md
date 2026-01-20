@@ -6,31 +6,53 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## NEXT SESSION REMINDER (Jan 20, 2026)
 
-**1. Fix Slack Integration**
-- Form submissions go to Formspree but NOT to Slack yet
-- Option A: Configure Formspree's Slack plugin (may need paid plan)
-- Option B: Add Slack webhook directly
+**All Images Complete!**
+- Case studies: 4 images
+- Journal articles: 13 images
+- Homepage sections: 5 images
+- Path step cards: 5 images (NEW)
+- Total: ~1MB optimized webp
 
-**2. All Images Complete**
-- Case studies: 4 images regenerated
-- Journal articles: 13 images regenerated
-- Model used: `gemini-3-pro-image-preview`
-- Total: 840KB optimized webp
+**Remaining Tasks:**
+1. Fix Slack Integration (Formspree plugin or direct webhook)
+2. Article OG images (requires SSR or Vercel OG API)
 
 ---
 
 ## Latest Session Report
 
-**Date**: January 20, 2026 at 03:45 AM (Lagos Time)
+**Date**: January 20, 2026 at 12:30 PM (Lagos Time)
 **Site**: https://www.sftwrks.com
 
 ### Completed
 
-1. **Case Study Images Regenerated** - All 4 images now match noir style
+1. **ALL Homepage Section Images Regenerated** - Noir paper-cut style throughout
    - Model: `gemini-3-pro-image-preview` (Gemini 3 Pro)
-   - Style: Cinematic noir paper-cut diorama, dark navy background, warm amber spotlight, cyan glow accent
-   - Images reflect actual case study content (not generic prompts)
-   - Total size: 191KB (down from 344KB with Flux)
+   - Style: Cinematic noir paper-cut diorama, dark navy (#0A1628), warm amber spotlight, cyan glow (#00D4FF)
+
+2. **Case Study Images** (4 images, 191KB total)
+   - logistics-noir.webp: Document chaos → sorting machine
+   - finance-noir.webp: Two AI brains verifying
+   - accounting-noir.webp: Voice → content pipeline
+   - photobooth-noir.webp: Photo transformation machine
+
+3. **Journal Article Images** (13 images, 649KB total)
+   - All monthly articles from Jan 2025 to Jan 2026
+
+4. **Homepage Section Images** (5 images, 195KB total)
+   - challenge-noir.webp: Broken process accelerating (The Real Problem)
+   - strategy-card.webp: Magnifying glass on flowchart (Find the Constraint)
+   - governance-card.webp: Focused construction (Build the System)
+   - integration-card.webp: Key handover (Hand It Over)
+   - team-workflow-noir.webp: Human-AI collaboration (Team section)
+
+5. **Path Step Card Images** (5 images, 35KB total) - NEW
+   - step-01-map.webp: Discovery and mapping
+   - step-02-value.webp: Calculation and ROI
+   - step-03-scope.webp: Agreement and clarity
+   - step-04-build.webp: Construction in progress
+   - step-05-handover.webp: Completion and transfer
+   - Features.tsx updated to display images in all step cards
 
 2. **Image Generation Scripts Created**
    - `scripts/generate-case-studies-replicate.mjs` - Replicate/Flux Schnell
@@ -91,7 +113,19 @@ const model = genAI.getGenerativeModel({
 ### Pending
 
 - [ ] Slack integration for form submissions
+- [ ] OG images for articles (requires SSR or API route - see note below)
 - [ ] Possible: AI deeper analysis option
+
+### Note: Article OG Images
+
+Currently, sharing article links shows the default homepage OG image because this is a client-side React SPA. Social media crawlers don't execute JavaScript, so they only see the static meta tags in index.html.
+
+**Solutions (in order of complexity):**
+1. **Vercel OG Image Generation** - Create an API route that generates dynamic OG images
+2. **Pre-rendering** - Use a service like Prerender.io
+3. **SSR Migration** - Convert to Next.js or similar
+
+For now, all articles share the main site OG image.
 
 ---
 
