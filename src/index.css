@@ -254,3 +254,97 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   font-family: 'JetBrains Mono', monospace;
 }
+
+/* ============================================
+   THE PATH - Bridge Animation System
+   ============================================ */
+
+/* SVG path draw animation */
+@keyframes draw-path {
+  from { stroke-dashoffset: 1000; }
+  to { stroke-dashoffset: 0; }
+}
+
+.path-line {
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+}
+
+.path-line.animate {
+  animation: draw-path 1.5s ease-out forwards;
+}
+
+/* Step card entrance */
+@keyframes step-enter {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.step-card {
+  opacity: 0;
+}
+
+.step-card.visible {
+  animation: step-enter 0.5s ease-out forwards;
+}
+
+/* Stagger delays for 5 cards */
+.step-card.visible:nth-child(1) { animation-delay: 0.1s; }
+.step-card.visible:nth-child(2) { animation-delay: 0.2s; }
+.step-card.visible:nth-child(3) { animation-delay: 0.4s; }
+.step-card.visible:nth-child(4) { animation-delay: 0.5s; }
+.step-card.visible:nth-child(5) { animation-delay: 0.6s; }
+
+/* Phase label slide-in */
+@keyframes phase-enter {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.phase-label {
+  opacity: 0;
+}
+
+.phase-label.visible {
+  animation: phase-enter 0.6s ease-out forwards;
+}
+
+/* Card hover lift */
+.step-card.visible:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0, 212, 255, 0.15);
+}
+
+/* Reduced motion: disable path animations */
+@media (prefers-reduced-motion: reduce) {
+  .path-line,
+  .path-line.animate {
+    stroke-dasharray: none;
+    stroke-dashoffset: 0;
+    animation: none;
+  }
+  .step-card,
+  .step-card.visible {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+  .phase-label,
+  .phase-label.visible {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}

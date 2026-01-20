@@ -55,20 +55,26 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
       <div className="absolute inset-0 overflow-hidden">
         {/* Layer 1: Background - Slowest, most zoom */}
         <div className="absolute inset-0 hero-layer-bg">
-          <picture>
-            <source
-              type="image/jpeg"
-              srcSet="/assets/hero/hero-mobile.jpg 640w, /assets/hero/hero-tablet.jpg 1024w, /assets/hero/hero-desktop.jpg 1920w"
-              sizes="100vw"
-            />
-            <img
-              src="/assets/hero/hero-desktop.jpg"
-              alt="AI consulting - transforming complexity into clarity"
-              className="absolute inset-0 w-full h-full object-cover object-center"
-              loading="eager"
-              fetchPriority="high"
-            />
-          </picture>
+          {/* Desktop/Tablet: Landscape hero */}
+          <img
+            src="/assets/hero/hero-desktop.jpg"
+            srcSet="/assets/hero/hero-tablet.jpg 1024w, /assets/hero/hero-desktop.jpg 1920w"
+            sizes="100vw"
+            alt="AI consulting - transforming complexity into clarity"
+            className="hidden md:block absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
+          {/* Mobile: Portrait hero with 2x for retina displays */}
+          <img
+            src="/assets/hero/hero-mobile.jpg"
+            srcSet="/assets/hero/hero-mobile.jpg 848w, /assets/hero/hero-mobile-2x.jpg 1696w"
+            sizes="100vw"
+            alt="AI consulting - transforming complexity into clarity"
+            className="md:hidden absolute inset-0 w-full h-full object-cover object-center"
+            loading="eager"
+            fetchPriority="high"
+          />
         </div>
 
         {/* Layer 2: Cyan glow center - Performant radial gradient (no blur) */}
@@ -148,7 +154,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              We diagnose before we build. You get AI set up for your workflow—not the other way around.
+              We diagnose before we build. You get AI set up for your workflow, not the other way around.
             </p>
 
             {/* CTA Buttons - Single clear action */}
@@ -197,7 +203,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             {/* Trust Indicators - Filter statement */}
             <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
               <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                For business owners who can describe what's slowing them down—and have time to get it right.
+                For business owners who can describe what's slowing them down, and have time to get it right.
               </p>
             </div>
 

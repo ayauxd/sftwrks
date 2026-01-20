@@ -95,10 +95,10 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
         <div className="md:col-span-4">
           <p className="font-medium text-white mb-4 tracking-wide text-xs uppercase" role="heading" aria-level="2">Not Sure If This Fits?</p>
           <p className="text-slate-400 font-light text-sm mb-4 leading-relaxed">
-            Most problems we solve start with a 15-minute conversation. Describe what's slowing you down—I'll tell you if we can help.
+            Most problems we solve start with a 15-minute conversation. Describe what's slowing you down. I'll tell you if we can help.
           </p>
           <p className="text-slate-500 font-light text-xs mb-6 italic">
-            — Frederick, Founder
+            - Frederick, Founder
           </p>
           <a
             href="mailto:agents@sftwrks.com?subject=Constraint%20to%20Discuss"

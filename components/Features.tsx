@@ -3,15 +3,67 @@
  * SPDX-License-Identifier: Apache-2.0
 */
 
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 interface FeaturesProps {
   onOpenCalculator?: () => void;
 }
 
 const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    if (sectionRef.current) observer.observe(sectionRef.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const findItSteps = [
+    {
+      number: '01',
+      title: 'Map',
+      description: 'Walk your operations. Find the real bottleneck.',
+    },
+    {
+      number: '02',
+      title: 'Value',
+      description: 'Calculate what fixing it is worth to you.',
+    },
+  ];
+
+  const fixItSteps = [
+    {
+      number: '03',
+      title: 'Scope',
+      description: 'Fixed price. Clear deliverable. No surprises.',
+    },
+    {
+      number: '04',
+      title: 'Build',
+      description: 'One system at a time. Weekly progress.',
+    },
+    {
+      number: '05',
+      title: 'Hand Over',
+      description: 'You own it. We train, document, then exit.',
+    },
+  ];
+
   return (
-    <section id="process" className="bg-[#0F172A] dark:bg-[#0A1628] py-24 px-6 md:px-12">
+    <section
+      id="process"
+      ref={sectionRef}
+      className="bg-[#0F172A] dark:bg-[#0A1628] py-24 px-6 md:px-12"
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="text-center mb-20">
@@ -28,96 +80,185 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
 
         {/* Timeline Flow */}
         <div className="relative">
-          {/* Connecting line - desktop */}
-          <div className="hidden md:block absolute top-12 left-[10%] right-[10%] h-px bg-gradient-to-r from-transparent via-[#00D4FF]/30 to-transparent" />
+          {/* SVG Connecting Path - Desktop */}
+          <svg
+            className="hidden md:block absolute top-[52px] left-0 w-full h-8 overflow-visible pointer-events-none"
+            preserveAspectRatio="none"
+          >
+            {/* Main connecting line */}
+            <line
+              x1="10%"
+              y1="50%"
+              x2="90%"
+              y2="50%"
+              className={`path-line ${isVisible ? 'animate' : ''}`}
+              stroke="#00D4FF"
+              strokeWidth="2"
+              strokeOpacity="0.3"
+            />
+            {/* Dots at each step position */}
+            {[10, 30, 50, 70, 90].map((x, i) => (
+              <circle
+                key={i}
+                cx={`${x}%`}
+                cy="50%"
+                r="6"
+                fill="#00D4FF"
+                fillOpacity={isVisible ? 1 : 0}
+                style={{
+                  transition: 'fill-opacity 0.3s ease-out',
+                  transitionDelay: `${0.3 + i * 0.15}s`,
+                }}
+              />
+            ))}
+            {/* Phase divider - dotted vertical line between step 2 and 3 */}
+            <line
+              x1="40%"
+              y1="-20"
+              x2="40%"
+              y2="40"
+              stroke="#00D4FF"
+              strokeWidth="1"
+              strokeOpacity="0.2"
+              strokeDasharray="4 4"
+            />
+          </svg>
 
-          {/* Steps Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-4">
-            {/* Step 1: Map */}
-            <div className="relative group">
-              <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                  01
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Map</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  Walk your operations. Find the real bottleneck.
-                </p>
-              </div>
-              {/* Arrow - mobile */}
-              <div className="md:hidden flex justify-center py-3">
-                <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
+          {/* Two-Phase Layout - Desktop */}
+          <div className="hidden md:grid md:grid-cols-5 gap-4">
+            {/* Phase 1: Find It - Steps 1-2 */}
+            <div className="col-span-2 space-y-4">
+              <span
+                className={`phase-label text-xs font-mono uppercase tracking-widest text-slate-500 block ${isVisible ? 'visible' : ''}`}
+              >
+                Find It
+              </span>
+              <div className="grid grid-cols-2 gap-4">
+                {findItSteps.map((step, index) => (
+                  <div
+                    key={step.number}
+                    className={`step-card group ${isVisible ? 'visible' : ''}`}
+                    style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+                  >
+                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
+                      <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
+                        {step.number}
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                      <p className="text-sm text-slate-400 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
 
-            {/* Step 2: Value */}
-            <div className="relative group">
-              <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                  02
+            {/* Phase 2: Fix It - Steps 3-5 */}
+            <div className="col-span-3 space-y-4">
+              <span
+                className={`phase-label text-xs font-mono uppercase tracking-widest text-slate-500 block ${isVisible ? 'visible' : ''}`}
+                style={{ animationDelay: '0.3s' }}
+              >
+                Fix It
+              </span>
+              <div className="grid grid-cols-3 gap-4">
+                {fixItSteps.map((step, index) => (
+                  <div
+                    key={step.number}
+                    className={`step-card group ${isVisible ? 'visible' : ''}`}
+                    style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                  >
+                    <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
+                      <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
+                        {step.number}
+                      </div>
+                      <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                      <p className="text-sm text-slate-400 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Mobile Layout - Vertical Timeline */}
+          <div className="md:hidden space-y-2">
+            {/* Phase 1: Find It */}
+            <span
+              className={`phase-label text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4 ${isVisible ? 'visible' : ''}`}
+            >
+              Find It
+            </span>
+
+            {findItSteps.map((step, index) => (
+              <div key={step.number}>
+                <div
+                  className={`step-card group ${isVisible ? 'visible' : ''}`}
+                  style={{ animationDelay: `${0.1 + index * 0.1}s` }}
+                >
+                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300">
+                    <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
+                      {step.number}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Value</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  Calculate what fixing it is worth to you.
-                </p>
+                {/* Arrow connector */}
+                <div className="flex justify-center py-3">
+                  <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                  </svg>
+                </div>
               </div>
-              <div className="md:hidden flex justify-center py-3">
-                <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
+            ))}
+
+            {/* Phase divider */}
+            <div className="flex items-center gap-4 py-4">
+              <div className="flex-1 h-px bg-[#00D4FF]/20" />
+              <span className="text-xs font-mono text-[#00D4FF]/50">•</span>
+              <div className="flex-1 h-px bg-[#00D4FF]/20" />
             </div>
 
-            {/* Step 3: Scope */}
-            <div className="relative group">
-              <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                  03
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Scope</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  Fixed price. Clear deliverable. No surprises.
-                </p>
-              </div>
-              <div className="md:hidden flex justify-center py-3">
-                <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
-            </div>
+            {/* Phase 2: Fix It */}
+            <span
+              className={`phase-label text-xs font-mono uppercase tracking-widest text-slate-500 block mb-4 ${isVisible ? 'visible' : ''}`}
+              style={{ animationDelay: '0.3s' }}
+            >
+              Fix It
+            </span>
 
-            {/* Step 4: Build */}
-            <div className="relative group">
-              <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                  04
+            {fixItSteps.map((step, index) => (
+              <div key={step.number}>
+                <div
+                  className={`step-card group ${isVisible ? 'visible' : ''}`}
+                  style={{ animationDelay: `${0.4 + index * 0.1}s` }}
+                >
+                  <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300">
+                    <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
+                      {step.number}
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">{step.title}</h3>
+                    <p className="text-sm text-slate-400 leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold text-white mb-2">Build</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  One system at a time. Weekly progress.
-                </p>
+                {/* Arrow connector - except for last item */}
+                {index < fixItSteps.length - 1 && (
+                  <div className="flex justify-center py-3">
+                    <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </div>
+                )}
               </div>
-              <div className="md:hidden flex justify-center py-3">
-                <svg className="w-5 h-5 text-[#00D4FF]/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                </svg>
-              </div>
-            </div>
-
-            {/* Step 5: Hand Over */}
-            <div className="relative group">
-              <div className="bg-[#1E3A5F]/50 border border-slate-700 group-hover:border-[#00D4FF]/50 rounded-xl p-6 transition-all duration-300 h-full">
-                <div className="w-10 h-10 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-sm mb-4">
-                  05
-                </div>
-                <h3 className="text-lg font-bold text-white mb-2">Hand Over</h3>
-                <p className="text-sm text-slate-400 leading-relaxed">
-                  You own it. We train, document, then exit.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
 
           {/* Value Metrics - Highlighted */}

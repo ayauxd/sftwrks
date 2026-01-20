@@ -22,7 +22,7 @@ const About: React.FC = () => {
               <span className="text-slate-500 dark:text-slate-400">automate the wrong thing.</span>
             </h2>
             <p className="text-lg text-slate-700 dark:text-slate-400 font-light leading-relaxed mb-6">
-              You speed up a broken process—now it breaks faster. You add AI to a workflow that shouldn't exist—now you're paying to maintain both.
+              You speed up a broken process. Now it breaks faster. You add AI to a workflow that shouldn't exist. Now you're paying to maintain both.
             </p>
             <p className="text-lg text-slate-700 dark:text-slate-400 font-light leading-relaxed">
               The constraint isn't the technology. It's knowing where your problem actually lives before you start building.
@@ -83,7 +83,7 @@ const About: React.FC = () => {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-3">Find the Constraint</h3>
                 <p className="text-slate-300 font-light leading-relaxed text-sm">
-                  A working session to map your operations and find where the actual bottleneck lives—not where you think it is.
+                  A working session to map your operations and find where the actual bottleneck lives. Not where you think it is.
                 </p>
               </div>
             </div>

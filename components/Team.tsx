@@ -37,7 +37,7 @@ const Team: React.FC = () => {
               High-agency professionals
             </h3>
             <p className="text-slate-600 dark:text-slate-400 leading-relaxed">
-              We look for one thing first: people who take ownership and deliver. Our growing collective spans three continents—senior specialists who've actually built things.
+              We look for one thing first: people who take ownership and deliver. Our growing collective spans three continents. Senior specialists who've actually built things.
             </p>
           </div>
 
