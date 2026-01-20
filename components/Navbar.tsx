@@ -130,19 +130,80 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Dark theme with visual interest */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 bg-[#F1F5F9] dark:bg-[#0A1628] z-40 overflow-y-auto overflow-x-hidden">
-          <div className="min-h-full p-6 pt-20 flex flex-col justify-center items-center gap-6 font-['Courier_Prime'] text-xl text-slate-900 dark:text-slate-100 animate-fade-in-up">
-            {/* Mobile Brand */}
-            <div className="mb-2">
-              <span className="font-sans text-slate-900 dark:text-white font-bold text-3xl tracking-wide">SOFTWORKS</span>
+        <div className="fixed inset-0 z-40 overflow-hidden">
+          {/* Background with gradient */}
+          <div className="absolute inset-0 bg-gradient-to-br from-[#0A1628] via-[#0F172A] to-[#0A1628]" />
+
+          {/* Subtle grid pattern overlay */}
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage: `linear-gradient(to right, #00D4FF 1px, transparent 1px),
+                               linear-gradient(to bottom, #00D4FF 1px, transparent 1px)`,
+              backgroundSize: '40px 40px'
+            }}
+          />
+
+          {/* Ambient glow effects */}
+          <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[300px] h-[300px] rounded-full bg-[#00D4FF]/5 blur-3xl" />
+          <div className="absolute bottom-1/4 left-1/4 w-[200px] h-[200px] rounded-full bg-[#00D4FF]/3 blur-2xl" />
+
+          {/* Close button - top right */}
+          <button
+            onClick={() => setMobileMenuOpen(false)}
+            className="absolute top-6 right-6 z-50 p-3 text-slate-400 hover:text-[#00D4FF] transition-colors"
+            aria-label="Close menu"
+          >
+            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+
+          {/* Menu content */}
+          <div className="relative min-h-full p-8 pt-24 pb-12 flex flex-col justify-center items-center overflow-y-auto">
+            {/* Brand */}
+            <div className="mb-12">
+              <span className="font-sans text-white font-bold text-4xl tracking-wider">SOFTWORKS</span>
+              <div className="h-0.5 w-16 bg-gradient-to-r from-[#00D4FF] to-transparent mx-auto mt-4" />
             </div>
-            <button onClick={() => handleLink('about')} className="hover:text-[#00D4FF] transition-colors py-2">HOW WE WORK</button>
-            <button onClick={() => handleLink('work')} className="hover:text-[#00D4FF] transition-colors py-2">RESULTS</button>
-            <button onClick={() => handleLink('journal')} className="hover:text-[#00D4FF] transition-colors py-2">JOURNAL</button>
-            <button onClick={() => handleLink('contact')} className="hover:text-[#00D4FF] transition-colors py-2">START</button>
-            <button onClick={() => setMobileMenuOpen(false)} className="mt-6 text-sm font-sans text-slate-500 uppercase tracking-widest hover:text-[#00D4FF]">Close</button>
+
+            {/* Nav links */}
+            <nav className="flex flex-col items-center gap-2 w-full max-w-xs">
+              <button
+                onClick={() => handleLink('about')}
+                className="w-full py-4 px-6 text-lg font-['Courier_Prime'] text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 border border-transparent hover:border-[#00D4FF]/20"
+              >
+                HOW WE WORK
+              </button>
+              <button
+                onClick={() => handleLink('work')}
+                className="w-full py-4 px-6 text-lg font-['Courier_Prime'] text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 border border-transparent hover:border-[#00D4FF]/20"
+              >
+                RESULTS
+              </button>
+              <button
+                onClick={() => handleLink('journal')}
+                className="w-full py-4 px-6 text-lg font-['Courier_Prime'] text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-all duration-200 border border-transparent hover:border-[#00D4FF]/20"
+              >
+                JOURNAL
+              </button>
+
+              {/* CTA Button */}
+              <button
+                onClick={() => handleLink('contact')}
+                className="w-full mt-6 py-4 px-6 text-lg font-['Courier_Prime'] text-[#0A1628] bg-[#00D4FF] hover:bg-[#22D3EE] rounded-lg transition-all duration-200 font-semibold"
+              >
+                START A PROJECT
+              </button>
+            </nav>
+
+            {/* Footer info */}
+            <div className="mt-auto pt-12 text-center">
+              <p className="text-xs font-mono text-slate-600 tracking-wider">AI CONSULTING</p>
+              <p className="text-xs text-slate-700 mt-2">agents@sftwrks.com</p>
+            </div>
           </div>
         </div>
       )}
