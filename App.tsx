@@ -344,9 +344,10 @@ function App() {
                study={selectedCaseStudy}
                onBack={() => {
                  setSelectedCaseStudy(null);
+                 window.history.pushState({ path: '/' }, '', '/');
                  setTimeout(() => scrollToSection('work'), 100);
                }}
-               onNavigate={(study) => setSelectedCaseStudy(study)}
+               onNavigate={(study) => { setSelectedCaseStudy(study); window.history.pushState({ path: `/case-study/${study.id}` }, '', `/case-study/${study.id}`); }}
              />
              <Assistant isOpen={isAssessmentOpen} onOpenChange={setIsAssessmentOpen} />
            </Suspense>
@@ -362,6 +363,7 @@ function App() {
              <CaseStudiesList
                onStudyClick={(study) => {
                  setSelectedCaseStudy(study);
+                 window.history.pushState({ path: `/case-study/${study.id}` }, '', `/case-study/${study.id}`);
                  window.scrollTo({ top: 0, behavior: 'smooth' });
                }}
                onBack={() => {
@@ -468,7 +470,7 @@ function App() {
 
                             <div
                                 className="group cursor-pointer"
-                                onClick={() => { setSelectedCaseStudy(previewCaseStudies[0]); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                onClick={() => { setSelectedCaseStudy(previewCaseStudies[0]); window.history.pushState({ path: `/case-study/${previewCaseStudies[0].id}` }, '', `/case-study/${previewCaseStudies[0].id}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                             >
                                 <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
                                     <img
