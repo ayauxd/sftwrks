@@ -32,13 +32,13 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
       number: '01',
       title: 'Map',
       description: 'Walk your operations. Find the real bottleneck.',
-      image: '/assets/sections/step-01-map.webp',
+      image: '/assets/sections/step-01-map.webp?v=2',
     },
     {
       number: '02',
       title: 'Value',
       description: 'Calculate what fixing it is worth to you.',
-      image: '/assets/sections/step-02-value.webp',
+      image: '/assets/sections/step-02-value.webp?v=2',
     },
   ];
 
@@ -47,19 +47,19 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
       number: '03',
       title: 'Scope',
       description: 'Fixed price. Clear deliverable. No surprises.',
-      image: '/assets/sections/step-03-scope.webp',
+      image: '/assets/sections/step-03-scope.webp?v=2',
     },
     {
       number: '04',
       title: 'Build',
       description: 'One system at a time. Weekly progress.',
-      image: '/assets/sections/step-04-build.webp',
+      image: '/assets/sections/step-04-build.webp?v=2',
     },
     {
       number: '05',
       title: 'Hand Over',
       description: 'You own it. We train, document, then exit.',
-      image: '/assets/sections/step-05-handover.webp',
+      image: '/assets/sections/step-05-handover.webp?v=2',
     },
   ];
 

@@ -34,7 +34,7 @@ const About: React.FC = () => {
             <div className="aspect-square rounded-lg overflow-hidden shadow-2xl border border-slate-700/50">
               {/* Noir-themed Illustration */}
               <img
-                src="/assets/sections/challenge-noir.webp"
+                src="/assets/sections/challenge-noir.webp?v=2"
                 alt="AI transformation challenge - abstract visualization of disconnected systems"
                 className="w-full h-full object-cover"
               />
@@ -75,7 +75,7 @@ const About: React.FC = () => {
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="/assets/sections/strategy-card.webp"
+                  src="/assets/sections/strategy-card.webp?v=2"
                   alt="Find the Constraint - diagnostic session"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -92,7 +92,7 @@ const About: React.FC = () => {
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="/assets/sections/governance-card.webp"
+                  src="/assets/sections/governance-card.webp?v=2"
                   alt="Build the System - focused implementation"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
@@ -109,7 +109,7 @@ const About: React.FC = () => {
             <div className="bg-[#1E3A5F] border border-slate-700 hover:border-[#00D4FF] transition-colors group overflow-hidden">
               <div className="aspect-[4/3] overflow-hidden">
                 <img
-                  src="/assets/sections/integration-card.webp"
+                  src="/assets/sections/integration-card.webp?v=2"
                   alt="Hand It Over - complete ownership transfer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
