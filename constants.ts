@@ -139,27 +139,25 @@ export const CASE_STUDIES: CaseStudy[] = [
 
       <h3>The Old Way Wasn't Working</h3>
 
-      <p>Lisa had tried the usual approaches. She hired a marketing agency—$2,500/month for generic posts that didn't sound like her. She tried doing it herself—managed three weeks before client work buried her. She bought a video course—never opened it.</p>
+      <p>Lisa had tried the usual approaches. She hired a marketing agency—generic posts that didn't sound like her. She tried doing it herself—managed three weeks before client work buried her. She bought a video course—never opened it.</p>
 
       <p>The content marketing advice assumes you have either time or money. Most small business owners have neither to spare.</p>
 
       <h3>Building the Content Pipeline</h3>
 
-      <p>We built Lisa a system with one goal: turn 10 minutes of her expertise into a week of content. Here's how it works.</p>
+      <p>We built Lisa a system with one goal: turn 10 minutes of her expertise into a week of content.</p>
 
-      <p>Once a week, Lisa answers three questions into her phone. Common client questions, tax tips, business advice—whatever's on her mind. Total time: 10 minutes.</p>
+      <p>Once a week, Lisa answers three questions into her phone. Common client questions, tax tips, business advice—whatever's on her mind. Total time: about 10 minutes.</p>
 
-      <p>The system takes those audio recordings and gets to work. AI transcription cleans up the audio. A language model extracts the key points and writes them into short-form video scripts—maintaining Lisa's voice because we fine-tuned on her previous content. Another model generates simple motion graphics and text overlays. ElevenLabs creates a voice backup if the original audio quality is poor.</p>
-
-      <p>The automation then formats everything for three platforms: 9:16 vertical for Instagram and TikTok, 1:1 square for LinkedIn, 16:9 for YouTube Shorts. Captions are burned in because 85% of social video is watched on mute. A scheduling system queues everything up across the week.</p>
+      <p>The system handles everything else. AI transcription cleans up the audio. Language models extract key points and write them into short-form video scripts—maintaining Lisa's voice because we trained the system on her communication style. The automation generates motion graphics, formats for multiple platforms, burns in captions, and schedules posts across the week.</p>
 
       <h3>The Numbers That Matter</h3>
 
-      <p>From those 10 minutes of talking, Lisa gets 12 unique videos per month across three platforms. Her total time investment: about 2 hours monthly, including review and approval.</p>
+      <p>From those 10 minutes of talking, Lisa gets multiple videos per month across three platforms. Her total time investment: about 2 hours monthly, including review and approval.</p>
 
-      <p>Six months in, here's what changed: Website traffic up 340%. Three new clients directly attributed to "I saw your video about estimated taxes." One local news interview request. And Lisa's favorite metric: zero hours spent editing video or writing captions.</p>
+      <p>Six months in: website traffic up significantly. New clients directly attributed to "I saw your video." One local news interview request. And Lisa's favorite metric: zero hours spent editing video or writing captions.</p>
 
-      <p>The ROI calculation is simple. $800/month for the automation system. One new client covers that for the year. She got three in the first quarter.</p>
+      <p>The ROI was immediate. Her first new client from the content covered the system cost for the entire year.</p>
 
       <h3>What This Actually Looks Like</h3>
 
