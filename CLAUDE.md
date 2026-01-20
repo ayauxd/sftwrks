@@ -6,126 +6,101 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## NEXT SESSION REMINDER (Jan 20, 2026)
 
-**All Images Complete!**
-- Case studies: 4 images
-- Journal articles: 13 images
-- Homepage sections: 5 images
-- Path step cards: 5 images (NEW)
-- Total: ~1MB optimized webp
+**Completed:**
+- Dynamic OG tags for all pages (shareable URLs work)
+- All images generated in noir style
+- Clean URL system implemented
 
 **Remaining Tasks:**
 1. Fix Slack Integration (Formspree plugin or direct webhook)
-2. Article OG images (requires SSR or Vercel OG API)
 
 ---
 
 ## Latest Session Report
 
-**Date**: January 20, 2026 at 12:30 PM (Lagos Time)
+**Date**: January 20, 2026 at 5:00 PM (Lagos Time)
 **Site**: https://www.sftwrks.com
 
 ### Completed
 
-1. **ALL Homepage Section Images Regenerated** - Noir paper-cut style throughout
-   - Model: `gemini-3-pro-image-preview` (Gemini 3 Pro)
-   - Style: Cinematic noir paper-cut diorama, dark navy (#0A1628), warm amber spotlight, cyan glow (#00D4FF)
+1. **Shareable URL System (COMPLETE)** - All pages now have clean, shareable URLs with proper OG tags
+   - See "Shareable URLs" section below for full documentation
 
-2. **Case Study Images** (4 images, 191KB total)
-   - logistics-noir.webp: Document chaos → sorting machine
-   - finance-noir.webp: Two AI brains verifying
-   - accounting-noir.webp: Voice → content pipeline
-   - photobooth-noir.webp: Photo transformation machine
-
-3. **Journal Article Images** (13 images, 649KB total)
-   - All monthly articles from Jan 2025 to Jan 2026
-
-4. **Homepage Section Images** (5 images, 195KB total)
-   - challenge-noir.webp: Broken process accelerating (The Real Problem)
-   - strategy-card.webp: Magnifying glass on flowchart (Find the Constraint)
-   - governance-card.webp: Focused construction (Build the System)
-   - integration-card.webp: Key handover (Hand It Over)
-   - team-workflow-noir.webp: Human-AI collaboration (Team section)
-
-5. **Path Step Card Images** (5 images, 35KB total) - NEW
-   - step-01-map.webp: Discovery and mapping
-   - step-02-value.webp: Calculation and ROI
-   - step-03-scope.webp: Agreement and clarity
-   - step-04-build.webp: Construction in progress
-   - step-05-handover.webp: Completion and transfer
-   - Features.tsx updated to display images in all step cards
-
-2. **Image Generation Scripts Created**
-   - `scripts/generate-case-studies-replicate.mjs` - Replicate/Flux Schnell
-   - `scripts/generate-single-case-study.mjs` - Single image via Replicate
-   - `scripts/generate-case-study-images.mjs` - Gemini (updated)
-
-3. **Previous Session Work**
-   - "The Path" section redesign with two-phase layout
-   - Mobile menu dark theme redesign
-   - Mobile horizontal scroll fix
-   - Case study content redaction (pricing, tech details)
-   - Hero image retina fix (2x srcSet)
-
-### Image Generation Reference
-
-**Recommended approach:** Gemini 3 Pro Image
-```bash
-# Model to use
-gemini-3-pro-image-preview
-
-# Style base for all images
-STYLE = 'Cinematic noir paper-cut diorama style. Dark navy background, warm amber spotlight from above, layered cardstock textures, subtle cyan glow accent. Premium editorial quality. No text, no human figures.'
-
-# Generate with prompt reflecting actual content
-const model = genAI.getGenerativeModel({
-  model: 'gemini-3-pro-image-preview',
-  generationConfig: { responseModalities: ['TEXT', 'IMAGE'] }
-});
-```
-
-**Case study images generated:**
-| Case Study | Content | Size |
-|------------|---------|------|
-| logistics-noir.webp | Document chaos → sorting machine → organized output | 39KB |
-| finance-noir.webp | Two AI brains verifying each other | 70KB |
-| accounting-noir.webp | Voice → content pipeline → social videos | 35KB |
-| photobooth-noir.webp | Photos → imagination chamber → adventure scenes | 47KB |
-
-**Journal article images generated (13 total):**
-| Article | Content | Size |
-|---------|---------|------|
-| jan-2026.webp | Payment infrastructure fragility, dissolving cards | 39KB |
-| dec-2025.webp | AI as infrastructure, utility poles with data streams | 39KB |
-| nov-2025.webp | Three competing AI monuments (Gemini/Claude/GPT) | 66KB |
-| oct-2025.webp | Solo desk with multiple outputs emanating | 69KB |
-| sep-2025.webp | Massive data center buildout, power infrastructure | 55KB |
-| aug-2025.webp | Expanding book/brain, unlocked potential | 63KB |
-| jul-2025.webp | Diverging paths (95% fail, 5% succeed) | 39KB |
-| jun-2025.webp | Talent bidding war, figures pulled in directions | 44KB |
-| may-2025.webp | Speech bubbles transforming to code | 56KB |
-| apr-2025.webp | Dramatic growth chart, investment surge | 53KB |
-| mar-2025.webp | Exponential staircase, doubling capability | 37KB |
-| feb-2025.webp | Scales of justice, EU regulation | 31KB |
-| jan-2025.webp | Seed/spark of emergence, dawn/promise | 58KB |
-
-**Total image sizes:** Case studies 191KB + Journal 649KB = **840KB**
+2. **All Images Generated** - Noir paper-cut style throughout
+   - Case studies: 4 images (191KB)
+   - Journal articles: 13 images (649KB)
+   - Homepage sections: 5 images (195KB)
+   - Path step cards: 5 images (35KB)
 
 ### Pending
 
 - [ ] Slack integration for form submissions
-- [ ] OG images for articles (requires SSR or API route - see note below)
-- [ ] Possible: AI deeper analysis option
 
-### Note: Article OG Images
+---
 
-Currently, sharing article links shows the default homepage OG image because this is a client-side React SPA. Social media crawlers don't execute JavaScript, so they only see the static meta tags in index.html.
+## Shareable URLs (STANDARD - DO NOT CHANGE)
 
-**Solutions (in order of complexity):**
-1. **Vercel OG Image Generation** - Create an API route that generates dynamic OG images
-2. **Pre-rendering** - Use a service like Prerender.io
-3. **SSR Migration** - Convert to Next.js or similar
+All pages have clean, shareable URLs with proper OG tags. This is the **industry-standard implementation**.
 
-For now, all articles share the main site OG image.
+### URL Structure
+
+| Page Type | Shareable URL | Example |
+|-----------|---------------|---------|
+| Article | `/article/{id}` | `sftwrks.com/article/ai-jan-2026` |
+| Case Study | `/case-study/{id}` | `sftwrks.com/case-study/cs1` |
+| Journal List | `/journal` | `sftwrks.com/journal` |
+| Case Studies List | `/case-studies` | `sftwrks.com/case-studies` |
+| Media | `/media` | `sftwrks.com/media` |
+| Homepage | `/` | `sftwrks.com` |
+
+### How It Works
+
+1. **Vercel rewrites** (in `vercel.json`) route clean URLs to API handlers
+2. **API handlers** (in `api/og/`) return HTML with proper OG meta tags
+3. **Meta refresh** redirects users to the hash-based SPA route
+4. Social crawlers see OG tags; users land on correct page
+
+### Files
+
+```
+api/og/
+├── [type]/[id].ts    # Articles and case studies
+└── page/[page].ts    # Static pages (journal, case-studies, media)
+```
+
+### Adding New Content
+
+**When adding a new article:**
+1. Add to `constants.ts` (as usual)
+2. Add entry to `api/og/[type]/[id].ts` ARTICLES object:
+```typescript
+'ai-feb-2026': {
+  title: 'Article Title Here',
+  excerpt: 'Compelling 1-2 sentence description.',
+  image: '/assets/journal/feb-2026.webp',
+},
+```
+3. Generate image, deploy
+
+**When adding a new case study:**
+1. Add to `constants.ts` (as usual)
+2. Add entry to `api/og/[type]/[id].ts` CASE_STUDIES object:
+```typescript
+'cs6': {
+  title: 'Case Study Title',
+  summary: 'Outcome-focused description with metrics.',
+  image: '/assets/case-studies/new-case-study.webp',
+  client: 'Client Name',
+},
+```
+3. Generate image, deploy
+
+### OG Tag Standards
+
+- **Title:** Under 60 chars, ends with `| Softworks`
+- **Description:** Under 155 chars, action-oriented, outcome-focused
+- **Image:** 1200x630 recommended, webp format with `?v=2` cache busting
+- **URL:** Clean canonical URL (no hash)
 
 ---
 
@@ -153,14 +128,11 @@ For now, all articles share the main site OG image.
 ### Image Generation
 
 ```bash
-# Section images (noir style)
-source .env.local && node scripts/generate-section-images.mjs
+# Model to use
+gemini-3-pro-image-preview
 
-# OG preview card
-source .env.local && node scripts/generate-og-card.mjs
-
-# Optimize all images
-node scripts/optimize-images.mjs
+# Style base for all images
+STYLE = 'Cinematic noir paper-cut diorama style. Dark navy background, warm amber spotlight from above, layered cardstock textures, subtle cyan glow accent. Premium editorial quality. No text, no human figures.'
 ```
 
 ## Architecture
@@ -175,20 +147,16 @@ sftwrks/
 ├── index.tsx            # React entry point
 ├── index.html           # SEO meta, OG images, JSON-LD schema
 ├── constants.ts         # ALL content: CASE_STUDIES, JOURNAL_ARTICLES, INITIATIVES
-├── types.ts             # TypeScript interfaces: CaseStudy, JournalArticle, Initiative
-├── design-tokens.ts     # Brand colors and design tokens
-├── components/
-│   ├── Hero.tsx         # Landing section with CTA
-│   ├── About.tsx        # Problem/solution messaging
-│   ├── Team.tsx         # Team section
-│   ├── Assistant.tsx    # AI assessment chatbot (uses Anthropic API)
-│   ├── CaseStudyDetail.tsx / CaseStudiesList.tsx
-│   ├── JournalDetail.tsx / InsightsList.tsx
-│   ├── Media.tsx        # Media/press page
-│   └── Navbar.tsx / Footer.tsx
-├── src/index.css        # Tailwind directives + custom CSS (fonts, animations)
-├── scripts/             # Image generation scripts (Imagen 4)
-└── public/assets/       # logos/, sections/, team/, journal/
+├── types.ts             # TypeScript interfaces
+├── api/
+│   ├── anthropic.ts     # AI assistant API
+│   └── og/              # OG tag API handlers (shareable URLs)
+│       ├── [type]/[id].ts   # Articles & case studies
+│       └── page/[page].ts   # Static pages
+├── components/          # React components
+├── src/index.css        # Tailwind + custom CSS
+├── scripts/             # Image generation scripts
+└── public/assets/       # logos/, sections/, team/, journal/, case-studies/
 ```
 
 ### State Management
@@ -209,21 +177,7 @@ All content lives in `constants.ts`:
 - `JOURNAL_ARTICLES: JournalArticle[]` - Monthly insights with HTML content
 - `INITIATIVES: Initiative[]` - Related ventures
 
-To add content: Edit `constants.ts`, generate image if needed, build, deploy.
-
-## Available Skills
-
-### softworks-site-manager
-Use for: journal articles, case studies, deployments, SEO, health checks
-
-### frederick-ecosystem
-Use for: cross-venture decisions, pricing, communication style
-
-### /ralphloop
-For complex multi-step work with checkpoint validation:
-```
-/ralphloop Add new case study. Done when: added to constants.ts, image generated, deployed.
-```
+To add content: Edit `constants.ts`, add OG entry to API, generate image, build, deploy.
 
 ## Design System (DO NOT MODIFY)
 
@@ -234,6 +188,7 @@ For complex multi-step work with checkpoint validation:
 | Headings | Courier Prime |
 | Body | Inter |
 | Mono | JetBrains Mono |
+| Logo | Nunito (font-black) |
 
 ## Content Guidelines
 
@@ -255,16 +210,9 @@ Required in `.env.local` (dev) and Vercel (prod):
 - `GEMINI_API_KEY` - Image generation
 - `ANTHROPIC_API_KEY` - AI assistant
 
-**Important:** Use unrestricted keys for local dev, restricted keys for production. See `docs/API_KEY_MANAGEMENT.md` for setup guide.
-
-## Donovan Protocol
-
-> See global: `~/.claude/CLAUDE.md`
-
-When detecting frustration (3+ failures, terse messages, version hell), suggest documented solutions over continued debugging.
-
 ## Mistakes Log
 
 - [2026-01-12] Don't assume "trading company" relates to stocks - it's AI consulting
 - [2026-01-18] Always use sftwrks.com - softworkstrading.com is being retired
 - [2026-01-19] CSP blocked Formspree - always add external API domains to `connect-src` in vercel.json
+- [2026-01-20] When adding new articles/case studies, MUST also add OG entry to `api/og/[type]/[id].ts`
