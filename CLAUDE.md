@@ -4,37 +4,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ---
 
-## NEXT SESSION REMINDER (Jan 20, 2026)
-
-**Completed:**
-- Dynamic OG tags for all pages (shareable URLs work)
-- All images generated in noir style
-- Clean URL system implemented
-
-**Remaining Tasks:**
-1. Fix Slack Integration (Formspree plugin or direct webhook)
-
----
-
 ## Latest Session Report
 
-**Date**: January 20, 2026 at 5:00 PM (Lagos Time)
+**Date**: January 20, 2026 at 6:00 PM (Lagos Time)
 **Site**: https://www.sftwrks.com
 
-### Completed
+### Completed This Session
 
-1. **Shareable URL System (COMPLETE)** - All pages now have clean, shareable URLs with proper OG tags
-   - See "Shareable URLs" section below for full documentation
+1. **Time Value Calculator UX Improvements**
+   - Team size now affects calculation (30-40% → 60-75% based on team)
+   - Added cost estimation helper with challenge-specific formulas
+   - Added goal-tailored results messaging
+   - Replaced "constraint" jargon with "process" throughout
+   - Better popup copy: "Losing hours to work that should run itself?"
 
-2. **All Images Generated** - Noir paper-cut style throughout
-   - Case studies: 4 images (191KB)
-   - Journal articles: 13 images (649KB)
-   - Homepage sections: 5 images (195KB)
-   - Path step cards: 5 images (35KB)
+2. **Slack Integration** - Form submissions now notify `#leads` channel
+   - Formatted message with name, email, challenge, team size, cost, goal, recovery range
+   - Uses Slack Incoming Webhook (non-blocking, graceful failure)
 
-### Pending
+3. **URL Fixes** - Case study URLs now update when clicked (shareable)
 
-- [ ] Slack integration for form submissions
+4. **Image Cache Fix** - Added `?v=2` to case study images for cache busting
+
+### All Systems Operational
+
+- Shareable URLs with OG tags
+- Noir images throughout
+- Form → Formspree → Email + Slack
+- Time Value Calculator fully functional
 
 ---
 
@@ -209,6 +206,7 @@ npx tsc --noEmit        # No type errors
 Required in `.env.local` (dev) and Vercel (prod):
 - `GEMINI_API_KEY` - Image generation
 - `ANTHROPIC_API_KEY` - AI assistant
+- `VITE_SLACK_WEBHOOK_URL` - Slack notifications for calculator submissions (#leads channel)
 
 ## Mistakes Log
 
