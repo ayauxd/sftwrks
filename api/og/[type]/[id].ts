@@ -153,12 +153,9 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   <meta name="twitter:image" content="${fullImageUrl}">
 
   <meta http-equiv="refresh" content="0;url=${redirectUrl}">
+  <script>window.location.replace("${redirectUrl}");</script>
 </head>
-<body>
-  <h1>${title}</h1>
-  <p>${description}</p>
-  <p>Redirecting to <a href="${redirectUrl}">Softworks</a>...</p>
-</body>
+<body style="display:none;"></body>
 </html>`;
 
   res.setHeader('Content-Type', 'text/html');
