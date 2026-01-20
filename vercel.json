@@ -44,7 +44,7 @@
   "rewrites": [
     { "source": "/share/article/:id", "destination": "/api/og/article/:id" },
     { "source": "/share/case-study/:id", "destination": "/api/og/case-study/:id" },
-    { "source": "/(.*)", "destination": "/index.html" }
+    { "source": "/:path((?!api/).*)", "destination": "/index.html" }
   ],
   "headers": [
     {
