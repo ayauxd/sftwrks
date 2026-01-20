@@ -110,7 +110,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   if (type === 'article' && typeof id === 'string') {
     const article = ARTICLES[id];
     if (article) {
-      title = article.title;
+      title = `${article.title} | Softworks`;
       description = article.excerpt;
       image = article.image;
       canonicalUrl = `${baseUrl}/journal/${id}`;
@@ -119,8 +119,8 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   } else if (type === 'case-study' && typeof id === 'string') {
     const cs = CASE_STUDIES[id];
     if (cs) {
-      title = `${cs.title} | ${cs.client}`;
-      description = cs.summary;
+      title = `${cs.title} | Softworks`;
+      description = `${cs.client}: ${cs.summary}`;
       image = cs.image;
       canonicalUrl = `${baseUrl}/case-study/${id}`;
       redirectUrl = `${baseUrl}/#/case-study/${id}`;
