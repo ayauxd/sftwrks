@@ -1027,8 +1027,8 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-            <p className="text-sm font-medium text-slate-900 dark:text-white">Got a slow process?</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">Calculate what it costs your business</p>
+            <p className="text-sm font-medium text-slate-900 dark:text-white">Doing the same task over and over?</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400">See what it's really costing you</p>
             <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white dark:bg-[#1E3A5F] border-r border-b border-slate-200 dark:border-slate-700 transform rotate-45"></div>
           </div>
         </div>

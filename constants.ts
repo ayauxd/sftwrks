@@ -177,7 +177,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     title: 'The AI Photo Booth That Runs Itself',
     summary: 'They said: "We need a photo booth attendant." The real constraint: the interface required technical knowledge. We built one a 5-year-old could use.',
     outcome: 'Constraint: interface, not staffing. Result: hundreds of personalized images, zero assistance needed.',
-    imageUrl: '/assets/case-studies/photobooth-noir.webp',
+    imageUrl: '/assets/case-studies/photobooth-noir.webp?v=2',
     date: 'JAN 2026',
     completedDate: '2026-01',
     content: `
