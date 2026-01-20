@@ -113,7 +113,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
       title = `${article.title} | Softworks`;
       description = article.excerpt;
       image = article.image;
-      canonicalUrl = `${baseUrl}/journal/${id}`;
+      canonicalUrl = `${baseUrl}/article/${id}`;
       redirectUrl = `${baseUrl}/#/article/${id}`;
     }
   } else if (type === 'case-study' && typeof id === 'string') {
