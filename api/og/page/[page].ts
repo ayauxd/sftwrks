@@ -6,19 +6,19 @@ const PAGES: Record<string, { title: string; description: string; image: string;
     title: 'Journal | Softworks',
     description: 'Monthly insights on AI adoption, automation trends, and what actually works for businesses.',
     image: '/assets/logos/og-preview.png',
-    redirect: '/#/journal',
+    redirect: '/insights',
   },
   'case-studies': {
     title: 'Case Studies | Softworks',
     description: 'Real projects. Real outcomes. See how we solve bottlenecks with AI systems that work.',
     image: '/assets/logos/og-preview.png',
-    redirect: '/#/case-studies',
+    redirect: '/case-studies',
   },
   'media': {
     title: 'Media | Softworks',
     description: 'Press coverage, interviews, and resources about Softworks and AI consulting.',
     image: '/assets/logos/og-preview.png',
-    redirect: '/#/media',
+    redirect: '/media',
   },
 };
 

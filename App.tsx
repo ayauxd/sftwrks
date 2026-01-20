@@ -53,6 +53,7 @@ function App() {
   const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
   const [journalArticles, setJournalArticles] = useState<JournalArticle[]>([]);
   const [dataLoaded, setDataLoaded] = useState(false);
+  const [pendingNavigation, setPendingNavigation] = useState<string | null>(null);
 
   // Load constants on demand (after initial render)
   useEffect(() => {
@@ -111,6 +112,24 @@ function App() {
       setShowCaseStudiesList(true);
     } else if (path === '/media') {
       setShowMedia(true);
+    } else if (path.startsWith('/article/')) {
+      const articleId = path.replace('/article/', '');
+      const article = journalArticles.find(a => a.id === articleId);
+      if (article) {
+        setSelectedArticle(article);
+      } else if (!dataLoaded) {
+        // Data not loaded yet, store pending navigation
+        setPendingNavigation(path);
+      }
+    } else if (path.startsWith('/case-study/')) {
+      const caseStudyId = path.replace('/case-study/', '');
+      const caseStudy = caseStudies.find(cs => cs.id === caseStudyId);
+      if (caseStudy) {
+        setSelectedCaseStudy(caseStudy);
+      } else if (!dataLoaded) {
+        // Data not loaded yet, store pending navigation
+        setPendingNavigation(path);
+      }
     }
     // For '/' (home), all states are already reset
 
@@ -128,6 +147,14 @@ function App() {
       navigateTo(path, { skipHistory: true });
     }
   }, []);
+
+  // Handle pending navigation once data is loaded
+  useEffect(() => {
+    if (dataLoaded && pendingNavigation) {
+      navigateTo(pendingNavigation, { skipHistory: true });
+      setPendingNavigation(null);
+    }
+  }, [dataLoaded, pendingNavigation]);
 
   // Handle browser back/forward navigation
   useEffect(() => {
