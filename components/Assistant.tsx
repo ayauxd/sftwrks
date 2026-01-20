@@ -38,6 +38,7 @@ interface AssistantProps {
 }
 
 const FORMSPREE_ENDPOINT = 'https://formspree.io/f/maqqognb';
+const SLACK_WEBHOOK_URL = import.meta.env.VITE_SLACK_WEBHOOK_URL;
 
 // Default to USD
 const DEFAULT_CURRENCY = CURRENCIES[0];
@@ -240,6 +241,84 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
       if (response.ok) {
         setSubmitted(true);
         setPhase('complete');
+
+        // Also notify Slack if webhook is configured
+        if (SLACK_WEBHOOK_URL) {
+          fetch(SLACK_WEBHOOK_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+              text: `💰 New Time Value Calculator: ${formatCurrency(value.conservative, data.currency)} - ${formatCurrency(value.potential, data.currency)}/mo`,
+              blocks: [
+                {
+                  type: "header",
+                  text: {
+                    type: "plain_text",
+                    text: "💰 New Time Value Calculator Submission",
+                    emoji: true
+                  }
+                },
+                {
+                  type: "section",
+                  fields: [
+                    {
+                      type: "mrkdwn",
+                      text: `*Name:*\n${data.name || 'Not provided'}`
+                    },
+                    {
+                      type: "mrkdwn",
+                      text: `*Email:*\n${email.trim()}`
+                    }
+                  ]
+                },
+                {
+                  type: "section",
+                  fields: [
+                    {
+                      type: "mrkdwn",
+                      text: `*Challenge:*\n${data.challengeLabel}`
+                    },
+                    {
+                      type: "mrkdwn",
+                      text: `*Team Size:*\n${data.teamSize}`
+                    }
+                  ]
+                },
+                {
+                  type: "section",
+                  fields: [
+                    {
+                      type: "mrkdwn",
+                      text: `*Monthly Cost:*\n${formatCurrency(data.constraintCost, data.currency)}`
+                    },
+                    {
+                      type: "mrkdwn",
+                      text: `*Success Goal:*\n${data.successGoal}`
+                    }
+                  ]
+                },
+                {
+                  type: "divider"
+                },
+                {
+                  type: "section",
+                  text: {
+                    type: "mrkdwn",
+                    text: `*Potential Recovery:* ${formatCurrency(value.conservative, data.currency)} - ${formatCurrency(value.potential, data.currency)}/mo`
+                  }
+                },
+                {
+                  type: "context",
+                  elements: [
+                    {
+                      type: "mrkdwn",
+                      text: `Region: ${data.region.toUpperCase()} | Currency: ${data.currency.code}`
+                    }
+                  ]
+                }
+              ]
+            })
+          }).catch(err => console.error('Slack notification failed:', err));
+        }
       } else {
         const errorData = await response.json().catch(() => ({}));
         console.error('Formspree error:', response.status, errorData);
