@@ -44,7 +44,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             onClick={() => handleLink('top')}
             className="hover:opacity-80 transition-opacity"
           >
-            <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
+            <span className={`font-['Nunito'] font-black text-3xl md:text-4xl tracking-tight transition-colors ${
               scrolled
                 ? 'text-slate-900 dark:text-white'
                 : isDark ? 'text-white' : 'text-slate-900'
