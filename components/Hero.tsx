@@ -154,7 +154,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              We diagnose before we build. You get AI set up for your workflow, not the other way around.
+              We find the problem first. Then build one system that fixes it. You're running it within weeks.
             </p>
 
             {/* CTA Buttons - Single clear action */}
@@ -167,7 +167,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
                     : 'bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg'
                 }`}
               >
-                Find Your Constraint
+                Find Your Problem
               </button>
               <a
                 href="#work"
@@ -203,7 +203,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             {/* Trust Indicators - Filter statement */}
             <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
               <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                For business owners who can describe what's slowing them down, and have time to get it right.
+                For business owners who know what's slowing them down and want it fixed.
               </p>
             </div>
 

@@ -65,7 +65,7 @@ const About: React.FC = () => {
               <span className="text-[#00D4FF]">Hand Over.</span>
             </h2>
             <p className="max-w-2xl mx-auto text-lg text-slate-300 font-light">
-              We find the real constraint, build one system that addresses it, then hand you the keys. No retainers. No dependency.
+              We find the problem, build one system to fix it, then hand you the keys. Works without us after that.
             </p>
           </div>
 
@@ -117,7 +117,7 @@ const About: React.FC = () => {
               <div className="p-6">
                 <h3 className="text-xl font-bold text-white mb-3">Hand It Over</h3>
                 <p className="text-slate-300 font-light leading-relaxed text-sm">
-                  You own it. You run it. Documentation, training, and 30-day support included. No ongoing fees. No dependency.
+                  Documentation, training, and 30-day support included. After that, it runs without us.
                 </p>
               </div>
             </div>

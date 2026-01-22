@@ -24,7 +24,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
             <span className="font-sans text-slate-400 font-medium text-[10px] tracking-[0.15em] uppercase">Trading Company</span>
           </div>
           <p className="max-w-xs text-slate-400 font-light leading-relaxed mb-6">
-            Systems first. Automation second. We find where your problem actually lives, then build one thing that fixes it.
+            Systems first. Automation second. We find the problem, then build one thing that fixes it.
           </p>
           <a
             href="mailto:agents@sftwrks.com"
@@ -104,7 +104,7 @@ const Footer: React.FC<FooterProps> = ({ onLinkClick, onOpenDiscovery, onShowPri
             href="mailto:agents@sftwrks.com?subject=Constraint%20to%20Discuss"
             className="inline-flex items-center gap-2 px-6 py-3 bg-[#00D4FF] text-[#0A1628] font-semibold uppercase tracking-wider text-xs hover:bg-[#22D3EE] hover:shadow-[0_0_20px_rgba(0,212,255,0.3)] transition-all"
           >
-            Describe Your Constraint
+            Describe Your Problem
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>

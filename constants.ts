@@ -883,7 +883,7 @@ export const TEAM_SIZE_OPTIONS = [
 // Success goal options
 export const SUCCESS_OPTIONS = [
   { label: 'Reclaim time each week', value: 'time', description: 'Get hours back for high-value work' },
-  { label: 'Handle more without hiring', value: 'scale', description: 'Grow capacity without growing headcount' },
+  { label: 'See what\'s actually possible', value: 'scale', description: 'Unlock capacity that reveals new opportunities' },
   { label: 'Reduce errors & rework', value: 'errors', description: 'Stop fixing the same mistakes' },
   { label: 'Faster customer response', value: 'speed', description: 'Beat competitors to the reply' },
 ];

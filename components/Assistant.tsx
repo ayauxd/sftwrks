@@ -833,9 +833,9 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
           icon: '⏱️',
           message: `At an average rate, that's potentially ${Math.round(potential / 50)} hours/month you could redirect to high-value work.`
         },
-        'Handle more without hiring': {
+        'See what\'s actually possible': {
           icon: '📈',
-          message: `This capacity gain could help you scale output without adding headcount.`
+          message: `This unlocked capacity often reveals opportunities you'd want to hire for.`
         },
         'Reduce errors & rework': {
           icon: '✓',

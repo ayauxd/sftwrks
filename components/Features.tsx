@@ -58,7 +58,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
     {
       number: '05',
       title: 'Hand Over',
-      description: 'You own it. We train, document, then exit.',
+      description: 'We train your team, document everything, then exit. It runs without us.',
       image: '/assets/sections/step-05-handover.webp?v=2',
     },
   ];
@@ -316,7 +316,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
               <div className="text-center md:text-left">
                 <h3 className="text-xl font-bold text-white mb-2">Pricing tied to value, not hours.</h3>
                 <p className="text-slate-400 max-w-md">
-                  We calculate what the fix is worth to you. No long-term contracts. No vendor lock-in.
+                  We scope it, price it, build it. One deliverable. One price.
                 </p>
               </div>
 
