@@ -42,19 +42,19 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           {/* Brand Logo + Text */}
           <button
             onClick={() => handleLink('top')}
-            className="hover:opacity-80 transition-opacity flex items-center gap-3"
+            className="hover:opacity-80 transition-opacity flex items-center gap-2 md:gap-2.5"
           >
             <img
               src="/assets/logos/softworks-icon.png"
               alt=""
-              className="h-10 md:h-12 w-auto dark:hidden"
+              className="h-12 md:h-14 w-auto dark:hidden"
             />
             <img
               src="/assets/logos/softworks-icon-light.png"
               alt=""
-              className="h-10 md:h-12 w-auto hidden dark:block"
+              className="h-12 md:h-14 w-auto hidden dark:block"
             />
-            <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
+            <span className={`font-['Nunito'] font-black text-xl md:text-2xl tracking-tight transition-colors ${
               scrolled
                 ? 'text-slate-900 dark:text-white'
                 : isDark ? 'text-white' : 'text-slate-900'

@@ -140,21 +140,21 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up text-sm md:text-base mb-6 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
-              AI Consulting &amp; Automation — More tools won't fix a broken process.
+              AI Adoption Consultants
             </p>
 
             {/* Main Headline - Outcome Focused */}
             <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 leading-[1.1] transition-colors duration-300" style={{ animationDelay: '100ms' }}>
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>We Fix the Workflow.</span>
+              <span className={isDark ? 'text-white' : 'text-slate-900'}>Workflow Automation</span>
               <br />
-              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>Then Automate It.</span>
+              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>Designed for You.</span>
             </h1>
 
             {/* Subheadline - How */}
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              We find where work gets stuck, design a clear system that runs without you, and build it. You're using it in weeks.
+              Cut through the noise and find out what's actually slowing you down.
             </p>
 
             {/* CTA Buttons - Single clear action */}
