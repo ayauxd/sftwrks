@@ -6,32 +6,36 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Latest Session Report
 
-**Date**: January 20, 2026 at 6:00 PM (Lagos Time)
+**Date**: January 22, 2026 at 10:30 PM (Lagos Time)
 **Site**: https://www.sftwrks.com
 
 ### Completed This Session
 
-1. **Time Value Calculator UX Improvements**
-   - Team size now affects calculation (30-40% → 60-75% based on team)
-   - Added cost estimation helper with challenge-specific formulas
-   - Added goal-tailored results messaging
-   - Replaced "constraint" jargon with "process" throughout
-   - Better popup copy: "Losing hours to work that should run itself?"
+1. **Hero Copy Overhaul**
+   - Hook: "AI Adoption Consultants"
+   - Headline: "Workflow Automation / Designed for You."
+   - Subheadline: "Cut through the noise — find the solution that fits your business."
+   - Filter: "For business owners ready to stop managing and start running."
 
-2. **Slack Integration** - Form submissions now notify `#leads` channel
-   - Formatted message with name, email, challenge, team size, cost, goal, recovery range
-   - Uses Slack Incoming Webhook (non-blocking, graceful failure)
+2. **Logo Improvements**
+   - Navbar: Icon h-12/h-14, text-xl/text-2xl, gap-2/gap-2.5 (better proportions)
+   - Dark mode: Separate transparent PNG (`softworks-icon-light.png`) instead of CSS filter
+   - Removed red tint issue from CSS invert filter
 
-3. **URL Fixes** - Case study URLs now update when clicked (shareable)
+3. **Calculator Mobile Alignment Fix**
+   - Changed modal from `w-screen` to `w-full`
+   - Body scroll lock only on mobile when modal open
+   - Added safe-area CSS for mobile notches
 
-4. **Image Cache Fix** - Added `?v=2` to case study images for cache busting
+4. **Features Section**
+   - Removed step numbers, added emoji icons (🔍💰📋⚙️🔑)
 
 ### All Systems Operational
 
-- Shareable URLs with OG tags
-- Noir images throughout
-- Form → Formspree → Email + Slack
-- Time Value Calculator fully functional
+- Hero copy clearly states "AI Adoption Consultants"
+- Logo scales properly across breakpoints
+- Calculator alignment fixed on mobile
+- Dark mode logos use transparent PNG
 
 ---
 
