@@ -79,13 +79,13 @@ function App() {
     return `${year}-${months[month] || '01'}`;
   };
 
-  // Preview sorted by date (newest first), limited to 1 for homepage
+  // Preview sorted by date (newest first), limited to 2 for homepage
   const previewArticles = [...journalArticles]
     .sort((a, b) => parseArticleDate(b.date).localeCompare(parseArticleDate(a.date)))
-    .slice(0, 1);
+    .slice(0, 2);
   const previewCaseStudies = [...caseStudies]
     .sort((a, b) => b.completedDate.localeCompare(a.completedDate))
-    .slice(0, 1);
+    .slice(0, 2);
 
   // Reset all page states to home
   const resetToHome = () => {
@@ -460,7 +460,7 @@ function App() {
                             onClick={() => { setShowCaseStudiesList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                             className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
                         >
-                            View All &rarr;
+                            More Case Studies &rarr;
                         </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -502,7 +502,7 @@ function App() {
                             onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                             className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
                         >
-                            View All &rarr;
+                            More Posts &rarr;
                         </button>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
