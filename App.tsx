@@ -449,11 +449,51 @@ function App() {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Latest</span>
-                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Case Studies & Blog</h2>
+                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Blog & Case Studies</h2>
+                </div>
+
+                {/* Blog - 2 cards side by side */}
+                <div id="journal" className="mb-16">
+                    <div className="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
+                        <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Blog</span>
+                        <button
+                            onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                            className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
+                        >
+                            More Posts &rarr;
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {previewArticles.slice(0, 2).map((article) => (
+                            <article
+                                key={article.id}
+                                className="group cursor-pointer"
+                                onClick={() => { setSelectedArticle(article); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                            >
+                                <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
+                                    <img
+                                        src={`${article.image}?v=2`}
+                                        alt={article.title}
+                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+                                    />
+                                    <div className="absolute top-3 left-3 bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-700 text-[#00D4FF] uppercase">
+                                        {article.date}
+                                    </div>
+                                </div>
+                                <h3 className="text-lg font-bold text-white mb-2 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
+                                    {article.title}
+                                </h3>
+                                <p className="text-xs text-slate-500 mb-3">By {article.author}</p>
+                                <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">
+                                    {article.excerpt}
+                                </p>
+                            </article>
+                        ))}
+                    </div>
                 </div>
 
                 {/* Case Studies - 2 cards side by side */}
-                <div className="mb-16">
+                <div>
                     <div className="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
                         <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Case Studies</span>
                         <button
@@ -490,46 +530,6 @@ function App() {
                                     {caseStudy.summary}
                                 </p>
                             </div>
-                        ))}
-                    </div>
-                </div>
-
-                {/* Blog - 2 cards side by side */}
-                <div id="journal">
-                    <div className="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
-                        <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Blog</span>
-                        <button
-                            onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                            className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
-                        >
-                            More Posts &rarr;
-                        </button>
-                    </div>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        {previewArticles.slice(0, 2).map((article) => (
-                            <article
-                                key={article.id}
-                                className="group cursor-pointer"
-                                onClick={() => { setSelectedArticle(article); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                            >
-                                <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
-                                    <img
-                                        src={`${article.image}?v=2`}
-                                        alt={article.title}
-                                        className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
-                                    />
-                                    <div className="absolute top-3 left-3 bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-700 text-[#00D4FF] uppercase">
-                                        {article.date}
-                                    </div>
-                                </div>
-                                <h3 className="text-lg font-bold text-white mb-2 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
-                                    {article.title}
-                                </h3>
-                                <p className="text-xs text-slate-500 mb-3">By {article.author}</p>
-                                <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">
-                                    {article.excerpt}
-                                </p>
-                            </article>
                         ))}
                     </div>
                 </div>
