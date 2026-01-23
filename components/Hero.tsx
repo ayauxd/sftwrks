@@ -140,21 +140,21 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up text-sm md:text-base mb-6 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-600'
             }`}>
-              Most AI projects automate symptoms. We find where the problem actually lives.
+              AI Consulting &amp; Automation — More tools won't fix a broken process.
             </p>
 
             {/* Main Headline - Outcome Focused */}
             <h1 className="animate-fade-in-up text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold tracking-tight mb-6 leading-[1.1] transition-colors duration-300" style={{ animationDelay: '100ms' }}>
-              <span className={isDark ? 'text-white' : 'text-slate-900'}>Systems First.</span>
+              <span className={isDark ? 'text-white' : 'text-slate-900'}>We Fix the Workflow.</span>
               <br />
-              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>Automation Second.</span>
+              <span className={isDark ? 'text-[#00D4FF]' : 'text-cyan-600'}>Then Automate It.</span>
             </h1>
 
             {/* Subheadline - How */}
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              We find the problem first. Then build one system that fixes it. You're running it within weeks.
+              We find where work gets stuck, design a clear system that runs without you, and build it. You're using it in weeks.
             </p>
 
             {/* CTA Buttons - Single clear action */}
@@ -203,7 +203,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             {/* Trust Indicators - Filter statement */}
             <div className={`animate-fade-in-up mt-12 transition-colors duration-300`} style={{ animationDelay: '350ms' }}>
               <p className={`text-sm ${isDark ? 'text-slate-400' : 'text-slate-600'}`}>
-                For business owners who know what's slowing them down and want it fixed.
+                For business owners ready to stop managing and start running.
               </p>
             </div>
 

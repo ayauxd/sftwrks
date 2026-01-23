@@ -47,7 +47,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             <img
               src="/assets/logos/softworks-icon.png"
               alt=""
-              className="h-10 md:h-12 w-auto dark:invert dark:brightness-200 dark:contrast-90"
+              className="h-10 md:h-12 w-auto dark:hidden"
+            />
+            <img
+              src="/assets/logos/softworks-icon-light.png"
+              alt=""
+              className="h-10 md:h-12 w-auto hidden dark:block"
             />
             <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
               scrolled
@@ -172,9 +177,9 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             <div className="mb-12 flex flex-col items-center">
               <div className="flex items-center gap-3">
                 <img
-                  src="/assets/logos/softworks-icon.png"
+                  src="/assets/logos/softworks-icon-light.png"
                   alt=""
-                  className="h-12 w-auto invert brightness-200 contrast-90"
+                  className="h-12 w-auto"
                 />
                 <span className="font-['Nunito'] text-white font-black text-3xl tracking-tight">Softworks</span>
               </div>

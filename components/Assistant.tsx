@@ -338,6 +338,19 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
     }
   }, [isOpen]);
 
+  // Lock body scroll when modal is open on mobile (only on small screens)
+  useEffect(() => {
+    const isMobile = window.innerWidth < 640;
+    if (isOpen && isMobile) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const handleNext = (nextPhase: Phase) => {
     setPhase(nextPhase);
   };
@@ -565,7 +578,8 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
       return (
         <div className="flex-1 flex flex-col items-center justify-center text-center px-6 py-8">
           <div className="w-16 h-16 rounded-2xl bg-slate-100 dark:bg-[#1E3A5F] border-2 border-slate-200 dark:border-[#00D4FF]/30 flex items-center justify-center mb-6 shadow-lg">
-            <img src="/assets/logos/softworks-icon.png" alt="" className="w-11 h-11 object-contain dark:invert dark:brightness-200 dark:contrast-90" />
+            <img src="/assets/logos/softworks-icon.png" alt="" className="w-11 h-11 object-contain dark:hidden" />
+            <img src="/assets/logos/softworks-icon-light.png" alt="" className="w-11 h-11 object-contain hidden dark:block" />
           </div>
           <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
             Time Value Calculator
@@ -1510,16 +1524,21 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
   };
 
   return (
-    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans">
+    <div className="fixed bottom-4 right-4 md:bottom-6 md:right-6 z-50 flex flex-col items-end font-sans max-w-full">
       {isOpen && (
-        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-screen sm:w-[400px] max-w-full h-[100dvh] sm:h-auto sm:max-h-[calc(100vh-6rem)] sm:min-h-[600px] mb-0 sm:mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:bottom-20 sm:right-0">
+        <div className="bg-white dark:bg-[#0F172A] shadow-2xl border border-slate-200 dark:border-slate-700 w-full sm:w-[400px] h-[100dvh] sm:h-auto sm:max-h-[calc(100vh-6rem)] sm:min-h-[600px] mb-0 sm:mb-4 flex flex-col overflow-hidden animate-fade-in-up rounded-none sm:rounded-xl fixed inset-0 sm:inset-auto sm:bottom-20 sm:right-0">
           {/* Header */}
           <div className="px-5 py-4 border-b border-slate-100 dark:border-slate-800 flex justify-between items-center bg-slate-50 dark:bg-[#0A1628] safe-area-inset-top">
             <div className="flex items-center gap-3">
               <img
                 src="/assets/logos/softworks-icon.png"
                 alt=""
-                className="w-8 h-8 object-contain dark:invert dark:brightness-200 dark:contrast-90"
+                className="w-8 h-8 object-contain dark:hidden"
+              />
+              <img
+                src="/assets/logos/softworks-icon-light.png"
+                alt=""
+                className="w-8 h-8 object-contain hidden dark:block"
               />
               <div>
                 <h3 className="font-semibold text-slate-900 dark:text-white text-sm">Time Value Calculator</h3>
@@ -1584,11 +1603,18 @@ const Assistant: React.FC<AssistantProps> = ({ isOpen: controlledIsOpen, onOpenC
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
           </svg>
         ) : (
-          <img
-            src="/assets/logos/softworks-icon.png"
-            alt="Open Calculator"
-            className="w-9 h-9 relative z-10 object-contain dark:invert dark:brightness-200 dark:contrast-90"
-          />
+          <>
+            <img
+              src="/assets/logos/softworks-icon.png"
+              alt="Open Calculator"
+              className="w-9 h-9 relative z-10 object-contain dark:hidden"
+            />
+            <img
+              src="/assets/logos/softworks-icon-light.png"
+              alt="Open Calculator"
+              className="w-9 h-9 relative z-10 object-contain hidden dark:block"
+            />
+          </>
         )}
       </button>
     </div>

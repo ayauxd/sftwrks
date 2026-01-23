@@ -58,6 +58,11 @@ body {
   color: #F8FAFC; /* Slate 50 */
 }
 
+/* Safe area insets for mobile notches/islands */
+.safe-area-inset-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+
 /* Typewriter Headings */
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Courier Prime', monospace;
