@@ -449,7 +449,7 @@ function App() {
                 {/* Section Header */}
                 <div className="text-center mb-16">
                     <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Latest</span>
-                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Case Studies & Journal</h2>
+                    <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Case Studies & Blog</h2>
                 </div>
 
                 {/* Side-by-side layout on desktop, stacked on mobile */}
@@ -505,7 +505,7 @@ function App() {
                     {previewArticles[0] && (
                         <div className="space-y-6">
                             <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Journal</span>
+                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Blog</span>
                                 <button
                                     onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                                     className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"

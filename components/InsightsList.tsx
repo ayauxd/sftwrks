@@ -45,9 +45,9 @@ const InsightsList: React.FC<InsightsListProps> = ({ onArticleClick, onBack }) =
 
         {/* Header with intro */}
         <div className="border-b border-slate-300 dark:border-slate-700 pb-12 mb-16">
-          <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Field Notes</span>
+          <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Blog</span>
           <h1 className="text-4xl md:text-5xl text-slate-900 dark:text-white mt-4 mb-8 font-bold font-['Courier_Prime']">
-            Monthly Insights
+            All Posts
           </h1>
           <p className="text-lg text-slate-600 dark:text-slate-400 max-w-3xl leading-relaxed">
             Every month, we provide a comprehensive wrap-up of the AI industry's most significant developments.

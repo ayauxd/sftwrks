@@ -21,8 +21,8 @@ const Journal: React.FC<JournalProps> = ({ onArticleClick, onViewAllClick }) => 
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-end mb-16 border-b border-slate-300 dark:border-slate-700 pb-6">
             <div>
-                <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Field Notes</span>
-                <h2 className="text-3xl md:text-4xl text-slate-900 dark:text-white mt-4 font-bold font-['Courier_Prime']">Insights</h2>
+                <span className="font-mono text-xs text-[#00D4FF] uppercase tracking-widest">Blog</span>
+                <h2 className="text-3xl md:text-4xl text-slate-900 dark:text-white mt-4 font-bold font-['Courier_Prime']">Latest Posts</h2>
             </div>
              <div className="hidden md:block">
                 <span className="text-xs font-mono text-slate-500 dark:text-slate-400">Monthly AI Industry Analysis</span>
@@ -62,7 +62,7 @@ const Journal: React.FC<JournalProps> = ({ onArticleClick, onViewAllClick }) => 
             onClick={onViewAllClick}
             className="group inline-flex items-center gap-3 px-8 py-4 bg-[#0A1628] dark:bg-[#1E3A5F] text-white font-mono text-sm uppercase tracking-widest hover:bg-[#00D4FF] hover:text-[#0A1628] transition-all duration-300 border border-transparent hover:border-[#00D4FF]"
           >
-            View All Insights
+            View All Posts
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 group-hover:translate-x-1 transition-transform">
               <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
             </svg>
