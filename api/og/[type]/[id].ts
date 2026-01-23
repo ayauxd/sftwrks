@@ -101,8 +101,8 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   const { type, id } = req.query;
   const baseUrl = 'https://www.sftwrks.com';
 
-  let title = 'Softworks | AI Consulting';
-  let description = 'We find where your problem actually lives before building anything.';
+  let title = 'Softworks | AI Adoption Consultants';
+  let description = 'Workflow automation designed for your business. Cut through the noise and find the solution that fits.';
   let image = '/assets/logos/og-preview.png';
   let canonicalUrl = baseUrl;
   let redirectUrl = baseUrl;
@@ -138,7 +138,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   <meta name="description" content="${description}">
   <link rel="canonical" href="${canonicalUrl}">
 
-  <!-- Open Graph / Facebook / Instagram -->
+  <!-- Open Graph / Facebook / Instagram / WhatsApp / iMessage / SMS -->
   <meta property="og:type" content="article">
   <meta property="og:url" content="${canonicalUrl}">
   <meta property="og:title" content="${title}">
@@ -154,6 +154,7 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@sftwrks">
   <meta name="twitter:title" content="${title}">
   <meta name="twitter:description" content="${description}">
   <meta name="twitter:image" content="${fullImageUrl}">
