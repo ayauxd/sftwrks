@@ -52,7 +52,7 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
             <img
               src="/assets/logos/softworks-icon-light.png"
               alt=""
-              className="h-12 md:h-14 w-auto hidden dark:block"
+              className="h-14 md:h-16 w-auto hidden dark:block"
             />
             <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
               scrolled

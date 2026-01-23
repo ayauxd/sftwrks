@@ -452,96 +452,86 @@ function App() {
                     <h2 className="text-3xl md:text-4xl text-white mt-4 font-bold font-['Courier_Prime']">Case Studies & Blog</h2>
                 </div>
 
-                {/* Side-by-side layout on desktop, stacked on mobile */}
-                <div id="journal" className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-
-                    {/* Case Study Preview */}
-                    {previewCaseStudies[0] && (
-                        <div className="space-y-6">
-                            <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Case Studies</span>
-                                <button
-                                    onClick={() => { setShowCaseStudiesList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                                    className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
-                                >
-                                    View All &rarr;
-                                </button>
-                            </div>
-
+                {/* Case Studies - 2 cards side by side */}
+                <div className="mb-16">
+                    <div className="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
+                        <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Case Studies</span>
+                        <button
+                            onClick={() => { setShowCaseStudiesList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                            className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
+                        >
+                            View All &rarr;
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {previewCaseStudies.slice(0, 2).map((caseStudy) => (
                             <div
+                                key={caseStudy.id}
                                 className="group cursor-pointer"
-                                onClick={() => { setSelectedCaseStudy(previewCaseStudies[0]); window.history.pushState({ path: `/case-study/${previewCaseStudies[0].id}` }, '', `/case-study/${previewCaseStudies[0].id}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                onClick={() => { setSelectedCaseStudy(caseStudy); window.history.pushState({ path: `/case-study/${caseStudy.id}` }, '', `/case-study/${caseStudy.id}`); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                             >
                                 <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
                                     <img
-                                        src={`${previewCaseStudies[0].imageUrl}?v=2`}
-                                        alt={previewCaseStudies[0].title}
+                                        src={`${caseStudy.imageUrl}?v=2`}
+                                        alt={caseStudy.title}
                                         className="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
                                     />
                                     <div className="absolute top-3 left-3 bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-700 text-slate-300 uppercase">
-                                        {previewCaseStudies[0].sector}
+                                        {caseStudy.sector}
                                     </div>
                                 </div>
-
-                                <h3 className="text-xl font-bold text-white mb-2 font-['Courier_Prime'] leading-tight group-hover:text-[#00D4FF] transition-colors">
-                                    {previewCaseStudies[0].title}
+                                <h3 className="text-lg font-bold text-white mb-2 font-['Courier_Prime'] leading-tight group-hover:text-[#00D4FF] transition-colors">
+                                    {caseStudy.title}
                                 </h3>
                                 <p className="text-xs font-mono text-slate-500 uppercase tracking-widest mb-3">
-                                    {previewCaseStudies[0].client}
+                                    {caseStudy.client}
                                 </p>
                                 <p className="text-sm text-slate-400 mb-4 line-clamp-2 leading-relaxed">
-                                    {previewCaseStudies[0].summary}
+                                    {caseStudy.summary}
                                 </p>
-                                <div className="pl-3 border-l-2 border-slate-700 group-hover:border-[#00D4FF] transition-colors">
-                                    <p className="text-xs font-bold text-white font-['Courier_Prime']">
-                                        Outcome: {previewCaseStudies[0].outcome}
-                                    </p>
-                                </div>
                             </div>
-                        </div>
-                    )}
+                        ))}
+                    </div>
+                </div>
 
-                    {/* Insight Preview */}
-                    {previewArticles[0] && (
-                        <div className="space-y-6">
-                            <div className="flex justify-between items-center border-b border-slate-700 pb-4">
-                                <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Blog</span>
-                                <button
-                                    onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                                    className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
-                                >
-                                    View All &rarr;
-                                </button>
-                            </div>
-
+                {/* Blog - 2 cards side by side */}
+                <div id="journal">
+                    <div className="flex justify-between items-center border-b border-slate-700 pb-4 mb-8">
+                        <span className="font-mono text-xs text-slate-400 uppercase tracking-widest">Blog</span>
+                        <button
+                            onClick={() => { setShowInsightsList(true); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                            className="text-xs font-mono text-[#00D4FF] hover:underline transition-colors"
+                        >
+                            View All &rarr;
+                        </button>
+                    </div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        {previewArticles.slice(0, 2).map((article) => (
                             <article
+                                key={article.id}
                                 className="group cursor-pointer"
-                                onClick={() => { setSelectedArticle(previewArticles[0]); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+                                onClick={() => { setSelectedArticle(article); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                             >
                                 <div className="aspect-[16/10] bg-[#1E3A5F] mb-5 overflow-hidden border border-slate-700 relative">
                                     <img
-                                        src={`${previewArticles[0].image}?v=2`}
-                                        alt={previewArticles[0].title}
+                                        src={`${article.image}?v=2`}
+                                        alt={article.title}
                                         className="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
                                     />
                                     <div className="absolute top-3 left-3 bg-[#0A1628] px-2 py-1 text-[10px] font-mono border border-slate-700 text-[#00D4FF] uppercase">
-                                        {previewArticles[0].date}
+                                        {article.date}
                                     </div>
                                 </div>
-
-                                <h3 className="text-xl font-bold text-white mb-2 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
-                                    {previewArticles[0].title}
+                                <h3 className="text-lg font-bold text-white mb-2 font-['Courier_Prime'] group-hover:text-[#00D4FF] transition-colors">
+                                    {article.title}
                                 </h3>
-                                <p className="text-xs text-slate-500 mb-3">By {previewArticles[0].author}</p>
-                                <p className="text-sm text-slate-400 leading-relaxed line-clamp-3">
-                                    {previewArticles[0].excerpt}
+                                <p className="text-xs text-slate-500 mb-3">By {article.author}</p>
+                                <p className="text-sm text-slate-400 leading-relaxed line-clamp-2">
+                                    {article.excerpt}
                                 </p>
-                                <span className="inline-block mt-4 text-xs font-mono text-[#00D4FF] group-hover:translate-x-1 transition-transform">
-                                    Read more &rarr;
-                                </span>
                             </article>
-                        </div>
-                    )}
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>
