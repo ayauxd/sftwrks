@@ -154,7 +154,7 @@ const Hero: React.FC<HeroProps> = ({ isDark, onOpenAssessment }) => {
             <p className={`animate-fade-in-up max-w-xl text-lg md:text-xl font-light leading-relaxed mb-10 transition-colors duration-300 ${
               isDark ? 'text-slate-400' : 'text-slate-700'
             }`} style={{ animationDelay: '200ms' }}>
-              Cut through the noise and find out what's actually slowing you down.
+              Cut through the noise — find the solution that fits your business.
             </p>
 
             {/* CTA Buttons - Single clear action */}
