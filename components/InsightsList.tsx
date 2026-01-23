@@ -67,9 +67,10 @@ const InsightsList: React.FC<InsightsListProps> = ({ onArticleClick, onBack }) =
             >
               <div className="w-full aspect-[4/3] overflow-hidden mb-6 bg-slate-200 dark:bg-[#1E3A5F] border border-slate-300 dark:border-slate-700 relative">
                 <img
-                  src={article.image}
+                  src={`${article.image}?v=3`}
                   alt={article.title}
                   className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 dark:opacity-80"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-[#0F172A]/10 group-hover:bg-transparent transition-colors"></div>
               </div>

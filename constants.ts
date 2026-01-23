@@ -862,13 +862,48 @@ export const REGIONS = [
   { label: 'Latin America', value: 'latam' },
 ];
 
-// Time Value Calculator - Challenge options
+// Time Value Calculator - Challenge options with diagnostic data
 export const CHALLENGE_OPTIONS = [
-  { label: 'Admin overload', value: 'admin', description: 'Paperwork, data entry, repetitive tasks eating your day' },
-  { label: 'Customer response time', value: 'response', description: 'Leads going cold, slow follow-up, missed opportunities' },
-  { label: 'Team handoffs', value: 'handoffs', description: 'Information lost between people, duplicated work' },
-  { label: 'Data & reporting', value: 'data', description: 'Manual reports, scattered data, no clear picture' },
-  { label: 'Content creation', value: 'content', description: 'Marketing materials, documentation, proposals' },
+  {
+    label: 'Admin overload',
+    value: 'admin',
+    description: 'Paperwork, data entry, repetitive tasks eating your day',
+    recoveryRange: { conservative: 0.40, potential: 0.85 },
+    diagnosticInsight: "Admin bottlenecks usually live in one of three places: data entry between systems, approval workflows, or document preparation. In a discovery call, we'd map exactly where your time goes.",
+    quickWin: "Most admin problems have a 'copy-paste step' that doesn't need to exist. We'd find it in 15 minutes."
+  },
+  {
+    label: 'Customer response time',
+    value: 'response',
+    description: 'Leads going cold, slow follow-up, missed opportunities',
+    recoveryRange: { conservative: 0.25, potential: 0.70 },
+    diagnosticInsight: "Slow response usually isn't a people problem—it's a routing problem. Inquiries sit in the wrong inbox, or context isn't ready when you need it. We'd look at your lead flow and response triggers.",
+    quickWin: "An auto-response + intake form could recover 20% of response time before we touch anything else."
+  },
+  {
+    label: 'Team handoffs',
+    value: 'handoffs',
+    description: 'Information lost between people, duplicated work',
+    recoveryRange: { conservative: 0.30, potential: 0.75 },
+    diagnosticInsight: "Handoff friction comes from two sources: unclear ownership transitions or missing context at transfer points. We'd trace a few recent handoffs to find the pattern.",
+    quickWin: "A simple handoff checklist or template often cuts rework by half. No tech required."
+  },
+  {
+    label: 'Data & reporting',
+    value: 'data',
+    description: 'Manual reports, scattered data, no clear picture',
+    recoveryRange: { conservative: 0.45, potential: 0.90 },
+    diagnosticInsight: "Manual reporting means data lives in too many places. The fix is usually consolidation first, automation second. We'd audit where your numbers come from.",
+    quickWin: "Most reporting pain comes from one or two data sources that should be connected but aren't."
+  },
+  {
+    label: 'Content creation',
+    value: 'content',
+    description: 'Marketing materials, documentation, proposals',
+    recoveryRange: { conservative: 0.35, potential: 0.80 },
+    diagnosticInsight: "Content bottlenecks are typically approval delays or starting-from-scratch syndrome. We'd look at your content lifecycle from idea to publish.",
+    quickWin: "Templates and AI drafting can cut content creation time by 60-70% without losing your voice."
+  },
 ];
 
 // Team size options

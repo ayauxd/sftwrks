@@ -39,12 +39,17 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          {/* Brand Text */}
+          {/* Brand Logo + Text */}
           <button
             onClick={() => handleLink('top')}
-            className="hover:opacity-80 transition-opacity"
+            className="hover:opacity-80 transition-opacity flex items-center gap-3"
           >
-            <span className={`font-['Nunito'] font-black text-3xl md:text-4xl tracking-tight transition-colors ${
+            <img
+              src="/assets/logos/softworks-icon.png"
+              alt=""
+              className="h-10 md:h-12 w-auto dark:invert dark:brightness-200 dark:contrast-90"
+            />
+            <span className={`font-['Nunito'] font-black text-2xl md:text-3xl tracking-tight transition-colors ${
               scrolled
                 ? 'text-slate-900 dark:text-white'
                 : isDark ? 'text-white' : 'text-slate-900'
@@ -164,9 +169,16 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, isDark, toggleTheme }) => {
           {/* Menu content */}
           <div className="relative min-h-full p-8 pt-24 pb-12 flex flex-col justify-center items-center overflow-y-auto">
             {/* Brand */}
-            <div className="mb-12">
-              <span className="font-['Nunito'] text-white font-black text-4xl tracking-tight">Softworks</span>
-              <div className="h-0.5 w-16 bg-gradient-to-r from-[#00D4FF] to-transparent mx-auto mt-4" />
+            <div className="mb-12 flex flex-col items-center">
+              <div className="flex items-center gap-3">
+                <img
+                  src="/assets/logos/softworks-icon.png"
+                  alt=""
+                  className="h-12 w-auto invert brightness-200 contrast-90"
+                />
+                <span className="font-['Nunito'] text-white font-black text-3xl tracking-tight">Softworks</span>
+              </div>
+              <div className="h-0.5 w-16 bg-gradient-to-r from-[#00D4FF] to-transparent mt-4" />
             </div>
 
             {/* Nav links */}

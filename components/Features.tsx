@@ -29,37 +29,37 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
 
   const findItSteps = [
     {
-      number: '01',
       title: 'Map',
       description: 'Walk your operations. Find the real bottleneck.',
       image: '/assets/sections/step-01-map.webp?v=2',
+      icon: '🔍',
     },
     {
-      number: '02',
       title: 'Value',
       description: 'Calculate what fixing it is worth to you.',
       image: '/assets/sections/step-02-value.webp?v=2',
+      icon: '💰',
     },
   ];
 
   const fixItSteps = [
     {
-      number: '03',
       title: 'Scope',
       description: 'Fixed price. Clear deliverable. No surprises.',
       image: '/assets/sections/step-03-scope.webp?v=2',
+      icon: '📋',
     },
     {
-      number: '04',
       title: 'Build',
       description: 'One system at a time. Weekly progress.',
       image: '/assets/sections/step-04-build.webp?v=2',
+      icon: '⚙️',
     },
     {
-      number: '05',
       title: 'Hand Over',
       description: 'We train your team, document everything, then exit. It runs without us.',
       image: '/assets/sections/step-05-handover.webp?v=2',
+      icon: '🔑',
     },
   ];
 
@@ -141,7 +141,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
               <div className="grid grid-cols-2 gap-4">
                 {findItSteps.map((step, index) => (
                   <div
-                    key={step.number}
+                    key={step.title}
                     className={`step-card group ${isVisible ? 'visible' : ''}`}
                     style={{ animationDelay: `${0.1 + index * 0.1}s` }}
                   >
@@ -154,10 +154,8 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                         />
                       </div>
                       <div className="p-4">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
-                            {step.number}
-                          </div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-lg">{step.icon}</span>
                           <h3 className="text-lg font-bold text-white">{step.title}</h3>
                         </div>
                         <p className="text-sm text-slate-400 leading-relaxed">
@@ -181,7 +179,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
               <div className="grid grid-cols-3 gap-4">
                 {fixItSteps.map((step, index) => (
                   <div
-                    key={step.number}
+                    key={step.title}
                     className={`step-card group ${isVisible ? 'visible' : ''}`}
                     style={{ animationDelay: `${0.4 + index * 0.1}s` }}
                   >
@@ -194,10 +192,8 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                         />
                       </div>
                       <div className="p-4">
-                        <div className="flex items-center gap-3 mb-2">
-                          <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
-                            {step.number}
-                          </div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-lg">{step.icon}</span>
                           <h3 className="text-lg font-bold text-white">{step.title}</h3>
                         </div>
                         <p className="text-sm text-slate-400 leading-relaxed">
@@ -221,7 +217,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
             </span>
 
             {findItSteps.map((step, index) => (
-              <div key={step.number}>
+              <div key={step.title}>
                 <div
                   className={`step-card group ${isVisible ? 'visible' : ''}`}
                   style={{ animationDelay: `${0.1 + index * 0.1}s` }}
@@ -235,10 +231,8 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                       />
                     </div>
                     <div className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
-                          {step.number}
-                        </div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">{step.icon}</span>
                         <h3 className="text-lg font-bold text-white">{step.title}</h3>
                       </div>
                       <p className="text-sm text-slate-400 leading-relaxed">
@@ -272,7 +266,7 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
             </span>
 
             {fixItSteps.map((step, index) => (
-              <div key={step.number}>
+              <div key={step.title}>
                 <div
                   className={`step-card group ${isVisible ? 'visible' : ''}`}
                   style={{ animationDelay: `${0.4 + index * 0.1}s` }}
@@ -286,10 +280,8 @@ const Features: React.FC<FeaturesProps> = ({ onOpenCalculator }) => {
                       />
                     </div>
                     <div className="p-4">
-                      <div className="flex items-center gap-3 mb-2">
-                        <div className="w-8 h-8 bg-[#00D4FF] rounded-lg flex items-center justify-center text-[#0A1628] font-mono font-bold text-xs">
-                          {step.number}
-                        </div>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-lg">{step.icon}</span>
                         <h3 className="text-lg font-bold text-white">{step.title}</h3>
                       </div>
                       <p className="text-sm text-slate-400 leading-relaxed">
